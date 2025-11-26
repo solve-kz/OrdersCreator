@@ -17,22 +17,17 @@ namespace OrdersCreator.UI
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            // Здесь пока можно создать "заглушки" / InMemory-реализации:
-            /*IBarcodeParser barcodeParser = new SimpleBarcodeParser(); // TODO: твоя реализация
-            IOrderService orderService = new InMemoryOrderService();   // TODO
-            ICustomerService customerService = new InMemoryCustomerService(); // TODO
-            IProductService productService = new InMemoryProductService();    // TODO
-            IReportService reportService = new DummyReportService();         // TODO*/
-
+            
             ICustomerRepository customerRepository = new InMemoryCustomerRepository();
             ICustomerService customerService = new CustomerService(customerRepository);
             ICategoryRepository categoryRepository = new InMemoryCategoryRepository();
             ICategoryService categoryService = new CategoryService(categoryRepository);
             IProductRepository productRepo = new InMemoryProductRepository();
             IProductService productService = new ProductService(productRepo);
+            ISettingsRepository settingsRepository = new InMemorySettingsRepository();
+            ISettingsService settingsService = new SettingsService(settingsRepository);
 
-            var mainForm = new MainForm(customerService, categoryService, productService);
+            var mainForm = new MainForm(customerService, categoryService, productService, settingsService);
             Application.Run(mainForm);
         }
     }

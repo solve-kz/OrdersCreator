@@ -18,13 +18,15 @@ namespace OrdersCreator.UI
         private readonly ICustomerService _customerService;
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
-        public MainForm(ICustomerService customerService, ICategoryService categoryService, IProductService productService)
+        private readonly ISettingsService _settingsService;
+        public MainForm(ICustomerService customerService, ICategoryService categoryService, IProductService productService, ISettingsService settingsService)
         {
             InitializeComponent();
             _customerService = customerService;
             LoadCustomersForMain();
             _categoryService = categoryService;
             _productService = productService;
+            _settingsService = settingsService;
         }
 
         private void LoadCustomersForMain()
@@ -41,13 +43,19 @@ namespace OrdersCreator.UI
             cmbCustomers.SelectedIndex = -1;
         }
 
-        
+
 
         private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService);
             refEditForm.ShowDialog();
             LoadCustomersForMain();
+        }
+
+        private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSettings settingsForm = new FormSettings(_settingsService);
+            settingsForm.ShowDialog();
         }
     }
 }

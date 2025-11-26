@@ -121,6 +121,7 @@
             настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
             настройкаToolStripMenuItem.Size = new Size(78, 20);
             настройкаToolStripMenuItem.Text = "Настройка";
+            настройкаToolStripMenuItem.Click += настройкаToolStripMenuItem_Click;
             // 
             // panel1
             // 
@@ -274,8 +275,8 @@
             // 
             // panelLeftContainer
             // 
-            panelLeftContainer.Controls.Add(panelRedMode);
             panelLeftContainer.Controls.Add(panelGreenMode);
+            panelLeftContainer.Controls.Add(panelRedMode);
             panelLeftContainer.Dock = DockStyle.Fill;
             panelLeftContainer.Location = new Point(3, 3);
             panelLeftContainer.Name = "panelLeftContainer";

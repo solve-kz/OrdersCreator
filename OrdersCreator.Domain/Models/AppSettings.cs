@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OrdersCreator.Domain.Models
+{
+    /// <summary>
+    /// Глобальные настройки приложения.
+    /// </summary>
+    public sealed class AppSettings
+    {
+        // ---- Отчёты по заказам ----
+
+        /// <summary>Корневая папка для отчётов.</summary>
+        public string ReportsRootFolder { get; set; } = string.Empty;
+
+        /// <summary>Создавать подпапку с датой внутри корня.</summary>
+        public bool UseDailySubfolder { get; set; } = true;
+
+        /// <summary>Путь к .xlsx-шаблону отчёта.</summary>
+        public string ReportTemplatePath { get; set; } = string.Empty;
+
+        /// <summary>Маска имени файла отчёта.</summary>
+        /// Например: "Отчёт_{CustomerName}_{Date:yyyy-MM-dd_HH-mm}.xlsx"
+        public string ReportFileNameMask { get; set; } =
+            "Отчёт_{CustomerName}_{Date:yyyy-MM-dd_HH-mm}.xlsx";
+
+        /// <summary>Открывать ли отчёт в Excel после сохранения.</summary>
+        public bool OpenReportAfterSave { get; set; } = true;
+
+        // ---- Блок поведения ----
+
+        /// <summary>Таймаут между символами сканера, мс.</summary>
+        public int ScannerCharTimeoutMs { get; set; } = 150;
+
+        /// <summary>Разрешить ручной ввод штрих-кода с клавиатуры.</summary>
+        public bool AllowManualBarcodeInput { get; set; } = true;
+
+        /// <summary>Включить/выключить звуки.</summary>
+        public bool SoundsEnabled { get; set; } = true;
+
+        /// <summary>Как поступать с неизвестным товаром.</summary>
+        public UnknownProductMode UnknownProductMode { get; set; } =
+            UnknownProductMode.PromptForData;
+
+        // ---- Хранение данных ----
+
+        /// <summary>Тип хранилища (InMemory / SQLite / SQL Server).</summary>
+        public StorageType StorageType { get; set; } = StorageType.Sqlite;
+
+        /// <summary>
+        /// Строка подключения к SQL Server. 
+        /// Для InMemory/SQLite может быть пустой.
+        /// </summary>
+        public string SqlServerConnectionString { get; set; } = string.Empty;
+    }
+}
