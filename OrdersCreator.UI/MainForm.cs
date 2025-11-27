@@ -30,6 +30,7 @@ namespace OrdersCreator.UI
         private SoundPlayer? _failurePlayer;
 
         private AppSettings _appSettings = new();
+        private IReadOnlyList<Category> _categories = new List<Category>();
         private readonly StringBuilder _scannerBuffer = new();
         private readonly System.Windows.Forms.Timer _scannerTimer = new();
         private DateTime _lastScannerCharTime;
@@ -268,14 +269,14 @@ namespace OrdersCreator.UI
 
         private void DisplayParsedBarcode(ParsedBarcode parsedBarcode, OrderLine orderLine)
         {
-            lblCodeAmount.Text = parsedBarcode.ProductCode;
-            lblCodeWeight.Text = parsedBarcode.WeightKg.ToString("F3");
-
             if (orderLine.Product != null)
             {
                 lblCurrentTitle.Text = orderLine.Product.Name;
-                lblCurrentCategory.Text = orderLine.Product.Category?.Name ?? string.Empty;
-                lblCurrentWeight.Text = _orderService
+                lblCurrentCategory.Text = (orderLine.Product.Category ?? FindCategoryById(orderLine.Product.CategoryId))?.Name ?? string.Empty;
+                lblCurrentWeight.Text = parsedBarcode.WeightKg.ToString("F3");
+
+                lblCodeAmount.Text = GetProductCount(orderLine.Product.Code).ToString();
+                lblCodeWeight.Text = _orderService
                     .GetCurrentProductSubtotal(orderLine.Product.Code)
                     .ToString("F3");
             }
@@ -303,9 +304,14 @@ namespace OrdersCreator.UI
         private void UpdateResults()
         {
             var lines = _orderService.CurrentOrder?.Lines ?? new List<OrderLine>();
-            var totalWeight = lines.Sum(l => l.WeightKg);
+            var productCode = GetSelectedProductCode();
+            var relevantLines = lines
+                .Where(l => !string.IsNullOrWhiteSpace(productCode) && l.Product?.Code == productCode)
+                .ToList();
 
-            lblResults.Text = $"ИТОГО: {lines.Count} мест | {totalWeight:F3} кг.";
+            var totalWeight = relevantLines.Sum(l => l.WeightKg);
+
+            lblResults.Text = $"ИТОГО: {relevantLines.Count} мест | {totalWeight:F3} кг.";
         }
 
         private void LoadCategoriesForNewProduct()
@@ -314,6 +320,8 @@ namespace OrdersCreator.UI
                 .GetAll()
                 .OrderBy(c => c.Name)
                 .ToList();
+
+            _categories = categories;
 
             cbNewProductCategory.DataSource = categories;
             cbNewProductCategory.DisplayMember = nameof(Category.Name);
@@ -448,21 +456,39 @@ namespace OrdersCreator.UI
 
             var row = dataGridViewOrderLines.SelectedRows[0];
             var productCode = row.Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
-            var weightText = row.Cells[nameof(ProductWeight)]?.Value?.ToString() ?? string.Empty;
 
-            lblCodeAmount.Text = productCode;
-            lblCodeWeight.Text = weightText;
+            lblCodeAmount.Text = GetProductCount(productCode).ToString();
+            lblCodeWeight.Text = _orderService
+                .GetCurrentProductSubtotal(productCode)
+                .ToString("F3");
 
-            var product = _productService.FindByCode(productCode);
+            UpdateResults();
+        }
 
-            if (product != null)
-            {
-                lblCurrentTitle.Text = product.Name;
-                lblCurrentCategory.Text = product.Category?.Name ?? string.Empty;
-                lblCurrentWeight.Text = _orderService
-                    .GetCurrentProductSubtotal(productCode)
-                    .ToString("F3");
-            }
+        private int GetProductCount(string productCode)
+        {
+            var lines = _orderService.CurrentOrder?.Lines ?? new List<OrderLine>();
+
+            if (string.IsNullOrWhiteSpace(productCode))
+                return 0;
+
+            var normalized = productCode.Trim();
+
+            return lines.Count(l => l.Product?.Code == normalized);
+        }
+
+        private string GetSelectedProductCode()
+        {
+            if (dataGridViewOrderLines.SelectedRows.Count == 0)
+                return string.Empty;
+
+            return dataGridViewOrderLines.SelectedRows[0].Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
+        }
+
+        private Category? FindCategoryById(int categoryId)
+        {
+            return _categories.FirstOrDefault(c => c.Id == categoryId) ??
+                   _categoryService.GetAll().FirstOrDefault(c => c.Id == categoryId);
         }
 
     }
