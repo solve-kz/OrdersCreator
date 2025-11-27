@@ -46,11 +46,6 @@
             panelMainBody = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewOrderLines = new DataGridView();
-            RowNumber = new DataGridViewTextBoxColumn();
-            ProductCode = new DataGridViewTextBoxColumn();
-            ProductTitle = new DataGridViewTextBoxColumn();
-            ProductWeight = new DataGridViewTextBoxColumn();
-            RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
             panelGreenMode = new Panel();
             panelReady = new Panel();
@@ -81,6 +76,11 @@
             tbNewProductCode = new TextBox();
             label7 = new Label();
             label6 = new Label();
+            RowNumber = new DataGridViewTextBoxColumn();
+            ProductCode = new DataGridViewTextBoxColumn();
+            ProductTitle = new DataGridViewTextBoxColumn();
+            ProductWeight = new DataGridViewTextBoxColumn();
+            RowDelete = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -274,36 +274,6 @@
             dataGridViewOrderLines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewOrderLines.Size = new Size(705, 591);
             dataGridViewOrderLines.TabIndex = 0;
-            // 
-            // RowNumber
-            // 
-            RowNumber.HeaderText = "№";
-            RowNumber.Name = "RowNumber";
-            RowNumber.ReadOnly = true;
-            // 
-            // ProductCode
-            // 
-            ProductCode.HeaderText = "Код";
-            ProductCode.Name = "ProductCode";
-            ProductCode.ReadOnly = true;
-            // 
-            // ProductTitle
-            // 
-            ProductTitle.HeaderText = "Наименование";
-            ProductTitle.Name = "ProductTitle";
-            ProductTitle.ReadOnly = true;
-            // 
-            // ProductWeight
-            // 
-            ProductWeight.HeaderText = "Вес";
-            ProductWeight.Name = "ProductWeight";
-            ProductWeight.ReadOnly = true;
-            // 
-            // RowDelete
-            // 
-            RowDelete.HeaderText = "Удл.";
-            RowDelete.Name = "RowDelete";
-            RowDelete.ReadOnly = true;
             // 
             // panelLeftContainer
             // 
@@ -645,6 +615,39 @@
             label6.TabIndex = 0;
             label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
             // 
+            // RowNumber
+            // 
+            RowNumber.HeaderText = "№";
+            RowNumber.Name = "RowNumber";
+            RowNumber.ReadOnly = true;
+            RowNumber.Width = 50;
+            // 
+            // ProductCode
+            // 
+            ProductCode.HeaderText = "Код";
+            ProductCode.Name = "ProductCode";
+            ProductCode.ReadOnly = true;
+            // 
+            // ProductTitle
+            // 
+            ProductTitle.HeaderText = "Наименование";
+            ProductTitle.Name = "ProductTitle";
+            ProductTitle.ReadOnly = true;
+            ProductTitle.Width = 390;
+            // 
+            // ProductWeight
+            // 
+            ProductWeight.HeaderText = "Вес";
+            ProductWeight.Name = "ProductWeight";
+            ProductWeight.ReadOnly = true;
+            // 
+            // RowDelete
+            // 
+            RowDelete.HeaderText = "Удл.";
+            RowDelete.Name = "RowDelete";
+            RowDelete.ReadOnly = true;
+            RowDelete.Width = 50;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -703,11 +706,6 @@
         private Panel panelMainBody;
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView dataGridViewOrderLines;
-        private DataGridViewTextBoxColumn RowNumber;
-        private DataGridViewTextBoxColumn ProductCode;
-        private DataGridViewTextBoxColumn ProductTitle;
-        private DataGridViewTextBoxColumn ProductWeight;
-        private DataGridViewButtonColumn RowDelete;
         private Panel panelLeftContainer;
         private Panel panelGreenMode;
         private Panel panel3;
@@ -745,5 +743,10 @@
         private ToolStripMenuItem сохранитьToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
         private ToolStripMenuItem файлToolStripMenuItem1;
+        private DataGridViewTextBoxColumn RowNumber;
+        private DataGridViewTextBoxColumn ProductCode;
+        private DataGridViewTextBoxColumn ProductTitle;
+        private DataGridViewTextBoxColumn ProductWeight;
+        private DataGridViewButtonColumn RowDelete;
     }
 }
