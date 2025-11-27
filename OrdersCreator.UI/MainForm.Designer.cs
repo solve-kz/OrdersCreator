@@ -267,6 +267,7 @@
             dataGridViewOrderLines.Columns.AddRange(new DataGridViewColumn[] { RowNumber, ProductCode, ProductTitle, ProductWeight, RowDelete });
             dataGridViewOrderLines.Dock = DockStyle.Fill;
             dataGridViewOrderLines.Location = new Point(476, 3);
+            dataGridViewOrderLines.MultiSelect = false;
             dataGridViewOrderLines.Name = "dataGridViewOrderLines";
             dataGridViewOrderLines.ReadOnly = true;
             dataGridViewOrderLines.RowHeadersVisible = false;
