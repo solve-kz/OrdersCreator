@@ -10,6 +10,6 @@ namespace OrdersCreator.Domain.Models;
 public enum OrderStatus
 {
     Draft = 0,
-    Completed = 1,
-    Cancelled = 2
+    AtWork = 1,
+    Complited = 2
 }
