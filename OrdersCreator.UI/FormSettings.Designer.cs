@@ -250,6 +250,7 @@
             // numScannerCharTimeoutMs
             // 
             numScannerCharTimeoutMs.Location = new Point(326, 64);
+            numScannerCharTimeoutMs.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numScannerCharTimeoutMs.Name = "numScannerCharTimeoutMs";
             numScannerCharTimeoutMs.Size = new Size(120, 29);
             numScannerCharTimeoutMs.TabIndex = 19;

@@ -57,5 +57,17 @@ namespace OrdersCreator.UI
             FormSettings settingsForm = new FormSettings(_settingsService);
             settingsForm.ShowDialog();
         }
+
+        private void cmbCustomers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbCustomers.SelectedIndex != -1)
+            {
+                lblReady.Text = "Готов к сканированию";
+            }
+            else
+            {
+                lblReady.Text = "Выберите контрагента!";
+            }
+        }
     }
 }
