@@ -1,5 +1,6 @@
 using OrdersCreator.Domain.Barcode;
 using OrdersCreator.Domain.Models;
+using OrdersCreator.Domain.Repositories;
 using OrdersCreator.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace OrdersCreator.UI
         private readonly ISettingsService _settingsService;
         private readonly IBarcodeParser _barcodeParser;
         private readonly IOrderService _orderService;
+        private readonly IReportService _reportService;
+        private readonly IOrderRepository _orderRepository;
 
         private ParsedBarcode? _pendingBarcode;
         private SoundPlayer? _successPlayer;
@@ -42,7 +45,9 @@ namespace OrdersCreator.UI
                         IProductService productService,
                         ISettingsService settingsService,
                         IBarcodeParser barcodeParser,
-                        IOrderService orderService)
+                        IOrderService orderService,
+                        IReportService reportService,
+                        IOrderRepository orderRepository)
         {
             InitializeComponent();
             _customerService = customerService;
@@ -51,6 +56,8 @@ namespace OrdersCreator.UI
             _settingsService = settingsService;
             _barcodeParser = barcodeParser;
             _orderService = orderService;
+            _reportService = reportService;
+            _orderRepository = orderRepository;
 
             _appSettings = _settingsService.GetSettings();
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
@@ -65,6 +72,9 @@ namespace OrdersCreator.UI
             btnCancel.Click += BtnCancel_Click;
             btnNewProductAdd.Click += BtnNewProductAdd_Click;
             dataGridViewOrderLines.SelectionChanged += DataGridViewOrderLines_SelectionChanged;
+            btnCreateReport.Click += BtnCreateReport_Click;
+            открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
+            сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
 
 
             LoadCustomersForMain();
@@ -167,6 +177,12 @@ namespace OrdersCreator.UI
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 CancelLastAction();
+            }
+            else if (e.KeyCode == Keys.F12)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                BtnCreateReport_Click(sender, e);
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -489,6 +505,132 @@ namespace OrdersCreator.UI
         {
             return _categories.FirstOrDefault(c => c.Id == categoryId) ??
                    _categoryService.GetAll().FirstOrDefault(c => c.Id == categoryId);
+        }
+
+        private void BtnCreateReport_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                var current = _orderService.CurrentOrder ?? throw new InvalidOperationException("Нет активного заказа.");
+
+                var reportPath = _reportService.CreateReport(current);
+
+                if (current.Customer != null)
+                {
+                    ResetAfterReport(current.Customer);
+                }
+
+                lblReady.Text = $"Отчёт сохранён: {reportPath}";
+                PlaySuccessSound();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblReady.Text = ex.Message;
+                PlayFailureSound();
+            }
+        }
+
+        private void ResetAfterReport(Customer customer)
+        {
+            dataGridViewOrderLines.Rows.Clear();
+            _orderService.StartNewOrder(customer, DateTime.Now);
+            SwitchToGreenMode();
+            _scannerBuffer.Clear();
+            UpdateResults();
+        }
+
+        private void СохранитьToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                var order = _orderService.CurrentOrder ?? throw new InvalidOperationException("Нет активного заказа для сохранения.");
+
+                using var dialog = new SaveFileDialog
+                {
+                    Filter = "Файлы заказа (*.order.json)|*.order.json|JSON (*.json)|*.json|Все файлы (*.*)|*.*",
+                    DefaultExt = "order.json"
+                };
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                    return;
+
+                _orderRepository.SaveToFile(order, dialog.FileName);
+                lblReady.Text = $"Заказ сохранён: {dialog.FileName}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка сохранения заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblReady.Text = ex.Message;
+            }
+        }
+
+        private void ОткрытьToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                using var dialog = new OpenFileDialog
+                {
+                    Filter = "Файлы заказа (*.order.json)|*.order.json|JSON (*.json)|*.json|Все файлы (*.*)|*.*",
+                    DefaultExt = "order.json"
+                };
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                    return;
+
+                var order = _orderRepository.LoadFromFile(dialog.FileName);
+                ApplyLoadedOrder(order);
+                lblReady.Text = $"Загружен заказ: {order.Number}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка загрузки заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblReady.Text = ex.Message;
+            }
+        }
+
+        private void ApplyLoadedOrder(Order order)
+        {
+            if (order.Customer != null)
+            {
+                var customers = (cmbCustomers.DataSource as IEnumerable<Customer>)?.ToList() ?? new List<Customer>();
+                if (!customers.Any(c => c.Id == order.Customer.Id))
+                {
+                    customers.Add(order.Customer);
+                    cmbCustomers.DataSource = customers.OrderBy(c => c.Name).ToList();
+                    cmbCustomers.DisplayMember = nameof(Customer.Name);
+                    cmbCustomers.ValueMember = nameof(Customer.Id);
+                }
+
+                for (int i = 0; i < cmbCustomers.Items.Count; i++)
+                {
+                    if (cmbCustomers.Items[i] is Customer customer && customer.Id == order.Customer.Id)
+                    {
+                        cmbCustomers.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            _orderService.LoadOrder(order);
+            FillGridFromOrder(order);
+            SwitchToGreenMode();
+            UpdateResults();
+        }
+
+        private void FillGridFromOrder(Order order)
+        {
+            dataGridViewOrderLines.Rows.Clear();
+
+            foreach (var line in order.Lines.OrderByDescending(l => l.RowNumber))
+            {
+                AddOrderLineToGrid(line);
+            }
+
+            if (dataGridViewOrderLines.Rows.Count > 0)
+            {
+                dataGridViewOrderLines.Rows[0].Selected = true;
+            }
         }
 
     }

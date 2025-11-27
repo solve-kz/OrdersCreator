@@ -130,5 +130,21 @@ namespace OrdersCreator.Infrastructure.Services
             if (_currentOrder.Customer == null && _currentOrder.CustomerId == 0)
                 throw new InvalidOperationException("Контрагент не выбран.");
         }
+
+        public void LoadOrder(Order order)
+        {
+            if (order is null)
+                throw new ArgumentNullException(nameof(order));
+
+            _currentOrder = order;
+
+            // Перенумеровать строки, если надо
+            for (int i = 0; i < _currentOrder.Lines.Count; i++)
+            {
+                _currentOrder.Lines[i].RowNumber = i + 1;
+            }
+
+            _lastAddedLine = _currentOrder.Lines.LastOrDefault();
+        }
     }
 }

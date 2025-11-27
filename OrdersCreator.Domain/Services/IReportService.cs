@@ -19,5 +19,10 @@ public interface IReportService
     /// Финализирует заказ и возвращает "готовую" модель для печати.
     /// </summary>
     Order CompleteOrder(Order order);
+
+    /// <summary>
+    /// Формирует Excel-отчёт по заказу и возвращает путь к сохранённому файлу.
+    /// </summary>
+    string CreateReport(Order order);
 }
 

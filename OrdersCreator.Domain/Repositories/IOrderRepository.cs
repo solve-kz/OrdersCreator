@@ -17,5 +17,11 @@ public interface IOrderRepository
     Order Add(Order order);
 
     void Update(Order order);
+
+    /// <summary>Сохраняет заказ в указанный файл (например, .json).</summary>
+    void SaveToFile(Order order, string filePath);
+
+    /// <summary>Загружает заказ из файла.</summary>
+    Order LoadFromFile(string filePath);
 }
 
