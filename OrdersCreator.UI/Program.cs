@@ -79,6 +79,7 @@ namespace OrdersCreator.UI
             IProductService productService = new ProductService(productRepo);
 
             IBarcodeParser barcodeParser = new BarcodeParser();
+            IOrderService orderService = new OrderService(productService);
 
 
             /*ICustomerRepository customerRepository = new InMemoryCustomerRepository();
@@ -89,7 +90,13 @@ namespace OrdersCreator.UI
             IProductService productService = new ProductService(productRepo);*/
 
 
-            var mainForm = new MainForm(customerService, categoryService, productService, settingsService, barcodeParser);
+            var mainForm = new MainForm(
+                customerService,
+                categoryService,
+                productService,
+                settingsService,
+                barcodeParser,
+                orderService);
             Application.Run(mainForm);
         }
     }

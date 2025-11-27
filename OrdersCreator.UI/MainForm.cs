@@ -22,6 +22,7 @@ namespace OrdersCreator.UI
         private readonly IProductService _productService;
         private readonly ISettingsService _settingsService;
         private readonly IBarcodeParser _barcodeParser;
+        private readonly IOrderService _orderService;
 
         private AppSettings _appSettings = new();
         private readonly StringBuilder _scannerBuffer = new();
@@ -34,7 +35,8 @@ namespace OrdersCreator.UI
                         ICategoryService categoryService,
                         IProductService productService,
                         ISettingsService settingsService,
-                        IBarcodeParser barcodeParser)
+                        IBarcodeParser barcodeParser,
+                        IOrderService orderService)
         {
             InitializeComponent();
             _customerService = customerService;
@@ -42,6 +44,7 @@ namespace OrdersCreator.UI
             _productService = productService;
             _settingsService = settingsService;
             _barcodeParser = barcodeParser;
+            _orderService = orderService;
 
             _appSettings = _settingsService.GetSettings();
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
@@ -91,8 +94,9 @@ namespace OrdersCreator.UI
 
         private void cmbCustomers_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cmbCustomers.SelectedIndex != -1)
+            if (cmbCustomers.SelectedIndex != -1 && cmbCustomers.SelectedItem is Customer selectedCustomer)
             {
+                _orderService.SetCustomer(selectedCustomer);
                 lblReady.Text = "Готов к сканированию";
             }
             else
@@ -190,7 +194,9 @@ namespace OrdersCreator.UI
             try
             {
                 var parsed = _barcodeParser.Parse(rawBarcode);
-                DisplayParsedBarcode(parsed);
+                var orderLine = _orderService.AddLineFromBarcode(parsed);
+                DisplayParsedBarcode(parsed, orderLine);
+                lblReady.Text = "Готов к сканированию";
             }
             catch (Exception ex)
             {
@@ -198,10 +204,20 @@ namespace OrdersCreator.UI
             }
         }
 
-        private void DisplayParsedBarcode(ParsedBarcode parsedBarcode)
+        private void DisplayParsedBarcode(ParsedBarcode parsedBarcode, OrderLine orderLine)
         {
             lblCodeAmount.Text = parsedBarcode.ProductCode;
             lblCodeWeight.Text = parsedBarcode.WeightKg.ToString("F3");
+
+            if (orderLine.Product != null)
+            {
+                lblCurrentTitle.Text = orderLine.Product.Name;
+                lblCurrentCategory.Text = orderLine.Product.Category?.Name ?? string.Empty;
+                lblCurrentWeight.Text = _orderService
+                    .GetCurrentProductSubtotal(orderLine.Product.Code)
+                    .ToString("F3");
+            }
         }
+
     }
 }
