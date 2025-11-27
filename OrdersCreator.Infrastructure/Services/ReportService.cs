@@ -129,8 +129,7 @@ public class ReportService : IReportService
             ["{date}"] = order.Date.ToString("dd.MM.yyyy"),
             ["{order_number}"] = order.Number,
             ["{total_weight}"] = order.Lines.Sum(l => l.WeightKg).ToString("F3"),
-            ["{line_count}"] = order.Lines.Count.ToString(),
-            ["{lines}"] = string.Empty
+            ["{line_count}"] = order.Lines.Count.ToString()
         };
 
         foreach (var cell in worksheet.CellsUsed())
