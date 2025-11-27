@@ -721,10 +721,29 @@ namespace OrdersCreator.UI
 
         private void BtnImportCustomersXlsx_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show(this,
-                "Здесь будет импорт контрагентов из .xlsx через сервис Infrastructure.",
-                "Импорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var dialog = new OpenFileDialog
+            {
+                Filter = "Файлы Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*",
+                Title = "Импорт контрагентов"
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
+            {
+                var imported = _customerService.ImportFromXlsx(dialog.FileName);
+                LoadCustomers();
+
+                MessageBox.Show(this,
+                    $"Импортировано записей: {imported.Count}.",
+                    "Импорт завершён",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Ошибка импорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         
@@ -739,10 +758,30 @@ namespace OrdersCreator.UI
 
         private void BtnExportCustomersXlsx_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show(this,
-                "Здесь будет экспорт контрагентов в .xlsx через сервис Infrastructure.",
-                "Экспорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var dialog = new SaveFileDialog
+            {
+                Filter = "Файлы Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*",
+                FileName = "customers.xlsx",
+                Title = "Экспорт контрагентов"
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
+            {
+                _customerService.ExportToXlsx(dialog.FileName);
+
+                MessageBox.Show(this,
+                    "Экспорт завершён успешно.",
+                    "Экспорт .xlsx",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Ошибка экспорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         
