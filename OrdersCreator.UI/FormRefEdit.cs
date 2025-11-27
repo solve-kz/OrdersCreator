@@ -86,10 +86,7 @@ namespace OrdersCreator.UI
             btnCategorySave.Click += BtnSaveCategory_Click;
             btnCategoryDel.Click += BtnDeleteCategory_Click;
             btnCategoryCancel.Click += BtnCancelCategory_Click;
-
-            btnCategoriesImport.Click += BtnImportCategoriesXlsx_Click;
-            btnCategoriesExport.Click += BtnExportCategoriesXlsx_Click;
-
+           
             LoadCategories();
         }
 
@@ -730,13 +727,7 @@ namespace OrdersCreator.UI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnImportCategoriesXlsx_Click(object? sender, EventArgs e)
-        {
-            MessageBox.Show(this,
-                "Здесь будет импорт категорий из .xlsx через сервис Infrastructure.",
-                "Импорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        
 
         private void BtnProductsImport_Click(object? sender, EventArgs e)
         {
@@ -754,13 +745,7 @@ namespace OrdersCreator.UI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnExportCategoriesXlsx_Click(object? sender, EventArgs e)
-        {
-            MessageBox.Show(this,
-                "Здесь будет экспорт категорий в .xlsx через сервис Infrastructure.",
-                "Экспорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        
 
         private void BtnProductsExport_Click(object? sender, EventArgs e)
         {

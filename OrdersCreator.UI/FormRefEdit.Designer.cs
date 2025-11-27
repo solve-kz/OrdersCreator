@@ -34,8 +34,6 @@
             RowNumber = new DataGridViewTextBoxColumn();
             CategoryTitle = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
-            btnCategoriesExport = new Button();
-            btnCategoriesImport = new Button();
             tbCategoryTitle = new TextBox();
             label1 = new Label();
             btnCategoryCancel = new Button();
@@ -149,8 +147,6 @@
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
-            panel1.Controls.Add(btnCategoriesExport);
-            panel1.Controls.Add(btnCategoriesImport);
             panel1.Controls.Add(tbCategoryTitle);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnCategoryCancel);
@@ -163,32 +159,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(970, 200);
             panel1.TabIndex = 0;
-            // 
-            // btnCategoriesExport
-            // 
-            btnCategoriesExport.BackColor = Color.BlueViolet;
-            btnCategoriesExport.FlatAppearance.BorderSize = 0;
-            btnCategoriesExport.FlatStyle = FlatStyle.Flat;
-            btnCategoriesExport.ForeColor = Color.White;
-            btnCategoriesExport.Location = new Point(46, 143);
-            btnCategoriesExport.Name = "btnCategoriesExport";
-            btnCategoriesExport.Size = new Size(140, 33);
-            btnCategoriesExport.TabIndex = 15;
-            btnCategoriesExport.Text = "Экспорт .xlsx";
-            btnCategoriesExport.UseVisualStyleBackColor = false;
-            // 
-            // btnCategoriesImport
-            // 
-            btnCategoriesImport.BackColor = Color.BlueViolet;
-            btnCategoriesImport.FlatAppearance.BorderSize = 0;
-            btnCategoriesImport.FlatStyle = FlatStyle.Flat;
-            btnCategoriesImport.ForeColor = Color.White;
-            btnCategoriesImport.Location = new Point(46, 104);
-            btnCategoriesImport.Name = "btnCategoriesImport";
-            btnCategoriesImport.Size = new Size(140, 33);
-            btnCategoriesImport.TabIndex = 14;
-            btnCategoriesImport.Text = "Импорт .xlsx";
-            btnCategoriesImport.UseVisualStyleBackColor = false;
             // 
             // tbCategoryTitle
             // 
@@ -751,8 +721,6 @@
         private Button btnCustomersImport;
         private Button btnProductsExport;
         private Button btnProductsImport;
-        private Button btnCategoriesExport;
-        private Button btnCategoriesImport;
         private DataGridViewTextBoxColumn CustomerNumber;
         private DataGridViewTextBoxColumn CustomerTitle;
         private DataGridViewTextBoxColumn RowNumber;
