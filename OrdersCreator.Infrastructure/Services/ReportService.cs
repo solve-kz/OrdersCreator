@@ -23,6 +23,8 @@ public class ReportService : IReportService
         if (order is null)
             throw new ArgumentNullException(nameof(order));
 
+        order.Lines.RemoveAll(l => l is null);
+
         if (order.Customer == null && order.CustomerId == 0)
             throw new InvalidOperationException("Контрагент не выбран.");
 
@@ -230,6 +232,9 @@ public class ReportService : IReportService
 
     private static string ReplaceTokens(string text, IDictionary<string, string> replacements)
     {
+        if (string.IsNullOrEmpty(text))
+            return string.Empty;
+
         var result = text;
         foreach (var kvp in replacements)
         {
