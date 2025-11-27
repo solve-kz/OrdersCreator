@@ -1,4 +1,5 @@
-﻿using OrdersCreator.Domain.Models;
+﻿using OrdersCreator.Domain.Barcode;
+using OrdersCreator.Domain.Models;
 using OrdersCreator.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,15 +21,26 @@ namespace OrdersCreator.UI
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly ISettingsService _settingsService;
-        public MainForm(ICustomerService customerService, ICategoryService categoryService, IProductService productService, ISettingsService settingsService)
+
+
+
+        public MainForm(ICustomerService customerService, 
+                        ICategoryService categoryService, 
+                        IProductService productService,
+                        ISettingsService settingsService)
         {
             InitializeComponent();
-            _customerService = customerService;
-            LoadCustomersForMain();
+            _customerService = customerService;            
             _categoryService = categoryService;
             _productService = productService;
             _settingsService = settingsService;
+            
+            LoadCustomersForMain();
+
+            
+
         }
+
 
         private void LoadCustomersForMain()
         {
@@ -42,9 +55,7 @@ namespace OrdersCreator.UI
 
             cmbCustomers.SelectedIndex = -1;
         }
-
-
-
+                
         private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService);
