@@ -69,9 +69,7 @@ namespace OrdersCreator.UI
             LoadCustomersForMain();
             LoadCategoriesForNewProduct();
 
-            InitializeSounds();
-
-            
+            InitializeSounds();            
 
         }
 
@@ -112,10 +110,10 @@ namespace OrdersCreator.UI
             SwitchToGreenMode();
             UpdateResults();
 
-            if (cmbCustomers.Items.Count > 0 && cmbCustomers.SelectedIndex == -1)
+            /*if (cmbCustomers.Items.Count > 0 && cmbCustomers.SelectedIndex == -1)
             {
                 cmbCustomers.SelectedIndex = 0;
-            }
+            }*/
         }
 
         private void cmbCustomers_SelectedValueChanged(object sender, EventArgs e)
