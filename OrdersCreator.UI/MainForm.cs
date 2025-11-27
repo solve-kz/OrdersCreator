@@ -25,7 +25,7 @@ namespace OrdersCreator.UI
 
         private AppSettings _appSettings = new();
         private readonly StringBuilder _scannerBuffer = new();
-        private readonly Timer _scannerTimer = new();
+        private readonly System.Windows.Forms.Timer _scannerTimer = new();
         private DateTime _lastScannerCharTime;
 
 

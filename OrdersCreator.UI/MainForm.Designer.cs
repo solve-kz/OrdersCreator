@@ -30,6 +30,10 @@
         {
             menuStrip1 = new MenuStrip();
             файлToolStripMenuItem = new ToolStripMenuItem();
+            открытьToolStripMenuItem = new ToolStripMenuItem();
+            сохранитьToolStripMenuItem = new ToolStripMenuItem();
+            выходToolStripMenuItem = new ToolStripMenuItem();
+            файлToolStripMenuItem1 = new ToolStripMenuItem();
             справочникиToolStripMenuItem = new ToolStripMenuItem();
             настройкаToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
@@ -52,7 +56,7 @@
             panelReady = new Panel();
             lblReady = new Label();
             panel5 = new Panel();
-            lblCategory = new Label();
+            lblCurrentCategory = new Label();
             lblCurrentTitle = new Label();
             panel4 = new Panel();
             lblCurrentWeight = new Label();
@@ -77,10 +81,6 @@
             tbNewProductCode = new TextBox();
             label7 = new Label();
             label6 = new Label();
-            открытьToolStripMenuItem = new ToolStripMenuItem();
-            сохранитьToolStripMenuItem = new ToolStripMenuItem();
-            выходToolStripMenuItem = new ToolStripMenuItem();
-            файлToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -113,6 +113,30 @@
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(48, 20);
             файлToolStripMenuItem.Text = "Файл";
+            // 
+            // открытьToolStripMenuItem
+            // 
+            открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            открытьToolStripMenuItem.Size = new Size(132, 22);
+            открытьToolStripMenuItem.Text = "Открыть";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            сохранитьToolStripMenuItem.Size = new Size(132, 22);
+            сохранитьToolStripMenuItem.Text = "Сохранить";
+            // 
+            // выходToolStripMenuItem
+            // 
+            выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            выходToolStripMenuItem.Size = new Size(132, 22);
+            выходToolStripMenuItem.Text = "Выход";
+            // 
+            // файлToolStripMenuItem1
+            // 
+            файлToolStripMenuItem1.Name = "файлToolStripMenuItem1";
+            файлToolStripMenuItem1.Size = new Size(132, 22);
+            файлToolStripMenuItem1.Text = "Файл";
             // 
             // справочникиToolStripMenuItem
             // 
@@ -328,22 +352,22 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
-            panel5.Controls.Add(lblCategory);
+            panel5.Controls.Add(lblCurrentCategory);
             panel5.Location = new Point(30, 196);
             panel5.Name = "panel5";
             panel5.Size = new Size(200, 46);
             panel5.TabIndex = 3;
             // 
-            // lblCategory
+            // lblCurrentCategory
             // 
-            lblCategory.AutoSize = true;
-            lblCategory.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblCategory.ForeColor = Color.Green;
-            lblCategory.Location = new Point(43, 10);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(108, 25);
-            lblCategory.TabIndex = 0;
-            lblCategory.Text = "Категория";
+            lblCurrentCategory.AutoSize = true;
+            lblCurrentCategory.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCurrentCategory.ForeColor = Color.Green;
+            lblCurrentCategory.Location = new Point(43, 10);
+            lblCurrentCategory.Name = "lblCurrentCategory";
+            lblCurrentCategory.Size = new Size(108, 25);
+            lblCurrentCategory.TabIndex = 0;
+            lblCurrentCategory.Text = "Категория";
             // 
             // lblCurrentTitle
             // 
@@ -620,30 +644,6 @@
             label6.TabIndex = 0;
             label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
             // 
-            // открытьToolStripMenuItem
-            // 
-            открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            открытьToolStripMenuItem.Size = new Size(180, 22);
-            открытьToolStripMenuItem.Text = "Открыть";
-            // 
-            // сохранитьToolStripMenuItem
-            // 
-            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(180, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // выходToolStripMenuItem
-            // 
-            выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(180, 22);
-            выходToolStripMenuItem.Text = "Выход";
-            // 
-            // файлToolStripMenuItem1
-            // 
-            файлToolStripMenuItem1.Name = "файлToolStripMenuItem1";
-            файлToolStripMenuItem1.Size = new Size(180, 22);
-            файлToolStripMenuItem1.Text = "Файл";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -724,7 +724,7 @@
         private Button btnCreateReport;
         private Panel panelReady;
         private Panel panel5;
-        private Label lblCategory;
+        private Label lblCurrentCategory;
         private Label lblReady;
         private Label lblResults;
         private Panel panelRedMode;
