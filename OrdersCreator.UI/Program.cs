@@ -2,8 +2,9 @@ using OrdersCreator.Domain.Barcode;
 using OrdersCreator.Domain.Models;
 using OrdersCreator.Domain.Repositories;
 using OrdersCreator.Domain.Services;
+using OrdersCreator.Infrastructure.Barcode;
 using OrdersCreator.Infrastructure.Repositories;
-using OrdersCreator.Infrastructure.Services; // реальные реализации
+using OrdersCreator.Infrastructure.Services; // СЂРµР°Р»СЊРЅС‹Рµ СЂРµР°Р»РёР·Р°С†РёРё
 using OrdersCreator.Infrastructure.Sqlite;
 using System;
 using System.Windows.Forms;
@@ -20,14 +21,14 @@ namespace OrdersCreator.UI
         {
             ApplicationConfiguration.Initialize();
 
-            // ----- 1. Настройки из JSON -----
+            // ----- 1. РќР°СЃС‚СЂРѕР№РєРё РёР· JSON -----
             var settingsFilePath = Path.Combine(AppContext.BaseDirectory, "settings.json");
             ISettingsRepository settingsRepo = new JsonFileSettingsRepository(settingsFilePath);
             ISettingsService settingsService = new SettingsService(settingsRepo);
 
             var appSettings = settingsService.GetSettings();
           
-            // ----- 2. Выбор хранилища справочников -----
+            // ----- 2. Р’С‹Р±РѕСЂ С…СЂР°РЅРёР»РёС‰Р° СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ -----
             ICategoryRepository categoryRepo;
             ICustomerRepository customerRepo;
             IProductRepository productRepo;
@@ -40,8 +41,8 @@ namespace OrdersCreator.UI
 
                 try
                 {
-                    // ЭТОГО достаточно: если файла нет – он создастся,
-                    // если таблиц нет – они создадутся.
+                    // Р­РўРћР“Рћ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ: РµСЃР»Рё С„Р°Р№Р»Р° РЅРµС‚ вЂ“ РѕРЅ СЃРѕР·РґР°СЃС‚СЃСЏ,
+                    // РµСЃР»Рё С‚Р°Р±Р»РёС† РЅРµС‚ вЂ“ РѕРЅРё СЃРѕР·РґР°РґСѓС‚СЃСЏ.
                     dbInitializer.EnsureCreated();
 
                     categoryRepo = new SqliteCategoryRepository(sqliteFactory);
@@ -50,12 +51,12 @@ namespace OrdersCreator.UI
                 }
                 catch (Exception ex)
                 {
-                    // На всякий случай fallback, чтобы программа не умерла
+                    // РќР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ fallback, С‡С‚РѕР±С‹ РїСЂРѕРіСЂР°РјРјР° РЅРµ СѓРјРµСЂР»Р°
                     MessageBox.Show(
-                        "Не удалось инициализировать базу SQLite.\n" +
-                        "Будет использовано временное хранилище в памяти.\n\n" +
+                        "РќРµ СѓРґР°Р»РѕСЃСЊ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ Р±Р°Р·Сѓ SQLite.\n" +
+                        "Р‘СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РІСЂРµРјРµРЅРЅРѕРµ С…СЂР°РЅРёР»РёС‰Рµ РІ РїР°РјСЏС‚Рё.\n\n" +
                         ex.Message,
-                        "Ошибка инициализации БД",
+                        "РћС€РёР±РєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё Р‘Р”",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -66,16 +67,18 @@ namespace OrdersCreator.UI
             }
             else
             {
-                // Режим "В памяти" – тестовый или отладочный
+                // Р РµР¶РёРј "Р’ РїР°РјСЏС‚Рё" вЂ“ С‚РµСЃС‚РѕРІС‹Р№ РёР»Рё РѕС‚Р»Р°РґРѕС‡РЅС‹Р№
                 categoryRepo = new InMemoryCategoryRepository();
                 customerRepo = new InMemoryCustomerRepository();
                 productRepo = new InMemoryProductRepository();
             }
 
-            // ----- 3. Сервисы справочников -----
+            // ----- 3. РЎРµСЂРІРёСЃС‹ СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ -----
             ICategoryService categoryService = new CategoryService(categoryRepo);
             ICustomerService customerService = new CustomerService(customerRepo);
             IProductService productService = new ProductService(productRepo);
+
+            IBarcodeParser barcodeParser = new BarcodeParser();
 
 
             /*ICustomerRepository customerRepository = new InMemoryCustomerRepository();
@@ -86,7 +89,7 @@ namespace OrdersCreator.UI
             IProductService productService = new ProductService(productRepo);*/
 
 
-            var mainForm = new MainForm(customerService, categoryService, productService, settingsService);
+            var mainForm = new MainForm(customerService, categoryService, productService, settingsService, barcodeParser);
             Application.Run(mainForm);
         }
     }
