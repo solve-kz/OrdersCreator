@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +24,10 @@ namespace OrdersCreator.UI
         private readonly ISettingsService _settingsService;
         private readonly IBarcodeParser _barcodeParser;
         private readonly IOrderService _orderService;
+
+        private ParsedBarcode? _pendingBarcode;
+        private SoundPlayer? _successPlayer;
+        private SoundPlayer? _failurePlayer;
 
         private AppSettings _appSettings = new();
         private readonly StringBuilder _scannerBuffer = new();
@@ -54,8 +59,17 @@ namespace OrdersCreator.UI
             KeyPress += MainForm_KeyPress;
             KeyDown += MainForm_KeyDown;
 
+            Load += MainForm_Load;
+
+            btnCancel.Click += BtnCancel_Click;
+            btnNewProductAdd.Click += BtnNewProductAdd_Click;
+            dataGridViewOrderLines.SelectionChanged += DataGridViewOrderLines_SelectionChanged;
+
 
             LoadCustomersForMain();
+            LoadCategoriesForNewProduct();
+
+            InitializeSounds();
 
             
 
@@ -81,6 +95,7 @@ namespace OrdersCreator.UI
             FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService);
             refEditForm.ShowDialog();
             LoadCustomersForMain();
+            LoadCategoriesForNewProduct();
         }
 
         private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,12 +107,25 @@ namespace OrdersCreator.UI
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
         }
 
+        private void MainForm_Load(object? sender, EventArgs e)
+        {
+            SwitchToGreenMode();
+            UpdateResults();
+
+            if (cmbCustomers.Items.Count > 0 && cmbCustomers.SelectedIndex == -1)
+            {
+                cmbCustomers.SelectedIndex = 0;
+            }
+        }
+
         private void cmbCustomers_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cmbCustomers.SelectedIndex != -1 && cmbCustomers.SelectedItem is Customer selectedCustomer)
             {
-                _orderService.SetCustomer(selectedCustomer);
-                lblReady.Text = "Готов к сканированию";
+                _orderService.StartNewOrder(selectedCustomer);
+                dataGridViewOrderLines.Rows.Clear();
+                lblReady.Text = "Готов к сканированию!";
+                UpdateResults();
             }
             else
             {
@@ -121,11 +149,25 @@ namespace OrdersCreator.UI
 
         private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
+            if (panelRedMode.Visible && e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                BtnNewProductAdd_Click(sender, e);
+                return;
+            }
+
             if (e.KeyCode == Keys.Enter && _scannerBuffer.Length > 0)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 FinalizeScannerBuffer();
+            }
+            else if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                CancelLastAction();
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -191,16 +233,38 @@ namespace OrdersCreator.UI
             if (string.IsNullOrWhiteSpace(rawBarcode))
                 return;
 
+            if (panelRedMode.Visible)
+                return;
+
+            if (cmbCustomers.SelectedItem is not Customer selectedCustomer)
+            {
+                lblReady.Text = "Выберите контрагента!";
+                PlayFailureSound();
+                return;
+            }
+
             try
             {
                 var parsed = _barcodeParser.Parse(rawBarcode);
-                var orderLine = _orderService.AddLineFromBarcode(parsed);
+                var product = _productService.FindByCode(parsed.ProductCode);
+
+                if (product == null)
+                {
+                    HandleUnknownProduct(parsed);
+                    return;
+                }
+
+                var orderLine = _orderService.AddLine(product, parsed.WeightKg);
+                AddOrderLineToGrid(orderLine);
                 DisplayParsedBarcode(parsed, orderLine);
-                lblReady.Text = "Готов к сканированию";
+                lblReady.Text = "Готов к сканированию!";
+                UpdateResults();
+                PlaySuccessSound();
             }
             catch (Exception ex)
             {
                 lblReady.Text = ex.Message;
+                PlayFailureSound();
             }
         }
 
@@ -215,6 +279,190 @@ namespace OrdersCreator.UI
                 lblCurrentCategory.Text = orderLine.Product.Category?.Name ?? string.Empty;
                 lblCurrentWeight.Text = _orderService
                     .GetCurrentProductSubtotal(orderLine.Product.Code)
+                    .ToString("F3");
+            }
+
+            dataGridViewOrderLines.ClearSelection();
+            if (dataGridViewOrderLines.Rows.Count > 0)
+            {
+                dataGridViewOrderLines.Rows[0].Selected = true;
+            }
+        }
+
+        private void AddOrderLineToGrid(OrderLine orderLine)
+        {
+            var productCode = orderLine.Product?.Code ?? string.Empty;
+            var productTitle = orderLine.Product?.Name ?? string.Empty;
+
+            dataGridViewOrderLines.Rows.Insert(0,
+                orderLine.RowNumber,
+                productCode,
+                productTitle,
+                orderLine.WeightKg.ToString("F3"),
+                "✕");
+        }
+
+        private void UpdateResults()
+        {
+            var lines = _orderService.CurrentOrder?.Lines ?? new List<OrderLine>();
+            var totalWeight = lines.Sum(l => l.WeightKg);
+
+            lblResults.Text = $"ИТОГО: {lines.Count} мест | {totalWeight:F3} кг.";
+        }
+
+        private void LoadCategoriesForNewProduct()
+        {
+            var categories = _categoryService
+                .GetAll()
+                .OrderBy(c => c.Name)
+                .ToList();
+
+            cbNewProductCategory.DataSource = categories;
+            cbNewProductCategory.DisplayMember = nameof(Category.Name);
+            cbNewProductCategory.ValueMember = nameof(Category.Id);
+        }
+
+        private void InitializeSounds()
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var successPath = Path.Combine(baseDir, "Sounds", "success.wav");
+            var failurePath = Path.Combine(baseDir, "Sounds", "failure.wav");
+
+            if (File.Exists(successPath))
+            {
+                _successPlayer = new SoundPlayer(successPath);
+            }
+
+            if (File.Exists(failurePath))
+            {
+                _failurePlayer = new SoundPlayer(failurePath);
+            }
+        }
+
+        private void PlaySuccessSound()
+        {
+            if (_appSettings.SoundsEnabled)
+            {
+                _successPlayer?.Play();
+            }
+        }
+
+        private void PlayFailureSound()
+        {
+            if (_appSettings.SoundsEnabled)
+            {
+                _failurePlayer?.Play();
+            }
+        }
+
+        private void HandleUnknownProduct(ParsedBarcode parsed)
+        {
+            _pendingBarcode = parsed;
+
+            tbNewProductCode.Text = parsed.ProductCode;
+            tbNewProductWeight.Text = parsed.WeightKg.ToString("F3");
+            tbNewProductTitle.Text = string.Empty;
+
+            SwitchToRedMode();
+            lblReady.Text = $"Товар {parsed.ProductCode} не найден";
+            PlayFailureSound();
+
+            if (cbNewProductCategory.Items.Count > 0)
+            {
+                cbNewProductCategory.SelectedIndex = 0;
+            }
+
+            tbNewProductTitle.Focus();
+        }
+
+        private void SwitchToGreenMode()
+        {
+            panelRedMode.Visible = false;
+            panelGreenMode.Visible = true;
+            panelGreenMode.BringToFront();
+        }
+
+        private void SwitchToRedMode()
+        {
+            panelGreenMode.Visible = false;
+            panelRedMode.Visible = true;
+            panelRedMode.BringToFront();
+        }
+
+        private void BtnCancel_Click(object? sender, EventArgs e)
+        {
+            CancelLastAction();
+        }
+
+        private void CancelLastAction()
+        {
+            if (panelRedMode.Visible)
+            {
+                _pendingBarcode = null;
+                SwitchToGreenMode();
+                lblReady.Text = "Готов к сканированию!";
+                return;
+            }
+
+            if (_orderService.CurrentOrder?.Lines.Count > 0)
+            {
+                _orderService.CancelLastLine();
+
+                if (dataGridViewOrderLines.Rows.Count > 0)
+                {
+                    dataGridViewOrderLines.Rows.RemoveAt(0);
+                }
+
+                UpdateResults();
+                lblReady.Text = "Последняя строка отменена.";
+            }
+        }
+
+        private void BtnNewProductAdd_Click(object? sender, EventArgs e)
+        {
+            if (_pendingBarcode == null)
+                return;
+
+            if (cbNewProductCategory.SelectedItem is not Category category)
+                return;
+
+            var title = tbNewProductTitle.Text.Trim();
+            if (string.IsNullOrWhiteSpace(title))
+                return;
+
+            var product = _productService.AddProduct(_pendingBarcode.ProductCode, title, category);
+            var orderLine = _orderService.AddLine(product, _pendingBarcode.WeightKg);
+
+            AddOrderLineToGrid(orderLine);
+            DisplayParsedBarcode(_pendingBarcode, orderLine);
+            UpdateResults();
+            PlaySuccessSound();
+
+            _pendingBarcode = null;
+            SwitchToGreenMode();
+            lblReady.Text = "Готов к сканированию!";
+        }
+
+        private void DataGridViewOrderLines_SelectionChanged(object? sender, EventArgs e)
+        {
+            if (dataGridViewOrderLines.SelectedRows.Count == 0)
+                return;
+
+            var row = dataGridViewOrderLines.SelectedRows[0];
+            var productCode = row.Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
+            var weightText = row.Cells[nameof(ProductWeight)]?.Value?.ToString() ?? string.Empty;
+
+            lblCodeAmount.Text = productCode;
+            lblCodeWeight.Text = weightText;
+
+            var product = _productService.FindByCode(productCode);
+
+            if (product != null)
+            {
+                lblCurrentTitle.Text = product.Name;
+                lblCurrentCategory.Text = product.Category?.Name ?? string.Empty;
+                lblCurrentWeight.Text = _orderService
+                    .GetCurrentProductSubtotal(productCode)
                     .ToString("F3");
             }
         }
