@@ -23,6 +23,8 @@ public class ReportService : IReportService
         if (order is null)
             throw new ArgumentNullException(nameof(order));
 
+        order.Lines.RemoveAll(l => l is null);
+
         if (order.Customer == null && order.CustomerId == 0)
             throw new InvalidOperationException("Контрагент не выбран.");
 
@@ -37,6 +39,7 @@ public class ReportService : IReportService
                 Order = order,
                 ProductId = g.Key,
                 Product = g.First().Product,
+                ItemsCount = g.Count(),
                 WeightKg = g.Sum(x => x.WeightKg),
                 RowNumber = idx + 1
             })
@@ -154,7 +157,8 @@ public class ReportService : IReportService
 
         var templateRowNumber = placeholderCell.Address.RowNumber;
         var templateRow = worksheet.Row(templateRowNumber);
-        var lastColumn = templateRow.LastCellUsed()?.Address.ColumnNumber ?? 0;
+        var placeholderColumn = placeholderCell.Address.ColumnNumber;
+        var lastColumn = Math.Max(templateRow.LastCellUsed()?.Address.ColumnNumber ?? 0, placeholderColumn + 3);
 
         var templateTexts = new List<string>();
         for (int col = 1; col <= lastColumn; col++)
@@ -175,10 +179,24 @@ public class ReportService : IReportService
             for (int col = 1; col <= lastColumn; col++)
             {
                 var text = templateTexts[col - 1];
-                var replaced = ReplaceLinePlaceholders(text, order, line, i + 1);
-                row.Cell(col).Value = replaced;
+                object value = col switch
+                {
+                    var c when c == placeholderColumn => i + 1,
+                    var c when c == placeholderColumn + 1 => line.Product?.Name ?? string.Empty,
+                    var c when c == placeholderColumn + 2 => line.ItemsCount,
+                    var c when c == placeholderColumn + 3 => line.WeightKg.ToString("F3"),
+                    _ => ReplaceLinePlaceholders(text, order, line, i + 1)
+                };
+
+                row.Cell(col).Value = value;
             }
         }
+
+        var lastRow = templateRowNumber + order.Lines.Count - 1;
+        var dataRange = worksheet.Range(templateRowNumber, placeholderColumn, lastRow, placeholderColumn + 3);
+        var border = dataRange.Style.Border;
+        border.OutsideBorder = XLBorderStyleValues.Thin;
+        border.InsideBorder = XLBorderStyleValues.Thin;
     }
 
     private static string ReplaceLinePlaceholders(string text, Order order, OrderLine line, int index)
@@ -188,6 +206,7 @@ public class ReportService : IReportService
             ["{n}"] = index.ToString(),
             ["{product}"] = line.Product?.Name ?? string.Empty,
             ["{code}"] = line.Product?.Code ?? string.Empty,
+            ["{count}"] = line.ItemsCount.ToString(),
             ["{weight}"] = line.WeightKg.ToString("F3"),
             ["{category}"] = line.Product?.Category?.Name ?? string.Empty,
             ["{lines}"] = string.Empty
@@ -213,6 +232,9 @@ public class ReportService : IReportService
 
     private static string ReplaceTokens(string text, IDictionary<string, string> replacements)
     {
+        if (string.IsNullOrEmpty(text))
+            return string.Empty;
+
         var result = text;
         foreach (var kvp in replacements)
         {

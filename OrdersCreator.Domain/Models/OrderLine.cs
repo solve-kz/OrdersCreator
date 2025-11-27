@@ -23,6 +23,9 @@ public sealed class OrderLine
     /// <summary>Вес в килограммах.</summary>
     public decimal WeightKg { get; set; }
 
+    /// <summary>Количество товаров с данным наименованием.</summary>
+    public int ItemsCount { get; set; }
+
     /// <summary>Номер строки в печатном отчёте.</summary>
     public int RowNumber { get; set; }
 }
