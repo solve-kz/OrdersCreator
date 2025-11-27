@@ -538,6 +538,12 @@ namespace OrdersCreator.UI
             SwitchToGreenMode();
             _scannerBuffer.Clear();
             UpdateResults();
+
+            lblCurrentTitle.Text = string.Empty;
+            lblCurrentCategory.Text = string.Empty;
+            lblCurrentWeight.Text = string.Empty;
+            lblCodeAmount.Text = string.Empty;
+            lblCodeWeight.Text = string.Empty;
         }
 
         private void СохранитьToolStripMenuItem_Click(object? sender, EventArgs e)
