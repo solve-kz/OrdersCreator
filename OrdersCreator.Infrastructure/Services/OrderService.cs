@@ -57,6 +57,7 @@ namespace OrdersCreator.Infrastructure.Services
             {
                 Product = product,
                 ProductId = product.Id,
+                ItemsCount = 1,
                 WeightKg = weightKg,
                 RowNumber = _currentOrder.Lines.Count + 1,
                 Order = _currentOrder,
