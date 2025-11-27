@@ -168,7 +168,16 @@ public class ReportService : IReportService
 
         if (order.Lines.Count > 1)
         {
-            templateRow.InsertRowsBelow(order.Lines.Count - 1);
+            templateRow.InsertRowsBelow(order.Lines.Count - 1, expandTable: true);
+
+            var templateRange = worksheet.Range(templateRowNumber, 1, templateRowNumber, lastColumn);
+
+            for (int offset = 1; offset < order.Lines.Count; offset++)
+            {
+                var targetRowNumber = templateRowNumber + offset;
+                var targetRange = worksheet.Range(targetRowNumber, 1, targetRowNumber, lastColumn);
+                templateRange.CopyTo(targetRange);
+            }
         }
 
         for (int i = 0; i < order.Lines.Count; i++)
