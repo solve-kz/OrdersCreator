@@ -98,6 +98,7 @@ public class FileOrderRepository : IOrderRepository
                     OrderId = order.Id,
                     Product = product,
                     ProductId = product.Id,
+                    ItemsCount = line.ItemsCount,
                     WeightKg = line.WeightKg,
                     RowNumber = line.RowNumber
                 };
@@ -112,6 +113,7 @@ public class FileOrderRepository : IOrderRepository
     private sealed record SerializableLine
     {
         public int RowNumber { get; init; }
+        public int ItemsCount { get; init; }
         public decimal WeightKg { get; init; }
         public SerializableProduct Product { get; init; } = new();
 
@@ -120,6 +122,7 @@ public class FileOrderRepository : IOrderRepository
             return new SerializableLine
             {
                 RowNumber = line.RowNumber,
+                ItemsCount = line.ItemsCount,
                 WeightKg = line.WeightKg,
                 Product = SerializableProduct.FromProduct(line.Product ?? new Product { Id = line.ProductId })
             };
