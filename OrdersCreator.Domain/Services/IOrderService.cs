@@ -35,5 +35,8 @@ public interface IOrderService
 
     /// <summary>Промежуточный итог по текущему товару (как G4 в Excel).</summary>
     decimal GetCurrentProductSubtotal(string productCode);
+
+    /// <summary>Установить произвольный заказ как текущий (например, после загрузки из файла).</summary>
+    void LoadOrder(Order order);
 }
 

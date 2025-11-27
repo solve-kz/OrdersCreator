@@ -77,6 +77,8 @@ namespace OrdersCreator.UI
             ICategoryService categoryService = new CategoryService(categoryRepo);
             ICustomerService customerService = new CustomerService(customerRepo);
             IProductService productService = new ProductService(productRepo);
+            IReportService reportService = new ReportService(settingsService);
+            IOrderRepository orderRepository = new FileOrderRepository();
 
             IBarcodeParser barcodeParser = new BarcodeParser();
             IOrderService orderService = new OrderService(productService);
@@ -96,7 +98,9 @@ namespace OrdersCreator.UI
                 productService,
                 settingsService,
                 barcodeParser,
-                orderService);
+                orderService,
+                reportService,
+                orderRepository);
             Application.Run(mainForm);
         }
     }
