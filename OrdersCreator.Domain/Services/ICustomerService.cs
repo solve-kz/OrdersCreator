@@ -18,5 +18,9 @@ public interface ICustomerService
     void UpdateCustomer(Customer customer);
 
     void DeleteCustomer(int id);
+
+    IReadOnlyList<Customer> ImportFromXlsx(string filePath);
+
+    void ExportToXlsx(string filePath);
 }
 
