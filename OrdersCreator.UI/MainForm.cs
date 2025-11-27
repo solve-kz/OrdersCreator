@@ -34,6 +34,7 @@ namespace OrdersCreator.UI
             _categoryService = categoryService;
             _productService = productService;
             _settingsService = settingsService;
+
             
             LoadCustomersForMain();
 

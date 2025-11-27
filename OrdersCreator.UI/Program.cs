@@ -26,7 +26,7 @@ namespace OrdersCreator.UI
             ISettingsService settingsService = new SettingsService(settingsRepo);
 
             var appSettings = settingsService.GetSettings();
-
+          
             // ----- 2. Выбор хранилища справочников -----
             ICategoryRepository categoryRepo;
             ICustomerRepository customerRepo;
