@@ -65,19 +65,23 @@ namespace OrdersCreator.Infrastructure.Services
                 }
             }
 
-            foreach (var existing in _repo.GetAll())
-            {
-                _repo.DeleteCustomer(existing.Id);
-            }
+            var existingCustomers = _repo.GetAll();
+            var existingNames = new HashSet<string>(
+                existingCustomers.Select(c => c.Name.Trim()),
+                StringComparer.OrdinalIgnoreCase);
 
-            var result = new List<Customer>();
+            var added = new List<Customer>();
 
             foreach (var customer in imported)
             {
-                result.Add(_repo.AddCustomer(customer));
+                if (existingNames.Contains(customer.Name))
+                    continue;
+
+                added.Add(_repo.AddCustomer(customer));
+                existingNames.Add(customer.Name);
             }
 
-            return result;
+            return added;
         }
 
         public void ExportToXlsx(string filePath)
