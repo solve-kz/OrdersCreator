@@ -56,7 +56,7 @@ namespace OrdersCreator.Infrastructure.Services
 
                 foreach (var row in rows)
                 {
-                    var name = row.Cell(2).GetString().Trim();
+                    var name = row.Cell(1).GetString().Trim();
 
                     if (string.IsNullOrWhiteSpace(name))
                         continue;
@@ -93,13 +93,11 @@ namespace OrdersCreator.Infrastructure.Services
             using var workbook = new XLWorkbook();
             var worksheet = workbook.AddWorksheet("Контрагенты");
 
-            worksheet.Cell(1, 1).Value = "Код";
-            worksheet.Cell(1, 2).Value = "Название";
+            worksheet.Cell(1, 1).Value = "Название";
 
             for (int i = 0; i < customers.Count; i++)
             {
-                worksheet.Cell(i + 2, 1).Value = customers[i].Id;
-                worksheet.Cell(i + 2, 2).Value = customers[i].Name;
+                worksheet.Cell(i + 2, 1).Value = customers[i].Name;
             }
 
             worksheet.Columns().AdjustToContents();
