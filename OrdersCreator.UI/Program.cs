@@ -76,7 +76,7 @@ namespace OrdersCreator.UI
             // ----- 3. Сервисы справочников -----
             ICategoryService categoryService = new CategoryService(categoryRepo);
             ICustomerService customerService = new CustomerService(customerRepo);
-            IProductService productService = new ProductService(productRepo);
+            IProductService productService = new ProductService(productRepo, categoryRepo);
             IReportService reportService = new ReportService(settingsService);
             IOrderRepository orderRepository = new FileOrderRepository();
 

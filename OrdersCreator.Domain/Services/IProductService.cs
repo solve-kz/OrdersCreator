@@ -22,5 +22,9 @@ public interface IProductService
     void UpdateProduct(Product product);
 
     void DeleteProduct(int id);
+
+    IReadOnlyList<Product> ImportFromXlsx(string filePath);
+
+    void ExportToXlsx(string filePath);
 }
 
