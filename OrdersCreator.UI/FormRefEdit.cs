@@ -750,10 +750,33 @@ namespace OrdersCreator.UI
 
         private void BtnProductsImport_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show(this,
-                "Здесь будет импорт товаров из .xlsx.",
-                "Импорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var dialog = new OpenFileDialog
+            {
+                Filter = "Файлы Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*",
+                Title = "Импорт товаров"
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
+            {
+                var imported = _productService.ImportFromXlsx(dialog.FileName);
+
+                LoadCategories();
+                LoadCategoriesForProductCombos();
+                LoadProducts();
+
+                MessageBox.Show(this,
+                    $"Импортировано товаров: {imported.Count}.",
+                    "Импорт завершён",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Ошибка импорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnExportCustomersXlsx_Click(object? sender, EventArgs e)
@@ -788,10 +811,30 @@ namespace OrdersCreator.UI
 
         private void BtnProductsExport_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show(this,
-                "Здесь будет экспорт товаров в .xlsx.",
-                "Экспорт .xlsx",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var dialog = new SaveFileDialog
+            {
+                Filter = "Файлы Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*",
+                FileName = "products.xlsx",
+                Title = "Экспорт товаров"
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
+            {
+                _productService.ExportToXlsx(dialog.FileName);
+
+                MessageBox.Show(this,
+                    "Экспорт завершён успешно.",
+                    "Экспорт .xlsx",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Ошибка экспорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
