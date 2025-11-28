@@ -134,11 +134,13 @@ namespace OrdersCreator.UI
                 _orderService.StartNewOrder(selectedCustomer);
                 dataGridViewOrderLines.Rows.Clear();
                 lblReady.Text = "Готов к сканированию!";
+                lblReady.BackColor = Color.Green;
                 UpdateResults();
             }
             else
             {
                 lblReady.Text = "Выберите контрагента!";
+                lblReady.BackColor = Color.Red; 
             }
         }
 
@@ -254,6 +256,7 @@ namespace OrdersCreator.UI
             if (cmbCustomers.SelectedItem is not Customer selectedCustomer)
             {
                 lblReady.Text = "Выберите контрагента!";
+                lblReady.BackColor = Color.Red;
                 PlayFailureSound();
                 return;
             }
@@ -273,12 +276,14 @@ namespace OrdersCreator.UI
                 AddOrderLineToGrid(orderLine);
                 DisplayParsedBarcode(parsed, orderLine);
                 lblReady.Text = "Готов к сканированию!";
+                lblReady.BackColor = Color.Green;
                 UpdateResults();
                 PlaySuccessSound();
             }
             catch (Exception ex)
             {
-                lblReady.Text = ex.Message;
+                MessageBox.Show(ex.Message, "Ошибка парсинга", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // lblReady.Text = ex.Message;
                 PlayFailureSound();
             }
         }
@@ -386,7 +391,8 @@ namespace OrdersCreator.UI
             tbNewProductTitle.Text = string.Empty;
 
             SwitchToRedMode();
-            lblReady.Text = $"Товар {parsed.ProductCode} не найден";
+            // lblReady.Text = $"Товар {parsed.ProductCode} не найден";
+            MessageBox.Show($"Товар {parsed.ProductCode} не найден", "Ошибка поиска", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             PlayFailureSound();
 
             if (cbNewProductCategory.Items.Count > 0)
@@ -423,6 +429,7 @@ namespace OrdersCreator.UI
                 _pendingBarcode = null;
                 SwitchToGreenMode();
                 lblReady.Text = "Готов к сканированию!";
+                lblReady.BackColor = Color.Green;
                 return;
             }
 
@@ -436,7 +443,8 @@ namespace OrdersCreator.UI
                 }
 
                 UpdateResults();
-                lblReady.Text = "Последняя строка отменена.";
+                // lblReady.Text = "Последняя строка отменена.";
+                MessageBox.Show("Последняя строка отменена", "Отмена", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -463,6 +471,7 @@ namespace OrdersCreator.UI
             _pendingBarcode = null;
             SwitchToGreenMode();
             lblReady.Text = "Готов к сканированию!";
+            lblReady.BackColor = Color.Green;
         }
 
         private void DataGridViewOrderLines_SelectionChanged(object? sender, EventArgs e)
@@ -520,13 +529,14 @@ namespace OrdersCreator.UI
                     ResetAfterReport(current.Customer);
                 }
 
-                lblReady.Text = $"Отчёт сохранён: {reportPath}";
+                // lblReady.Text = $"Отчёт сохранён: {reportPath}";
+                MessageBox.Show($"Отчёт сохранён: {reportPath}", "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 PlaySuccessSound();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lblReady.Text = ex.Message;
+                // lblReady.Text = ex.Message;
                 PlayFailureSound();
             }
         }
@@ -562,12 +572,13 @@ namespace OrdersCreator.UI
                     return;
 
                 _orderRepository.SaveToFile(order, dialog.FileName);
-                lblReady.Text = $"Заказ сохранён: {dialog.FileName}";
+                MessageBox.Show($"Заказ сохранён: {dialog.FileName}", "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // lblReady.Text = $"Заказ сохранён: {dialog.FileName}";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка сохранения заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lblReady.Text = ex.Message;
+                // lblReady.Text = ex.Message;
             }
         }
 
@@ -586,12 +597,13 @@ namespace OrdersCreator.UI
 
                 var order = _orderRepository.LoadFromFile(dialog.FileName);
                 ApplyLoadedOrder(order);
-                lblReady.Text = $"Загружен заказ: {order.Number}";
+                // lblReady.Text = $"Загружен заказ: {order.Number}";
+                MessageBox.Show($"Загружен заказ: {order.Number}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка загрузки заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lblReady.Text = ex.Message;
+                // lblReady.Text = ex.Message;
             }
         }
 
