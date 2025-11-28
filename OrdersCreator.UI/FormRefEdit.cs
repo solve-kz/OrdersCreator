@@ -98,7 +98,7 @@ namespace OrdersCreator.UI
             dataGridViewProducts.MultiSelect = false;
 
             // привязка столбцов к свойствам модели Product
-            ProductNumber.DataPropertyName = "RowNumber";
+            ProductNumber.DataPropertyName = null;
             ProductCategory.DataPropertyName = "CategoryName";
             ProductTitle.DataPropertyName = "ProductName";
             ProductCode.DataPropertyName = "ProductCode";
@@ -210,12 +210,16 @@ namespace OrdersCreator.UI
                 products = _productService.GetAll();
 
             // проекция для отображения категории по имени
+            var categories = _categoryService
+                .GetAll()
+                .ToDictionary(c => c.Id);
+
             var data = products
                 .OrderBy(p => p.Name)
-                .Select((p, idx) => new
+                .Select(p => new
                 {
-                    RowNumber = idx + 1,
-                    CategoryName = p.Category?.Name ?? "",  // если Category не загружена, можно потом подтянуть по Id
+                    CategoryName = p.Category?.Name
+                        ?? (categories.TryGetValue(p.CategoryId, out var category) ? category.Name : string.Empty),
                     ProductName = p.Name,
                     ProductCode = p.Code,
                     Product = p

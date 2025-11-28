@@ -22,12 +22,24 @@ namespace OrdersCreator.Infrastructure.Services
 
         public IReadOnlyList<Product> GetAll()
         {
-            return _repo.GetAll();
+            var products = _repo
+                .GetAll()
+                .ToList();
+
+            AttachCategories(products);
+
+            return products;
         }
 
         public IReadOnlyList<Product> GetByCategory(int categoryId)
         {
-            return _repo.GetByCategoryId(categoryId);
+            var products = _repo
+                .GetByCategoryId(categoryId)
+                .ToList();
+
+            AttachCategories(products);
+
+            return products;
         }
 
         public Product? FindByCode(string code)
@@ -75,6 +87,9 @@ namespace OrdersCreator.Infrastructure.Services
                     var categoryName = worksheet.Name.Trim();
 
                     if (string.IsNullOrWhiteSpace(categoryName))
+                        continue;
+
+                    if (string.Equals(categoryName, "PLU", StringComparison.OrdinalIgnoreCase))
                         continue;
 
                     var rows = worksheet.RowsUsed().Skip(1);
@@ -129,6 +144,22 @@ namespace OrdersCreator.Infrastructure.Services
             }
 
             return addedProducts;
+        }
+
+        private void AttachCategories(IReadOnlyCollection<Product> products)
+        {
+            if (products.Count == 0)
+                return;
+
+            var categoryLookup = _categoryRepository
+                .GetAll()
+                .ToDictionary(c => c.Id);
+
+            foreach (var product in products)
+            {
+                if (categoryLookup.TryGetValue(product.CategoryId, out var category))
+                    product.Category = category;
+            }
         }
 
         public void ExportToXlsx(string filePath)
