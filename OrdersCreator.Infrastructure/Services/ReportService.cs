@@ -1,4 +1,5 @@
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using OrdersCreator.Domain.Models;
 using OrdersCreator.Domain.Services;
 using System.Collections.Generic;
@@ -148,6 +149,7 @@ public class ReportService : IReportService
 
     private static void FillLines(IXLWorksheet worksheet, Order order)
     {
+        // Ищем ячейку с плейсхолдером {lines}
         var placeholderCell = worksheet
             .CellsUsed(c => c.GetString().Contains("{lines}", StringComparison.OrdinalIgnoreCase))
             .FirstOrDefault();
@@ -160,15 +162,17 @@ public class ReportService : IReportService
         var placeholderColumn = placeholderCell.Address.ColumnNumber;
         var lastColumn = Math.Max(templateRow.LastCellUsed()?.Address.ColumnNumber ?? 0, placeholderColumn + 3);
 
+        // Сохраняем исходный текст каждой ячейки шаблонной строки
         var templateTexts = new List<string>();
         for (int col = 1; col <= lastColumn; col++)
         {
             templateTexts.Add(templateRow.Cell(col).GetString());
         }
 
+        // Добавляем нужное количество строк под шаблоном
         if (order.Lines.Count > 1)
         {
-            templateRow.InsertRowsBelow(order.Lines.Count - 1, expandTable: true);
+            templateRow.InsertRowsBelow(order.Lines.Count - 1);
 
             var templateRange = worksheet.Range(templateRowNumber, 1, templateRowNumber, lastColumn);
 
@@ -180,33 +184,53 @@ public class ReportService : IReportService
             }
         }
 
+        // Заполняем строки заказов
         for (int i = 0; i < order.Lines.Count; i++)
         {
-            var row = worksheet.Row(templateRowNumber + i);
             var line = order.Lines[i];
+            var rowNumber = templateRowNumber + i;
+            var row = worksheet.Row(rowNumber);
 
             for (int col = 1; col <= lastColumn; col++)
             {
                 var text = templateTexts[col - 1];
-                object value = col switch
-                {
-                    var c when c == placeholderColumn => i + 1,
-                    var c when c == placeholderColumn + 1 => line.Product?.Name ?? string.Empty,
-                    var c when c == placeholderColumn + 2 => line.ItemsCount,
-                    var c when c == placeholderColumn + 3 => line.WeightKg.ToString("F3"),
-                    _ => ReplaceLinePlaceholders(text, order, line, i + 1)
-                };
 
-                row.Cell(col).Value = value;
+                if (col == placeholderColumn)
+                {
+                    // Номер строки
+                    row.Cell(col).Value = i + 1;
+                }
+                else if (col == placeholderColumn + 1)
+                {
+                    // Название продукта
+                    row.Cell(col).Value = line.Product?.Name ?? string.Empty;
+                }
+                else if (col == placeholderColumn + 2)
+                {
+                    // Количество
+                    row.Cell(col).Value = line.ItemsCount;
+                }
+                else if (col == placeholderColumn + 3)
+                {
+                    // Вес (как строка с 3 знаками)
+                    row.Cell(col).Value = line.WeightKg.ToString("F3");
+                }
+                else
+                {
+                    // Остальные плейсхолдеры
+                    row.Cell(col).Value = ReplaceLinePlaceholders(text, order, line, i + 1);
+                }
             }
         }
 
+        // Обводка таблицы
         var lastRow = templateRowNumber + order.Lines.Count - 1;
         var dataRange = worksheet.Range(templateRowNumber, placeholderColumn, lastRow, placeholderColumn + 3);
         var border = dataRange.Style.Border;
         border.OutsideBorder = XLBorderStyleValues.Thin;
         border.InsideBorder = XLBorderStyleValues.Thin;
     }
+
 
     private static string ReplaceLinePlaceholders(string text, Order order, OrderLine line, int index)
     {
