@@ -135,12 +135,14 @@ namespace OrdersCreator.UI
                 dataGridViewOrderLines.Rows.Clear();
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
+                panelReady.BackColor = Color.Green;
                 UpdateResults();
             }
             else
             {
                 lblReady.Text = "Выберите контрагента!";
-                lblReady.BackColor = Color.Red; 
+                lblReady.BackColor = Color.Red;
+                panelReady.BackColor = Color.Red;
             }
         }
 
@@ -257,6 +259,7 @@ namespace OrdersCreator.UI
             {
                 lblReady.Text = "Выберите контрагента!";
                 lblReady.BackColor = Color.Red;
+                panelReady.BackColor = Color.Red;
                 PlayFailureSound();
                 return;
             }
@@ -277,6 +280,7 @@ namespace OrdersCreator.UI
                 DisplayParsedBarcode(parsed, orderLine);
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
+                panelReady.BackColor= Color.Green;
                 UpdateResults();
                 PlaySuccessSound();
             }
@@ -430,6 +434,7 @@ namespace OrdersCreator.UI
                 SwitchToGreenMode();
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
+                panelReady.BackColor = Color.Green;
                 return;
             }
 
@@ -472,6 +477,7 @@ namespace OrdersCreator.UI
             SwitchToGreenMode();
             lblReady.Text = "Готов к сканированию!";
             lblReady.BackColor = Color.Green;
+            panelReady.BackColor = Color.Green;
         }
 
         private void DataGridViewOrderLines_SelectionChanged(object? sender, EventArgs e)
