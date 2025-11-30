@@ -75,13 +75,15 @@ namespace OrdersCreator.UI
             btnCreateReport.Click += BtnCreateReport_Click;
             открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
             сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
+            создатьToolStripMenuItem.Click += СоздатьToolStripMenuItem_Click;
 
 
             LoadCustomersForMain();
             LoadCategoriesForNewProduct();
 
-            InitializeSounds();            
+            InitializeSounds();
 
+            StartBlankOrder();
         }
 
 
@@ -131,8 +133,7 @@ namespace OrdersCreator.UI
         {
             if (cmbCustomers.SelectedIndex != -1 && cmbCustomers.SelectedItem is Customer selectedCustomer)
             {
-                _orderService.StartNewOrder(selectedCustomer);
-                dataGridViewOrderLines.Rows.Clear();
+                _orderService.SetCustomer(selectedCustomer);
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
                 panelReady.BackColor = Color.Green;
@@ -537,10 +538,7 @@ namespace OrdersCreator.UI
 
                 var reportPath = _reportService.CreateReport(current);
 
-                if (current.Customer != null)
-                {
-                    ResetAfterReport(current.Customer);
-                }
+                StartBlankOrder(DateTime.Now);
 
                 // lblReady.Text = $"Отчёт сохранён: {reportPath}";
                 MessageBox.Show($"Отчёт сохранён: {reportPath}", "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -554,13 +552,18 @@ namespace OrdersCreator.UI
             }
         }
 
-        private void ResetAfterReport(Customer customer)
+        private void StartBlankOrder(DateTime? date = null)
         {
             dataGridViewOrderLines.Rows.Clear();
-            _orderService.StartNewOrder(customer, DateTime.Now);
+            _orderService.StartNewOrder(null, date);
+            cmbCustomers.SelectedIndex = -1;
             SwitchToGreenMode();
             _scannerBuffer.Clear();
             UpdateResults();
+
+            lblReady.Text = "Выберите контрагента!";
+            lblReady.BackColor = Color.Red;
+            panelReady.BackColor = Color.Red;
 
             lblCurrentTitle.Text = string.Empty;
             lblCurrentCategory.Text = string.Empty;
@@ -618,6 +621,11 @@ namespace OrdersCreator.UI
                 MessageBox.Show(ex.Message, "Ошибка загрузки заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 // lblReady.Text = ex.Message;
             }
+        }
+
+        private void СоздатьToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            StartBlankOrder(DateTime.Now);
         }
 
         private void ApplyLoadedOrder(Order order)

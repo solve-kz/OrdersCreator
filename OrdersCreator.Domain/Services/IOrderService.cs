@@ -18,8 +18,8 @@ public interface IOrderService
     /// <summary>Текущий "черновик" заказа.</summary>
     Order? CurrentOrder { get; }
 
-    /// <summary>Начать новый заказ для указанного контрагента.</summary>
-    Order StartNewOrder(Customer customer, DateTime? date = null);
+    /// <summary>Начать новый заказ. Контрагент может быть назначен позже.</summary>
+    Order StartNewOrder(Customer? customer = null, DateTime? date = null);
 
     /// <summary>Установить/сменить контрагента у текущего заказа.</summary>
     void SetCustomer(Customer customer);

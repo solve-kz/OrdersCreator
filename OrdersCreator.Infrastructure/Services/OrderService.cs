@@ -20,13 +20,16 @@ namespace OrdersCreator.Infrastructure.Services
 
         public Order? CurrentOrder => _currentOrder;
 
-        public Order StartNewOrder(Customer customer, DateTime? date = null)
+        public Order StartNewOrder(Customer? customer = null, DateTime? date = null)
         {
-            if (customer is null)
-                throw new ArgumentNullException(nameof(customer));
-
             _currentOrder = CreateDraft(date);
-            SetCustomer(customer);
+            _lastAddedLine = null;
+
+            if (customer != null)
+            {
+                SetCustomer(customer);
+            }
+
             return _currentOrder;
         }
 
