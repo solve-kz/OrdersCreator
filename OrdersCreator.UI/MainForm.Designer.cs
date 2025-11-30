@@ -80,6 +80,7 @@
             tbNewProductCode = new TextBox();
             label7 = new Label();
             label6 = new Label();
+            создатьToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -108,7 +109,7 @@
             // 
             // файлToolStripMenuItem
             // 
-            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьToolStripMenuItem, сохранитьToolStripMenuItem, выходToolStripMenuItem });
+            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, открытьToolStripMenuItem, сохранитьToolStripMenuItem, выходToolStripMenuItem });
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(48, 20);
             файлToolStripMenuItem.Text = "Файл";
@@ -641,6 +642,12 @@
             label6.TabIndex = 0;
             label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
             // 
+            // создатьToolStripMenuItem
+            // 
+            создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
+            создатьToolStripMenuItem.Size = new Size(180, 22);
+            создатьToolStripMenuItem.Text = "Создать";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -740,5 +747,6 @@
         private DataGridViewTextBoxColumn ProductTitle;
         private DataGridViewTextBoxColumn ProductWeight;
         private DataGridViewButtonColumn RowDelete;
+        private ToolStripMenuItem создатьToolStripMenuItem;
     }
 }
