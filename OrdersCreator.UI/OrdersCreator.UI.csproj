@@ -18,4 +18,13 @@
     <Folder Include="Sounds\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Sounds\failure.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sounds\success.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

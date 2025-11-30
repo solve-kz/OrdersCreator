@@ -393,11 +393,16 @@ namespace OrdersCreator.UI
             tbNewProductCode.Text = parsed.ProductCode;
             tbNewProductWeight.Text = parsed.WeightKg.ToString("F3");
             tbNewProductTitle.Text = string.Empty;
-
-            SwitchToRedMode();
-            // lblReady.Text = $"Товар {parsed.ProductCode} не найден";
-            MessageBox.Show($"Товар {parsed.ProductCode} не найден", "Ошибка поиска", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            PlayFailureSound();
+            if (_appSettings.SoundsEnabled) PlayFailureSound();
+            if (_appSettings.UnknownProductMode == UnknownProductMode.PromptForData)
+            {
+                SwitchToRedMode();
+            }
+            else
+            {
+                MessageBox.Show($"Товар {parsed.ProductCode} не найден", "Ошибка поиска", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }              
+            
 
             if (cbNewProductCategory.Items.Count > 0)
             {
@@ -412,6 +417,7 @@ namespace OrdersCreator.UI
             panelRedMode.Visible = false;
             panelGreenMode.Visible = true;
             panelGreenMode.BringToFront();
+            btnCancel.Text = "ОТМЕНА (DEL)";
         }
 
         private void SwitchToRedMode()
@@ -419,6 +425,7 @@ namespace OrdersCreator.UI
             panelGreenMode.Visible = false;
             panelRedMode.Visible = true;
             panelRedMode.BringToFront();
+            btnCancel.Text = "ОТМЕНА (ESC)";
         }
 
         private void BtnCancel_Click(object? sender, EventArgs e)
