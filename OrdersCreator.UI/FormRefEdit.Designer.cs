@@ -68,6 +68,8 @@ namespace OrdersCreator.UI
             ProductTitle = new DataGridViewTextBoxColumn();
             ProductCode = new DataGridViewTextBoxColumn();
             panelEditBarcodes = new Panel();
+            tlpBarcodesEditContainer = new TableLayoutPanel();
+            tlpBarcodeName = new TableLayoutPanel();
             tlpBarcodesEdit = new TableLayoutPanel();
             label3 = new Label();
             textBoxBarcodeCode = new TextBox();
@@ -126,6 +128,8 @@ namespace OrdersCreator.UI
             panelGridBarcodes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
             panelEditBarcodes.SuspendLayout();
+            tlpBarcodesEditContainer.SuspendLayout();
+            tlpBarcodeName.SuspendLayout();
             tlpBarcodesEdit.SuspendLayout();
             panelButtonsBarcodes.SuspendLayout();
             tlpBarcodesButtons.SuspendLayout();
@@ -420,15 +424,15 @@ namespace OrdersCreator.UI
             tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
             tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle());
-            tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 230F));
             tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpBarcodesTop.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodesTop.Controls.Add(lblFilterCategory, 0, 0);
             tlpBarcodesTop.Controls.Add(comboBoxCategoryFilter, 1, 0);
-            tlpBarcodesTop.Controls.Add(lblSearch, 2, 0);
-            tlpBarcodesTop.Controls.Add(textBoxSearch, 3, 0);
-            tlpBarcodesTop.Controls.Add(btnSearch, 4, 0);
-            tlpBarcodesTop.Controls.Add(flowLayoutPanelFilterActions, 5, 0);
+            tlpBarcodesTop.Controls.Add(flowLayoutPanelFilterActions, 2, 0);
+            tlpBarcodesTop.Controls.Add(lblSearch, 3, 0);
+            tlpBarcodesTop.Controls.Add(textBoxSearch, 4, 0);
+            tlpBarcodesTop.Controls.Add(btnSearch, 5, 0);
             tlpBarcodesTop.Dock = DockStyle.Fill;
             tlpBarcodesTop.Location = new Point(10, 10);
             tlpBarcodesTop.Name = "tlpBarcodesTop";
@@ -459,46 +463,46 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.TabIndex = 1;
             // 
             // lblSearch
-            // 
+            //
             lblSearch.Anchor = AnchorStyles.Left;
             lblSearch.AutoSize = true;
             lblSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            lblSearch.Location = new Point(326, 12);
+            lblSearch.Location = new Point(571, 12);
             lblSearch.Name = "lblSearch";
             lblSearch.Size = new Size(54, 19);
             lblSearch.TabIndex = 2;
             lblSearch.Text = "Поиск:";
-            // 
+            //
             // textBoxSearch
-            // 
-            textBoxSearch.Anchor = AnchorStyles.Left;
+            //
+            textBoxSearch.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxSearch.Location = new Point(386, 9);
+            textBoxSearch.Location = new Point(631, 9);
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(224, 25);
+            textBoxSearch.Size = new Size(230, 25);
             textBoxSearch.TabIndex = 3;
-            // 
+            //
             // btnSearch
-            // 
+            //
             btnSearch.Anchor = AnchorStyles.Left;
             btnSearch.BackColor = Color.DodgerBlue;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(616, 6);
+            btnSearch.Location = new Point(867, 6);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(80, 30);
             btnSearch.TabIndex = 4;
             btnSearch.Text = "Найти";
             btnSearch.UseVisualStyleBackColor = false;
-            // 
+            //
             // flowLayoutPanelFilterActions
-            // 
-            flowLayoutPanelFilterActions.Anchor = AnchorStyles.Right;
+            //
+            flowLayoutPanelFilterActions.Anchor = AnchorStyles.Left;
             flowLayoutPanelFilterActions.AutoSize = true;
             flowLayoutPanelFilterActions.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanelFilterActions.Location = new Point(702, 3);
+            flowLayoutPanelFilterActions.Location = new Point(326, 3);
             flowLayoutPanelFilterActions.Name = "flowLayoutPanelFilterActions";
             flowLayoutPanelFilterActions.Size = new Size(239, 38);
             flowLayoutPanelFilterActions.TabIndex = 5;
@@ -601,7 +605,7 @@ namespace OrdersCreator.UI
             // panelEditBarcodes
             // 
             panelEditBarcodes.BackColor = Color.Gainsboro;
-            panelEditBarcodes.Controls.Add(tlpBarcodesEdit);
+            panelEditBarcodes.Controls.Add(tlpBarcodesEditContainer);
             panelEditBarcodes.Dock = DockStyle.Fill;
             panelEditBarcodes.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             panelEditBarcodes.Location = new Point(3, 640);
@@ -609,9 +613,39 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Padding = new Padding(10);
             panelEditBarcodes.Size = new Size(964, 64);
             panelEditBarcodes.TabIndex = 2;
-            // 
+            //
+            // tlpBarcodesEditContainer
+            //
+            tlpBarcodesEditContainer.ColumnCount = 1;
+            tlpBarcodesEditContainer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpBarcodesEditContainer.Controls.Add(tlpBarcodeName, 0, 0);
+            tlpBarcodesEditContainer.Controls.Add(tlpBarcodesEdit, 0, 1);
+            tlpBarcodesEditContainer.Dock = DockStyle.Fill;
+            tlpBarcodesEditContainer.Location = new Point(10, 10);
+            tlpBarcodesEditContainer.Name = "tlpBarcodesEditContainer";
+            tlpBarcodesEditContainer.RowCount = 2;
+            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpBarcodesEditContainer.Size = new Size(944, 44);
+            tlpBarcodesEditContainer.TabIndex = 0;
+            //
+            // tlpBarcodeName
+            //
+            tlpBarcodeName.ColumnCount = 2;
+            tlpBarcodeName.ColumnStyles.Add(new ColumnStyle());
+            tlpBarcodeName.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpBarcodeName.Controls.Add(label4, 0, 0);
+            tlpBarcodeName.Controls.Add(textBoxBarcodeName, 1, 0);
+            tlpBarcodeName.Dock = DockStyle.Fill;
+            tlpBarcodeName.Location = new Point(3, 3);
+            tlpBarcodeName.Name = "tlpBarcodeName";
+            tlpBarcodeName.RowCount = 1;
+            tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpBarcodeName.Size = new Size(938, 16);
+            tlpBarcodeName.TabIndex = 0;
+            //
             // tlpBarcodesEdit
-            // 
+            //
             tlpBarcodesEdit.ColumnCount = 4;
             tlpBarcodesEdit.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodesEdit.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
@@ -619,32 +653,29 @@ namespace OrdersCreator.UI
             tlpBarcodesEdit.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
             tlpBarcodesEdit.Controls.Add(label3, 0, 0);
             tlpBarcodesEdit.Controls.Add(textBoxBarcodeCode, 1, 0);
-            tlpBarcodesEdit.Controls.Add(label4, 0, 1);
-            tlpBarcodesEdit.Controls.Add(textBoxBarcodeName, 1, 1);
-            tlpBarcodesEdit.Controls.Add(label5, 2, 1);
-            tlpBarcodesEdit.Controls.Add(comboBoxBarcodeCategory, 3, 1);
+            tlpBarcodesEdit.Controls.Add(label5, 2, 0);
+            tlpBarcodesEdit.Controls.Add(comboBoxBarcodeCategory, 3, 0);
             tlpBarcodesEdit.Dock = DockStyle.Fill;
-            tlpBarcodesEdit.Location = new Point(10, 10);
+            tlpBarcodesEdit.Location = new Point(3, 25);
             tlpBarcodesEdit.Name = "tlpBarcodesEdit";
-            tlpBarcodesEdit.RowCount = 2;
-            tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBarcodesEdit.Size = new Size(944, 44);
-            tlpBarcodesEdit.TabIndex = 0;
-            // 
+            tlpBarcodesEdit.RowCount = 1;
+            tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpBarcodesEdit.Size = new Size(938, 16);
+            tlpBarcodesEdit.TabIndex = 1;
+            //
             // label3
-            // 
+            //
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(3, 2);
+            label3.Location = new Point(3, 0);
             label3.Name = "label3";
             label3.Size = new Size(83, 19);
             label3.TabIndex = 0;
             label3.Text = "Код товара:";
-            // 
+            //
             // textBoxBarcodeCode
-            // 
+            //
             textBoxBarcodeCode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxBarcodeCode.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxBarcodeCode.Location = new Point(92, 0);
@@ -652,48 +683,48 @@ namespace OrdersCreator.UI
             textBoxBarcodeCode.Name = "textBoxBarcodeCode";
             textBoxBarcodeCode.Size = new Size(316, 25);
             textBoxBarcodeCode.TabIndex = 1;
-            // 
+            //
             // label4
-            // 
+            //
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(3, 25);
+            label4.Location = new Point(3, 0);
             label4.Name = "label4";
             label4.Size = new Size(99, 19);
-            label4.TabIndex = 2;
+            label4.TabIndex = 0;
             label4.Text = "Наименование:";
-            // 
+            //
             // textBoxBarcodeName
-            // 
+            //
             textBoxBarcodeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxBarcodeName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeName.Location = new Point(108, 22);
+            textBoxBarcodeName.Location = new Point(108, 0);
             textBoxBarcodeName.Margin = new Padding(3, 0, 10, 0);
             textBoxBarcodeName.Name = "textBoxBarcodeName";
-            textBoxBarcodeName.Size = new Size(300, 25);
-            textBoxBarcodeName.TabIndex = 3;
-            // 
+            textBoxBarcodeName.Size = new Size(820, 25);
+            textBoxBarcodeName.TabIndex = 1;
+            //
             // label5
-            // 
+            //
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(421, 25);
+            label5.Location = new Point(421, 0);
             label5.Name = "label5";
             label5.Size = new Size(74, 19);
-            label5.TabIndex = 4;
+            label5.TabIndex = 2;
             label5.Text = "Категория:";
-            // 
+            //
             // comboBoxBarcodeCategory
-            // 
+            //
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(501, 22);
+            comboBoxBarcodeCategory.Location = new Point(501, 0);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
-            comboBoxBarcodeCategory.Size = new Size(440, 25);
-            comboBoxBarcodeCategory.TabIndex = 5;
+            comboBoxBarcodeCategory.Size = new Size(434, 25);
+            comboBoxBarcodeCategory.TabIndex = 3;
             // 
             // panelButtonsBarcodes
             // 
@@ -1195,6 +1226,10 @@ namespace OrdersCreator.UI
             panelGridBarcodes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             panelEditBarcodes.ResumeLayout(false);
+            tlpBarcodesEditContainer.ResumeLayout(false);
+            tlpBarcodesEditContainer.PerformLayout();
+            tlpBarcodeName.ResumeLayout(false);
+            tlpBarcodeName.PerformLayout();
             tlpBarcodesEdit.ResumeLayout(false);
             tlpBarcodesEdit.PerformLayout();
             panelButtonsBarcodes.ResumeLayout(false);
@@ -1257,6 +1292,8 @@ namespace OrdersCreator.UI
         private FlowLayoutPanel flowLayoutPanelFilterActions;
         private Button btnApplyFilter;
         private Button btnResetFilter;
+        private TableLayoutPanel tlpBarcodesEditContainer;
+        private TableLayoutPanel tlpBarcodeName;
         private TableLayoutPanel tlpBarcodesEdit;
         private Label label3;
         private TextBox textBoxBarcodeCode;
