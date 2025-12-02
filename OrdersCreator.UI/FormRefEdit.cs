@@ -181,21 +181,21 @@ namespace OrdersCreator.UI
 
 
             // фильтр
-            cmbProductCategoryFilter.DataSource = categories.ToList();
-            cmbProductCategoryFilter.DisplayMember = nameof(Category.Name);
-            cmbProductCategoryFilter.ValueMember = nameof(Category.Id);
-            cmbProductCategoryFilter.SelectedIndex = -1;   // ничего не выбрано
+            comboBoxCategoryFilter.DataSource = categories.ToList();
+            comboBoxCategoryFilter.DisplayMember = nameof(Category.Name);
+            comboBoxCategoryFilter.ValueMember = nameof(Category.Id);
+            comboBoxCategoryFilter.SelectedIndex = -1;   // ничего не выбрано
 
             // редактор
-            cmbProductCategory.DataSource = categories;
-            cmbProductCategory.DisplayMember = nameof(Category.Name);
-            cmbProductCategory.ValueMember = nameof(Category.Id);
-            cmbProductCategory.SelectedIndex = -1;
+            comboBoxBarcodeCategory.DataSource = categories;
+            comboBoxBarcodeCategory.DisplayMember = nameof(Category.Name);
+            comboBoxBarcodeCategory.ValueMember = nameof(Category.Id);
+            comboBoxBarcodeCategory.SelectedIndex = -1;
         }
 
         private int? GetCurrentProductFilterCategoryId()
         {
-            if (cmbProductCategoryFilter.SelectedItem is Category cat)
+            if (comboBoxCategoryFilter.SelectedItem is Category cat)
                 return cat.Id;
             return null;
         }
@@ -347,13 +347,13 @@ namespace OrdersCreator.UI
                 _currentCustomer = c;
                 _isNewCustomer = false;
 
-                tbCustomerTitle.Text = c.Name;
+                textBoxCustomerName.Text = c.Name;
             }
             else
             {
                 _currentCustomer = null;
                 _isNewCustomer = false;
-                tbCustomerTitle.Text = string.Empty;
+                textBoxCustomerName.Text = string.Empty;
             }
         }
 
@@ -364,13 +364,13 @@ namespace OrdersCreator.UI
                 _currentCategory = c;
                 _isNewCategory = false;
 
-                tbCategoryTitle.Text = c.Name;
+                textBoxCategoryName.Text = c.Name;
             }
             else
             {
                 _currentCategory = null;
                 _isNewCategory = false;
-                tbCategoryTitle.Text = string.Empty;
+                textBoxCategoryName.Text = string.Empty;
             }
         }
 
@@ -390,32 +390,32 @@ namespace OrdersCreator.UI
             if (_currentProduct != null)
             {
                 _isNewProduct = false;
-                tbProductCode.Text = _currentProduct.Code;
-                tbProductTitle.Text = _currentProduct.Name;
+                textBoxBarcodeCode.Text = _currentProduct.Code;
+                textBoxBarcodeName.Text = _currentProduct.Name;
 
                 // выставить категорию в комбобоксе по Id
                 if (_currentProduct.CategoryId != 0)
                 {
-                    for (int i = 0; i < cmbProductCategory.Items.Count; i++)
+                    for (int i = 0; i < comboBoxBarcodeCategory.Items.Count; i++)
                     {
-                        if (cmbProductCategory.Items[i] is Category c && c.Id == _currentProduct.CategoryId)
+                        if (comboBoxBarcodeCategory.Items[i] is Category c && c.Id == _currentProduct.CategoryId)
                         {
-                            cmbProductCategory.SelectedIndex = i;
+                            comboBoxBarcodeCategory.SelectedIndex = i;
                             break;
                         }
                     }
                 }
                 else
                 {
-                    cmbProductCategory.SelectedIndex = -1;
+                    comboBoxBarcodeCategory.SelectedIndex = -1;
                 }
             }
             else
             {
                 _isNewProduct = false;
-                tbProductCode.Text = "";
-                tbProductTitle.Text = "";
-                cmbProductCategory.SelectedIndex = -1;
+                textBoxBarcodeCode.Text = "";
+                textBoxBarcodeName.Text = "";
+                comboBoxBarcodeCategory.SelectedIndex = -1;
             }
         }
 
@@ -424,8 +424,8 @@ namespace OrdersCreator.UI
             // режим добавления нового контрагента
             _currentCustomer = null;
             _isNewCustomer = true;
-            tbCustomerTitle.Text = string.Empty;
-            tbCustomerTitle.Focus();
+            textBoxCustomerName.Text = string.Empty;
+            textBoxCustomerName.Focus();
 
             dataGridViewCustomers.ClearSelection();
         }
@@ -435,8 +435,8 @@ namespace OrdersCreator.UI
             // режим добавления нового контрагента
             _currentCategory = null;
             _isNewCategory = true;
-            tbCategoryTitle.Text = string.Empty;
-            tbCategoryTitle.Focus();
+            textBoxCategoryName.Text = string.Empty;
+            textBoxCategoryName.Focus();
 
             dataGridViewCategories.ClearSelection();
         }
@@ -446,22 +446,22 @@ namespace OrdersCreator.UI
             _currentProduct = null;
             _isNewProduct = true;
 
-            tbProductCode.Text = "";
-            tbProductTitle.Text = "";
-            cmbProductCategory.SelectedIndex = -1;
+            textBoxBarcodeCode.Text = "";
+            textBoxBarcodeName.Text = "";
+            comboBoxBarcodeCategory.SelectedIndex = -1;
 
-            tbProductCode.Focus();
+            textBoxBarcodeCode.Focus();
         }
 
         private void BtnSaveCustomer_Click(object? sender, EventArgs e)
         {
-            var name = tbCustomerTitle.Text.Trim();
+            var name = textBoxCustomerName.Text.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
                 MessageBox.Show(this, "Введите наименование контрагента.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbCustomerTitle.Focus();
+                textBoxCustomerName.Focus();
                 return;
             }
 
@@ -494,13 +494,13 @@ namespace OrdersCreator.UI
 
         private void BtnSaveCategory_Click(object? sender, EventArgs e)
         {
-            var name = tbCategoryTitle.Text.Trim();
+            var name = textBoxCategoryName.Text.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
                 MessageBox.Show(this, "Введите наименование категории.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbCategoryTitle.Focus();
+                textBoxCategoryName.Focus();
                 return;
             }
 
@@ -534,15 +534,15 @@ namespace OrdersCreator.UI
 
         private void BtnProductSave_Click(object? sender, EventArgs e)
         {
-            var code = tbProductCode.Text.Trim();
-            var name = tbProductTitle.Text.Trim();
-            var category = cmbProductCategory.SelectedItem as Category;
+            var code = textBoxBarcodeCode.Text.Trim();
+            var name = textBoxBarcodeName.Text.Trim();
+            var category = comboBoxBarcodeCategory.SelectedItem as Category;
 
             if (string.IsNullOrEmpty(code))
             {
                 MessageBox.Show(this, "Введите код товара.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbProductCode.Focus();
+                textBoxBarcodeCode.Focus();
                 return;
             }
 
@@ -550,7 +550,7 @@ namespace OrdersCreator.UI
             {
                 MessageBox.Show(this, "Введите наименование товара.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbProductTitle.Focus();
+                textBoxBarcodeName.Focus();
                 return;
             }
 
@@ -558,7 +558,7 @@ namespace OrdersCreator.UI
             {
                 MessageBox.Show(this, "Выберите категорию товара.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbProductCategory.DroppedDown = true;
+                comboBoxBarcodeCategory.DroppedDown = true;
                 return;
             }
 
@@ -707,7 +707,7 @@ namespace OrdersCreator.UI
 
         private void BtnProductFilterApply_Click(object? sender, EventArgs e)
         {
-            if (cmbProductCategoryFilter.SelectedItem is Category category)
+            if (comboBoxCategoryFilter.SelectedItem is Category category)
             {
                 LoadProducts(category.Id);
             }
@@ -719,7 +719,7 @@ namespace OrdersCreator.UI
 
         private void BtnProductFilterReset_Click(object? sender, EventArgs e)
         {
-            cmbProductCategoryFilter.SelectedIndex = -1;
+            comboBoxCategoryFilter.SelectedIndex = -1;
             LoadProducts(null);
         }
 
