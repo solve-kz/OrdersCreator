@@ -474,7 +474,7 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Anchor = AnchorStyles.Left;
             comboBoxCategoryFilter.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxCategoryFilter.FormattingEnabled = true;
-            comboBoxCategoryFilter.Location = new Point(155, 9);
+            comboBoxCategoryFilter.Location = new Point(155, 8);
             comboBoxCategoryFilter.Name = "comboBoxCategoryFilter";
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
@@ -562,7 +562,7 @@ namespace OrdersCreator.UI
             panelGridBarcodes.Dock = DockStyle.Fill;
             panelGridBarcodes.Location = new Point(3, 63);
             panelGridBarcodes.Name = "panelGridBarcodes";
-            panelGridBarcodes.Size = new Size(964, 501);
+            panelGridBarcodes.Size = new Size(964, 471);
             panelGridBarcodes.TabIndex = 1;
             // 
             // dataGridViewProducts
@@ -595,7 +595,7 @@ namespace OrdersCreator.UI
             dataGridViewProducts.ReadOnly = true;
             dataGridViewProducts.RowHeadersVisible = false;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducts.Size = new Size(964, 501);
+            dataGridViewProducts.Size = new Size(964, 471);
             dataGridViewProducts.TabIndex = 2;
             // 
             // ProductNumber
@@ -633,7 +633,7 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Controls.Add(tlpBarcodesEditContainer);
             panelEditBarcodes.Dock = DockStyle.Fill;
             panelEditBarcodes.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            panelEditBarcodes.Location = new Point(3, 570);
+            panelEditBarcodes.Location = new Point(3, 540);
             panelEditBarcodes.Name = "panelEditBarcodes";
             panelEditBarcodes.Padding = new Padding(10);
             panelEditBarcodes.Size = new Size(964, 94);
@@ -666,7 +666,7 @@ namespace OrdersCreator.UI
             tlpBarcodeName.Name = "tlpBarcodeName";
             tlpBarcodeName.RowCount = 1;
             tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpBarcodeName.Size = new Size(938, 36);
+            tlpBarcodeName.Size = new Size(938, 30);
             tlpBarcodeName.TabIndex = 0;
             // 
             // label4
@@ -674,9 +674,9 @@ namespace OrdersCreator.UI
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(3, 10);
+            label4.Location = new Point(3, 8);
             label4.Name = "label4";
-            label4.Size = new Size(107, 16);
+            label4.Size = new Size(107, 19);
             label4.TabIndex = 0;
             label4.Text = "Наименование:";
             // 
@@ -685,7 +685,7 @@ namespace OrdersCreator.UI
             textBoxBarcodeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxBarcodeName.BorderStyle = BorderStyle.FixedSingle;
             textBoxBarcodeName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeName.Location = new Point(116, 3);
+            textBoxBarcodeName.Location = new Point(116, 5);
             textBoxBarcodeName.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeName.Name = "textBoxBarcodeName";
             textBoxBarcodeName.Size = new Size(812, 25);
@@ -707,7 +707,7 @@ namespace OrdersCreator.UI
             tlpBarcodesEdit.Name = "tlpBarcodesEdit";
             tlpBarcodesEdit.RowCount = 1;
             tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpBarcodesEdit.Size = new Size(938, 36);
+            tlpBarcodesEdit.Size = new Size(938, 32);
             tlpBarcodesEdit.TabIndex = 1;
             // 
             // label3
@@ -715,9 +715,9 @@ namespace OrdersCreator.UI
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(3, 10);
+            label3.Location = new Point(3, 8);
             label3.Name = "label3";
-            label3.Size = new Size(83, 16);
+            label3.Size = new Size(83, 19);
             label3.TabIndex = 0;
             label3.Text = "Код товара:";
             // 
@@ -726,7 +726,7 @@ namespace OrdersCreator.UI
             textBoxBarcodeCode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxBarcodeCode.BorderStyle = BorderStyle.FixedSingle;
             textBoxBarcodeCode.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeCode.Location = new Point(92, 0);
+            textBoxBarcodeCode.Location = new Point(92, 5);
             textBoxBarcodeCode.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeCode.Name = "textBoxBarcodeCode";
             textBoxBarcodeCode.Size = new Size(370, 25);
@@ -737,9 +737,9 @@ namespace OrdersCreator.UI
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(475, 10);
+            label5.Location = new Point(475, 8);
             label5.Name = "label5";
-            label5.Size = new Size(76, 16);
+            label5.Size = new Size(76, 19);
             label5.TabIndex = 2;
             label5.Text = "Категория:";
             // 
@@ -748,7 +748,7 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 3);
+            comboBoxBarcodeCategory.Location = new Point(557, 4);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
             comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
