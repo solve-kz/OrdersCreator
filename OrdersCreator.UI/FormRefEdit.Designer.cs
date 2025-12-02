@@ -28,12 +28,12 @@ namespace OrdersCreator.UI
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabCategory = new TabPage();
             tlpCategories = new TableLayoutPanel();
@@ -58,12 +58,12 @@ namespace OrdersCreator.UI
             tlpBarcodesTop = new TableLayoutPanel();
             lblFilterCategory = new Label();
             comboBoxCategoryFilter = new ComboBox();
-            lblSearch = new Label();
-            textBoxSearch = new TextBox();
-            btnSearch = new Button();
             flowLayoutPanelFilterActions = new FlowLayoutPanel();
             btnApplyFilter = new Button();
             btnResetFilter = new Button();
+            lblSearch = new Label();
+            textBoxSearch = new TextBox();
+            btnSearch = new Button();
             panelGridBarcodes = new Panel();
             dataGridViewProducts = new DataGridView();
             ProductNumber = new DataGridViewTextBoxColumn();
@@ -73,11 +73,11 @@ namespace OrdersCreator.UI
             panelEditBarcodes = new Panel();
             tlpBarcodesEditContainer = new TableLayoutPanel();
             tlpBarcodeName = new TableLayoutPanel();
+            label4 = new Label();
+            textBoxBarcodeName = new TextBox();
             tlpBarcodesEdit = new TableLayoutPanel();
             label3 = new Label();
             textBoxBarcodeCode = new TextBox();
-            label4 = new Label();
-            textBoxBarcodeName = new TextBox();
             label5 = new Label();
             comboBoxBarcodeCategory = new ComboBox();
             panelButtonsBarcodes = new Panel();
@@ -221,24 +221,24 @@ namespace OrdersCreator.UI
             dataGridViewCategories.AllowUserToResizeRows = false;
             dataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCategories.BackgroundColor = Color.White;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = SystemColors.Control;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCategories.Columns.AddRange(new DataGridViewColumn[] { RowNumber, CategoryTitle });
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = SystemColors.Window;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
-            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCategories.Dock = DockStyle.Fill;
             dataGridViewCategories.Location = new Point(0, 0);
             dataGridViewCategories.MultiSelect = false;
@@ -304,6 +304,7 @@ namespace OrdersCreator.UI
             // textBoxCategoryName
             // 
             textBoxCategoryName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBoxCategoryName.BorderStyle = BorderStyle.FixedSingle;
             textBoxCategoryName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxCategoryName.Location = new Point(116, 9);
             textBoxCategoryName.Name = "textBoxCategoryName";
@@ -478,49 +479,15 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
             // 
-            // lblSearch
-            //
-            lblSearch.Anchor = AnchorStyles.Left;
-            lblSearch.AutoSize = true;
-            lblSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            lblSearch.Location = new Point(571, 12);
-            lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(51, 19);
-            lblSearch.TabIndex = 2;
-            lblSearch.Text = "Поиск:";
-            //
-            // textBoxSearch
-            //
-            textBoxSearch.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            textBoxSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxSearch.Location = new Point(631, 9);
-            textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(230, 25);
-            textBoxSearch.TabIndex = 3;
-            //
-            // btnSearch
-            //
-            btnSearch.Anchor = AnchorStyles.Left;
-            btnSearch.BackColor = Color.DodgerBlue;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(867, 6);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(80, 30);
-            btnSearch.TabIndex = 4;
-            btnSearch.Text = "НАЙТИ";
-            btnSearch.UseVisualStyleBackColor = false;
-            //
             // flowLayoutPanelFilterActions
-            //
+            // 
             flowLayoutPanelFilterActions.Anchor = AnchorStyles.Left;
             flowLayoutPanelFilterActions.AutoSize = true;
-            flowLayoutPanelFilterActions.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanelFilterActions.Location = new Point(326, 3);
+            flowLayoutPanelFilterActions.Controls.Add(btnApplyFilter);
+            flowLayoutPanelFilterActions.Controls.Add(btnResetFilter);
+            flowLayoutPanelFilterActions.Location = new Point(335, 3);
             flowLayoutPanelFilterActions.Name = "flowLayoutPanelFilterActions";
-            flowLayoutPanelFilterActions.Size = new Size(233, 38);
+            flowLayoutPanelFilterActions.Size = new Size(239, 38);
             flowLayoutPanelFilterActions.TabIndex = 5;
             flowLayoutPanelFilterActions.WrapContents = false;
             // 
@@ -553,6 +520,42 @@ namespace OrdersCreator.UI
             btnResetFilter.Text = "СБРОС";
             btnResetFilter.UseVisualStyleBackColor = false;
             // 
+            // lblSearch
+            // 
+            lblSearch.Anchor = AnchorStyles.Left;
+            lblSearch.AutoSize = true;
+            lblSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblSearch.Location = new Point(580, 12);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(51, 19);
+            lblSearch.TabIndex = 2;
+            lblSearch.Text = "Поиск:";
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBoxSearch.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBoxSearch.Location = new Point(637, 9);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(218, 25);
+            textBoxSearch.TabIndex = 3;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Anchor = AnchorStyles.Left;
+            btnSearch.BackColor = Color.DodgerBlue;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(861, 7);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(80, 30);
+            btnSearch.TabIndex = 4;
+            btnSearch.Text = "НАЙТИ";
+            btnSearch.UseVisualStyleBackColor = false;
+            // 
             // panelGridBarcodes
             // 
             panelGridBarcodes.Controls.Add(dataGridViewProducts);
@@ -568,24 +571,24 @@ namespace OrdersCreator.UI
             dataGridViewProducts.AllowUserToResizeRows = false;
             dataGridViewProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProducts.BackgroundColor = Color.White;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = SystemColors.Control;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dataGridViewProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProducts.Columns.AddRange(new DataGridViewColumn[] { ProductNumber, ProductCategory, ProductTitle, ProductCode });
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.Window;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
-            dataGridViewProducts.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridViewProducts.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewProducts.Dock = DockStyle.Fill;
             dataGridViewProducts.Location = new Point(0, 0);
             dataGridViewProducts.Name = "dataGridViewProducts";
@@ -635,9 +638,9 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Padding = new Padding(10);
             panelEditBarcodes.Size = new Size(964, 64);
             panelEditBarcodes.TabIndex = 2;
-            //
+            // 
             // tlpBarcodesEditContainer
-            //
+            // 
             tlpBarcodesEditContainer.ColumnCount = 1;
             tlpBarcodesEditContainer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpBarcodesEditContainer.Controls.Add(tlpBarcodeName, 0, 0);
@@ -650,9 +653,9 @@ namespace OrdersCreator.UI
             tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpBarcodesEditContainer.Size = new Size(944, 44);
             tlpBarcodesEditContainer.TabIndex = 0;
-            //
+            // 
             // tlpBarcodeName
-            //
+            // 
             tlpBarcodeName.ColumnCount = 2;
             tlpBarcodeName.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodeName.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
@@ -665,9 +668,31 @@ namespace OrdersCreator.UI
             tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBarcodeName.Size = new Size(938, 16);
             tlpBarcodeName.TabIndex = 0;
-            //
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label4.Location = new Point(3, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(107, 16);
+            label4.TabIndex = 0;
+            label4.Text = "Наименование:";
+            // 
+            // textBoxBarcodeName
+            // 
+            textBoxBarcodeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBoxBarcodeName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxBarcodeName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBoxBarcodeName.Location = new Point(116, 0);
+            textBoxBarcodeName.Margin = new Padding(3, 0, 10, 0);
+            textBoxBarcodeName.Name = "textBoxBarcodeName";
+            textBoxBarcodeName.Size = new Size(812, 25);
+            textBoxBarcodeName.TabIndex = 1;
+            // 
             // tlpBarcodesEdit
-            //
+            // 
             tlpBarcodesEdit.ColumnCount = 4;
             tlpBarcodesEdit.ColumnStyles.Add(new ColumnStyle());
             tlpBarcodesEdit.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
@@ -684,68 +709,48 @@ namespace OrdersCreator.UI
             tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBarcodesEdit.Size = new Size(938, 16);
             tlpBarcodesEdit.TabIndex = 1;
-            //
+            // 
             // label3
-            //
+            // 
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(83, 19);
+            label3.Size = new Size(83, 16);
             label3.TabIndex = 0;
             label3.Text = "Код товара:";
-            //
+            // 
             // textBoxBarcodeCode
-            //
+            // 
             textBoxBarcodeCode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBoxBarcodeCode.BorderStyle = BorderStyle.FixedSingle;
             textBoxBarcodeCode.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeCode.Location = new Point(116, 0);
+            textBoxBarcodeCode.Location = new Point(92, 0);
             textBoxBarcodeCode.Margin = new Padding(3, 0, 10, 0);
             textBoxBarcodeCode.Name = "textBoxBarcodeCode";
-            textBoxBarcodeCode.Size = new Size(361, 25);
+            textBoxBarcodeCode.Size = new Size(370, 25);
             textBoxBarcodeCode.TabIndex = 1;
-            //
-            // label4
-            //
-            label4.Anchor = AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(3, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(99, 19);
-            label4.TabIndex = 0;
-            label4.Text = "Наименование:";
-            //
-            // textBoxBarcodeName
-            //
-            textBoxBarcodeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            textBoxBarcodeName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeName.Location = new Point(108, 0);
-            textBoxBarcodeName.Margin = new Padding(3, 0, 10, 0);
-            textBoxBarcodeName.Name = "textBoxBarcodeName";
-            textBoxBarcodeName.Size = new Size(300, 25);
-            textBoxBarcodeName.TabIndex = 3;
             // 
             // label5
-            //
+            // 
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(421, 0);
+            label5.Location = new Point(475, 0);
             label5.Name = "label5";
-            label5.Size = new Size(74, 19);
+            label5.Size = new Size(76, 16);
             label5.TabIndex = 2;
             label5.Text = "Категория:";
-            //
+            // 
             // comboBoxBarcodeCategory
-            //
+            // 
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(501, 0);
+            comboBoxBarcodeCategory.Location = new Point(557, 3);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
-            comboBoxBarcodeCategory.Size = new Size(434, 25);
+            comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
             // 
             // panelButtonsBarcodes
@@ -960,6 +965,7 @@ namespace OrdersCreator.UI
             // textBoxSearchCustomer
             // 
             textBoxSearchCustomer.Anchor = AnchorStyles.Left;
+            textBoxSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
             textBoxSearchCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxSearchCustomer.Location = new Point(60, 9);
             textBoxSearchCustomer.Name = "textBoxSearchCustomer";
@@ -996,24 +1002,24 @@ namespace OrdersCreator.UI
             dataGridViewCustomers.AllowUserToResizeRows = false;
             dataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCustomers.BackgroundColor = Color.White;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = SystemColors.Control;
-            dataGridViewCellStyle17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle17.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridViewCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCustomers.Columns.AddRange(new DataGridViewColumn[] { CustomerNumber, CustomerTitle });
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = SystemColors.Window;
-            dataGridViewCellStyle18.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle18.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
-            dataGridViewCustomers.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataGridViewCustomers.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewCustomers.Dock = DockStyle.Fill;
             dataGridViewCustomers.Location = new Point(0, 0);
             dataGridViewCustomers.Name = "dataGridViewCustomers";
@@ -1079,6 +1085,7 @@ namespace OrdersCreator.UI
             // textBoxCustomerName
             // 
             textBoxCustomerName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBoxCustomerName.BorderStyle = BorderStyle.FixedSingle;
             textBoxCustomerName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxCustomerName.Location = new Point(116, 9);
             textBoxCustomerName.Name = "textBoxCustomerName";
@@ -1256,7 +1263,6 @@ namespace OrdersCreator.UI
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             panelEditBarcodes.ResumeLayout(false);
             tlpBarcodesEditContainer.ResumeLayout(false);
-            tlpBarcodesEditContainer.PerformLayout();
             tlpBarcodeName.ResumeLayout(false);
             tlpBarcodeName.PerformLayout();
             tlpBarcodesEdit.ResumeLayout(false);
