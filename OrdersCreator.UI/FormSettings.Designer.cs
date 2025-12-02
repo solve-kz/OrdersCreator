@@ -1,4 +1,7 @@
-﻿namespace OrdersCreator.UI
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace OrdersCreator.UI
 {
     partial class FormSettings
     {
@@ -32,134 +35,115 @@
             tbReportTemplatePath = new TextBox();
             btnOK = new Button();
             btnCancel = new Button();
-            label1 = new Label();
             tbReportsRootFolder = new TextBox();
-            label3 = new Label();
             btnReportsRootFolder = new Button();
-            label2 = new Label();
-            label4 = new Label();
             tbReportFileNameMask = new TextBox();
             btnReportTemplatePath = new Button();
             chbOpenReportAfterSave = new CheckBox();
-            label5 = new Label();
-            label6 = new Label();
             numScannerCharTimeoutMs = new NumericUpDown();
             chbAllowManualBarcodeInput = new CheckBox();
             chbSoundsEnabled = new CheckBox();
-            label7 = new Label();
             cmbUnknownProductMode = new ComboBox();
-            label8 = new Label();
-            label9 = new Label();
-            lblSqlServerConnectionString = new Label();
             cmbStorageType = new ComboBox();
             tbSqlServerConnectionString = new TextBox();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            panel6 = new Panel();
+            tabSettings = new TabControl();
+            tabReports = new TabPage();
+            tlpReports = new TableLayoutPanel();
+            labelReportsRoot = new Label();
+            labelTemplatePath = new Label();
+            labelFileNameMask = new Label();
+            tabBehavior = new TabPage();
+            tlpBehavior = new TableLayoutPanel();
+            labelScannerTimeout = new Label();
+            labelUnknownProduct = new Label();
+            tabStorage = new TabPage();
+            tlpStorage = new TableLayoutPanel();
+            labelStorageType = new Label();
+            lblSqlServerConnectionString = new Label();
+            panelBottomButtons = new Panel();
+            flpButtons = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)numScannerCharTimeoutMs).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
+            tabSettings.SuspendLayout();
+            tabReports.SuspendLayout();
+            tlpReports.SuspendLayout();
+            tabBehavior.SuspendLayout();
+            tlpBehavior.SuspendLayout();
+            tabStorage.SuspendLayout();
+            tlpStorage.SuspendLayout();
+            panelBottomButtons.SuspendLayout();
+            flpButtons.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // chbUseDailySubfolder
-            // 
+            //
             chbUseDailySubfolder.AutoSize = true;
-            chbUseDailySubfolder.Location = new Point(326, 111);
-            chbUseDailySubfolder.Margin = new Padding(4);
+            chbUseDailySubfolder.Location = new Point(0, 0);
+            chbUseDailySubfolder.Margin = new Padding(0, 4, 4, 4);
             chbUseDailySubfolder.Name = "chbUseDailySubfolder";
             chbUseDailySubfolder.Size = new Size(233, 25);
             chbUseDailySubfolder.TabIndex = 4;
             chbUseDailySubfolder.Text = "Создавать подпапку с датой";
             chbUseDailySubfolder.UseVisualStyleBackColor = true;
-            // 
+            //
             // tbReportTemplatePath
-            // 
+            //
+            tbReportTemplatePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportTemplatePath.BorderStyle = BorderStyle.FixedSingle;
-            tbReportTemplatePath.Location = new Point(326, 144);
+            tbReportTemplatePath.Location = new Point(262, 98);
             tbReportTemplatePath.Margin = new Padding(4);
             tbReportTemplatePath.Name = "tbReportTemplatePath";
-            tbReportTemplatePath.Size = new Size(458, 29);
+            tbReportTemplatePath.Size = new Size(517, 29);
             tbReportTemplatePath.TabIndex = 6;
-            // 
+            //
             // btnOK
-            // 
+            //
             btnOK.BackColor = Color.ForestGreen;
             btnOK.FlatAppearance.BorderSize = 0;
             btnOK.FlatStyle = FlatStyle.Flat;
             btnOK.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnOK.ForeColor = Color.White;
-            btnOK.Location = new Point(793, 723);
-            btnOK.Margin = new Padding(4);
+            btnOK.Location = new Point(154, 10);
+            btnOK.Margin = new Padding(10, 0, 0, 0);
             btnOK.Name = "btnOK";
-            btnOK.Size = new Size(144, 43);
+            btnOK.Size = new Size(144, 40);
             btnOK.TabIndex = 8;
             btnOK.Text = "СОХРАНИТЬ";
             btnOK.UseVisualStyleBackColor = false;
             btnOK.Click += btnOK_Click;
-            // 
+            //
             // btnCancel
-            // 
+            //
             btnCancel.BackColor = Color.Gray;
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(641, 723);
-            btnCancel.Margin = new Padding(4);
+            btnCancel.Location = new Point(0, 10);
+            btnCancel.Margin = new Padding(0, 0, 10, 0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(144, 43);
+            btnCancel.Size = new Size(144, 40);
             btnCancel.TabIndex = 9;
             btnCancel.Text = "ОТМЕНА";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Location = new Point(18, 78);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(217, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Корневая папка для отчетов:";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            //
             // tbReportsRootFolder
-            // 
-            tbReportsRootFolder.Anchor = AnchorStyles.Bottom;
+            //
+            tbReportsRootFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportsRootFolder.BorderStyle = BorderStyle.FixedSingle;
-            tbReportsRootFolder.Location = new Point(325, 72);
+            tbReportsRootFolder.Location = new Point(262, 7);
             tbReportsRootFolder.Margin = new Padding(4);
             tbReportsRootFolder.Name = "tbReportsRootFolder";
-            tbReportsRootFolder.Size = new Size(458, 29);
+            tbReportsRootFolder.Size = new Size(517, 29);
             tbReportsRootFolder.TabIndex = 2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(3, 11);
-            label3.Name = "label3";
-            label3.Size = new Size(182, 21);
-            label3.TabIndex = 0;
-            label3.Text = "ОТЧЕТЫ ПО ЗАКАЗАМ";
-            // 
+            //
             // btnReportsRootFolder
-            // 
-            btnReportsRootFolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            //
             btnReportsRootFolder.BackColor = Color.RoyalBlue;
             btnReportsRootFolder.FlatAppearance.BorderSize = 0;
             btnReportsRootFolder.FlatStyle = FlatStyle.Flat;
             btnReportsRootFolder.ForeColor = Color.White;
-            btnReportsRootFolder.Location = new Point(792, 74);
+            btnReportsRootFolder.Location = new Point(787, 8);
             btnReportsRootFolder.Margin = new Padding(4);
             btnReportsRootFolder.Name = "btnReportsRootFolder";
             btnReportsRootFolder.Size = new Size(111, 27);
@@ -167,46 +151,24 @@
             btnReportsRootFolder.Text = "Выбрать";
             btnReportsRootFolder.UseVisualStyleBackColor = false;
             btnReportsRootFolder.Click += btnReportsRootFolder_Click;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.None;
-            label2.AutoSize = true;
-            label2.Location = new Point(17, 193);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 21);
-            label2.TabIndex = 12;
-            label2.Text = "Маска имени файла:";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(18, 146);
-            label4.Name = "label4";
-            label4.Size = new Size(161, 21);
-            label4.TabIndex = 13;
-            label4.Text = "Путь к .xlsx-шаблону:";
-            // 
+            //
             // tbReportFileNameMask
-            // 
-            tbReportFileNameMask.Anchor = AnchorStyles.Bottom;
+            //
+            tbReportFileNameMask.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportFileNameMask.BorderStyle = BorderStyle.FixedSingle;
-            tbReportFileNameMask.Location = new Point(325, 189);
+            tbReportFileNameMask.Location = new Point(262, 134);
             tbReportFileNameMask.Margin = new Padding(4);
             tbReportFileNameMask.Name = "tbReportFileNameMask";
-            tbReportFileNameMask.Size = new Size(322, 29);
+            tbReportFileNameMask.Size = new Size(517, 29);
             tbReportFileNameMask.TabIndex = 14;
-            // 
+            //
             // btnReportTemplatePath
-            // 
-            btnReportTemplatePath.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            //
             btnReportTemplatePath.BackColor = Color.RoyalBlue;
             btnReportTemplatePath.FlatAppearance.BorderSize = 0;
             btnReportTemplatePath.FlatStyle = FlatStyle.Flat;
             btnReportTemplatePath.ForeColor = Color.White;
-            btnReportTemplatePath.Location = new Point(792, 144);
+            btnReportTemplatePath.Location = new Point(787, 99);
             btnReportTemplatePath.Margin = new Padding(4);
             btnReportTemplatePath.Name = "btnReportTemplatePath";
             btnReportTemplatePath.Size = new Size(111, 27);
@@ -214,253 +176,332 @@
             btnReportTemplatePath.Text = "Выбрать";
             btnReportTemplatePath.UseVisualStyleBackColor = false;
             btnReportTemplatePath.Click += btnReportTemplatePath_Click;
-            // 
+            //
             // chbOpenReportAfterSave
-            // 
+            //
             chbOpenReportAfterSave.AutoSize = true;
-            chbOpenReportAfterSave.Location = new Point(326, 228);
+            chbOpenReportAfterSave.Location = new Point(262, 171);
             chbOpenReportAfterSave.Margin = new Padding(4);
             chbOpenReportAfterSave.Name = "chbOpenReportAfterSave";
             chbOpenReportAfterSave.Size = new Size(283, 25);
             chbOpenReportAfterSave.TabIndex = 16;
             chbOpenReportAfterSave.Text = "Открывать отчет после сохранения";
             chbOpenReportAfterSave.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(17, 12);
-            label5.Name = "label5";
-            label5.Size = new Size(157, 21);
-            label5.TabIndex = 17;
-            label5.Text = "БЛОК ПОВЕДЕНИЯ";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(18, 66);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(301, 21);
-            label6.TabIndex = 18;
-            label6.Text = "Таймаут между символами сканера (мс):";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            //
             // numScannerCharTimeoutMs
-            // 
-            numScannerCharTimeoutMs.Location = new Point(326, 64);
+            //
+            numScannerCharTimeoutMs.Location = new Point(342, 4);
             numScannerCharTimeoutMs.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numScannerCharTimeoutMs.Name = "numScannerCharTimeoutMs";
             numScannerCharTimeoutMs.Size = new Size(120, 29);
             numScannerCharTimeoutMs.TabIndex = 19;
-            // 
+            //
             // chbAllowManualBarcodeInput
-            // 
+            //
             chbAllowManualBarcodeInput.AutoSize = true;
-            chbAllowManualBarcodeInput.Location = new Point(326, 100);
+            chbAllowManualBarcodeInput.Location = new Point(342, 42);
             chbAllowManualBarcodeInput.Margin = new Padding(4);
             chbAllowManualBarcodeInput.Name = "chbAllowManualBarcodeInput";
             chbAllowManualBarcodeInput.Size = new Size(202, 25);
             chbAllowManualBarcodeInput.TabIndex = 20;
             chbAllowManualBarcodeInput.Text = "Разрешить ручной ввод";
             chbAllowManualBarcodeInput.UseVisualStyleBackColor = true;
-            // 
+            //
             // chbSoundsEnabled
-            // 
+            //
             chbSoundsEnabled.AutoSize = true;
-            chbSoundsEnabled.Location = new Point(326, 133);
+            chbSoundsEnabled.Location = new Point(342, 75);
             chbSoundsEnabled.Margin = new Padding(4);
             chbSoundsEnabled.Name = "chbSoundsEnabled";
             chbSoundsEnabled.Size = new Size(144, 25);
             chbSoundsEnabled.TabIndex = 21;
             chbSoundsEnabled.Text = "Включить звуки";
             chbSoundsEnabled.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.None;
-            label7.AutoSize = true;
-            label7.Location = new Point(21, 167);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(260, 21);
-            label7.TabIndex = 22;
-            label7.Text = "Действие при неизвестном товаре:";
-            label7.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            //
             // cmbUnknownProductMode
-            // 
+            //
+            cmbUnknownProductMode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbUnknownProductMode.FormattingEnabled = true;
             cmbUnknownProductMode.Items.AddRange(new object[] { "Запросить данные", "Показать ошибку" });
-            cmbUnknownProductMode.Location = new Point(326, 165);
+            cmbUnknownProductMode.Location = new Point(342, 107);
             cmbUnknownProductMode.Name = "cmbUnknownProductMode";
-            cmbUnknownProductMode.Size = new Size(232, 29);
+            cmbUnknownProductMode.Size = new Size(551, 29);
             cmbUnknownProductMode.TabIndex = 23;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label8.Location = new Point(16, 11);
-            label8.Name = "label8";
-            label8.Size = new Size(170, 21);
-            label8.TabIndex = 24;
-            label8.Text = "ХРАНЕНИЕ ДАННЫХ";
-            // 
-            // label9
-            // 
-            label9.Anchor = AnchorStyles.None;
-            label9.AutoSize = true;
-            label9.Location = new Point(21, 65);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(123, 21);
-            label9.TabIndex = 25;
-            label9.Text = "Тип хранилища:";
-            label9.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            //
+            // cmbStorageType
+            //
+            cmbStorageType.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbStorageType.FormattingEnabled = true;
+            cmbStorageType.Items.AddRange(new object[] { "В памяти", "SQLite", "SQLServer" });
+            cmbStorageType.Location = new Point(157, 4);
+            cmbStorageType.Margin = new Padding(4);
+            cmbStorageType.Name = "cmbStorageType";
+            cmbStorageType.Size = new Size(736, 29);
+            cmbStorageType.TabIndex = 27;
+            cmbStorageType.SelectedIndexChanged += cmbStorageType_SelectedIndexChanged;
+            //
+            // tbSqlServerConnectionString
+            //
+            tbSqlServerConnectionString.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            tbSqlServerConnectionString.BorderStyle = BorderStyle.FixedSingle;
+            tbSqlServerConnectionString.Location = new Point(157, 41);
+            tbSqlServerConnectionString.Margin = new Padding(4);
+            tbSqlServerConnectionString.Name = "tbSqlServerConnectionString";
+            tbSqlServerConnectionString.Size = new Size(736, 29);
+            tbSqlServerConnectionString.TabIndex = 28;
+            tbSqlServerConnectionString.Visible = false;
+            //
+            // tabSettings
+            //
+            tabSettings.Controls.Add(tabReports);
+            tabSettings.Controls.Add(tabBehavior);
+            tabSettings.Controls.Add(tabStorage);
+            tabSettings.Dock = DockStyle.Fill;
+            tabSettings.Location = new Point(0, 0);
+            tabSettings.Name = "tabSettings";
+            tabSettings.SelectedIndex = 0;
+            tabSettings.Size = new Size(900, 590);
+            tabSettings.TabIndex = 29;
+            //
+            // tabReports
+            //
+            tabReports.Controls.Add(tlpReports);
+            tabReports.Location = new Point(4, 30);
+            tabReports.Name = "tabReports";
+            tabReports.Padding = new Padding(10);
+            tabReports.Size = new Size(892, 556);
+            tabReports.TabIndex = 0;
+            tabReports.Text = "Отчёты";
+            tabReports.UseVisualStyleBackColor = true;
+            //
+            // tlpReports
+            //
+            tlpReports.AutoSize = true;
+            tlpReports.ColumnCount = 3;
+            tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
+            tlpReports.Controls.Add(labelReportsRoot, 0, 0);
+            tlpReports.Controls.Add(tbReportsRootFolder, 1, 0);
+            tlpReports.Controls.Add(btnReportsRootFolder, 2, 0);
+            tlpReports.Controls.Add(chbUseDailySubfolder, 1, 1);
+            tlpReports.Controls.Add(labelTemplatePath, 0, 2);
+            tlpReports.Controls.Add(tbReportTemplatePath, 1, 2);
+            tlpReports.Controls.Add(btnReportTemplatePath, 2, 2);
+            tlpReports.Controls.Add(labelFileNameMask, 0, 3);
+            tlpReports.Controls.Add(tbReportFileNameMask, 1, 3);
+            tlpReports.Controls.Add(chbOpenReportAfterSave, 1, 4);
+            tlpReports.Dock = DockStyle.Fill;
+            tlpReports.Location = new Point(10, 10);
+            tlpReports.Name = "tlpReports";
+            tlpReports.RowCount = 5;
+            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.Size = new Size(872, 536);
+            tlpReports.TabIndex = 0;
+            //
+            // labelReportsRoot
+            //
+            labelReportsRoot.Anchor = AnchorStyles.Left;
+            labelReportsRoot.AutoSize = true;
+            labelReportsRoot.Location = new Point(3, 10);
+            labelReportsRoot.Margin = new Padding(3);
+            labelReportsRoot.Name = "labelReportsRoot";
+            labelReportsRoot.Size = new Size(203, 21);
+            labelReportsRoot.TabIndex = 30;
+            labelReportsRoot.Text = "Корневая папка для отчётов:";
+            //
+            // labelTemplatePath
+            //
+            labelTemplatePath.Anchor = AnchorStyles.Left;
+            labelTemplatePath.AutoSize = true;
+            labelTemplatePath.Location = new Point(3, 101);
+            labelTemplatePath.Margin = new Padding(3);
+            labelTemplatePath.Name = "labelTemplatePath";
+            labelTemplatePath.Size = new Size(161, 21);
+            labelTemplatePath.TabIndex = 13;
+            labelTemplatePath.Text = "Путь к .xlsx-шаблону:";
+            //
+            // labelFileNameMask
+            //
+            labelFileNameMask.Anchor = AnchorStyles.Left;
+            labelFileNameMask.AutoSize = true;
+            labelFileNameMask.Location = new Point(3, 137);
+            labelFileNameMask.Margin = new Padding(3);
+            labelFileNameMask.Name = "labelFileNameMask";
+            labelFileNameMask.Size = new Size(156, 21);
+            labelFileNameMask.TabIndex = 12;
+            labelFileNameMask.Text = "Маска имени файла:";
+            //
+            // tabBehavior
+            //
+            tabBehavior.Controls.Add(tlpBehavior);
+            tabBehavior.Location = new Point(4, 30);
+            tabBehavior.Name = "tabBehavior";
+            tabBehavior.Padding = new Padding(10);
+            tabBehavior.Size = new Size(892, 556);
+            tabBehavior.TabIndex = 1;
+            tabBehavior.Text = "Поведение";
+            tabBehavior.UseVisualStyleBackColor = true;
+            //
+            // tlpBehavior
+            //
+            tlpBehavior.AutoSize = true;
+            tlpBehavior.ColumnCount = 2;
+            tlpBehavior.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpBehavior.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpBehavior.Controls.Add(labelScannerTimeout, 0, 0);
+            tlpBehavior.Controls.Add(numScannerCharTimeoutMs, 1, 0);
+            tlpBehavior.Controls.Add(chbAllowManualBarcodeInput, 1, 1);
+            tlpBehavior.Controls.Add(chbSoundsEnabled, 1, 2);
+            tlpBehavior.Controls.Add(labelUnknownProduct, 0, 3);
+            tlpBehavior.Controls.Add(cmbUnknownProductMode, 1, 3);
+            tlpBehavior.Dock = DockStyle.Fill;
+            tlpBehavior.Location = new Point(10, 10);
+            tlpBehavior.Name = "tlpBehavior";
+            tlpBehavior.RowCount = 4;
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.Size = new Size(872, 536);
+            tlpBehavior.TabIndex = 0;
+            //
+            // labelScannerTimeout
+            //
+            labelScannerTimeout.Anchor = AnchorStyles.Left;
+            labelScannerTimeout.AutoSize = true;
+            labelScannerTimeout.Location = new Point(3, 7);
+            labelScannerTimeout.Margin = new Padding(3);
+            labelScannerTimeout.Name = "labelScannerTimeout";
+            labelScannerTimeout.Size = new Size(298, 21);
+            labelScannerTimeout.TabIndex = 18;
+            labelScannerTimeout.Text = "Таймаут между символами сканера (мс):";
+            labelScannerTimeout.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // labelUnknownProduct
+            //
+            labelUnknownProduct.Anchor = AnchorStyles.Left;
+            labelUnknownProduct.AutoSize = true;
+            labelUnknownProduct.Location = new Point(3, 110);
+            labelUnknownProduct.Margin = new Padding(3);
+            labelUnknownProduct.Name = "labelUnknownProduct";
+            labelUnknownProduct.Size = new Size(260, 21);
+            labelUnknownProduct.TabIndex = 22;
+            labelUnknownProduct.Text = "Действие при неизвестном товаре:";
+            labelUnknownProduct.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // tabStorage
+            //
+            tabStorage.Controls.Add(tlpStorage);
+            tabStorage.Location = new Point(4, 30);
+            tabStorage.Name = "tabStorage";
+            tabStorage.Padding = new Padding(10);
+            tabStorage.Size = new Size(892, 556);
+            tabStorage.TabIndex = 2;
+            tabStorage.Text = "Хранение данных";
+            tabStorage.UseVisualStyleBackColor = true;
+            //
+            // tlpStorage
+            //
+            tlpStorage.AutoSize = true;
+            tlpStorage.ColumnCount = 2;
+            tlpStorage.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpStorage.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpStorage.Controls.Add(labelStorageType, 0, 0);
+            tlpStorage.Controls.Add(cmbStorageType, 1, 0);
+            tlpStorage.Controls.Add(lblSqlServerConnectionString, 0, 1);
+            tlpStorage.Controls.Add(tbSqlServerConnectionString, 1, 1);
+            tlpStorage.Dock = DockStyle.Top;
+            tlpStorage.Location = new Point(10, 10);
+            tlpStorage.Name = "tlpStorage";
+            tlpStorage.RowCount = 2;
+            tlpStorage.RowStyles.Add(new RowStyle());
+            tlpStorage.RowStyles.Add(new RowStyle());
+            tlpStorage.Size = new Size(872, 74);
+            tlpStorage.TabIndex = 0;
+            //
+            // labelStorageType
+            //
+            labelStorageType.Anchor = AnchorStyles.Left;
+            labelStorageType.AutoSize = true;
+            labelStorageType.Location = new Point(3, 7);
+            labelStorageType.Margin = new Padding(3);
+            labelStorageType.Name = "labelStorageType";
+            labelStorageType.Size = new Size(123, 21);
+            labelStorageType.TabIndex = 25;
+            labelStorageType.Text = "Тип хранилища:";
+            labelStorageType.TextAlign = ContentAlignment.MiddleCenter;
+            //
             // lblSqlServerConnectionString
-            // 
-            lblSqlServerConnectionString.Anchor = AnchorStyles.None;
+            //
+            lblSqlServerConnectionString.Anchor = AnchorStyles.Left;
             lblSqlServerConnectionString.AutoSize = true;
-            lblSqlServerConnectionString.Location = new Point(21, 119);
-            lblSqlServerConnectionString.Margin = new Padding(4, 0, 4, 0);
+            lblSqlServerConnectionString.Location = new Point(3, 44);
+            lblSqlServerConnectionString.Margin = new Padding(3);
             lblSqlServerConnectionString.Name = "lblSqlServerConnectionString";
             lblSqlServerConnectionString.Size = new Size(167, 21);
             lblSqlServerConnectionString.TabIndex = 26;
             lblSqlServerConnectionString.Text = "Строка подключения:";
             lblSqlServerConnectionString.TextAlign = ContentAlignment.MiddleCenter;
             lblSqlServerConnectionString.Visible = false;
-            // 
-            // cmbStorageType
-            // 
-            cmbStorageType.FormattingEnabled = true;
-            cmbStorageType.Items.AddRange(new object[] { "В памяти", "SQLite", "SQLServer" });
-            cmbStorageType.Location = new Point(326, 63);
-            cmbStorageType.Name = "cmbStorageType";
-            cmbStorageType.Size = new Size(232, 29);
-            cmbStorageType.TabIndex = 27;
-            cmbStorageType.SelectedIndexChanged += cmbStorageType_SelectedIndexChanged;
-            // 
-            // tbSqlServerConnectionString
-            // 
-            tbSqlServerConnectionString.BorderStyle = BorderStyle.FixedSingle;
-            tbSqlServerConnectionString.Location = new Point(326, 117);
-            tbSqlServerConnectionString.Margin = new Padding(4);
-            tbSqlServerConnectionString.Name = "tbSqlServerConnectionString";
-            tbSqlServerConnectionString.Size = new Size(577, 29);
-            tbSqlServerConnectionString.TabIndex = 28;
-            tbSqlServerConnectionString.Visible = false;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.WhiteSmoke;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(tbReportsRootFolder);
-            panel1.Controls.Add(btnReportsRootFolder);
-            panel1.Controls.Add(chbUseDailySubfolder);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(tbReportTemplatePath);
-            panel1.Controls.Add(btnReportTemplatePath);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(chbOpenReportAfterSave);
-            panel1.Controls.Add(tbReportFileNameMask);
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(925, 276);
-            panel1.TabIndex = 29;
-            // 
-            // panel2
-            // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(label3);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(923, 45);
-            panel2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.WhiteSmoke;
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(panel4);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(numScannerCharTimeoutMs);
-            panel3.Controls.Add(chbAllowManualBarcodeInput);
-            panel3.Controls.Add(chbSoundsEnabled);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(cmbUnknownProductMode);
-            panel3.Location = new Point(12, 294);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(925, 236);
-            panel3.TabIndex = 30;
-            // 
-            // panel4
-            // 
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(label5);
-            panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(923, 45);
-            panel4.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.WhiteSmoke;
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(panel6);
-            panel5.Controls.Add(label9);
-            panel5.Controls.Add(cmbStorageType);
-            panel5.Controls.Add(tbSqlServerConnectionString);
-            panel5.Controls.Add(lblSqlServerConnectionString);
-            panel5.Location = new Point(12, 536);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(925, 180);
-            panel5.TabIndex = 31;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(label8);
-            panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(0, 0);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(923, 45);
-            panel6.TabIndex = 0;
-            // 
+            //
+            // panelBottomButtons
+            //
+            panelBottomButtons.Controls.Add(flpButtons);
+            panelBottomButtons.Dock = DockStyle.Bottom;
+            panelBottomButtons.Location = new Point(0, 590);
+            panelBottomButtons.Name = "panelBottomButtons";
+            panelBottomButtons.Padding = new Padding(10);
+            panelBottomButtons.Size = new Size(900, 60);
+            panelBottomButtons.TabIndex = 30;
+            //
+            // flpButtons
+            //
+            flpButtons.Controls.Add(btnCancel);
+            flpButtons.Controls.Add(btnOK);
+            flpButtons.Dock = DockStyle.Right;
+            flpButtons.FlowDirection = FlowDirection.LeftToRight;
+            flpButtons.Location = new Point(592, 10);
+            flpButtons.Name = "flpButtons";
+            flpButtons.Size = new Size(298, 40);
+            flpButtons.TabIndex = 0;
+            flpButtons.WrapContents = false;
+            //
             // FormSettings
-            // 
+            //
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(952, 775);
-            Controls.Add(panel5);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
-            Controls.Add(btnCancel);
-            Controls.Add(btnOK);
+            ClientSize = new Size(900, 650);
+            Controls.Add(tabSettings);
+            Controls.Add(panelBottomButtons);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormSettings";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Настройки";
             ((System.ComponentModel.ISupportInitialize)numScannerCharTimeoutMs).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
+            tabSettings.ResumeLayout(false);
+            tabReports.ResumeLayout(false);
+            tabReports.PerformLayout();
+            tlpReports.ResumeLayout(false);
+            tlpReports.PerformLayout();
+            tabBehavior.ResumeLayout(false);
+            tabBehavior.PerformLayout();
+            tlpBehavior.ResumeLayout(false);
+            tlpBehavior.PerformLayout();
+            tabStorage.ResumeLayout(false);
+            tabStorage.PerformLayout();
+            tlpStorage.ResumeLayout(false);
+            tlpStorage.PerformLayout();
+            panelBottomButtons.ResumeLayout(false);
+            flpButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -469,32 +510,32 @@
         private TextBox tbReportTemplatePath;
         private Button btnOK;
         private Button btnCancel;
-        private Label label3;
-        private Label label1;
         private TextBox tbReportsRootFolder;
         private Button btnReportsRootFolder;
-        private Label label2;
-        private Label label4;
         private TextBox tbReportFileNameMask;
         private Button btnReportTemplatePath;
         private CheckBox chbOpenReportAfterSave;
-        private Label label5;
-        private Label label6;
         private NumericUpDown numScannerCharTimeoutMs;
         private CheckBox chbAllowManualBarcodeInput;
         private CheckBox chbSoundsEnabled;
-        private Label label7;
         private ComboBox cmbUnknownProductMode;
-        private Label label8;
-        private Label label9;
-        private Label lblSqlServerConnectionString;
         private ComboBox cmbStorageType;
         private TextBox tbSqlServerConnectionString;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Panel panel6;
+        private TabControl tabSettings;
+        private TabPage tabReports;
+        private TabPage tabBehavior;
+        private TabPage tabStorage;
+        private TableLayoutPanel tlpReports;
+        private Label labelReportsRoot;
+        private Label labelTemplatePath;
+        private Label labelFileNameMask;
+        private TableLayoutPanel tlpBehavior;
+        private Label labelScannerTimeout;
+        private Label labelUnknownProduct;
+        private TableLayoutPanel tlpStorage;
+        private Label labelStorageType;
+        private Label lblSqlServerConnectionString;
+        private Panel panelBottomButtons;
+        private FlowLayoutPanel flpButtons;
     }
 }
