@@ -12,6 +12,13 @@ using System.Windows.Forms;
 
 namespace OrdersCreator.UI
 {
+    public enum FormRefEditTab
+    {
+        Categories,
+        Products,
+        Customers
+    }
+
     public partial class FormRefEdit : Form
     {
         private readonly ICustomerService _customerService;
@@ -32,17 +39,36 @@ namespace OrdersCreator.UI
         private bool _isUpdatingCategoryEditor;
         private bool _isUpdatingProductEditor;
 
-        public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService)
+        public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService, FormRefEditTab initialTab = FormRefEditTab.Categories)
         {
             _customerService = customerService;
             _categoryService = categoryService;
             _productService = productService;
 
             InitializeComponent();
+            ButtonCursorHelper.ApplyHandCursor(this);
 
             InitCustomersTab();
             InitCategoriesTab();
             InitProductsTab();
+
+            SelectInitialTab(initialTab);
+        }
+
+        private void SelectInitialTab(FormRefEditTab initialTab)
+        {
+            switch (initialTab)
+            {
+                case FormRefEditTab.Products:
+                    tabControl1.SelectedTab = tabProducts;
+                    break;
+                case FormRefEditTab.Customers:
+                    tabControl1.SelectedTab = tabCustomers;
+                    break;
+                default:
+                    tabControl1.SelectedTab = tabCategory;
+                    break;
+            }
         }
 
         private void InitCustomersTab()
