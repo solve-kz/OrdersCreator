@@ -112,8 +112,8 @@ namespace OrdersCreator.UI
             btnProductDel.Click += BtnProductDelete_Click;
             btnProductCancel.Click += BtnProductCancel_Click;
 
-            btnFilterApply.Click += BtnProductFilterApply_Click;
-            btnFilterCancel.Click += BtnProductFilterReset_Click;
+            btnApplyFilter.Click += BtnProductFilterApply_Click;
+            btnResetFilter.Click += BtnProductFilterReset_Click;
 
             btnProductsImport.Click += BtnProductsImport_Click;
             btnProductsExport.Click += BtnProductsExport_Click;
