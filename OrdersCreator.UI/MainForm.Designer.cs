@@ -198,9 +198,10 @@
             // 
             // lblResults
             // 
+            lblResults.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblResults.AutoSize = true;
             lblResults.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblResults.Location = new Point(882, 21);
+            lblResults.Location = new Point(670, 21);
             lblResults.Name = "lblResults";
             lblResults.Size = new Size(290, 30);
             lblResults.TabIndex = 2;
@@ -261,6 +262,7 @@
             // dataGridViewOrderLines
             // 
             dataGridViewOrderLines.AllowUserToAddRows = false;
+            dataGridViewOrderLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewOrderLines.BackgroundColor = Color.White;
             dataGridViewOrderLines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewOrderLines.Columns.AddRange(new DataGridViewColumn[] { RowNumber, ProductCode, ProductTitle, ProductWeight, RowDelete });
@@ -276,37 +278,41 @@
             // 
             // RowNumber
             // 
+            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             RowNumber.HeaderText = "№";
             RowNumber.Name = "RowNumber";
             RowNumber.ReadOnly = true;
-            RowNumber.Width = 50;
+            RowNumber.Width = 48;
             // 
             // ProductCode
             // 
+            ProductCode.FillWeight = 80F;
             ProductCode.HeaderText = "Код";
             ProductCode.Name = "ProductCode";
             ProductCode.ReadOnly = true;
             // 
             // ProductTitle
             // 
+            ProductTitle.FillWeight = 300F;
             ProductTitle.HeaderText = "Наименование";
             ProductTitle.MinimumWidth = 390;
             ProductTitle.Name = "ProductTitle";
             ProductTitle.ReadOnly = true;
-            ProductTitle.Width = 390;
             // 
             // ProductWeight
             // 
+            ProductWeight.FillWeight = 80F;
             ProductWeight.HeaderText = "Вес";
             ProductWeight.Name = "ProductWeight";
             ProductWeight.ReadOnly = true;
             // 
             // RowDelete
             // 
+            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             RowDelete.HeaderText = "Удл.";
             RowDelete.Name = "RowDelete";
             RowDelete.ReadOnly = true;
-            RowDelete.Width = 50;
+            RowDelete.Width = 38;
             // 
             // panelLeftContainer
             // 
@@ -390,7 +396,7 @@
             lblCurrentTitle.AutoSize = true;
             lblCurrentTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblCurrentTitle.ForeColor = Color.White;
-            lblCurrentTitle.Location = new Point(31, 22);
+            lblCurrentTitle.Location = new Point(18, 22);
             lblCurrentTitle.MaximumSize = new Size(420, 0);
             lblCurrentTitle.Name = "lblCurrentTitle";
             lblCurrentTitle.Size = new Size(293, 25);
@@ -401,7 +407,7 @@
             // 
             panel5.BackColor = Color.White;
             panel5.Controls.Add(lblCurrentCategory);
-            panel5.Location = new Point(31, 105);
+            panel5.Location = new Point(18, 105);
             panel5.Name = "panel5";
             panel5.Size = new Size(153, 33);
             panel5.TabIndex = 3;
@@ -439,7 +445,7 @@
             lblCodeWeight.AutoSize = true;
             lblCodeWeight.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeWeight.ForeColor = Color.White;
-            lblCodeWeight.Location = new Point(269, 119);
+            lblCodeWeight.Location = new Point(269, 129);
             lblCodeWeight.Name = "lblCodeWeight";
             lblCodeWeight.Size = new Size(56, 65);
             lblCodeWeight.TabIndex = 4;
@@ -451,7 +457,7 @@
             lblCodeAmount.AutoSize = true;
             lblCodeAmount.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeAmount.ForeColor = Color.White;
-            lblCodeAmount.Location = new Point(269, 48);
+            lblCodeAmount.Location = new Point(269, 58);
             lblCodeAmount.Name = "lblCodeAmount";
             lblCodeAmount.Size = new Size(56, 65);
             lblCodeAmount.TabIndex = 3;
@@ -462,7 +468,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(31, 151);
+            label5.Location = new Point(18, 164);
             label5.Name = "label5";
             label5.Size = new Size(40, 21);
             label5.TabIndex = 2;
@@ -474,7 +480,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(31, 83);
+            label4.Location = new Point(18, 93);
             label4.Name = "label4";
             label4.Size = new Size(115, 21);
             label4.TabIndex = 1;
@@ -486,7 +492,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(37, 13);
+            label3.Location = new Point(18, 21);
             label3.Name = "label3";
             label3.Size = new Size(264, 21);
             label3.TabIndex = 0;
