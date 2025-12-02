@@ -100,7 +100,7 @@ namespace OrdersCreator.UI
 
             cmbCustomers.SelectedIndex = -1;
         }
-                
+
         private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService);
@@ -137,6 +137,7 @@ namespace OrdersCreator.UI
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
                 panelReady.BackColor = Color.Green;
+                imgReady.Image = Properties.Resources.readyScan;
                 UpdateResults();
             }
             else
@@ -144,6 +145,7 @@ namespace OrdersCreator.UI
                 lblReady.Text = "Выберите контрагента!";
                 lblReady.BackColor = Color.Red;
                 panelReady.BackColor = Color.Red;
+                imgReady.Image = Properties.Resources.attention;
             }
         }
 
@@ -261,6 +263,7 @@ namespace OrdersCreator.UI
                 lblReady.Text = "Выберите контрагента!";
                 lblReady.BackColor = Color.Red;
                 panelReady.BackColor = Color.Red;
+                imgReady.Image = Properties.Resources.attention;
                 PlayFailureSound();
                 return;
             }
@@ -281,7 +284,8 @@ namespace OrdersCreator.UI
                 DisplayParsedBarcode(parsed, orderLine);
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
-                panelReady.BackColor= Color.Green;
+                panelReady.BackColor = Color.Green;
+                imgReady.Image = Properties.Resources.readyScan;
                 UpdateResults();
                 PlaySuccessSound();
             }
@@ -297,6 +301,7 @@ namespace OrdersCreator.UI
         {
             if (orderLine.Product != null)
             {
+                panel5.Visible = true;
                 lblCurrentTitle.Text = orderLine.Product.Name;
                 lblCurrentCategory.Text = (orderLine.Product.Category ?? FindCategoryById(orderLine.Product.CategoryId))?.Name ?? string.Empty;
                 lblCurrentWeight.Text = parsedBarcode.WeightKg.ToString("F3");
@@ -402,8 +407,8 @@ namespace OrdersCreator.UI
             else
             {
                 MessageBox.Show($"Товар {parsed.ProductCode} не найден", "Ошибка поиска", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }              
-            
+            }
+
 
             if (cbNewProductCategory.Items.Count > 0)
             {
@@ -443,6 +448,7 @@ namespace OrdersCreator.UI
                 lblReady.Text = "Готов к сканированию!";
                 lblReady.BackColor = Color.Green;
                 panelReady.BackColor = Color.Green;
+                imgReady.Image = Properties.Resources.readyScan;
                 return;
             }
 
@@ -486,20 +492,34 @@ namespace OrdersCreator.UI
             lblReady.Text = "Готов к сканированию!";
             lblReady.BackColor = Color.Green;
             panelReady.BackColor = Color.Green;
+            imgReady.Image = Properties.Resources.readyScan;
         }
 
         private void DataGridViewOrderLines_SelectionChanged(object? sender, EventArgs e)
         {
             if (dataGridViewOrderLines.SelectedRows.Count == 0)
+            {
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                lblCodeAmount.Text = string.Empty;
+                lblCodeWeight.Text = string.Empty;
                 return;
+            }
+                
 
             var row = dataGridViewOrderLines.SelectedRows[0];
             var productCode = row.Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
 
+
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
             lblCodeAmount.Text = GetProductCount(productCode).ToString();
             lblCodeWeight.Text = _orderService
                 .GetCurrentProductSubtotal(productCode)
                 .ToString("F3");
+            
 
             UpdateResults();
         }
@@ -541,14 +561,15 @@ namespace OrdersCreator.UI
                 StartBlankOrder(DateTime.Now);
 
                 // lblReady.Text = $"Отчёт сохранён: {reportPath}";
-                MessageBox.Show($"Отчёт сохранён: {reportPath}", "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                PlaySuccessSound();
+                MessageBox.Show($"Отчёт сохранён: {reportPath}", "Сохранение отчета", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // PlaySuccessSound();
             }
             catch (Exception ex)
             {
+                PlayFailureSound();
                 MessageBox.Show(ex.Message, "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 // lblReady.Text = ex.Message;
-                PlayFailureSound();
+                
             }
         }
 
@@ -564,12 +585,16 @@ namespace OrdersCreator.UI
             lblReady.Text = "Выберите контрагента!";
             lblReady.BackColor = Color.Red;
             panelReady.BackColor = Color.Red;
-
+            imgReady.Image = Properties.Resources.attention;
             lblCurrentTitle.Text = string.Empty;
             lblCurrentCategory.Text = string.Empty;
             lblCurrentWeight.Text = string.Empty;
             lblCodeAmount.Text = string.Empty;
             lblCodeWeight.Text = string.Empty;
+            panel5.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
         }
 
         private void СохранитьToolStripMenuItem_Click(object? sender, EventArgs e)
@@ -671,6 +696,5 @@ namespace OrdersCreator.UI
                 dataGridViewOrderLines.Rows[0].Selected = true;
             }
         }
-
     }
 }
