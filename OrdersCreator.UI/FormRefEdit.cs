@@ -28,6 +28,9 @@ namespace OrdersCreator.UI
         private bool _isNewCustomer;
         private bool _isNewCategory;
         private bool _isNewProduct;
+        private bool _isUpdatingCustomerEditor;
+        private bool _isUpdatingCategoryEditor;
+        private bool _isUpdatingProductEditor;
 
         public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService)
         {
@@ -64,6 +67,8 @@ namespace OrdersCreator.UI
             btnCustomerDel.Click += BtnDeleteCustomer_Click;
             btnCustomerCancel.Click += BtnCancelCustomer_Click;
 
+            textBoxCustomerName.TextChanged += CustomerEditorChanged;
+
             btnCustomersImport.Click += BtnImportCustomersXlsx_Click;
             btnCustomersExport.Click += BtnExportCustomersXlsx_Click;
 
@@ -86,7 +91,9 @@ namespace OrdersCreator.UI
             btnCategorySave.Click += BtnSaveCategory_Click;
             btnCategoryDel.Click += BtnDeleteCategory_Click;
             btnCategoryCancel.Click += BtnCancelCategory_Click;
-           
+
+            textBoxCategoryName.TextChanged += CategoryEditorChanged;
+
             LoadCategories();
         }
 
@@ -111,6 +118,10 @@ namespace OrdersCreator.UI
             btnProductSave.Click += BtnProductSave_Click;
             btnProductDel.Click += BtnProductDelete_Click;
             btnProductCancel.Click += BtnProductCancel_Click;
+
+            textBoxBarcodeCode.TextChanged += ProductEditorChanged;
+            textBoxBarcodeName.TextChanged += ProductEditorChanged;
+            comboBoxBarcodeCategory.SelectedIndexChanged += ProductEditorChanged;
 
             btnApplyFilter.Click += BtnProductFilterApply_Click;
             btnResetFilter.Click += BtnProductFilterReset_Click;
@@ -342,6 +353,7 @@ namespace OrdersCreator.UI
 
         private void UpdateCustomerEditorFromSelection()
         {
+            _isUpdatingCustomerEditor = true;
             if (dataGridViewCustomers.CurrentRow?.DataBoundItem is Customer c)
             {
                 _currentCustomer = c;
@@ -355,10 +367,13 @@ namespace OrdersCreator.UI
                 _isNewCustomer = false;
                 textBoxCustomerName.Text = string.Empty;
             }
+            _isUpdatingCustomerEditor = false;
+            ResetCustomerButtonsState();
         }
 
         private void UpdateCategoryEditorFromSelection()
         {
+            _isUpdatingCategoryEditor = true;
             if (dataGridViewCategories.CurrentRow?.DataBoundItem is Category c)
             {
                 _currentCategory = c;
@@ -372,10 +387,13 @@ namespace OrdersCreator.UI
                 _isNewCategory = false;
                 textBoxCategoryName.Text = string.Empty;
             }
+            _isUpdatingCategoryEditor = false;
+            ResetCategoryButtonsState();
         }
 
         private void UpdateProductEditorFromSelection()
         {
+            _isUpdatingProductEditor = true;
             if (dataGridViewProducts.CurrentRow?.DataBoundItem is { } rowObj)
             {
                 // rowObj – анонимный объект с полем Product
@@ -417,6 +435,59 @@ namespace OrdersCreator.UI
                 textBoxBarcodeName.Text = "";
                 comboBoxBarcodeCategory.SelectedIndex = -1;
             }
+            _isUpdatingProductEditor = false;
+            ResetProductButtonsState();
+        }
+
+        private void ResetCustomerButtonsState()
+        {
+            btnCustomerAdd.Enabled = true;
+            btnCustomerSave.Enabled = false;
+            btnCustomerDel.Enabled = true;
+            btnCustomerCancel.Enabled = false;
+        }
+
+        private void ResetCategoryButtonsState()
+        {
+            btnCategoryAdd.Enabled = true;
+            btnCategorySave.Enabled = false;
+            btnCategoryDel.Enabled = true;
+            btnCategoryCancel.Enabled = false;
+        }
+
+        private void ResetProductButtonsState()
+        {
+            btnProductAdd.Enabled = true;
+            btnProductSave.Enabled = false;
+            btnProductDel.Enabled = true;
+            btnProductCancel.Enabled = false;
+        }
+
+        private void CustomerEditorChanged(object? sender, EventArgs e)
+        {
+            if (_isUpdatingCustomerEditor)
+                return;
+
+            btnCustomerSave.Enabled = true;
+            btnCustomerCancel.Enabled = true;
+        }
+
+        private void CategoryEditorChanged(object? sender, EventArgs e)
+        {
+            if (_isUpdatingCategoryEditor)
+                return;
+
+            btnCategorySave.Enabled = true;
+            btnCategoryCancel.Enabled = true;
+        }
+
+        private void ProductEditorChanged(object? sender, EventArgs e)
+        {
+            if (_isUpdatingProductEditor)
+                return;
+
+            btnProductSave.Enabled = true;
+            btnProductCancel.Enabled = true;
         }
 
         private void BtnAddCustomer_Click(object? sender, EventArgs e)
@@ -428,6 +499,11 @@ namespace OrdersCreator.UI
             textBoxCustomerName.Focus();
 
             dataGridViewCustomers.ClearSelection();
+
+            btnCustomerAdd.Enabled = false;
+            btnCustomerSave.Enabled = false;
+            btnCustomerDel.Enabled = false;
+            btnCustomerCancel.Enabled = true;
         }
 
         private void BtnAddCategory_Click(object? sender, EventArgs e)
@@ -439,6 +515,11 @@ namespace OrdersCreator.UI
             textBoxCategoryName.Focus();
 
             dataGridViewCategories.ClearSelection();
+
+            btnCategoryAdd.Enabled = false;
+            btnCategorySave.Enabled = false;
+            btnCategoryDel.Enabled = false;
+            btnCategoryCancel.Enabled = true;
         }
 
         private void BtnProductAdd_Click(object? sender, EventArgs e)
@@ -451,6 +532,11 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.SelectedIndex = -1;
 
             textBoxBarcodeCode.Focus();
+
+            btnProductAdd.Enabled = false;
+            btnProductSave.Enabled = false;
+            btnProductDel.Enabled = false;
+            btnProductCancel.Enabled = true;
         }
 
         private void BtnSaveCustomer_Click(object? sender, EventArgs e)
