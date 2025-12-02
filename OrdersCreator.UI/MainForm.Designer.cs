@@ -229,7 +229,7 @@
             btnCreateReport.Name = "btnCreateReport";
             btnCreateReport.Size = new Size(209, 35);
             btnCreateReport.TabIndex = 1;
-            btnCreateReport.Text = "СОЗДАТЬ ОТЧЕТ (F12)";
+            btnCreateReport.Text = "СОЗДАТЬ ОТЧЕТ";
             btnCreateReport.UseVisualStyleBackColor = false;
             // 
             // btnCancel
@@ -243,7 +243,7 @@
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(142, 35);
             btnCancel.TabIndex = 0;
-            btnCancel.Text = "ОТМЕНА (DEL)";
+            btnCancel.Text = "ОТМЕНА (F12)";
             btnCancel.UseVisualStyleBackColor = false;
             // 
             // panelMainBody

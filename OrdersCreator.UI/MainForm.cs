@@ -121,7 +121,6 @@ namespace OrdersCreator.UI
         private void MainForm_Load(object? sender, EventArgs e)
         {
             SwitchToGreenMode();
-            UpdateResults();
 
             /*if (cmbCustomers.Items.Count > 0 && cmbCustomers.SelectedIndex == -1)
             {
@@ -138,7 +137,6 @@ namespace OrdersCreator.UI
                 lblReady.BackColor = Color.Green;
                 panelReady.BackColor = Color.Green;
                 imgReady.Image = Properties.Resources.readyScan;
-                UpdateResults();
             }
             else
             {
@@ -179,17 +177,20 @@ namespace OrdersCreator.UI
                 e.SuppressKeyPress = true;
                 FinalizeScannerBuffer();
             }
-            else if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape && panelRedMode.Visible)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                CancelLastAction();
+                CancelRedMode();
             }
             else if (e.KeyCode == Keys.F12)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                BtnCreateReport_Click(sender, e);
+                if (!panelRedMode.Visible)
+                {
+                    CancelLastAction();
+                }
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -335,14 +336,16 @@ namespace OrdersCreator.UI
         private void UpdateResults()
         {
             var lines = _orderService.CurrentOrder?.Lines ?? new List<OrderLine>();
-            var productCode = GetSelectedProductCode();
-            var relevantLines = lines
-                .Where(l => !string.IsNullOrWhiteSpace(productCode) && l.Product?.Code == productCode)
-                .ToList();
+            var uniqueCodes = lines
+                .Select(l => l.Product?.Code)
+                .Where(code => !string.IsNullOrWhiteSpace(code))
+                .Distinct()
+                .Count();
 
-            var totalWeight = relevantLines.Sum(l => l.WeightKg);
+            var totalWeight = lines.Sum(l => l.WeightKg);
+            var totalPlaces = lines.Count;
 
-            lblResults.Text = $"ИТОГО: {relevantLines.Count} мест | {totalWeight:F3} кг.";
+            lblResults.Text = $"ИТОГО: {uniqueCodes} позиций | {totalPlaces} мест | {totalWeight:F3} кг.";
         }
 
         private void LoadCategoriesForNewProduct()
@@ -423,7 +426,7 @@ namespace OrdersCreator.UI
             panelRedMode.Visible = false;
             panelGreenMode.Visible = true;
             panelGreenMode.BringToFront();
-            btnCancel.Text = "ОТМЕНА (DEL)";
+            btnCancel.Text = "ОТМЕНА (F12)";
         }
 
         private void SwitchToRedMode()
@@ -443,12 +446,7 @@ namespace OrdersCreator.UI
         {
             if (panelRedMode.Visible)
             {
-                _pendingBarcode = null;
-                SwitchToGreenMode();
-                lblReady.Text = "Готов к сканированию!";
-                lblReady.BackColor = Color.Green;
-                panelReady.BackColor = Color.Green;
-                imgReady.Image = Properties.Resources.readyScan;
+                CancelRedMode();
                 return;
             }
 
@@ -465,6 +463,16 @@ namespace OrdersCreator.UI
                 // lblReady.Text = "Последняя строка отменена.";
                 MessageBox.Show("Последняя строка отменена", "Отмена", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void CancelRedMode()
+        {
+            _pendingBarcode = null;
+            SwitchToGreenMode();
+            lblReady.Text = "Готов к сканированию!";
+            lblReady.BackColor = Color.Green;
+            panelReady.BackColor = Color.Green;
+            imgReady.Image = Properties.Resources.readyScan;
         }
 
         private void BtnNewProductAdd_Click(object? sender, EventArgs e)
@@ -502,26 +510,35 @@ namespace OrdersCreator.UI
                 label3.Visible = false;
                 label4.Visible = false;
                 label5.Visible = false;
+                panel5.Visible = false;
+                lblCurrentTitle.Text = string.Empty;
+                lblCurrentCategory.Text = string.Empty;
+                lblCurrentWeight.Text = string.Empty;
                 lblCodeAmount.Text = string.Empty;
                 lblCodeWeight.Text = string.Empty;
                 return;
             }
-                
+
 
             var row = dataGridViewOrderLines.SelectedRows[0];
             var productCode = row.Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
+            var productTitle = row.Cells[nameof(ProductTitle)]?.Value?.ToString() ?? string.Empty;
+            var productWeight = row.Cells[nameof(ProductWeight)]?.Value?.ToString() ?? string.Empty;
+            var product = _productService.FindByCode(productCode);
+            var categoryName = product?.Category?.Name ?? FindCategoryById(product?.CategoryId ?? 0)?.Name ?? string.Empty;
 
 
             label3.Visible = true;
             label4.Visible = true;
             label5.Visible = true;
+            panel5.Visible = true;
+            lblCurrentTitle.Text = productTitle;
+            lblCurrentCategory.Text = categoryName;
+            lblCurrentWeight.Text = productWeight;
             lblCodeAmount.Text = GetProductCount(productCode).ToString();
             lblCodeWeight.Text = _orderService
                 .GetCurrentProductSubtotal(productCode)
                 .ToString("F3");
-            
-
-            UpdateResults();
         }
 
         private int GetProductCount(string productCode)
@@ -534,14 +551,6 @@ namespace OrdersCreator.UI
             var normalized = productCode.Trim();
 
             return lines.Count(l => l.Product?.Code == normalized);
-        }
-
-        private string GetSelectedProductCode()
-        {
-            if (dataGridViewOrderLines.SelectedRows.Count == 0)
-                return string.Empty;
-
-            return dataGridViewOrderLines.SelectedRows[0].Cells[nameof(ProductCode)]?.Value?.ToString() ?? string.Empty;
         }
 
         private Category? FindCategoryById(int categoryId)
