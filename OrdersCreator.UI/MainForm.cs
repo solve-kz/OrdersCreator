@@ -183,14 +183,17 @@ namespace OrdersCreator.UI
                 e.SuppressKeyPress = true;
                 CancelRedMode();
             }
+            else if (e.KeyCode == Keys.Delete && !panelRedMode.Visible)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                CancelLastAction();
+            }
             else if (e.KeyCode == Keys.F12)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                if (!panelRedMode.Visible)
-                {
-                    CancelLastAction();
-                }
+                BtnCreateReport_Click(sender, e);
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -426,7 +429,7 @@ namespace OrdersCreator.UI
             panelRedMode.Visible = false;
             panelGreenMode.Visible = true;
             panelGreenMode.BringToFront();
-            btnCancel.Text = "ОТМЕНА (F12)";
+            btnCancel.Text = "ОТМЕНА (DEL)";
         }
 
         private void SwitchToRedMode()
@@ -450,19 +453,27 @@ namespace OrdersCreator.UI
                 return;
             }
 
-            if (_orderService.CurrentOrder?.Lines.Count > 0)
+            if ((_orderService.CurrentOrder?.Lines.Count ?? 0) == 0)
+                return;
+
+            var confirmation = MessageBox.Show(
+                "Удалить последний товар?",
+                "Подтверждение удаления",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmation != DialogResult.Yes)
+                return;
+
+            _orderService.CancelLastLine();
+
+            if (dataGridViewOrderLines.Rows.Count > 0)
             {
-                _orderService.CancelLastLine();
-
-                if (dataGridViewOrderLines.Rows.Count > 0)
-                {
-                    dataGridViewOrderLines.Rows.RemoveAt(0);
-                }
-
-                UpdateResults();
-                // lblReady.Text = "Последняя строка отменена.";
-                MessageBox.Show("Последняя строка отменена", "Отмена", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dataGridViewOrderLines.Rows.RemoveAt(0);
             }
+
+            UpdateResults();
+            ClearSelectionAndDetails();
         }
 
         private void CancelRedMode()
@@ -473,6 +484,7 @@ namespace OrdersCreator.UI
             lblReady.BackColor = Color.Green;
             panelReady.BackColor = Color.Green;
             imgReady.Image = Properties.Resources.readyScan;
+            ClearSelectionAndDetails();
         }
 
         private void BtnNewProductAdd_Click(object? sender, EventArgs e)
@@ -507,15 +519,7 @@ namespace OrdersCreator.UI
         {
             if (dataGridViewOrderLines.SelectedRows.Count == 0)
             {
-                label3.Visible = false;
-                label4.Visible = false;
-                label5.Visible = false;
-                panel5.Visible = false;
-                lblCurrentTitle.Text = string.Empty;
-                lblCurrentCategory.Text = string.Empty;
-                lblCurrentWeight.Text = string.Empty;
-                lblCodeAmount.Text = string.Empty;
-                lblCodeWeight.Text = string.Empty;
+                ClearOrderLineDetails();
                 return;
             }
 
@@ -539,6 +543,25 @@ namespace OrdersCreator.UI
             lblCodeWeight.Text = _orderService
                 .GetCurrentProductSubtotal(productCode)
                 .ToString("F3");
+        }
+
+        private void ClearSelectionAndDetails()
+        {
+            dataGridViewOrderLines.ClearSelection();
+            ClearOrderLineDetails();
+        }
+
+        private void ClearOrderLineDetails()
+        {
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            panel5.Visible = false;
+            lblCurrentTitle.Text = string.Empty;
+            lblCurrentCategory.Text = string.Empty;
+            lblCurrentWeight.Text = string.Empty;
+            lblCodeAmount.Text = string.Empty;
+            lblCodeWeight.Text = string.Empty;
         }
 
         private int GetProductCount(string productCode)
@@ -595,15 +618,7 @@ namespace OrdersCreator.UI
             lblReady.BackColor = Color.Red;
             panelReady.BackColor = Color.Red;
             imgReady.Image = Properties.Resources.attention;
-            lblCurrentTitle.Text = string.Empty;
-            lblCurrentCategory.Text = string.Empty;
-            lblCurrentWeight.Text = string.Empty;
-            lblCodeAmount.Text = string.Empty;
-            lblCodeWeight.Text = string.Empty;
-            panel5.Visible = false;
-            label3.Visible = false;
-            label4.Visible = false;
-            label5.Visible = false;
+            ClearSelectionAndDetails();
         }
 
         private void СохранитьToolStripMenuItem_Click(object? sender, EventArgs e)
