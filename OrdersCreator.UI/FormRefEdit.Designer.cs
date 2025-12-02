@@ -420,7 +420,7 @@ namespace OrdersCreator.UI
             tlpBarcodes.RowCount = 4;
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
+            tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tlpBarcodes.Size = new Size(970, 707);
             tlpBarcodes.TabIndex = 0;
@@ -636,7 +636,7 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Location = new Point(3, 570);
             panelEditBarcodes.Name = "panelEditBarcodes";
             panelEditBarcodes.Padding = new Padding(10);
-            panelEditBarcodes.Size = new Size(964, 64);
+            panelEditBarcodes.Size = new Size(964, 94);
             panelEditBarcodes.TabIndex = 2;
             // 
             // tlpBarcodesEditContainer
@@ -649,9 +649,9 @@ namespace OrdersCreator.UI
             tlpBarcodesEditContainer.Location = new Point(10, 10);
             tlpBarcodesEditContainer.Name = "tlpBarcodesEditContainer";
             tlpBarcodesEditContainer.RowCount = 2;
-            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBarcodesEditContainer.Size = new Size(944, 44);
+            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tlpBarcodesEditContainer.Size = new Size(944, 74);
             tlpBarcodesEditContainer.TabIndex = 0;
             // 
             // tlpBarcodeName
@@ -665,8 +665,8 @@ namespace OrdersCreator.UI
             tlpBarcodeName.Location = new Point(3, 3);
             tlpBarcodeName.Name = "tlpBarcodeName";
             tlpBarcodeName.RowCount = 1;
-            tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBarcodeName.Size = new Size(938, 16);
+            tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tlpBarcodeName.Size = new Size(938, 36);
             tlpBarcodeName.TabIndex = 0;
             // 
             // label4
@@ -674,7 +674,7 @@ namespace OrdersCreator.UI
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(3, 0);
+            label4.Location = new Point(3, 10);
             label4.Name = "label4";
             label4.Size = new Size(107, 16);
             label4.TabIndex = 0;
@@ -685,8 +685,8 @@ namespace OrdersCreator.UI
             textBoxBarcodeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxBarcodeName.BorderStyle = BorderStyle.FixedSingle;
             textBoxBarcodeName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxBarcodeName.Location = new Point(116, 0);
-            textBoxBarcodeName.Margin = new Padding(3, 0, 10, 0);
+            textBoxBarcodeName.Location = new Point(116, 3);
+            textBoxBarcodeName.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeName.Name = "textBoxBarcodeName";
             textBoxBarcodeName.Size = new Size(812, 25);
             textBoxBarcodeName.TabIndex = 1;
@@ -703,11 +703,11 @@ namespace OrdersCreator.UI
             tlpBarcodesEdit.Controls.Add(label5, 2, 0);
             tlpBarcodesEdit.Controls.Add(comboBoxBarcodeCategory, 3, 0);
             tlpBarcodesEdit.Dock = DockStyle.Fill;
-            tlpBarcodesEdit.Location = new Point(3, 25);
+            tlpBarcodesEdit.Location = new Point(3, 39);
             tlpBarcodesEdit.Name = "tlpBarcodesEdit";
             tlpBarcodesEdit.RowCount = 1;
-            tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBarcodesEdit.Size = new Size(938, 16);
+            tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tlpBarcodesEdit.Size = new Size(938, 36);
             tlpBarcodesEdit.TabIndex = 1;
             // 
             // label3
@@ -715,7 +715,7 @@ namespace OrdersCreator.UI
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(3, 0);
+            label3.Location = new Point(3, 10);
             label3.Name = "label3";
             label3.Size = new Size(83, 16);
             label3.TabIndex = 0;
@@ -727,7 +727,7 @@ namespace OrdersCreator.UI
             textBoxBarcodeCode.BorderStyle = BorderStyle.FixedSingle;
             textBoxBarcodeCode.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxBarcodeCode.Location = new Point(92, 0);
-            textBoxBarcodeCode.Margin = new Padding(3, 0, 10, 0);
+            textBoxBarcodeCode.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeCode.Name = "textBoxBarcodeCode";
             textBoxBarcodeCode.Size = new Size(370, 25);
             textBoxBarcodeCode.TabIndex = 1;
@@ -737,7 +737,7 @@ namespace OrdersCreator.UI
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(475, 0);
+            label5.Location = new Point(475, 10);
             label5.Name = "label5";
             label5.Size = new Size(76, 16);
             label5.TabIndex = 2;
