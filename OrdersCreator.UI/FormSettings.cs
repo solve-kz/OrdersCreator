@@ -21,6 +21,7 @@ namespace OrdersCreator.UI
         public FormSettings(ISettingsService settingsService)
         {
             InitializeComponent();
+            ButtonCursorHelper.ApplyHandCursor(this);
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
 

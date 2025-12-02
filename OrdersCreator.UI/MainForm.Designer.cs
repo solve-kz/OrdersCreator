@@ -151,10 +151,9 @@
             справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             справочникиToolStripMenuItem.Size = new Size(94, 20);
             справочникиToolStripMenuItem.Text = "Справочники";
-            справочникиToolStripMenuItem.Click += справочникиToolStripMenuItem_Click;
-            // 
+            //
             // настройкаToolStripMenuItem
-            // 
+            //
             настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
             настройкаToolStripMenuItem.Size = new Size(78, 20);
             настройкаToolStripMenuItem.Text = "Настройка";

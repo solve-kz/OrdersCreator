@@ -50,6 +50,8 @@ namespace OrdersCreator.UI
                         IOrderRepository orderRepository)
         {
             InitializeComponent();
+            ButtonCursorHelper.ApplyHandCursor(this);
+
             _customerService = customerService;
             _categoryService = categoryService;
             _productService = productService;
@@ -76,6 +78,9 @@ namespace OrdersCreator.UI
             открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
             сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
             создатьToolStripMenuItem.Click += СоздатьToolStripMenuItem_Click;
+            категорииToolStripMenuItem.Click += КатегорииToolStripMenuItem_Click;
+            товарыToolStripMenuItem.Click += ТоварыToolStripMenuItem_Click;
+            контрагентыToolStripMenuItem.Click += КонтрагентыToolStripMenuItem_Click;
 
 
             LoadCustomersForMain();
@@ -101,14 +106,6 @@ namespace OrdersCreator.UI
             cmbCustomers.SelectedIndex = -1;
         }
 
-        private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService);
-            refEditForm.ShowDialog();
-            LoadCustomersForMain();
-            LoadCategoriesForNewProduct();
-        }
-
         private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSettings settingsForm = new FormSettings(_settingsService);
@@ -116,6 +113,29 @@ namespace OrdersCreator.UI
 
             _appSettings = _settingsService.GetSettings();
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
+        }
+
+        private void КатегорииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenReferencesEditor(FormRefEditTab.Categories);
+        }
+
+        private void ТоварыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenReferencesEditor(FormRefEditTab.Products);
+        }
+
+        private void КонтрагентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenReferencesEditor(FormRefEditTab.Customers);
+        }
+
+        private void OpenReferencesEditor(FormRefEditTab tab)
+        {
+            FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService, tab);
+            refEditForm.ShowDialog();
+            LoadCustomersForMain();
+            LoadCategoriesForNewProduct();
         }
 
         private void MainForm_Load(object? sender, EventArgs e)
