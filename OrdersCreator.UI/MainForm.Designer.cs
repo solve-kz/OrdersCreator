@@ -373,7 +373,7 @@
             // imgReady
             // 
             imgReady.Image = Properties.Resources.readyScan;
-            imgReady.Location = new Point(43, 7);
+            imgReady.Location = new Point(43, 30);
             imgReady.Name = "imgReady";
             imgReady.Size = new Size(64, 64);
             imgReady.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -385,7 +385,7 @@
             lblReady.AutoSize = true;
             lblReady.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblReady.ForeColor = Color.White;
-            lblReady.Location = new Point(141, 26);
+            lblReady.Location = new Point(141, 49);
             lblReady.Name = "lblReady";
             lblReady.Size = new Size(230, 25);
             lblReady.TabIndex = 0;
