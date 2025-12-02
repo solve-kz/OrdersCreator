@@ -40,13 +40,17 @@
             cmbCustomers = new ComboBox();
             lblCustomer = new Label();
             panel2 = new Panel();
-            lblSelectedProductTitle = new Label();
             lblResults = new Label();
             btnCreateReport = new Button();
             btnCancel = new Button();
             panelMainBody = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewOrderLines = new DataGridView();
+            RowNumber = new DataGridViewTextBoxColumn();
+            ProductCode = new DataGridViewTextBoxColumn();
+            ProductTitle = new DataGridViewTextBoxColumn();
+            ProductWeight = new DataGridViewTextBoxColumn();
+            RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
             panelGreenMode = new Panel();
             panelReady = new Panel();
@@ -76,11 +80,6 @@
             tbNewProductCode = new TextBox();
             label7 = new Label();
             label6 = new Label();
-            RowNumber = new DataGridViewTextBoxColumn();
-            ProductCode = new DataGridViewTextBoxColumn();
-            ProductTitle = new DataGridViewTextBoxColumn();
-            ProductWeight = new DataGridViewTextBoxColumn();
-            RowDelete = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -188,7 +187,6 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(224, 224, 224);
-            panel2.Controls.Add(lblSelectedProductTitle);
             panel2.Controls.Add(lblResults);
             panel2.Controls.Add(btnCreateReport);
             panel2.Controls.Add(btnCancel);
@@ -197,16 +195,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1184, 80);
             panel2.TabIndex = 2;
-            // 
-            // lblSelectedProductTitle
-            // 
-            lblSelectedProductTitle.AutoSize = true;
-            lblSelectedProductTitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblSelectedProductTitle.Location = new Point(483, 31);
-            lblSelectedProductTitle.Name = "lblSelectedProductTitle";
-            lblSelectedProductTitle.Size = new Size(13, 20);
-            lblSelectedProductTitle.TabIndex = 3;
-            lblSelectedProductTitle.Text = " ";
             // 
             // lblResults
             // 
@@ -285,6 +273,40 @@
             dataGridViewOrderLines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewOrderLines.Size = new Size(705, 591);
             dataGridViewOrderLines.TabIndex = 0;
+            // 
+            // RowNumber
+            // 
+            RowNumber.HeaderText = "№";
+            RowNumber.Name = "RowNumber";
+            RowNumber.ReadOnly = true;
+            RowNumber.Width = 50;
+            // 
+            // ProductCode
+            // 
+            ProductCode.HeaderText = "Код";
+            ProductCode.Name = "ProductCode";
+            ProductCode.ReadOnly = true;
+            // 
+            // ProductTitle
+            // 
+            ProductTitle.HeaderText = "Наименование";
+            ProductTitle.MinimumWidth = 390;
+            ProductTitle.Name = "ProductTitle";
+            ProductTitle.ReadOnly = true;
+            ProductTitle.Width = 390;
+            // 
+            // ProductWeight
+            // 
+            ProductWeight.HeaderText = "Вес";
+            ProductWeight.Name = "ProductWeight";
+            ProductWeight.ReadOnly = true;
+            // 
+            // RowDelete
+            // 
+            RowDelete.HeaderText = "Удл.";
+            RowDelete.Name = "RowDelete";
+            RowDelete.ReadOnly = true;
+            RowDelete.Width = 50;
             // 
             // panelLeftContainer
             // 
@@ -618,40 +640,6 @@
             label6.TabIndex = 0;
             label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
             // 
-            // RowNumber
-            // 
-            RowNumber.HeaderText = "№";
-            RowNumber.Name = "RowNumber";
-            RowNumber.ReadOnly = true;
-            RowNumber.Width = 50;
-            // 
-            // ProductCode
-            // 
-            ProductCode.HeaderText = "Код";
-            ProductCode.Name = "ProductCode";
-            ProductCode.ReadOnly = true;
-            // 
-            // ProductTitle
-            // 
-            ProductTitle.HeaderText = "Наименование";
-            ProductTitle.MinimumWidth = 390;
-            ProductTitle.Name = "ProductTitle";
-            ProductTitle.ReadOnly = true;
-            ProductTitle.Width = 390;
-            // 
-            // ProductWeight
-            // 
-            ProductWeight.HeaderText = "Вес";
-            ProductWeight.Name = "ProductWeight";
-            ProductWeight.ReadOnly = true;
-            // 
-            // RowDelete
-            // 
-            RowDelete.HeaderText = "Удл.";
-            RowDelete.Name = "RowDelete";
-            RowDelete.ReadOnly = true;
-            RowDelete.Width = 50;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -745,7 +733,6 @@
         private ToolStripMenuItem сохранитьToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
         private ToolStripMenuItem создатьToolStripMenuItem;
-        private Label lblSelectedProductTitle;
         private PictureBox imgReady;
         private DataGridViewTextBoxColumn RowNumber;
         private DataGridViewTextBoxColumn ProductCode;
