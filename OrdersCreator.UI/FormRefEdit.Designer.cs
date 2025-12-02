@@ -66,8 +66,6 @@
             label2 = new Label();
             tabCustomers = new TabPage();
             dataGridViewCustomers = new DataGridView();
-            CustomerNumber = new DataGridViewTextBoxColumn();
-            CustomerTitle = new DataGridViewTextBoxColumn();
             panel4 = new Panel();
             btnCustomersExport = new Button();
             btnCustomersImport = new Button();
@@ -77,6 +75,8 @@
             btnCustomerAdd = new Button();
             tbCustomerTitle = new TextBox();
             label6 = new Label();
+            CustomerNumber = new DataGridViewTextBoxColumn();
+            CustomerTitle = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).BeginInit();
@@ -119,6 +119,8 @@
             // dataGridViewCategories
             // 
             dataGridViewCategories.AllowUserToAddRows = false;
+            dataGridViewCategories.AllowUserToResizeRows = false;
+            dataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCategories.BackgroundColor = Color.White;
             dataGridViewCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCategories.Columns.AddRange(new DataGridViewColumn[] { RowNumber, CategoryTitle });
@@ -133,16 +135,17 @@
             // 
             // RowNumber
             // 
+            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             RowNumber.HeaderText = "№";
             RowNumber.Name = "RowNumber";
             RowNumber.ReadOnly = true;
+            RowNumber.Width = 53;
             // 
             // CategoryTitle
             // 
             CategoryTitle.HeaderText = "Наименование категории";
             CategoryTitle.Name = "CategoryTitle";
             CategoryTitle.ReadOnly = true;
-            CategoryTitle.Width = 400;
             // 
             // panel1
             // 
@@ -248,6 +251,8 @@
             // dataGridViewProducts
             // 
             dataGridViewProducts.AllowUserToAddRows = false;
+            dataGridViewProducts.AllowUserToResizeRows = false;
+            dataGridViewProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProducts.BackgroundColor = Color.White;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProducts.Columns.AddRange(new DataGridViewColumn[] { ProductNumber, ProductCategory, ProductTitle, ProductCode });
@@ -262,30 +267,32 @@
             // 
             // ProductNumber
             // 
+            ProductNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             ProductNumber.HeaderText = "№";
             ProductNumber.Name = "ProductNumber";
             ProductNumber.ReadOnly = true;
+            ProductNumber.Width = 53;
             // 
             // ProductCategory
             // 
+            ProductCategory.FillWeight = 80F;
             ProductCategory.HeaderText = "Категория";
             ProductCategory.Name = "ProductCategory";
             ProductCategory.ReadOnly = true;
-            ProductCategory.Width = 150;
             // 
             // ProductTitle
             // 
+            ProductTitle.FillWeight = 300F;
             ProductTitle.HeaderText = "Наименование товара";
             ProductTitle.Name = "ProductTitle";
             ProductTitle.ReadOnly = true;
-            ProductTitle.Width = 400;
             // 
             // ProductCode
             // 
+            ProductCode.FillWeight = 80F;
             ProductCode.HeaderText = "Код товара";
             ProductCode.Name = "ProductCode";
             ProductCode.ReadOnly = true;
-            ProductCode.Width = 200;
             // 
             // panel3
             // 
@@ -512,6 +519,8 @@
             // dataGridViewCustomers
             // 
             dataGridViewCustomers.AllowUserToAddRows = false;
+            dataGridViewCustomers.AllowUserToResizeRows = false;
+            dataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCustomers.BackgroundColor = Color.White;
             dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCustomers.Columns.AddRange(new DataGridViewColumn[] { CustomerNumber, CustomerTitle });
@@ -523,19 +532,6 @@
             dataGridViewCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCustomers.Size = new Size(976, 513);
             dataGridViewCustomers.TabIndex = 1;
-            // 
-            // CustomerNumber
-            // 
-            CustomerNumber.HeaderText = "№";
-            CustomerNumber.Name = "CustomerNumber";
-            CustomerNumber.ReadOnly = true;
-            // 
-            // CustomerTitle
-            // 
-            CustomerTitle.HeaderText = "Наименование контрагента";
-            CustomerTitle.Name = "CustomerTitle";
-            CustomerTitle.ReadOnly = true;
-            CustomerTitle.Width = 300;
             // 
             // panel4
             // 
@@ -652,6 +648,21 @@
             label6.TabIndex = 6;
             label6.Text = "Наименование:";
             // 
+            // CustomerNumber
+            // 
+            CustomerNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            CustomerNumber.HeaderText = "№";
+            CustomerNumber.Name = "CustomerNumber";
+            CustomerNumber.ReadOnly = true;
+            CustomerNumber.Width = 53;
+            // 
+            // CustomerTitle
+            // 
+            CustomerTitle.FillWeight = 300F;
+            CustomerTitle.HeaderText = "Наименование контрагента";
+            CustomerTitle.Name = "CustomerTitle";
+            CustomerTitle.ReadOnly = true;
+            // 
             // FormRefEdit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -721,13 +732,13 @@
         private Button btnCustomersImport;
         private Button btnProductsExport;
         private Button btnProductsImport;
-        private DataGridViewTextBoxColumn CustomerNumber;
-        private DataGridViewTextBoxColumn CustomerTitle;
         private DataGridViewTextBoxColumn RowNumber;
         private DataGridViewTextBoxColumn CategoryTitle;
         private DataGridViewTextBoxColumn ProductNumber;
         private DataGridViewTextBoxColumn ProductCategory;
         private DataGridViewTextBoxColumn ProductTitle;
         private DataGridViewTextBoxColumn ProductCode;
+        private DataGridViewTextBoxColumn CustomerNumber;
+        private DataGridViewTextBoxColumn CustomerTitle;
     }
 }

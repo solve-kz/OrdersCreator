@@ -82,6 +82,9 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
+            категорииToolStripMenuItem = new ToolStripMenuItem();
+            товарыToolStripMenuItem = new ToolStripMenuItem();
+            контрагентыToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -144,6 +147,7 @@
             // 
             // справочникиToolStripMenuItem
             // 
+            справочникиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { категорииToolStripMenuItem, товарыToolStripMenuItem, контрагентыToolStripMenuItem });
             справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             справочникиToolStripMenuItem.Size = new Size(94, 20);
             справочникиToolStripMenuItem.Text = "Справочники";
@@ -269,6 +273,7 @@
             // dataGridViewOrderLines
             // 
             dataGridViewOrderLines.AllowUserToAddRows = false;
+            dataGridViewOrderLines.AllowUserToResizeRows = false;
             dataGridViewOrderLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewOrderLines.BackgroundColor = Color.White;
             dataGridViewOrderLines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -688,6 +693,24 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
+            // категорииToolStripMenuItem
+            // 
+            категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
+            категорииToolStripMenuItem.Size = new Size(180, 22);
+            категорииToolStripMenuItem.Text = "Категории";
+            // 
+            // товарыToolStripMenuItem
+            // 
+            товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
+            товарыToolStripMenuItem.Size = new Size(180, 22);
+            товарыToolStripMenuItem.Text = "Товары";
+            // 
+            // контрагентыToolStripMenuItem
+            // 
+            контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
+            контрагентыToolStripMenuItem.Size = new Size(180, 22);
+            контрагентыToolStripMenuItem.Text = "Контрагенты";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -790,5 +813,8 @@
         private DataGridViewTextBoxColumn ProductTitle;
         private DataGridViewTextBoxColumn ProductWeight;
         private DataGridViewButtonColumn RowDelete;
+        private ToolStripMenuItem категорииToolStripMenuItem;
+        private ToolStripMenuItem товарыToolStripMenuItem;
+        private ToolStripMenuItem контрагентыToolStripMenuItem;
     }
 }
