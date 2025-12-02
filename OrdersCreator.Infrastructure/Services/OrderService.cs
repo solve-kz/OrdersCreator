@@ -87,13 +87,15 @@ namespace OrdersCreator.Infrastructure.Services
 
         public void CancelLastLine()
         {
+            EnsureCurrentOrder();
+
+            _lastAddedLine ??= _currentOrder.Lines.LastOrDefault();
+
             if (_lastAddedLine == null)
                 return;
 
-            EnsureCurrentOrder();
-
             _currentOrder.Lines.Remove(_lastAddedLine);
-            _lastAddedLine = null;
+            _lastAddedLine = _currentOrder.Lines.LastOrDefault();
 
             if (_currentOrder.Lines.Count == 0 && _currentOrder.CustomerId == 0)
             {
