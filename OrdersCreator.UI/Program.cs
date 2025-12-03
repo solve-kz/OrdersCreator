@@ -56,11 +56,7 @@ namespace OrdersCreator.UI
 
             if (appSettings.StorageType == StorageType.Sqlite)
             {
-                var dbDir = Path.Combine(appDataPath, "Data");
-
-                Directory.CreateDirectory(dbDir);
-
-                var dbPath = Path.Combine(dbDir, "OrderCreator.db");
+                var dbPath = Path.Combine(appDataPath, "OrderCreator.db");
 
                 if (!File.Exists(dbPath))
                 {
