@@ -56,10 +56,7 @@ namespace OrdersCreator.UI
 
             if (appSettings.StorageType == StorageType.Sqlite)
             {
-                var dbDir = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "OrderCreator",
-                    "Data");
+                var dbDir = Path.Combine(appDataPath, "Data");
 
                 Directory.CreateDirectory(dbDir);
 
@@ -68,11 +65,20 @@ namespace OrdersCreator.UI
                 if (!File.Exists(dbPath))
                 {
                     var legacyAppDataDb = Path.Combine(appDataPath, "orders.db");
+                    var legacyLocalDb = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "OrderCreator",
+                        "Data",
+                        "OrderCreator.db");
                     var legacyProgramDb = Path.Combine(AppContext.BaseDirectory, "OrderCreator.db");
 
                     if (File.Exists(legacyAppDataDb))
                     {
                         File.Copy(legacyAppDataDb, dbPath);
+                    }
+                    else if (File.Exists(legacyLocalDb))
+                    {
+                        File.Copy(legacyLocalDb, dbPath);
                     }
                     else if (File.Exists(legacyProgramDb))
                     {
