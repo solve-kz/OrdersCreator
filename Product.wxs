@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="OrderCreator"
+           Language="1049"
+           Version="1.0.0.0"
+           Manufacturer="OrderCreator"
+           UpgradeCode="FDAF3600-6651-49D8-9B35-3CECB9CF199A">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="Невозможно понизить версию OrderCreator." />
+    <MediaTemplate />
+
+    <Icon Id="AppIcon.ico" SourceFile="OrdersCreator.UI\Resources\icon-barcode-scanner.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+
+    <Property Id="DBEXISTS">
+      <DirectorySearch Id="AppDataOrderCreatorSearch" Path="[AppDataFolder]OrderCreator" Depth="0">
+        <FileSearch Id="OrdersDbSearch" Name="orders.db" />
+      </DirectorySearch>
+    </Property>
+
+    <Property Id="TEMPLATEEXISTS">
+      <DirectorySearch Id="ReportsFolderSearch" Path="[PersonalFolder]Отчёты по заказам" Depth="0">
+        <FileSearch Id="TemplateFileSearch" Name="Шаблон.xlsx" />
+      </DirectorySearch>
+    </Property>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="OrderCreator" />
+      </Directory>
+      <Directory Id="AppDataFolder">
+        <Directory Id="APPDATAORDERCREATOR" Name="OrderCreator" />
+      </Directory>
+      <Directory Id="PersonalFolder">
+        <Directory Id="REPORTSFOLDER" Name="Отчёты по заказам" />
+      </Directory>
+      <Directory Id="DesktopFolder" />
+    </Directory>
+
+    <Feature Id="ProductFeature" Title="OrderCreator" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CreateInstallFolder" Guid="*">
+        <CreateFolder />
+      </Component>
+
+      <Component Id="ApplicationFiles" Guid="*">
+        <File Id="OrderCreatorExe" Source="OrdersCreator.UI\bin\Release\net8.0-windows\OrdersCreator.UI.exe" KeyPath="yes" />
+        <File Id="OrderCreatorDll" Source="OrdersCreator.UI\bin\Release\net8.0-windows\OrdersCreator.UI.dll" />
+        <File Id="DomainDll" Source="OrdersCreator.UI\bin\Release\net8.0-windows\OrdersCreator.Domain.dll" />
+        <File Id="InfrastructureDll" Source="OrdersCreator.UI\bin\Release\net8.0-windows\OrdersCreator.Infrastructure.dll" />
+      </Component>
+
+      <Component Id="DesktopShortcut" Guid="*">
+        <Shortcut Id="OrderCreatorDesktopShortcut"
+                  Directory="DesktopFolder"
+                  Name="OrderCreator"
+                  Target="[INSTALLFOLDER]OrdersCreator.UI.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon.ico" />
+        <RegistryValue Root="HKCU" Key="Software\\OrderCreator" Name="DesktopShortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPDATAORDERCREATOR">
+      <Component Id="CreateAppDataFolder" Guid="*">
+        <CreateFolder />
+      </Component>
+
+      <Component Id="OrdersDatabase" Guid="*">
+        <Condition>NOT DBEXISTS</Condition>
+        <File Id="OrdersDbFile" Source="OrdersCreator.UI\InstallerContent\Data\orders.db" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="REPORTSFOLDER">
+      <Component Id="CreateReportsFolder" Guid="*">
+        <CreateFolder />
+      </Component>
+
+      <Component Id="TemplateFile" Guid="*">
+        <Condition>NOT TEMPLATEEXISTS</Condition>
+        <File Id="ReportTemplate" Source="OrdersCreator.UI\InstallerContent\Templates\Шаблон.xlsx" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <ComponentRef Id="CreateInstallFolder" />
+      <ComponentRef Id="ApplicationFiles" />
+      <ComponentRef Id="DesktopShortcut" />
+      <ComponentRef Id="CreateAppDataFolder" />
+      <ComponentRef Id="OrdersDatabase" />
+      <ComponentRef Id="CreateReportsFolder" />
+      <ComponentRef Id="TemplateFile" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>
