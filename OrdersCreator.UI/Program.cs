@@ -1,4 +1,5 @@
 using OrdersCreator.Domain.Barcode;
+using OrdersCreator.Domain.Barcode;
 using OrdersCreator.Domain.Models;
 using OrdersCreator.Domain.Repositories;
 using OrdersCreator.Domain.Services;
@@ -6,14 +7,23 @@ using OrdersCreator.Infrastructure.Barcode;
 using OrdersCreator.Infrastructure.Repositories;
 using OrdersCreator.Infrastructure.Services; // реальные реализации
 using OrdersCreator.Infrastructure.Sqlite;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 
 namespace OrdersCreator.UI
 {
     internal static class Program
     {
+        private static readonly JsonSerializerOptions DefaultConfigSerializerOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new JsonStringEnumConverter() }
+        };
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -23,15 +33,23 @@ namespace OrdersCreator.UI
             ApplicationConfiguration.Initialize();
 
             // ----- 1. Настройки из JSON -----
-            var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OrderCreator");
+            var appDataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "OrderCreator");
             Directory.CreateDirectory(appDataPath);
 
-            var settingsFilePath = Path.Combine(appDataPath, "settings.json");
+            var settingsFilePath = Path.Combine(appDataPath, "appsettings.json");
+            EnsureDefaultConfig(settingsFilePath);
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile(settingsFilePath, optional: true, reloadOnChange: true)
+                .Build();
+
             ISettingsRepository settingsRepo = new JsonFileSettingsRepository(settingsFilePath);
             ISettingsService settingsService = new SettingsService(settingsRepo);
 
             var appSettings = settingsService.GetSettings();
-          
+
             // ----- 2. Выбор хранилища справочников -----
             ICategoryRepository categoryRepo;
             ICustomerRepository customerRepo;
@@ -39,7 +57,30 @@ namespace OrdersCreator.UI
 
             if (appSettings.StorageType == StorageType.Sqlite)
             {
-                var dbPath = Path.Combine(appDataPath, "orders.db");
+                var dbDir = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "OrderCreator",
+                    "Data");
+
+                Directory.CreateDirectory(dbDir);
+
+                var dbPath = Path.Combine(dbDir, "OrderCreator.db");
+
+                if (!File.Exists(dbPath))
+                {
+                    var legacyAppDataDb = Path.Combine(appDataPath, "orders.db");
+                    var legacyProgramDb = Path.Combine(AppContext.BaseDirectory, "OrderCreator.db");
+
+                    if (File.Exists(legacyAppDataDb))
+                    {
+                        File.Copy(legacyAppDataDb, dbPath);
+                    }
+                    else if (File.Exists(legacyProgramDb))
+                    {
+                        File.Copy(legacyProgramDb, dbPath);
+                    }
+                }
+
                 var sqliteFactory = new SqliteConnectionFactory(dbPath);
                 var dbInitializer = new SqliteDbInitializer(sqliteFactory);
 
@@ -106,6 +147,22 @@ namespace OrdersCreator.UI
                 reportService,
                 orderRepository);
             Application.Run(mainForm);
+        }
+
+        private static void EnsureDefaultConfig(string configPath)
+        {
+            if (File.Exists(configPath))
+                return;
+
+            var dir = Path.GetDirectoryName(configPath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            var defaultSettings = new AppSettings();
+            var json = JsonSerializer.Serialize(defaultSettings, DefaultConfigSerializerOptions);
+            File.WriteAllText(configPath, json);
         }
     }
 }
