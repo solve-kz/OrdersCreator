@@ -78,6 +78,7 @@ namespace OrdersCreator.UI
             открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
             сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
             создатьToolStripMenuItem.Click += СоздатьToolStripMenuItem_Click;
+            выходToolStripMenuItem.Click += ВыходToolStripMenuItem_Click;
             категорииToolStripMenuItem.Click += КатегорииToolStripMenuItem_Click;
             товарыToolStripMenuItem.Click += ТоварыToolStripMenuItem_Click;
             контрагентыToolStripMenuItem.Click += КонтрагентыToolStripMenuItem_Click;
@@ -183,6 +184,41 @@ namespace OrdersCreator.UI
 
         private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
+            if (e.Control)
+            {
+                if (e.KeyCode == Keys.N)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    СоздатьToolStripMenuItem_Click(sender, e);
+                    return;
+                }
+
+                if (e.KeyCode == Keys.O)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    ОткрытьToolStripMenuItem_Click(sender, e);
+                    return;
+                }
+
+                if (e.KeyCode == Keys.S)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    СохранитьToolStripMenuItem_Click(sender, e);
+                    return;
+                }
+
+                if (e.KeyCode == Keys.Q)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    ВыходToolStripMenuItem_Click(sender, e);
+                    return;
+                }
+            }
+
             if (panelRedMode.Visible && e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
@@ -643,6 +679,11 @@ namespace OrdersCreator.UI
 
         private void СохранитьToolStripMenuItem_Click(object? sender, EventArgs e)
         {
+            SaveCurrentOrder();
+        }
+
+        private bool SaveCurrentOrder()
+        {
             try
             {
                 var order = _orderService.CurrentOrder ?? throw new InvalidOperationException("Нет активного заказа для сохранения.");
@@ -650,20 +691,21 @@ namespace OrdersCreator.UI
                 using var dialog = new SaveFileDialog
                 {
                     Filter = "Файлы заказа (*.order.json)|*.order.json|JSON (*.json)|*.json|Все файлы (*.*)|*.*",
-                    DefaultExt = "order.json"
+                    DefaultExt = "order.json",
+                    FileName = GetSuggestedFileName(order)
                 };
 
                 if (dialog.ShowDialog() != DialogResult.OK)
-                    return;
+                    return false;
 
                 _orderRepository.SaveToFile(order, dialog.FileName);
-                MessageBox.Show($"Заказ сохранён: {dialog.FileName}", "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // lblReady.Text = $"Заказ сохранён: {dialog.FileName}";
+                MessageBox.Show($"Заказ сохранён: {dialog.FileName}", "Сохранение заказа", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка сохранения заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // lblReady.Text = ex.Message;
+                return false;
             }
         }
 
@@ -682,19 +724,55 @@ namespace OrdersCreator.UI
 
                 var order = _orderRepository.LoadFromFile(dialog.FileName);
                 ApplyLoadedOrder(order);
-                // lblReady.Text = $"Загружен заказ: {order.Number}";
                 MessageBox.Show($"Загружен заказ: {order.Number}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка загрузки заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // lblReady.Text = ex.Message;
             }
         }
 
         private void СоздатьToolStripMenuItem_Click(object? sender, EventArgs e)
         {
+            if (!PromptSaveIfOrderNotEmpty())
+                return;
+
             StartBlankOrder(DateTime.Now);
+        }
+
+        private void ВыходToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (!PromptSaveIfOrderNotEmpty())
+                return;
+
+            Close();
+        }
+
+        private bool PromptSaveIfOrderNotEmpty()
+        {
+            if (!OrderHasLines())
+                return true;
+
+            return SaveCurrentOrder();
+        }
+
+        private bool OrderHasLines()
+        {
+            return (_orderService.CurrentOrder?.Lines?.Any() ?? false);
+        }
+
+        private string GetSuggestedFileName(Order order)
+        {
+            var customerName = order.Customer?.Name?.Trim() ?? string.Empty;
+            var baseName = new string(customerName.Take(10).ToArray());
+
+            if (string.IsNullOrWhiteSpace(baseName))
+                baseName = "order";
+
+            var invalidChars = Path.GetInvalidFileNameChars();
+            baseName = string.Concat(baseName.Select(ch => invalidChars.Contains(ch) ? '_' : ch));
+
+            return $"{baseName}-{order.Date:dd-MM}.order.json";
         }
 
         private void ApplyLoadedOrder(Order order)

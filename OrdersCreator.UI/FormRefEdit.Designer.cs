@@ -542,9 +542,10 @@ namespace OrdersCreator.UI
             textBoxSearch.TabIndex = 3;
             // 
             // btnSearch
-            // 
+            //
             btnSearch.Anchor = AnchorStyles.Left;
             btnSearch.BackColor = Color.DodgerBlue;
+            btnSearch.Enabled = false;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
