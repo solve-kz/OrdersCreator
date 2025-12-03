@@ -40,13 +40,17 @@ namespace OrdersCreator.Infrastructure.Repositories
                 if (!File.Exists(_filePath))
                 {
                     // Первый запуск: файла нет — создаём настройки по умолчанию
+                    WriteDefaultConfig();
                     return new AppSettings();
                 }
 
                 var json = File.ReadAllText(_filePath);
 
                 if (string.IsNullOrWhiteSpace(json))
+                {
+                    WriteDefaultConfig();
                     return new AppSettings();
+                }
 
                 var settings = JsonSerializer.Deserialize<AppSettings>(json, _options);
 
@@ -56,6 +60,7 @@ namespace OrdersCreator.Infrastructure.Repositories
             {
                 // Если файл битый или что-то сломалось — не заваливаем приложение,
                 // а возвращаем настройки по умолчанию.
+                WriteDefaultConfig();
                 return new AppSettings();
             }
         }
@@ -73,6 +78,11 @@ namespace OrdersCreator.Infrastructure.Repositories
 
             var json = JsonSerializer.Serialize(settings, _options);
             File.WriteAllText(_filePath, json);
+        }
+
+        private void WriteDefaultConfig()
+        {
+            Save(new AppSettings());
         }
     }
 }

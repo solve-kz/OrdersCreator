@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace OrdersCreator.Domain.Models
 {
@@ -11,16 +7,25 @@ namespace OrdersCreator.Domain.Models
     /// </summary>
     public sealed class AppSettings
     {
+        private static readonly string DefaultReportsRootFolder = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            "Отчеты по заказам");
+
+        private static readonly string DefaultReportTemplatePath = Path.Combine(
+            DefaultReportsRootFolder,
+            "Template",
+            "Шаблон.xlsx");
+
         // ---- Отчёты по заказам ----
 
         /// <summary>Корневая папка для отчётов.</summary>
-        public string ReportsRootFolder { get; set; } = string.Empty;
+        public string ReportsRootFolder { get; set; } = DefaultReportsRootFolder;
 
         /// <summary>Создавать подпапку с датой внутри корня.</summary>
         public bool UseDailySubfolder { get; set; } = true;
 
         /// <summary>Путь к .xlsx-шаблону отчёта.</summary>
-        public string ReportTemplatePath { get; set; } = string.Empty;
+        public string ReportTemplatePath { get; set; } = DefaultReportTemplatePath;
 
         /// <summary>Маска имени файла отчёта.</summary>
         /// Например: "Отчёт_{CustomerName}_{Date:yyyy-MM-dd_HH-mm}.xlsx"
@@ -51,7 +56,7 @@ namespace OrdersCreator.Domain.Models
         public StorageType StorageType { get; set; } = StorageType.Sqlite;
 
         /// <summary>
-        /// Строка подключения к SQL Server. 
+        /// Строка подключения к SQL Server.
         /// Для InMemory/SQLite может быть пустой.
         /// </summary>
         public string SqlServerConnectionString { get; set; } = string.Empty;
