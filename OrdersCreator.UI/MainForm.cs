@@ -117,17 +117,17 @@ namespace OrdersCreator.UI
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
         }
 
-        private void КатегорииToolStripMenuItem_Click(object sender, EventArgs e)
+        private void КатегорииToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             OpenReferencesEditor(FormRefEditTab.Categories);
         }
 
-        private void ТоварыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ТоварыToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             OpenReferencesEditor(FormRefEditTab.Products);
         }
 
-        private void КонтрагентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void КонтрагентыToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             OpenReferencesEditor(FormRefEditTab.Customers);
         }

@@ -1,5 +1,4 @@
 using OrdersCreator.Domain.Barcode;
-using OrdersCreator.Domain.Barcode;
 using OrdersCreator.Domain.Models;
 using OrdersCreator.Domain.Repositories;
 using OrdersCreator.Domain.Services;
