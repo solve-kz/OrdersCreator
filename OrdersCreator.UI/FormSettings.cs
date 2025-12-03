@@ -130,7 +130,7 @@ namespace OrdersCreator.UI
             dialog.Description = "Выберите корневую папку для отчётов";
 
             var reportsPath = tbReportsRootFolder.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(reportsPath) && Directory.Exists(reportsPath))
+            if (!string.IsNullOrWhiteSpace(reportsPath))
             {
                 dialog.SelectedPath = reportsPath;
             }
@@ -156,7 +156,7 @@ namespace OrdersCreator.UI
                 dialog.FileName = templatePath;
 
                 var directory = Path.GetDirectoryName(templatePath);
-                if (!string.IsNullOrWhiteSpace(directory) && Directory.Exists(directory))
+                if (!string.IsNullOrWhiteSpace(directory))
                 {
                     dialog.InitialDirectory = directory;
                 }
