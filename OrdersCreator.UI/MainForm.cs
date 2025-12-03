@@ -68,6 +68,7 @@ namespace OrdersCreator.UI
             KeyPreview = true;
             KeyPress += MainForm_KeyPress;
             KeyDown += MainForm_KeyDown;
+            FormClosing += MainForm_FormClosing;
 
             Load += MainForm_Load;
 
@@ -742,10 +743,15 @@ namespace OrdersCreator.UI
 
         private void ВыходToolStripMenuItem_Click(object? sender, EventArgs e)
         {
-            if (!PromptSaveIfOrderNotEmpty())
-                return;
-
             Close();
+        }
+
+        private void MainForm_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            if (!PromptSaveIfOrderNotEmpty())
+            {
+                e.Cancel = true;
+            }
         }
 
         private bool PromptSaveIfOrderNotEmpty()
