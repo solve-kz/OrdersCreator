@@ -753,7 +753,19 @@ namespace OrdersCreator.UI
             if (!OrderHasLines())
                 return true;
 
-            return SaveCurrentOrder();
+            var dialogResult = MessageBox.Show(
+                "Сохранить текущий заказ?",
+                "Сохранение заказа",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+
+            return dialogResult switch
+            {
+                DialogResult.Yes => SaveCurrentOrder(),
+                DialogResult.No => true,
+                DialogResult.Cancel => false,
+                _ => false
+            };
         }
 
         private bool OrderHasLines()
