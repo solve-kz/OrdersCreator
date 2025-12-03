@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,8 +128,16 @@ namespace OrdersCreator.UI
         {
             using var dialog = new FolderBrowserDialog();
             dialog.Description = "Выберите корневую папку для отчётов";
-            if (!string.IsNullOrWhiteSpace(tbReportsRootFolder.Text))
-                dialog.SelectedPath = tbReportsRootFolder.Text;
+
+            var reportsPath = tbReportsRootFolder.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(reportsPath) && Directory.Exists(reportsPath))
+            {
+                dialog.SelectedPath = reportsPath;
+            }
+            else
+            {
+                dialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -140,8 +149,23 @@ namespace OrdersCreator.UI
         {
             using var dialog = new OpenFileDialog();
             dialog.Filter = "Шаблоны Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*";
-            if (!string.IsNullOrWhiteSpace(tbReportTemplatePath.Text))
-                dialog.FileName = tbReportTemplatePath.Text;
+
+            var templatePath = tbReportTemplatePath.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(templatePath))
+            {
+                dialog.FileName = templatePath;
+
+                var directory = Path.GetDirectoryName(templatePath);
+                if (!string.IsNullOrWhiteSpace(directory) && Directory.Exists(directory))
+                {
+                    dialog.InitialDirectory = directory;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(dialog.InitialDirectory))
+            {
+                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
