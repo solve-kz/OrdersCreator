@@ -7,6 +7,7 @@ using OrdersCreator.Infrastructure.Repositories;
 using OrdersCreator.Infrastructure.Services; // реальные реализации
 using OrdersCreator.Infrastructure.Sqlite;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace OrdersCreator.UI
@@ -22,7 +23,10 @@ namespace OrdersCreator.UI
             ApplicationConfiguration.Initialize();
 
             // ----- 1. Настройки из JSON -----
-            var settingsFilePath = Path.Combine(AppContext.BaseDirectory, "settings.json");
+            var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OrderCreator");
+            Directory.CreateDirectory(appDataPath);
+
+            var settingsFilePath = Path.Combine(appDataPath, "settings.json");
             ISettingsRepository settingsRepo = new JsonFileSettingsRepository(settingsFilePath);
             ISettingsService settingsService = new SettingsService(settingsRepo);
 
@@ -35,7 +39,7 @@ namespace OrdersCreator.UI
 
             if (appSettings.StorageType == StorageType.Sqlite)
             {
-                var dbPath = Path.Combine(AppContext.BaseDirectory, "orders.db");
+                var dbPath = Path.Combine(appDataPath, "orders.db");
                 var sqliteFactory = new SqliteConnectionFactory(dbPath);
                 var dbInitializer = new SqliteDbInitializer(sqliteFactory);
 
