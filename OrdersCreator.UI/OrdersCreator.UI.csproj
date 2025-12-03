@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="InstallerContent\Data\" />
+    <Folder Include="InstallerContent\Templates\" />
     <Folder Include="Properties\DataSources\" />
     <Folder Include="Sounds\" />
   </ItemGroup>
