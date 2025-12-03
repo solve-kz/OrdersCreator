@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             menuStrip1 = new MenuStrip();
             файлToolStripMenuItem = new ToolStripMenuItem();
             создатьToolStripMenuItem = new ToolStripMenuItem();
@@ -35,6 +36,9 @@
             сохранитьToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
             справочникиToolStripMenuItem = new ToolStripMenuItem();
+            категорииToolStripMenuItem = new ToolStripMenuItem();
+            товарыToolStripMenuItem = new ToolStripMenuItem();
+            контрагентыToolStripMenuItem = new ToolStripMenuItem();
             настройкаToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             cmbCustomers = new ComboBox();
@@ -82,9 +86,6 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
-            категорииToolStripMenuItem = new ToolStripMenuItem();
-            товарыToolStripMenuItem = new ToolStripMenuItem();
-            контрагентыToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -123,27 +124,31 @@
             // 
             // создатьToolStripMenuItem
             // 
+            создатьToolStripMenuItem.Image = Properties.Resources.new_file;
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            создатьToolStripMenuItem.Size = new Size(132, 22);
-            создатьToolStripMenuItem.Text = "Новый";
+            создатьToolStripMenuItem.Size = new Size(184, 22);
+            создатьToolStripMenuItem.Text = "Новый            Ctrl+N";
             // 
             // открытьToolStripMenuItem
             // 
+            открытьToolStripMenuItem.Image = Properties.Resources.open_document;
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            открытьToolStripMenuItem.Size = new Size(132, 22);
-            открытьToolStripMenuItem.Text = "Открыть";
+            открытьToolStripMenuItem.Size = new Size(184, 22);
+            открытьToolStripMenuItem.Text = "Открыть         Ctrl+O";
             // 
             // сохранитьToolStripMenuItem
             // 
+            сохранитьToolStripMenuItem.Image = Properties.Resources.save;
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(132, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить";
+            сохранитьToolStripMenuItem.Size = new Size(184, 22);
+            сохранитьToolStripMenuItem.Text = "Сохранить     Ctrl+S";
             // 
             // выходToolStripMenuItem
             // 
+            выходToolStripMenuItem.Image = Properties.Resources.window_close;
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(132, 22);
-            выходToolStripMenuItem.Text = "Выход";
+            выходToolStripMenuItem.Size = new Size(184, 22);
+            выходToolStripMenuItem.Text = "Выход             Ctrl+Q";
             // 
             // справочникиToolStripMenuItem
             // 
@@ -151,9 +156,30 @@
             справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             справочникиToolStripMenuItem.Size = new Size(94, 20);
             справочникиToolStripMenuItem.Text = "Справочники";
-            //
+            // 
+            // категорииToolStripMenuItem
+            // 
+            категорииToolStripMenuItem.Image = Properties.Resources.categories;
+            категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
+            категорииToolStripMenuItem.Size = new Size(145, 22);
+            категорииToolStripMenuItem.Text = "Категории";
+            // 
+            // товарыToolStripMenuItem
+            // 
+            товарыToolStripMenuItem.Image = Properties.Resources.products;
+            товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
+            товарыToolStripMenuItem.Size = new Size(145, 22);
+            товарыToolStripMenuItem.Text = "Товары";
+            // 
+            // контрагентыToolStripMenuItem
+            // 
+            контрагентыToolStripMenuItem.Image = Properties.Resources.customers;
+            контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
+            контрагентыToolStripMenuItem.Size = new Size(145, 22);
+            контрагентыToolStripMenuItem.Text = "Контрагенты";
+            // 
             // настройкаToolStripMenuItem
-            //
+            // 
             настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
             настройкаToolStripMenuItem.Size = new Size(78, 20);
             настройкаToolStripMenuItem.Text = "Настройка";
@@ -692,24 +718,6 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
-            // категорииToolStripMenuItem
-            // 
-            категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
-            категорииToolStripMenuItem.Size = new Size(180, 22);
-            категорииToolStripMenuItem.Text = "Категории";
-            // 
-            // товарыToolStripMenuItem
-            // 
-            товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
-            товарыToolStripMenuItem.Size = new Size(180, 22);
-            товарыToolStripMenuItem.Text = "Товары";
-            // 
-            // контрагентыToolStripMenuItem
-            // 
-            контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
-            контрагентыToolStripMenuItem.Size = new Size(180, 22);
-            контрагентыToolStripMenuItem.Text = "Контрагенты";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -720,6 +728,7 @@
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";

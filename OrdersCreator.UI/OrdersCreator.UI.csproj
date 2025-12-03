@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\icon-barcode-scanner.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\icon-barcode-scanner.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OrdersCreator.Domain\OrdersCreator.Domain.csproj" />
