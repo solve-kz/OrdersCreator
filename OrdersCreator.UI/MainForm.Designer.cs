@@ -123,31 +123,35 @@
             файлToolStripMenuItem.Text = "Файл";
             // 
             // создатьToolStripMenuItem
-            // 
+            //
             создатьToolStripMenuItem.Image = Properties.Resources.new_file;
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
             создатьToolStripMenuItem.Size = new Size(184, 22);
+            создатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
             создатьToolStripMenuItem.Text = "Новый            Ctrl+N";
-            // 
+            //
             // открытьToolStripMenuItem
-            // 
+            //
             открытьToolStripMenuItem.Image = Properties.Resources.open_document;
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             открытьToolStripMenuItem.Size = new Size(184, 22);
+            открытьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
             открытьToolStripMenuItem.Text = "Открыть         Ctrl+O";
-            // 
+            //
             // сохранитьToolStripMenuItem
-            // 
+            //
             сохранитьToolStripMenuItem.Image = Properties.Resources.save;
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             сохранитьToolStripMenuItem.Size = new Size(184, 22);
+            сохранитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
             сохранитьToolStripMenuItem.Text = "Сохранить     Ctrl+S";
-            // 
+            //
             // выходToolStripMenuItem
-            // 
+            //
             выходToolStripMenuItem.Image = Properties.Resources.window_close;
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
             выходToolStripMenuItem.Size = new Size(184, 22);
+            выходToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
             выходToolStripMenuItem.Text = "Выход             Ctrl+Q";
             // 
             // справочникиToolStripMenuItem

@@ -148,9 +148,11 @@ namespace OrdersCreator.UI
             textBoxBarcodeCode.TextChanged += ProductEditorChanged;
             textBoxBarcodeName.TextChanged += ProductEditorChanged;
             comboBoxBarcodeCategory.SelectedIndexChanged += ProductEditorChanged;
+            textBoxSearch.TextChanged += TextBoxSearch_TextChanged;
 
             btnApplyFilter.Click += BtnProductFilterApply_Click;
             btnResetFilter.Click += BtnProductFilterReset_Click;
+            btnSearch.Click += BtnSearch_Click;
 
             btnProductsImport.Click += BtnProductsImport_Click;
             btnProductsExport.Click += BtnProductsExport_Click;
@@ -237,7 +239,18 @@ namespace OrdersCreator.UI
             return null;
         }
 
-        private void LoadProducts(int? categoryId = null, int? selectId = null)
+        private string? GetCurrentSearchFilter()
+        {
+            var search = textBoxSearch.Text.Trim();
+            return string.IsNullOrWhiteSpace(search) ? null : search;
+        }
+
+        private void ReloadProductsWithCurrentFilters(int? selectId = null)
+        {
+            LoadProducts(GetCurrentProductFilterCategoryId(), selectId, GetCurrentSearchFilter());
+        }
+
+        private void LoadProducts(int? categoryId = null, int? selectId = null, string? searchText = null)
         {
             IReadOnlyList<Product> products;
 
@@ -245,6 +258,15 @@ namespace OrdersCreator.UI
                 products = _productService.GetByCategory(categoryId.Value);
             else
                 products = _productService.GetAll();
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                var search = searchText.Trim();
+                products = products
+                    .Where(p => (!string.IsNullOrWhiteSpace(p.Name) && p.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                             || (!string.IsNullOrWhiteSpace(p.Code) && p.Code.Contains(search, StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+            }
 
             // проекция для отображения категории по имени
             var categories = _categoryService
@@ -681,7 +703,7 @@ namespace OrdersCreator.UI
                     var created = _productService.AddProduct(code, name, category);
                     _isNewProduct = false;
                     _currentProduct = created;
-                    LoadProducts(category.Id, created.Id);
+                    ReloadProductsWithCurrentFilters(created.Id);
                 }
                 else
                 {
@@ -691,10 +713,9 @@ namespace OrdersCreator.UI
                     _currentProduct.Category = category;
 
                     _productService.UpdateProduct(_currentProduct);
-                    
+
                 }
-                var filterCategoryId = GetCurrentProductFilterCategoryId();
-                LoadProducts(filterCategoryId, _currentProduct.Id);
+                ReloadProductsWithCurrentFilters(_currentProduct.Id);
             }
             catch (Exception ex)
             {
@@ -790,7 +811,7 @@ namespace OrdersCreator.UI
                 _productService.DeleteProduct(_currentProduct.Id);
                 _currentProduct = null;
                 _isNewProduct = false;
-                LoadProducts(GetCurrentProductFilterCategoryId());
+                ReloadProductsWithCurrentFilters();
             }
             catch (Exception ex)
             {
@@ -817,22 +838,34 @@ namespace OrdersCreator.UI
             UpdateProductEditorFromSelection();
         }
 
+        private void TextBoxSearch_TextChanged(object? sender, EventArgs e)
+        {
+            var hasText = !string.IsNullOrWhiteSpace(textBoxSearch.Text);
+            btnSearch.Enabled = hasText;
+
+            if (!hasText)
+            {
+                ReloadProductsWithCurrentFilters();
+            }
+        }
+
+        private void BtnSearch_Click(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
+                return;
+
+            ReloadProductsWithCurrentFilters();
+        }
+
         private void BtnProductFilterApply_Click(object? sender, EventArgs e)
         {
-            if (comboBoxCategoryFilter.SelectedItem is Category category)
-            {
-                LoadProducts(category.Id);
-            }
-            else
-            {
-                LoadProducts(null);
-            }
+            ReloadProductsWithCurrentFilters();
         }
 
         private void BtnProductFilterReset_Click(object? sender, EventArgs e)
         {
             comboBoxCategoryFilter.SelectedIndex = -1;
-            LoadProducts(null);
+            ReloadProductsWithCurrentFilters();
         }
 
         private void BtnImportCustomersXlsx_Click(object? sender, EventArgs e)
@@ -881,7 +914,7 @@ namespace OrdersCreator.UI
 
                 LoadCategories();
                 LoadCategoriesForProductCombos();
-                LoadProducts();
+                ReloadProductsWithCurrentFilters();
 
                 MessageBox.Show(this,
                     $"Импортировано товаров: {imported.Count}.",
