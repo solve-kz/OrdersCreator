@@ -674,7 +674,7 @@ namespace OrdersCreator.UI
                 PlayFailureSound();
                 MessageBox.Show(ex.Message, "Ошибка формирования отчёта", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 // lblReady.Text = ex.Message;
-                
+
             }
         }
 
@@ -851,6 +851,18 @@ namespace OrdersCreator.UI
             {
                 dataGridViewOrderLines.Rows[0].Selected = true;
             }
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this,
+        "Складской терминал v1.0\n\n" +
+        "Назначение: работа со штрих-кодами и формирование отчётов по заказам.\n\n" +
+        "Автор: Павел Приходько\n" +
+        "© 2025",
+        "О программе",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information);
         }
     }
 }
