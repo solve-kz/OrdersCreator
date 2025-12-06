@@ -1,0 +1,23 @@
+site_name: Складской Терминал — Справка
+theme:
+  name: material
+  language: ru
+
+nav:
+  - Введение: index.md
+  - Начало работы: getting-started.md
+  - Интерфейс программы: ui-overview.md
+  - Работа с заказами: orders.md
+  - Горячие клавиши: shortcuts.md
+  - Сценарии использования: scenarios.md
+  - Решение проблем: troubleshooting.md
+  - Справочники:
+      - Обзор: dictionaries/index.md
+      - Категории товаров: dictionaries/categories.md
+      - Штрих-коды товаров: dictionaries/products.md
+      - Контрагенты: dictionaries/customers.md
+  - Настройки:
+      - Обзор: settings/index.md
+      - Отчёты: settings/reports.md
+      - Поведение: settings/behavior.md
+      - Хранение данных: settings/storage.md

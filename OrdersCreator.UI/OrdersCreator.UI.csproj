@@ -55,4 +55,10 @@
     </None>
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="Help\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>
