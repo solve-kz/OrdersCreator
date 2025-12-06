@@ -489,26 +489,26 @@ namespace OrdersCreator.UI
 
         private void ResetCustomerButtonsState()
         {
-            btnCustomerAdd.Enabled = true;
-            btnCustomerSave.Enabled = false;
-            btnCustomerDel.Enabled = true;
-            btnCustomerCancel.Enabled = false;
+            btnCustomerAdd.Visible = true;
+            btnCustomerSave.Visible = false;
+            btnCustomerDel.Visible = true;
+            btnCustomerCancel.Visible = false;
         }
 
         private void ResetCategoryButtonsState()
         {
-            btnCategoryAdd.Enabled = true;
-            btnCategorySave.Enabled = false;
-            btnCategoryDel.Enabled = true;
-            btnCategoryCancel.Enabled = false;
+            btnCategoryAdd.Visible = true;
+            btnCategorySave.Visible = false;
+            btnCategoryDel.Visible = true;
+            btnCategoryCancel.Visible = false;
         }
 
         private void ResetProductButtonsState()
         {
-            btnProductAdd.Enabled = true;
-            btnProductSave.Enabled = false;
-            btnProductDel.Enabled = true;
-            btnProductCancel.Enabled = false;
+            btnProductAdd.Visible = true;
+            btnProductSave.Visible = false;
+            btnProductDel.Visible = true;
+            btnProductCancel.Visible = false;
         }
 
         private void CustomerEditorChanged(object? sender, EventArgs e)
@@ -516,8 +516,8 @@ namespace OrdersCreator.UI
             if (_isUpdatingCustomerEditor)
                 return;
 
-            btnCustomerSave.Enabled = true;
-            btnCustomerCancel.Enabled = true;
+            btnCustomerSave.Visible = true;
+            btnCustomerCancel.Visible = true;
         }
 
         private void CategoryEditorChanged(object? sender, EventArgs e)
@@ -525,8 +525,8 @@ namespace OrdersCreator.UI
             if (_isUpdatingCategoryEditor)
                 return;
 
-            btnCategorySave.Enabled = true;
-            btnCategoryCancel.Enabled = true;
+            btnCategorySave.Visible = true;
+            btnCategoryCancel.Visible = true;
         }
 
         private void ProductEditorChanged(object? sender, EventArgs e)
@@ -534,8 +534,8 @@ namespace OrdersCreator.UI
             if (_isUpdatingProductEditor)
                 return;
 
-            btnProductSave.Enabled = true;
-            btnProductCancel.Enabled = true;
+            btnProductSave.Visible = true;
+            btnProductCancel.Visible = true;
         }
 
         private void BtnAddCustomer_Click(object? sender, EventArgs e)
@@ -548,10 +548,10 @@ namespace OrdersCreator.UI
 
             dataGridViewCustomers.ClearSelection();
 
-            btnCustomerAdd.Enabled = false;
-            btnCustomerSave.Enabled = false;
-            btnCustomerDel.Enabled = false;
-            btnCustomerCancel.Enabled = true;
+            btnCustomerAdd.Visible = false;
+            btnCustomerSave.Visible = false;
+            btnCustomerDel.Visible = false;
+            btnCustomerCancel.Visible = true;
         }
 
         private void BtnAddCategory_Click(object? sender, EventArgs e)
@@ -564,10 +564,10 @@ namespace OrdersCreator.UI
 
             dataGridViewCategories.ClearSelection();
 
-            btnCategoryAdd.Enabled = false;
-            btnCategorySave.Enabled = false;
-            btnCategoryDel.Enabled = false;
-            btnCategoryCancel.Enabled = true;
+            btnCategoryAdd.Visible = false;
+            btnCategorySave.Visible = false;
+            btnCategoryDel.Visible = false;
+            btnCategoryCancel.Visible = true;
         }
 
         private void BtnProductAdd_Click(object? sender, EventArgs e)
@@ -581,10 +581,10 @@ namespace OrdersCreator.UI
 
             textBoxBarcodeCode.Focus();
 
-            btnProductAdd.Enabled = false;
-            btnProductSave.Enabled = false;
-            btnProductDel.Enabled = false;
-            btnProductCancel.Enabled = true;
+            btnProductAdd.Visible = false;
+            btnProductSave.Visible = false;
+            btnProductDel.Visible = false;
+            btnProductCancel.Visible = true;
         }
 
         private void BtnSaveCustomer_Click(object? sender, EventArgs e)
@@ -841,7 +841,7 @@ namespace OrdersCreator.UI
         private void TextBoxSearch_TextChanged(object? sender, EventArgs e)
         {
             var hasText = !string.IsNullOrWhiteSpace(textBoxSearch.Text);
-            btnSearch.Enabled = hasText;
+            btnSearch.Visible = hasText;
 
             if (!hasText)
             {
