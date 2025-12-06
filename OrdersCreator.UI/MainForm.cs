@@ -75,6 +75,7 @@ namespace OrdersCreator.UI
             btnCancel.Click += BtnCancel_Click;
             btnNewProductAdd.Click += BtnNewProductAdd_Click;
             dataGridViewOrderLines.SelectionChanged += DataGridViewOrderLines_SelectionChanged;
+            dataGridViewOrderLines.CellContentClick += DataGridViewOrderLines_CellContentClick;
             btnCreateReport.Click += BtnCreateReport_Click;
             открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
             сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
@@ -419,6 +420,13 @@ namespace OrdersCreator.UI
 
         private void UpdateActionButtonsVisibility()
         {
+            if (panelRedMode.Visible)
+            {
+                btnCancel.Visible = true;
+                btnCreateReport.Visible = false;
+                return;
+            }
+
             var hasLines = _orderService.CurrentOrder?.Lines?.Any() ?? false;
             btnCancel.Visible = hasLines;
             btnCreateReport.Visible = hasLines;
@@ -503,6 +511,7 @@ namespace OrdersCreator.UI
             panelGreenMode.Visible = true;
             panelGreenMode.BringToFront();
             btnCancel.Text = "ОТМЕНА (DEL)";
+            UpdateActionButtonsVisibility();
         }
 
         private void SwitchToRedMode()
@@ -512,6 +521,7 @@ namespace OrdersCreator.UI
             panelRedMode.BringToFront();
             btnCancel.Text = "ОТМЕНА (ESC)";
             cbNewProductCategory.SelectedIndex = -1;
+            UpdateActionButtonsVisibility();
         }
 
         private void BtnCancel_Click(object? sender, EventArgs e)
@@ -617,6 +627,37 @@ namespace OrdersCreator.UI
             lblCodeWeight.Text = _orderService
                 .GetCurrentProductSubtotal(productCode)
                 .ToString("F3");
+        }
+
+        private void DataGridViewOrderLines_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (dataGridViewOrderLines.Columns[e.ColumnIndex].Name != nameof(RowDelete))
+                return;
+
+            var rowNumberCell = dataGridViewOrderLines.Rows[e.RowIndex].Cells[nameof(RowNumber)];
+            if (rowNumberCell?.Value == null)
+                return;
+
+            if (!int.TryParse(rowNumberCell.Value.ToString(), out var rowNumber))
+                return;
+
+            _orderService.RemoveLine(rowNumber);
+
+            var currentOrder = _orderService.CurrentOrder;
+            if (currentOrder != null && currentOrder.Lines.Any())
+            {
+                FillGridFromOrder(currentOrder);
+            }
+            else
+            {
+                dataGridViewOrderLines.Rows.Clear();
+                ClearSelectionAndDetails();
+            }
+
+            UpdateResults();
         }
 
         private void ClearSelectionAndDetails()

@@ -94,7 +94,31 @@ namespace OrdersCreator.Infrastructure.Services
             if (_lastAddedLine == null)
                 return;
 
-            _currentOrder.Lines.Remove(_lastAddedLine);
+                _currentOrder.Lines.Remove(_lastAddedLine);
+            _lastAddedLine = _currentOrder.Lines.LastOrDefault();
+
+            if (_currentOrder.Lines.Count == 0 && _currentOrder.CustomerId == 0)
+            {
+                _currentOrder.Status = OrderStatus.Draft;
+            }
+        }
+
+        public void RemoveLine(int rowNumber)
+        {
+            EnsureCurrentOrder();
+
+            var lineToRemove = _currentOrder.Lines.FirstOrDefault(l => l.RowNumber == rowNumber);
+
+            if (lineToRemove == null)
+                return;
+
+            _currentOrder.Lines.Remove(lineToRemove);
+
+            for (int i = 0; i < _currentOrder.Lines.Count; i++)
+            {
+                _currentOrder.Lines[i].RowNumber = i + 1;
+            }
+
             _lastAddedLine = _currentOrder.Lines.LastOrDefault();
 
             if (_currentOrder.Lines.Count == 0 && _currentOrder.CustomerId == 0)

@@ -33,6 +33,9 @@ public interface IOrderService
     /// <summary>Отменить последнюю строку заказа.</summary>
     void CancelLastLine();
 
+    /// <summary>Удалить строку заказа по её порядковому номеру.</summary>
+    void RemoveLine(int rowNumber);
+
     /// <summary>Промежуточный итог по текущему товару (как G4 в Excel).</summary>
     decimal GetCurrentProductSubtotal(string productCode);
 
