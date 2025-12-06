@@ -86,6 +86,9 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
+            помощьToolStripMenuItem = new ToolStripMenuItem();
+            справкаF1ToolStripMenuItem = new ToolStripMenuItem();
+            оПрограммеToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -108,7 +111,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, справочникиToolStripMenuItem, настройкаToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, справочникиToolStripMenuItem, настройкаToolStripMenuItem, помощьToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1184, 24);
@@ -123,35 +126,35 @@
             файлToolStripMenuItem.Text = "Файл";
             // 
             // создатьToolStripMenuItem
-            //
+            // 
             создатьToolStripMenuItem.Image = Properties.Resources.new_file;
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            создатьToolStripMenuItem.Size = new Size(184, 22);
             создатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            создатьToolStripMenuItem.Size = new Size(227, 22);
             создатьToolStripMenuItem.Text = "Новый            Ctrl+N";
-            //
+            // 
             // открытьToolStripMenuItem
-            //
+            // 
             открытьToolStripMenuItem.Image = Properties.Resources.open_document;
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            открытьToolStripMenuItem.Size = new Size(184, 22);
             открытьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            открытьToolStripMenuItem.Size = new Size(227, 22);
             открытьToolStripMenuItem.Text = "Открыть         Ctrl+O";
-            //
+            // 
             // сохранитьToolStripMenuItem
-            //
+            // 
             сохранитьToolStripMenuItem.Image = Properties.Resources.save;
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(184, 22);
             сохранитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            сохранитьToolStripMenuItem.Size = new Size(227, 22);
             сохранитьToolStripMenuItem.Text = "Сохранить     Ctrl+S";
-            //
+            // 
             // выходToolStripMenuItem
-            //
+            // 
             выходToolStripMenuItem.Image = Properties.Resources.window_close;
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(184, 22);
             выходToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
+            выходToolStripMenuItem.Size = new Size(227, 22);
             выходToolStripMenuItem.Text = "Выход             Ctrl+Q";
             // 
             // справочникиToolStripMenuItem
@@ -165,21 +168,21 @@
             // 
             категорииToolStripMenuItem.Image = Properties.Resources.categories;
             категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
-            категорииToolStripMenuItem.Size = new Size(145, 22);
+            категорииToolStripMenuItem.Size = new Size(180, 22);
             категорииToolStripMenuItem.Text = "Категории";
             // 
             // товарыToolStripMenuItem
             // 
             товарыToolStripMenuItem.Image = Properties.Resources.products;
             товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
-            товарыToolStripMenuItem.Size = new Size(145, 22);
+            товарыToolStripMenuItem.Size = new Size(180, 22);
             товарыToolStripMenuItem.Text = "Товары";
             // 
             // контрагентыToolStripMenuItem
             // 
             контрагентыToolStripMenuItem.Image = Properties.Resources.customers;
             контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
-            контрагентыToolStripMenuItem.Size = new Size(145, 22);
+            контрагентыToolStripMenuItem.Size = new Size(180, 22);
             контрагентыToolStripMenuItem.Text = "Контрагенты";
             // 
             // настройкаToolStripMenuItem
@@ -722,6 +725,25 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
+            // помощьToolStripMenuItem
+            // 
+            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, оПрограммеToolStripMenuItem });
+            помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            помощьToolStripMenuItem.Size = new Size(68, 20);
+            помощьToolStripMenuItem.Text = "Помощь";
+            // 
+            // справкаF1ToolStripMenuItem
+            // 
+            справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
+            справкаF1ToolStripMenuItem.Size = new Size(183, 22);
+            справкаF1ToolStripMenuItem.Text = "Справка                 F1";
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            оПрограммеToolStripMenuItem.Size = new Size(183, 22);
+            оПрограммеToolStripMenuItem.Text = "О программе";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -828,5 +850,8 @@
         private ToolStripMenuItem категорииToolStripMenuItem;
         private ToolStripMenuItem товарыToolStripMenuItem;
         private ToolStripMenuItem контрагентыToolStripMenuItem;
+        private ToolStripMenuItem помощьToolStripMenuItem;
+        private ToolStripMenuItem справкаF1ToolStripMenuItem;
+        private ToolStripMenuItem оПрограммеToolStripMenuItem;
     }
 }
