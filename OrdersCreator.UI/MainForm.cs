@@ -414,6 +414,14 @@ namespace OrdersCreator.UI
             var totalPlaces = lines.Count;
 
             lblResults.Text = $"ИТОГО: {uniqueCodes} позиций | {totalPlaces} мест | {totalWeight:F3} кг.";
+            UpdateActionButtonsVisibility();
+        }
+
+        private void UpdateActionButtonsVisibility()
+        {
+            var hasLines = _orderService.CurrentOrder?.Lines?.Any() ?? false;
+            btnCancel.Visible = hasLines;
+            btnCreateReport.Visible = hasLines;
         }
 
         private void LoadCategoriesForNewProduct()
