@@ -474,7 +474,7 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Anchor = AnchorStyles.Left;
             comboBoxCategoryFilter.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxCategoryFilter.FormattingEnabled = true;
-            comboBoxCategoryFilter.Location = new Point(155, 8);
+            comboBoxCategoryFilter.Location = new Point(155, 9);
             comboBoxCategoryFilter.Name = "comboBoxCategoryFilter";
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
@@ -542,7 +542,7 @@ namespace OrdersCreator.UI
             textBoxSearch.TabIndex = 3;
             // 
             // btnSearch
-            //
+            // 
             btnSearch.Anchor = AnchorStyles.Left;
             btnSearch.BackColor = Color.DodgerBlue;
             btnSearch.Enabled = false;
@@ -749,7 +749,7 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 4);
+            comboBoxBarcodeCategory.Location = new Point(557, 5);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
             comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
