@@ -32,6 +32,7 @@ namespace OrdersCreator.UI
         private Customer? _currentCustomer;
         private Category? _currentCategory;
         private Product? _currentProduct;
+        private string? _productSearchTerm;
         private bool _isNewCustomer;
         private bool _isNewCategory;
         private bool _isNewProduct;
@@ -241,8 +242,7 @@ namespace OrdersCreator.UI
 
         private string? GetCurrentSearchFilter()
         {
-            var search = textBoxSearch.Text.Trim();
-            return string.IsNullOrWhiteSpace(search) ? null : search;
+            return _productSearchTerm;
         }
 
         private void ReloadProductsWithCurrentFilters(int? selectId = null)
@@ -263,8 +263,7 @@ namespace OrdersCreator.UI
             {
                 var search = searchText.Trim();
                 products = products
-                    .Where(p => (!string.IsNullOrWhiteSpace(p.Name) && p.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
-                             || (!string.IsNullOrWhiteSpace(p.Code) && p.Code.Contains(search, StringComparison.OrdinalIgnoreCase)))
+                    .Where(p => !string.IsNullOrWhiteSpace(p.Name) && p.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
 
@@ -845,6 +844,7 @@ namespace OrdersCreator.UI
 
             if (!hasText)
             {
+                _productSearchTerm = null;
                 ReloadProductsWithCurrentFilters();
             }
         }
@@ -854,6 +854,7 @@ namespace OrdersCreator.UI
             if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 return;
 
+            _productSearchTerm = textBoxSearch.Text.Trim();
             ReloadProductsWithCurrentFilters();
         }
 
