@@ -59,22 +59,6 @@
             ProductWeight = new DataGridViewTextBoxColumn();
             RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
-            panelGreenMode = new Panel();
-            tlpGreenMode = new TableLayoutPanel();
-            panelReady = new Panel();
-            imgReady = new PictureBox();
-            lblReady = new Label();
-            panel4 = new Panel();
-            lblCurrentWeight = new Label();
-            lblCurrentTitle = new Label();
-            panel5 = new Panel();
-            lblCurrentCategory = new Label();
-            panel3 = new Panel();
-            lblCodeWeight = new Label();
-            lblCodeAmount = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
             panelRedMode = new Panel();
             tlpRedMode = new TableLayoutPanel();
             panelRedHeader = new Panel();
@@ -91,6 +75,22 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
+            panelGreenMode = new Panel();
+            tlpGreenMode = new TableLayoutPanel();
+            panelReady = new Panel();
+            imgReady = new PictureBox();
+            lblReady = new Label();
+            panel4 = new Panel();
+            lblCurrentWeight = new Label();
+            lblCurrentTitle = new Label();
+            panel5 = new Panel();
+            lblCurrentCategory = new Label();
+            panel3 = new Panel();
+            lblCodeWeight = new Label();
+            lblCodeAmount = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -98,6 +98,12 @@
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderLines).BeginInit();
             panelLeftContainer.SuspendLayout();
+            panelRedMode.SuspendLayout();
+            tlpRedMode.SuspendLayout();
+            panelRedHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgRedWarning).BeginInit();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
             panelGreenMode.SuspendLayout();
             tlpGreenMode.SuspendLayout();
             panelReady.SuspendLayout();
@@ -105,12 +111,6 @@
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
-            panelRedMode.SuspendLayout();
-            tlpRedMode.SuspendLayout();
-            panelRedHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgRedWarning).BeginInit();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -394,6 +394,192 @@
             panelLeftContainer.Size = new Size(474, 591);
             panelLeftContainer.TabIndex = 1;
             // 
+            // panelRedMode
+            // 
+            panelRedMode.BackColor = Color.LightCoral;
+            panelRedMode.Controls.Add(tlpRedMode);
+            panelRedMode.Dock = DockStyle.Fill;
+            panelRedMode.Location = new Point(0, 0);
+            panelRedMode.Name = "panelRedMode";
+            panelRedMode.Padding = new Padding(10);
+            panelRedMode.Size = new Size(474, 591);
+            panelRedMode.TabIndex = 5;
+            panelRedMode.Visible = false;
+            // 
+            // tlpRedMode
+            // 
+            tlpRedMode.ColumnCount = 1;
+            tlpRedMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpRedMode.Controls.Add(panelRedHeader, 0, 0);
+            tlpRedMode.Controls.Add(panel6, 0, 1);
+            tlpRedMode.Controls.Add(panel7, 0, 2);
+            tlpRedMode.Dock = DockStyle.Fill;
+            tlpRedMode.Location = new Point(10, 10);
+            tlpRedMode.Name = "tlpRedMode";
+            tlpRedMode.RowCount = 3;
+            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpRedMode.Size = new Size(454, 571);
+            tlpRedMode.TabIndex = 4;
+            // 
+            // panelRedHeader
+            // 
+            panelRedHeader.BackColor = Color.Red;
+            panelRedHeader.Controls.Add(imgRedWarning);
+            panelRedHeader.Controls.Add(label6);
+            panelRedHeader.Dock = DockStyle.Fill;
+            panelRedHeader.Location = new Point(3, 3);
+            panelRedHeader.Name = "panelRedHeader";
+            panelRedHeader.Size = new Size(448, 136);
+            panelRedHeader.TabIndex = 0;
+            // 
+            // imgRedWarning
+            // 
+            imgRedWarning.Image = Properties.Resources.attention;
+            imgRedWarning.Location = new Point(43, 36);
+            imgRedWarning.Name = "imgRedWarning";
+            imgRedWarning.Size = new Size(64, 64);
+            imgRedWarning.SizeMode = PictureBoxSizeMode.AutoSize;
+            imgRedWarning.TabIndex = 1;
+            imgRedWarning.TabStop = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(141, 55);
+            label6.Name = "label6";
+            label6.Size = new Size(265, 25);
+            label6.TabIndex = 0;
+            label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.IndianRed;
+            panel6.Controls.Add(tbNewProductWeight);
+            panel6.Controls.Add(label8);
+            panel6.Controls.Add(tbNewProductCode);
+            panel6.Controls.Add(label7);
+            panel6.Dock = DockStyle.Fill;
+            panel6.ForeColor = Color.White;
+            panel6.Location = new Point(3, 145);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(448, 193);
+            panel6.TabIndex = 1;
+            // 
+            // tbNewProductWeight
+            // 
+            tbNewProductWeight.BackColor = Color.LightCoral;
+            tbNewProductWeight.BorderStyle = BorderStyle.FixedSingle;
+            tbNewProductWeight.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            tbNewProductWeight.ForeColor = Color.White;
+            tbNewProductWeight.Location = new Point(24, 122);
+            tbNewProductWeight.Name = "tbNewProductWeight";
+            tbNewProductWeight.ReadOnly = true;
+            tbNewProductWeight.Size = new Size(356, 29);
+            tbNewProductWeight.TabIndex = 3;
+            tbNewProductWeight.Text = "00,000 кг.";
+            tbNewProductWeight.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label8.Location = new Point(24, 95);
+            label8.Name = "label8";
+            label8.Size = new Size(136, 19);
+            label8.TabIndex = 2;
+            label8.Text = "Извлеченный вес:";
+            // 
+            // tbNewProductCode
+            // 
+            tbNewProductCode.BackColor = Color.LightCoral;
+            tbNewProductCode.BorderStyle = BorderStyle.FixedSingle;
+            tbNewProductCode.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            tbNewProductCode.ForeColor = Color.White;
+            tbNewProductCode.Location = new Point(24, 48);
+            tbNewProductCode.Name = "tbNewProductCode";
+            tbNewProductCode.ReadOnly = true;
+            tbNewProductCode.Size = new Size(356, 29);
+            tbNewProductCode.TabIndex = 1;
+            tbNewProductCode.Text = "000000000000";
+            tbNewProductCode.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label7.Location = new Point(24, 20);
+            label7.Name = "label7";
+            label7.Size = new Size(173, 19);
+            label7.TabIndex = 0;
+            label7.Text = "Считанный код товара:";
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.IndianRed;
+            panel7.Controls.Add(btnNewProductAdd);
+            panel7.Controls.Add(cbNewProductCategory);
+            panel7.Controls.Add(label10);
+            panel7.Controls.Add(tbNewProductTitle);
+            panel7.Controls.Add(label9);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            panel7.ForeColor = Color.White;
+            panel7.Location = new Point(3, 344);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(448, 224);
+            panel7.TabIndex = 2;
+            // 
+            // btnNewProductAdd
+            // 
+            btnNewProductAdd.BackColor = Color.White;
+            btnNewProductAdd.Cursor = Cursors.Hand;
+            btnNewProductAdd.FlatAppearance.BorderSize = 0;
+            btnNewProductAdd.FlatStyle = FlatStyle.Flat;
+            btnNewProductAdd.ForeColor = Color.IndianRed;
+            btnNewProductAdd.Location = new Point(24, 170);
+            btnNewProductAdd.Name = "btnNewProductAdd";
+            btnNewProductAdd.Size = new Size(356, 38);
+            btnNewProductAdd.TabIndex = 4;
+            btnNewProductAdd.Text = "ДОБАВИТЬ ТОВАР (ENTER)";
+            btnNewProductAdd.UseVisualStyleBackColor = false;
+            // 
+            // cbNewProductCategory
+            // 
+            cbNewProductCategory.FormattingEnabled = true;
+            cbNewProductCategory.Location = new Point(24, 122);
+            cbNewProductCategory.Name = "cbNewProductCategory";
+            cbNewProductCategory.Size = new Size(356, 29);
+            cbNewProductCategory.TabIndex = 3;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(24, 94);
+            label10.Name = "label10";
+            label10.Size = new Size(181, 21);
+            label10.TabIndex = 2;
+            label10.Text = "Выберите категорию:";
+            // 
+            // tbNewProductTitle
+            // 
+            tbNewProductTitle.Location = new Point(24, 48);
+            tbNewProductTitle.Name = "tbNewProductTitle";
+            tbNewProductTitle.Size = new Size(356, 29);
+            tbNewProductTitle.TabIndex = 1;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(24, 20);
+            label9.Name = "label9";
+            label9.Size = new Size(257, 21);
+            label9.TabIndex = 0;
+            label9.Text = "Введите наименование товара:";
+            // 
             // panelGreenMode
             // 
             panelGreenMode.BackColor = Color.ForestGreen;
@@ -585,192 +771,6 @@
             label3.Text = "ИТОГО ПО ВЫБРАННОМУ ТОВАРУ:";
             label3.Visible = false;
             // 
-            // panelRedMode
-            // 
-            panelRedMode.BackColor = Color.LightCoral;
-            panelRedMode.Controls.Add(tlpRedMode);
-            panelRedMode.Dock = DockStyle.Fill;
-            panelRedMode.Location = new Point(0, 0);
-            panelRedMode.Name = "panelRedMode";
-            panelRedMode.Padding = new Padding(10);
-            panelRedMode.Size = new Size(474, 591);
-            panelRedMode.TabIndex = 5;
-            panelRedMode.Visible = false;
-            // 
-            // tlpRedMode
-            //
-            tlpRedMode.ColumnCount = 1;
-            tlpRedMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpRedMode.Controls.Add(panelRedHeader, 0, 0);
-            tlpRedMode.Controls.Add(panel6, 0, 1);
-            tlpRedMode.Controls.Add(panel7, 0, 2);
-            tlpRedMode.Dock = DockStyle.Fill;
-            tlpRedMode.Location = new Point(10, 10);
-            tlpRedMode.Name = "tlpRedMode";
-            tlpRedMode.RowCount = 3;
-            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
-            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpRedMode.Size = new Size(454, 571);
-            tlpRedMode.TabIndex = 4;
-            //
-            // panelRedHeader
-            //
-            panelRedHeader.BackColor = Color.IndianRed;
-            panelRedHeader.Controls.Add(imgRedWarning);
-            panelRedHeader.Controls.Add(label6);
-            panelRedHeader.Dock = DockStyle.Fill;
-            panelRedHeader.Location = new Point(3, 3);
-            panelRedHeader.Name = "panelRedHeader";
-            panelRedHeader.Size = new Size(448, 136);
-            panelRedHeader.TabIndex = 0;
-            //
-            // imgRedWarning
-            //
-            imgRedWarning.Image = Properties.Resources.attention;
-            imgRedWarning.Location = new Point(43, 36);
-            imgRedWarning.Name = "imgRedWarning";
-            imgRedWarning.Size = new Size(64, 64);
-            imgRedWarning.SizeMode = PictureBoxSizeMode.AutoSize;
-            imgRedWarning.TabIndex = 1;
-            imgRedWarning.TabStop = false;
-            //
-            // label6
-            //
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(141, 55);
-            label6.Name = "label6";
-            label6.Size = new Size(254, 25);
-            label6.TabIndex = 0;
-            label6.Text = "ТОВАР НЕ НАЙДЕН В БАЗЕ!";
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.IndianRed;
-            panel6.Controls.Add(tbNewProductWeight);
-            panel6.Controls.Add(label8);
-            panel6.Controls.Add(tbNewProductCode);
-            panel6.Controls.Add(label7);
-            panel6.Dock = DockStyle.Fill;
-            panel6.ForeColor = Color.White;
-            panel6.Location = new Point(3, 145);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(448, 193);
-            panel6.TabIndex = 1;
-            //
-            // tbNewProductWeight
-            //
-            tbNewProductWeight.BackColor = Color.LightCoral;
-            tbNewProductWeight.BorderStyle = BorderStyle.FixedSingle;
-            tbNewProductWeight.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            tbNewProductWeight.ForeColor = Color.White;
-            tbNewProductWeight.Location = new Point(24, 122);
-            tbNewProductWeight.Name = "tbNewProductWeight";
-            tbNewProductWeight.ReadOnly = true;
-            tbNewProductWeight.Size = new Size(356, 29);
-            tbNewProductWeight.TabIndex = 3;
-            tbNewProductWeight.Text = "00,000 кг.";
-            tbNewProductWeight.TextAlign = HorizontalAlignment.Center;
-            //
-            // label8
-            //
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label8.Location = new Point(24, 95);
-            label8.Name = "label8";
-            label8.Size = new Size(136, 19);
-            label8.TabIndex = 2;
-            label8.Text = "Извлеченный вес:";
-            //
-            // tbNewProductCode
-            // 
-            tbNewProductCode.BackColor = Color.LightCoral;
-            tbNewProductCode.BorderStyle = BorderStyle.FixedSingle;
-            tbNewProductCode.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            tbNewProductCode.ForeColor = Color.White;
-            tbNewProductCode.Location = new Point(24, 48);
-            tbNewProductCode.Name = "tbNewProductCode";
-            tbNewProductCode.ReadOnly = true;
-            tbNewProductCode.Size = new Size(356, 29);
-            tbNewProductCode.TabIndex = 1;
-            tbNewProductCode.Text = "000000000000";
-            tbNewProductCode.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label7
-            //
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label7.Location = new Point(24, 20);
-            label7.Name = "label7";
-            label7.Size = new Size(173, 19);
-            label7.TabIndex = 0;
-            label7.Text = "Считанный код товара:";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.IndianRed;
-            panel7.Controls.Add(btnNewProductAdd);
-            panel7.Controls.Add(cbNewProductCategory);
-            panel7.Controls.Add(label10);
-            panel7.Controls.Add(tbNewProductTitle);
-            panel7.Controls.Add(label9);
-            panel7.Dock = DockStyle.Fill;
-            panel7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            panel7.ForeColor = Color.White;
-            panel7.Location = new Point(3, 344);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(448, 224);
-            panel7.TabIndex = 2;
-            //
-            // btnNewProductAdd
-            //
-            btnNewProductAdd.BackColor = Color.White;
-            btnNewProductAdd.Cursor = Cursors.Hand;
-            btnNewProductAdd.FlatAppearance.BorderSize = 0;
-            btnNewProductAdd.FlatStyle = FlatStyle.Flat;
-            btnNewProductAdd.ForeColor = Color.IndianRed;
-            btnNewProductAdd.Location = new Point(24, 170);
-            btnNewProductAdd.Name = "btnNewProductAdd";
-            btnNewProductAdd.Size = new Size(356, 38);
-            btnNewProductAdd.TabIndex = 4;
-            btnNewProductAdd.Text = "ДОБАВИТЬ ТОВАР (ENTER)";
-            btnNewProductAdd.UseVisualStyleBackColor = false;
-            //
-            // cbNewProductCategory
-            //
-            cbNewProductCategory.FormattingEnabled = true;
-            cbNewProductCategory.Location = new Point(24, 122);
-            cbNewProductCategory.Name = "cbNewProductCategory";
-            cbNewProductCategory.Size = new Size(356, 29);
-            cbNewProductCategory.TabIndex = 3;
-            //
-            // label10
-            //
-            label10.AutoSize = true;
-            label10.Location = new Point(24, 94);
-            label10.Name = "label10";
-            label10.Size = new Size(181, 21);
-            label10.TabIndex = 2;
-            label10.Text = "Выберите категорию:";
-            //
-            // tbNewProductTitle
-            //
-            tbNewProductTitle.Location = new Point(24, 48);
-            tbNewProductTitle.Name = "tbNewProductTitle";
-            tbNewProductTitle.Size = new Size(356, 29);
-            tbNewProductTitle.TabIndex = 1;
-            //
-            // label9
-            //
-            label9.AutoSize = true;
-            label9.Location = new Point(24, 20);
-            label9.Name = "label9";
-            label9.Size = new Size(257, 21);
-            label9.TabIndex = 0;
-            label9.Text = "Введите наименование товара:";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -798,6 +798,15 @@
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderLines).EndInit();
             panelLeftContainer.ResumeLayout(false);
+            panelRedMode.ResumeLayout(false);
+            tlpRedMode.ResumeLayout(false);
+            panelRedHeader.ResumeLayout(false);
+            panelRedHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgRedWarning).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             panelGreenMode.ResumeLayout(false);
             tlpGreenMode.ResumeLayout(false);
             panelReady.ResumeLayout(false);
@@ -809,15 +818,6 @@
             panel5.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            panelRedMode.ResumeLayout(false);
-            tlpRedMode.ResumeLayout(false);
-            panelRedHeader.ResumeLayout(false);
-            panelRedHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgRedWarning).EndInit();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
