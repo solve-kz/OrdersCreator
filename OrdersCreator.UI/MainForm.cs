@@ -911,5 +911,12 @@ namespace OrdersCreator.UI
         {
 
         }
+
+        private void справкаF1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Открываем главное оглавление справки
+            var helpForm = new FormHelp("index.html");
+            helpForm.Show(this); // немодальное окно над главным
+        }
     }
 }

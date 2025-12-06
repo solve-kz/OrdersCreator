@@ -206,13 +206,14 @@
             // справкаF1ToolStripMenuItem
             // 
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
-            справкаF1ToolStripMenuItem.Size = new Size(149, 22);
+            справкаF1ToolStripMenuItem.Size = new Size(180, 22);
             справкаF1ToolStripMenuItem.Text = "Справка";
+            справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(149, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(180, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
