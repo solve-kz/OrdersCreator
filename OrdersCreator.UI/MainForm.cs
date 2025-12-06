@@ -382,11 +382,7 @@ namespace OrdersCreator.UI
                     .ToString("F3");
             }
 
-            dataGridViewOrderLines.ClearSelection();
-            if (dataGridViewOrderLines.Rows.Count > 0)
-            {
-                dataGridViewOrderLines.Rows[0].Selected = true;
-            }
+            HighlightOrderLine(dataGridViewOrderLines.Rows.Count - 1);
         }
 
         private void AddOrderLineToGrid(OrderLine orderLine)
@@ -664,6 +660,23 @@ namespace OrdersCreator.UI
         {
             dataGridViewOrderLines.ClearSelection();
             ClearOrderLineDetails();
+        }
+
+        private void HighlightOrderLine(int rowIndex)
+        {
+            if (rowIndex < 0 || rowIndex >= dataGridViewOrderLines.Rows.Count)
+                return;
+
+            dataGridViewOrderLines.ClearSelection();
+
+            var row = dataGridViewOrderLines.Rows[rowIndex];
+            row.Selected = true;
+            dataGridViewOrderLines.CurrentCell = row.Cells[0];
+
+            if (dataGridViewOrderLines.FirstDisplayedScrollingRowIndex != rowIndex)
+            {
+                dataGridViewOrderLines.FirstDisplayedScrollingRowIndex = rowIndex;
+            }
         }
 
         private void ClearOrderLineDetails()
