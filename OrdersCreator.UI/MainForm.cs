@@ -491,7 +491,7 @@ namespace OrdersCreator.UI
 
             if (cbNewProductCategory.Items.Count > 0)
             {
-                cbNewProductCategory.SelectedIndex = 0;
+                cbNewProductCategory.SelectedIndex = -1;
             }
 
             tbNewProductTitle.Focus();
@@ -511,6 +511,7 @@ namespace OrdersCreator.UI
             panelRedMode.Visible = true;
             panelRedMode.BringToFront();
             btnCancel.Text = "ОТМЕНА (ESC)";
+            cbNewProductCategory.SelectedIndex = -1;
         }
 
         private void BtnCancel_Click(object? sender, EventArgs e)
