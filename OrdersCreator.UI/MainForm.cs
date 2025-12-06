@@ -394,7 +394,7 @@ namespace OrdersCreator.UI
             var productCode = orderLine.Product?.Code ?? string.Empty;
             var productTitle = orderLine.Product?.Name ?? string.Empty;
 
-            dataGridViewOrderLines.Rows.Insert(0,
+            dataGridViewOrderLines.Rows.Add(
                 orderLine.RowNumber,
                 productCode,
                 productTitle,
@@ -884,7 +884,7 @@ namespace OrdersCreator.UI
         {
             dataGridViewOrderLines.Rows.Clear();
 
-            foreach (var line in order.Lines.OrderByDescending(l => l.RowNumber))
+            foreach (var line in order.Lines.OrderBy(l => l.RowNumber))
             {
                 AddOrderLineToGrid(line);
             }
