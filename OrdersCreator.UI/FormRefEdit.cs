@@ -841,6 +841,7 @@ namespace OrdersCreator.UI
         {
             var hasText = !string.IsNullOrWhiteSpace(textBoxSearch.Text);
             btnSearch.Visible = hasText;
+            btnSearch.Enabled = hasText;
 
             if (!hasText)
             {
