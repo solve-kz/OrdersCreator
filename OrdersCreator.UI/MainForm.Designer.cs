@@ -130,32 +130,32 @@
             создатьToolStripMenuItem.Image = Properties.Resources.new_file;
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
             создатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            создатьToolStripMenuItem.Size = new Size(227, 22);
-            создатьToolStripMenuItem.Text = "Новый            Ctrl+N";
+            создатьToolStripMenuItem.Size = new Size(172, 22);
+            создатьToolStripMenuItem.Text = "Новый";
             // 
             // открытьToolStripMenuItem
             // 
             открытьToolStripMenuItem.Image = Properties.Resources.open_document;
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             открытьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            открытьToolStripMenuItem.Size = new Size(227, 22);
-            открытьToolStripMenuItem.Text = "Открыть         Ctrl+O";
+            открытьToolStripMenuItem.Size = new Size(172, 22);
+            открытьToolStripMenuItem.Text = "Открыть";
             // 
             // сохранитьToolStripMenuItem
             // 
             сохранитьToolStripMenuItem.Image = Properties.Resources.save;
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             сохранитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            сохранитьToolStripMenuItem.Size = new Size(227, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить     Ctrl+S";
+            сохранитьToolStripMenuItem.Size = new Size(172, 22);
+            сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // выходToolStripMenuItem
             // 
             выходToolStripMenuItem.Image = Properties.Resources.window_close;
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
             выходToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
-            выходToolStripMenuItem.Size = new Size(227, 22);
-            выходToolStripMenuItem.Text = "Выход             Ctrl+Q";
+            выходToolStripMenuItem.Size = new Size(172, 22);
+            выходToolStripMenuItem.Text = "Выход";
             // 
             // справочникиToolStripMenuItem
             // 
@@ -202,13 +202,13 @@
             // справкаF1ToolStripMenuItem
             // 
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
-            справкаF1ToolStripMenuItem.Size = new Size(183, 22);
-            справкаF1ToolStripMenuItem.Text = "Справка                 F1";
+            справкаF1ToolStripMenuItem.Size = new Size(149, 22);
+            справкаF1ToolStripMenuItem.Text = "Справка";
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(183, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(149, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
@@ -382,8 +382,8 @@
             // 
             // panelLeftContainer
             // 
-            panelLeftContainer.Controls.Add(panelGreenMode);
             panelLeftContainer.Controls.Add(panelRedMode);
+            panelLeftContainer.Controls.Add(panelGreenMode);
             panelLeftContainer.Dock = DockStyle.Fill;
             panelLeftContainer.Location = new Point(3, 3);
             panelLeftContainer.Name = "panelLeftContainer";
@@ -525,11 +525,11 @@
             // 
             lblCodeWeight.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCodeWeight.AutoSize = true;
-            lblCodeWeight.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCodeWeight.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeWeight.ForeColor = Color.White;
-            lblCodeWeight.Location = new Point(269, 129);
+            lblCodeWeight.Location = new Point(241, 112);
             lblCodeWeight.Name = "lblCodeWeight";
-            lblCodeWeight.Size = new Size(56, 65);
+            lblCodeWeight.Size = new Size(74, 86);
             lblCodeWeight.TabIndex = 4;
             lblCodeWeight.Text = "0";
             // 
@@ -539,7 +539,7 @@
             lblCodeAmount.AutoSize = true;
             lblCodeAmount.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeAmount.ForeColor = Color.White;
-            lblCodeAmount.Location = new Point(269, 58);
+            lblCodeAmount.Location = new Point(250, 58);
             lblCodeAmount.Name = "lblCodeAmount";
             lblCodeAmount.Size = new Size(56, 65);
             lblCodeAmount.TabIndex = 3;
@@ -763,6 +763,7 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Складской Терминал v1.0";
+            Load += MainForm_Load_1;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);

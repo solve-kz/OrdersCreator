@@ -864,5 +864,10 @@ namespace OrdersCreator.UI
         MessageBoxButtons.OK,
         MessageBoxIcon.Information);
         }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
