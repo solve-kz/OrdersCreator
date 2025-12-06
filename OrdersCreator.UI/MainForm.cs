@@ -94,7 +94,7 @@ namespace OrdersCreator.UI
         }
 
 
-        private void LoadCustomersForMain()
+        private void LoadCustomersForMain(int? selectedCustomerId = null)
         {
             var customers = _customerService
                 .GetAll()
@@ -104,8 +104,15 @@ namespace OrdersCreator.UI
             cmbCustomers.DataSource = customers;
             cmbCustomers.DisplayMember = nameof(Customer.Name);
             cmbCustomers.ValueMember = nameof(Customer.Id);
-
-            cmbCustomers.SelectedIndex = -1;
+            if (selectedCustomerId.HasValue)
+            {
+                var selectedIndex = customers.FindIndex(c => c.Id == selectedCustomerId.Value);
+                cmbCustomers.SelectedIndex = selectedIndex;
+            }
+            else
+            {
+                cmbCustomers.SelectedIndex = -1;
+            }
         }
 
         private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,9 +141,10 @@ namespace OrdersCreator.UI
 
         private void OpenReferencesEditor(FormRefEditTab tab)
         {
+            var currentCustomerId = _orderService.CurrentOrder?.CustomerId;
             FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService, tab);
             refEditForm.ShowDialog();
-            LoadCustomersForMain();
+            LoadCustomersForMain(currentCustomerId);
             LoadCategoriesForNewProduct();
         }
 
