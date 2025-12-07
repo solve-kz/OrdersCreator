@@ -43,9 +43,9 @@
             webView21.CreationProperties = null;
             webView21.DefaultBackgroundColor = Color.White;
             webView21.Dock = DockStyle.Fill;
-            webView21.Location = new Point(0, 54);
+            webView21.Location = new Point(5, 59);
             webView21.Name = "webView21";
-            webView21.Size = new Size(884, 507);
+            webView21.Size = new Size(874, 497);
             webView21.TabIndex = 1;
             webView21.ZoomFactor = 1D;
             // 
@@ -57,10 +57,10 @@
             flowLayoutPanelNavigation.Controls.Add(btnBack);
             flowLayoutPanelNavigation.Controls.Add(btnForward);
             flowLayoutPanelNavigation.Dock = DockStyle.Top;
-            flowLayoutPanelNavigation.Location = new Point(0, 0);
+            flowLayoutPanelNavigation.Location = new Point(5, 5);
             flowLayoutPanelNavigation.Name = "flowLayoutPanelNavigation";
             flowLayoutPanelNavigation.Padding = new Padding(8, 8, 0, 8);
-            flowLayoutPanelNavigation.Size = new Size(884, 54);
+            flowLayoutPanelNavigation.Size = new Size(874, 54);
             flowLayoutPanelNavigation.TabIndex = 0;
             // 
             // btnHome
@@ -106,6 +106,7 @@
             Controls.Add(flowLayoutPanelNavigation);
             MinimizeBox = false;
             Name = "FormHelp";
+            Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterParent;
             Text = "Справка";
             Load += HelpForm_Load;

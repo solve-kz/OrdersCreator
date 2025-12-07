@@ -44,6 +44,7 @@
             хранилищеНастройкиToolStripMenuItem = new ToolStripMenuItem();
             помощьToolStripMenuItem = new ToolStripMenuItem();
             справкаF1ToolStripMenuItem = new ToolStripMenuItem();
+            горячиеКлавишиToolStripMenuItem = new ToolStripMenuItem();
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             cmbCustomers = new ComboBox();
@@ -55,11 +56,6 @@
             panelMainBody = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewOrderLines = new DataGridView();
-            RowNumber = new DataGridViewTextBoxColumn();
-            ProductCode = new DataGridViewTextBoxColumn();
-            ProductTitle = new DataGridViewTextBoxColumn();
-            ProductWeight = new DataGridViewTextBoxColumn();
-            RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
             panelGreenMode = new Panel();
             tlpGreenMode = new TableLayoutPanel();
@@ -93,7 +89,11 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
-            горячиеКлавишиToolStripMenuItem = new ToolStripMenuItem();
+            RowNumber = new DataGridViewTextBoxColumn();
+            ProductCode = new DataGridViewTextBoxColumn();
+            ProductTitle = new DataGridViewTextBoxColumn();
+            ProductWeight = new DataGridViewTextBoxColumn();
+            RowDelete = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -119,9 +119,9 @@
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, справочникиToolStripMenuItem, настройкаToolStripMenuItem, помощьToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Location = new Point(5, 5);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1184, 24);
+            menuStrip1.Size = new Size(1174, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -176,25 +176,25 @@
             категорииToolStripMenuItem.Image = Properties.Resources.categories;
             категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
             категорииToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.C;
-            категорииToolStripMenuItem.Size = new Size(145, 22);
+            категорииToolStripMenuItem.Size = new Size(218, 22);
             категорииToolStripMenuItem.Text = "Категории";
-            //
+            // 
             // товарыToolStripMenuItem
-            //
+            // 
             товарыToolStripMenuItem.Image = Properties.Resources.products;
             товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
             товарыToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.T;
-            товарыToolStripMenuItem.Size = new Size(145, 22);
+            товарыToolStripMenuItem.Size = new Size(218, 22);
             товарыToolStripMenuItem.Text = "Товары";
-            //
+            // 
             // контрагентыToolStripMenuItem
-            //
+            // 
             контрагентыToolStripMenuItem.Image = Properties.Resources.customers;
             контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
             контрагентыToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.K;
-            контрагентыToolStripMenuItem.Size = new Size(145, 22);
+            контрагентыToolStripMenuItem.Size = new Size(218, 22);
             контрагентыToolStripMenuItem.Text = "Контрагенты";
-            //
+            // 
             // настройкаToolStripMenuItem
             // 
             настройкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { общиеНастройкиToolStripMenuItem, отчетыНастройкиToolStripMenuItem, хранилищеНастройкиToolStripMenuItem });
@@ -206,7 +206,7 @@
             // 
             общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
             общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
-            общиеНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            общиеНастройкиToolStripMenuItem.Size = new Size(214, 22);
             общиеНастройкиToolStripMenuItem.Text = "Общие";
             общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
             // 
@@ -214,7 +214,7 @@
             // 
             отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
             отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
-            отчетыНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            отчетыНастройкиToolStripMenuItem.Size = new Size(214, 22);
             отчетыНастройкиToolStripMenuItem.Text = "Отчёты";
             отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
             // 
@@ -222,29 +222,35 @@
             // 
             хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
             хранилищеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
-            хранилищеНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            хранилищеНастройкиToolStripMenuItem.Size = new Size(214, 22);
             хранилищеНастройкиToolStripMenuItem.Text = "Хранилище";
             хранилищеНастройкиToolStripMenuItem.Click += ХранилищеНастройкиToolStripMenuItem_Click;
-            //
+            // 
             // помощьToolStripMenuItem
             // 
             помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, горячиеКлавишиToolStripMenuItem, оПрограммеToolStripMenuItem });
             помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             помощьToolStripMenuItem.Size = new Size(68, 20);
             помощьToolStripMenuItem.Text = "Помощь";
-            //
+            // 
             // справкаF1ToolStripMenuItem
-            //
+            // 
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
             справкаF1ToolStripMenuItem.ShortcutKeys = Keys.F1;
-            справкаF1ToolStripMenuItem.Size = new Size(149, 22);
+            справкаF1ToolStripMenuItem.Size = new Size(173, 22);
             справкаF1ToolStripMenuItem.Text = "Справка";
             справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
+            // 
+            // горячиеКлавишиToolStripMenuItem
+            // 
+            горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
+            горячиеКлавишиToolStripMenuItem.Size = new Size(173, 22);
+            горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(180, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(173, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
@@ -253,9 +259,9 @@
             panel1.Controls.Add(cmbCustomers);
             panel1.Controls.Add(lblCustomer);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 24);
+            panel1.Location = new Point(5, 29);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1184, 60);
+            panel1.Size = new Size(1174, 60);
             panel1.TabIndex = 1;
             // 
             // cmbCustomers
@@ -265,7 +271,7 @@
             cmbCustomers.FormattingEnabled = true;
             cmbCustomers.Location = new Point(134, 17);
             cmbCustomers.Name = "cmbCustomers";
-            cmbCustomers.Size = new Size(1038, 25);
+            cmbCustomers.Size = new Size(1028, 25);
             cmbCustomers.TabIndex = 1;
             cmbCustomers.SelectedValueChanged += cmbCustomers_SelectedValueChanged;
             // 
@@ -287,9 +293,9 @@
             panel2.Controls.Add(btnCreateReport);
             panel2.Controls.Add(btnCancel);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 681);
+            panel2.Location = new Point(5, 676);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1184, 80);
+            panel2.Size = new Size(1174, 80);
             panel2.TabIndex = 2;
             // 
             // lblResults
@@ -297,7 +303,7 @@
             lblResults.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblResults.AutoSize = true;
             lblResults.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblResults.Location = new Point(741, 26);
+            lblResults.Location = new Point(731, 26);
             lblResults.Name = "lblResults";
             lblResults.Size = new Size(290, 30);
             lblResults.TabIndex = 2;
@@ -340,9 +346,9 @@
             // 
             panelMainBody.Controls.Add(tableLayoutPanel1);
             panelMainBody.Dock = DockStyle.Fill;
-            panelMainBody.Location = new Point(0, 84);
+            panelMainBody.Location = new Point(5, 89);
             panelMainBody.Name = "panelMainBody";
-            panelMainBody.Size = new Size(1184, 597);
+            panelMainBody.Size = new Size(1174, 587);
             panelMainBody.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -357,7 +363,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1184, 597);
+            tableLayoutPanel1.Size = new Size(1174, 587);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridViewOrderLines
@@ -375,46 +381,8 @@
             dataGridViewOrderLines.ReadOnly = true;
             dataGridViewOrderLines.RowHeadersVisible = false;
             dataGridViewOrderLines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrderLines.Size = new Size(705, 591);
+            dataGridViewOrderLines.Size = new Size(688, 581);
             dataGridViewOrderLines.TabIndex = 0;
-            // 
-            // RowNumber
-            // 
-            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            RowNumber.HeaderText = "№";
-            RowNumber.Name = "RowNumber";
-            RowNumber.ReadOnly = true;
-            RowNumber.Width = 48;
-            // 
-            // ProductCode
-            // 
-            ProductCode.FillWeight = 80F;
-            ProductCode.HeaderText = "Код";
-            ProductCode.Name = "ProductCode";
-            ProductCode.ReadOnly = true;
-            // 
-            // ProductTitle
-            // 
-            ProductTitle.FillWeight = 300F;
-            ProductTitle.HeaderText = "Наименование";
-            ProductTitle.MinimumWidth = 390;
-            ProductTitle.Name = "ProductTitle";
-            ProductTitle.ReadOnly = true;
-            // 
-            // ProductWeight
-            // 
-            ProductWeight.FillWeight = 80F;
-            ProductWeight.HeaderText = "Вес";
-            ProductWeight.Name = "ProductWeight";
-            ProductWeight.ReadOnly = true;
-            // 
-            // RowDelete
-            // 
-            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            RowDelete.HeaderText = "Удл.";
-            RowDelete.Name = "RowDelete";
-            RowDelete.ReadOnly = true;
-            RowDelete.Width = 38;
             // 
             // panelLeftContainer
             // 
@@ -423,7 +391,7 @@
             panelLeftContainer.Dock = DockStyle.Fill;
             panelLeftContainer.Location = new Point(3, 3);
             panelLeftContainer.Name = "panelLeftContainer";
-            panelLeftContainer.Size = new Size(474, 591);
+            panelLeftContainer.Size = new Size(474, 581);
             panelLeftContainer.TabIndex = 1;
             // 
             // panelGreenMode
@@ -434,7 +402,7 @@
             panelGreenMode.Location = new Point(0, 0);
             panelGreenMode.Name = "panelGreenMode";
             panelGreenMode.Padding = new Padding(10);
-            panelGreenMode.Size = new Size(474, 591);
+            panelGreenMode.Size = new Size(474, 581);
             panelGreenMode.TabIndex = 0;
             // 
             // tlpGreenMode
@@ -451,7 +419,7 @@
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpGreenMode.Size = new Size(454, 571);
+            tlpGreenMode.Size = new Size(454, 561);
             tlpGreenMode.TabIndex = 5;
             // 
             // panelReady
@@ -462,7 +430,7 @@
             panelReady.Dock = DockStyle.Fill;
             panelReady.Location = new Point(3, 3);
             panelReady.Name = "panelReady";
-            panelReady.Size = new Size(448, 136);
+            panelReady.Size = new Size(448, 134);
             panelReady.TabIndex = 4;
             // 
             // imgReady
@@ -493,9 +461,9 @@
             panel4.Controls.Add(lblCurrentTitle);
             panel4.Controls.Add(panel5);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 145);
+            panel4.Location = new Point(3, 143);
             panel4.Name = "panel4";
-            panel4.Size = new Size(448, 193);
+            panel4.Size = new Size(448, 190);
             panel4.TabIndex = 1;
             // 
             // lblCurrentWeight
@@ -552,9 +520,9 @@
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label3);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 344);
+            panel3.Location = new Point(3, 339);
             panel3.Name = "panel3";
-            panel3.Size = new Size(448, 224);
+            panel3.Size = new Size(448, 219);
             panel3.TabIndex = 0;
             // 
             // lblCodeWeight
@@ -625,7 +593,7 @@
             panelRedMode.Location = new Point(0, 0);
             panelRedMode.Name = "panelRedMode";
             panelRedMode.Padding = new Padding(10);
-            panelRedMode.Size = new Size(474, 591);
+            panelRedMode.Size = new Size(474, 581);
             panelRedMode.TabIndex = 5;
             panelRedMode.Visible = false;
             // 
@@ -643,7 +611,7 @@
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpRedMode.Size = new Size(454, 571);
+            tlpRedMode.Size = new Size(454, 561);
             tlpRedMode.TabIndex = 4;
             // 
             // panelRedHeader
@@ -654,7 +622,7 @@
             panelRedHeader.Dock = DockStyle.Fill;
             panelRedHeader.Location = new Point(3, 3);
             panelRedHeader.Name = "panelRedHeader";
-            panelRedHeader.Size = new Size(448, 136);
+            panelRedHeader.Size = new Size(448, 134);
             panelRedHeader.TabIndex = 0;
             // 
             // imgRedWarning
@@ -687,9 +655,9 @@
             panel6.Controls.Add(label7);
             panel6.Dock = DockStyle.Fill;
             panel6.ForeColor = Color.White;
-            panel6.Location = new Point(3, 145);
+            panel6.Location = new Point(3, 143);
             panel6.Name = "panel6";
-            panel6.Size = new Size(448, 193);
+            panel6.Size = new Size(448, 190);
             panel6.TabIndex = 1;
             // 
             // tbNewProductWeight
@@ -751,9 +719,9 @@
             panel7.Dock = DockStyle.Fill;
             panel7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             panel7.ForeColor = Color.White;
-            panel7.Location = new Point(3, 344);
+            panel7.Location = new Point(3, 339);
             panel7.Name = "panel7";
-            panel7.Size = new Size(448, 224);
+            panel7.Size = new Size(448, 219);
             panel7.TabIndex = 2;
             // 
             // btnNewProductAdd
@@ -803,11 +771,43 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
-            // горячиеКлавишиToolStripMenuItem
+            // RowNumber
             // 
-            горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
-            горячиеКлавишиToolStripMenuItem.Size = new Size(180, 22);
-            горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
+            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowNumber.HeaderText = "№";
+            RowNumber.Name = "RowNumber";
+            RowNumber.ReadOnly = true;
+            RowNumber.Width = 48;
+            // 
+            // ProductCode
+            // 
+            ProductCode.FillWeight = 80F;
+            ProductCode.HeaderText = "Код";
+            ProductCode.Name = "ProductCode";
+            ProductCode.ReadOnly = true;
+            // 
+            // ProductTitle
+            // 
+            ProductTitle.FillWeight = 300F;
+            ProductTitle.HeaderText = "Наименование";
+            ProductTitle.MinimumWidth = 370;
+            ProductTitle.Name = "ProductTitle";
+            ProductTitle.ReadOnly = true;
+            // 
+            // ProductWeight
+            // 
+            ProductWeight.FillWeight = 80F;
+            ProductWeight.HeaderText = "Вес";
+            ProductWeight.Name = "ProductWeight";
+            ProductWeight.ReadOnly = true;
+            // 
+            // RowDelete
+            // 
+            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowDelete.HeaderText = "Удл.";
+            RowDelete.Name = "RowDelete";
+            RowDelete.ReadOnly = true;
+            RowDelete.Width = 38;
             // 
             // MainForm
             // 
@@ -823,6 +823,7 @@
             KeyPreview = true;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
+            Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Складской Терминал v1.0";
             Load += MainForm_Load_1;
@@ -913,11 +914,6 @@
         private ToolStripMenuItem выходToolStripMenuItem;
         private ToolStripMenuItem создатьToolStripMenuItem;
         private PictureBox imgReady;
-        private DataGridViewTextBoxColumn RowNumber;
-        private DataGridViewTextBoxColumn ProductCode;
-        private DataGridViewTextBoxColumn ProductTitle;
-        private DataGridViewTextBoxColumn ProductWeight;
-        private DataGridViewButtonColumn RowDelete;
         private ToolStripMenuItem категорииToolStripMenuItem;
         private ToolStripMenuItem товарыToolStripMenuItem;
         private ToolStripMenuItem контрагентыToolStripMenuItem;
@@ -928,5 +924,10 @@
         private ToolStripMenuItem справкаF1ToolStripMenuItem;
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
         private ToolStripMenuItem горячиеКлавишиToolStripMenuItem;
+        private DataGridViewTextBoxColumn RowNumber;
+        private DataGridViewTextBoxColumn ProductCode;
+        private DataGridViewTextBoxColumn ProductTitle;
+        private DataGridViewTextBoxColumn ProductWeight;
+        private DataGridViewButtonColumn RowDelete;
     }
 }
