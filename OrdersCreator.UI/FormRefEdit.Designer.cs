@@ -162,10 +162,10 @@ namespace OrdersCreator.UI
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             tabControl1.ItemSize = new Size(300, 40);
-            tabControl1.Location = new Point(0, 5);
+            tabControl1.Location = new Point(5, 5);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(984, 756);
+            tabControl1.Size = new Size(974, 751);
             tabControl1.TabIndex = 1;
             // 
             // tabCategory
@@ -174,7 +174,7 @@ namespace OrdersCreator.UI
             tabCategory.Location = new Point(4, 44);
             tabCategory.Name = "tabCategory";
             tabCategory.Padding = new Padding(3);
-            tabCategory.Size = new Size(976, 713);
+            tabCategory.Size = new Size(966, 703);
             tabCategory.TabIndex = 0;
             tabCategory.Text = "Категории товаров";
             tabCategory.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@ namespace OrdersCreator.UI
             tlpCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpCategories.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tlpCategories.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tlpCategories.Size = new Size(970, 707);
+            tlpCategories.Size = new Size(960, 697);
             tlpCategories.TabIndex = 0;
             // 
             // panelTopCategories
@@ -203,7 +203,7 @@ namespace OrdersCreator.UI
             panelTopCategories.Dock = DockStyle.Fill;
             panelTopCategories.Location = new Point(3, 3);
             panelTopCategories.Name = "panelTopCategories";
-            panelTopCategories.Size = new Size(964, 14);
+            panelTopCategories.Size = new Size(954, 14);
             panelTopCategories.TabIndex = 0;
             panelTopCategories.Visible = false;
             // 
@@ -213,7 +213,7 @@ namespace OrdersCreator.UI
             panelGridCategories.Dock = DockStyle.Fill;
             panelGridCategories.Location = new Point(3, 23);
             panelGridCategories.Name = "panelGridCategories";
-            panelGridCategories.Size = new Size(964, 541);
+            panelGridCategories.Size = new Size(954, 531);
             panelGridCategories.TabIndex = 1;
             // 
             // dataGridViewCategories
@@ -247,7 +247,7 @@ namespace OrdersCreator.UI
             dataGridViewCategories.ReadOnly = true;
             dataGridViewCategories.RowHeadersVisible = false;
             dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewCategories.Size = new Size(964, 541);
+            dataGridViewCategories.Size = new Size(954, 531);
             dataGridViewCategories.TabIndex = 1;
             // 
             // RowNumber
@@ -270,10 +270,10 @@ namespace OrdersCreator.UI
             panelEditCategories.Controls.Add(tlpCategoriesEdit);
             panelEditCategories.Dock = DockStyle.Fill;
             panelEditCategories.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            panelEditCategories.Location = new Point(3, 570);
+            panelEditCategories.Location = new Point(3, 560);
             panelEditCategories.Name = "panelEditCategories";
             panelEditCategories.Padding = new Padding(10);
-            panelEditCategories.Size = new Size(964, 64);
+            panelEditCategories.Size = new Size(954, 64);
             panelEditCategories.TabIndex = 2;
             // 
             // tlpCategoriesEdit
@@ -288,7 +288,7 @@ namespace OrdersCreator.UI
             tlpCategoriesEdit.Name = "tlpCategoriesEdit";
             tlpCategoriesEdit.RowCount = 1;
             tlpCategoriesEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpCategoriesEdit.Size = new Size(944, 44);
+            tlpCategoriesEdit.Size = new Size(934, 44);
             tlpCategoriesEdit.TabIndex = 0;
             // 
             // labelCategoryName
@@ -309,7 +309,7 @@ namespace OrdersCreator.UI
             textBoxCategoryName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxCategoryName.Location = new Point(116, 9);
             textBoxCategoryName.Name = "textBoxCategoryName";
-            textBoxCategoryName.Size = new Size(825, 25);
+            textBoxCategoryName.Size = new Size(815, 25);
             textBoxCategoryName.TabIndex = 1;
             // 
             // panelButtonsCategories
@@ -317,10 +317,10 @@ namespace OrdersCreator.UI
             panelButtonsCategories.BackColor = Color.LightGray;
             panelButtonsCategories.Controls.Add(flowLayoutPanelCategoriesButtons);
             panelButtonsCategories.Dock = DockStyle.Fill;
-            panelButtonsCategories.Location = new Point(3, 640);
+            panelButtonsCategories.Location = new Point(3, 630);
             panelButtonsCategories.Name = "panelButtonsCategories";
             panelButtonsCategories.Padding = new Padding(10);
-            panelButtonsCategories.Size = new Size(964, 64);
+            panelButtonsCategories.Size = new Size(954, 64);
             panelButtonsCategories.TabIndex = 3;
             // 
             // flowLayoutPanelCategoriesButtons
@@ -332,7 +332,7 @@ namespace OrdersCreator.UI
             flowLayoutPanelCategoriesButtons.Dock = DockStyle.Bottom;
             flowLayoutPanelCategoriesButtons.Location = new Point(10, 14);
             flowLayoutPanelCategoriesButtons.Name = "flowLayoutPanelCategoriesButtons";
-            flowLayoutPanelCategoriesButtons.Size = new Size(944, 40);
+            flowLayoutPanelCategoriesButtons.Size = new Size(934, 40);
             flowLayoutPanelCategoriesButtons.TabIndex = 0;
             flowLayoutPanelCategoriesButtons.WrapContents = false;
             // 
@@ -402,7 +402,7 @@ namespace OrdersCreator.UI
             tabProducts.Location = new Point(4, 44);
             tabProducts.Name = "tabProducts";
             tabProducts.Padding = new Padding(3);
-            tabProducts.Size = new Size(976, 708);
+            tabProducts.Size = new Size(970, 705);
             tabProducts.TabIndex = 1;
             tabProducts.Text = "Штрих-коды товаров";
             tabProducts.UseVisualStyleBackColor = true;
@@ -423,7 +423,7 @@ namespace OrdersCreator.UI
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tlpBarcodes.Size = new Size(970, 702);
+            tlpBarcodes.Size = new Size(964, 699);
             tlpBarcodes.TabIndex = 0;
             // 
             // panelTopBarcodes
@@ -433,7 +433,7 @@ namespace OrdersCreator.UI
             panelTopBarcodes.Location = new Point(3, 3);
             panelTopBarcodes.Name = "panelTopBarcodes";
             panelTopBarcodes.Padding = new Padding(10, 10, 10, 0);
-            panelTopBarcodes.Size = new Size(964, 54);
+            panelTopBarcodes.Size = new Size(958, 54);
             panelTopBarcodes.TabIndex = 0;
             // 
             // tlpBarcodesTop
@@ -456,7 +456,7 @@ namespace OrdersCreator.UI
             tlpBarcodesTop.Name = "tlpBarcodesTop";
             tlpBarcodesTop.RowCount = 1;
             tlpBarcodesTop.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBarcodesTop.Size = new Size(944, 44);
+            tlpBarcodesTop.Size = new Size(938, 44);
             tlpBarcodesTop.TabIndex = 0;
             // 
             // lblFilterCategory
@@ -539,7 +539,7 @@ namespace OrdersCreator.UI
             textBoxSearch.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxSearch.Location = new Point(637, 9);
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(218, 25);
+            textBoxSearch.Size = new Size(212, 25);
             textBoxSearch.TabIndex = 3;
             // 
             // btnSearch
@@ -551,7 +551,7 @@ namespace OrdersCreator.UI
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(861, 7);
+            btnSearch.Location = new Point(855, 7);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(80, 30);
             btnSearch.TabIndex = 4;
@@ -564,7 +564,7 @@ namespace OrdersCreator.UI
             panelGridBarcodes.Dock = DockStyle.Fill;
             panelGridBarcodes.Location = new Point(3, 63);
             panelGridBarcodes.Name = "panelGridBarcodes";
-            panelGridBarcodes.Size = new Size(964, 466);
+            panelGridBarcodes.Size = new Size(958, 463);
             panelGridBarcodes.TabIndex = 1;
             // 
             // dataGridViewProducts
@@ -597,7 +597,7 @@ namespace OrdersCreator.UI
             dataGridViewProducts.ReadOnly = true;
             dataGridViewProducts.RowHeadersVisible = false;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducts.Size = new Size(964, 466);
+            dataGridViewProducts.Size = new Size(958, 463);
             dataGridViewProducts.TabIndex = 2;
             // 
             // ProductNumber
@@ -635,10 +635,10 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Controls.Add(tlpBarcodesEditContainer);
             panelEditBarcodes.Dock = DockStyle.Fill;
             panelEditBarcodes.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            panelEditBarcodes.Location = new Point(3, 535);
+            panelEditBarcodes.Location = new Point(3, 532);
             panelEditBarcodes.Name = "panelEditBarcodes";
             panelEditBarcodes.Padding = new Padding(10);
-            panelEditBarcodes.Size = new Size(964, 94);
+            panelEditBarcodes.Size = new Size(958, 94);
             panelEditBarcodes.TabIndex = 2;
             // 
             // tlpBarcodesEditContainer
@@ -653,7 +653,7 @@ namespace OrdersCreator.UI
             tlpBarcodesEditContainer.RowCount = 2;
             tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
             tlpBarcodesEditContainer.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpBarcodesEditContainer.Size = new Size(944, 74);
+            tlpBarcodesEditContainer.Size = new Size(938, 74);
             tlpBarcodesEditContainer.TabIndex = 0;
             // 
             // tlpBarcodeName
@@ -668,7 +668,7 @@ namespace OrdersCreator.UI
             tlpBarcodeName.Name = "tlpBarcodeName";
             tlpBarcodeName.RowCount = 1;
             tlpBarcodeName.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpBarcodeName.Size = new Size(938, 30);
+            tlpBarcodeName.Size = new Size(932, 30);
             tlpBarcodeName.TabIndex = 0;
             // 
             // label4
@@ -690,7 +690,7 @@ namespace OrdersCreator.UI
             textBoxBarcodeName.Location = new Point(116, 5);
             textBoxBarcodeName.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeName.Name = "textBoxBarcodeName";
-            textBoxBarcodeName.Size = new Size(812, 25);
+            textBoxBarcodeName.Size = new Size(806, 25);
             textBoxBarcodeName.TabIndex = 1;
             // 
             // tlpBarcodesEdit
@@ -709,7 +709,7 @@ namespace OrdersCreator.UI
             tlpBarcodesEdit.Name = "tlpBarcodesEdit";
             tlpBarcodesEdit.RowCount = 1;
             tlpBarcodesEdit.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpBarcodesEdit.Size = new Size(938, 32);
+            tlpBarcodesEdit.Size = new Size(932, 32);
             tlpBarcodesEdit.TabIndex = 1;
             // 
             // label3
@@ -731,7 +731,7 @@ namespace OrdersCreator.UI
             textBoxBarcodeCode.Location = new Point(92, 5);
             textBoxBarcodeCode.Margin = new Padding(3, 3, 10, 3);
             textBoxBarcodeCode.Name = "textBoxBarcodeCode";
-            textBoxBarcodeCode.Size = new Size(370, 25);
+            textBoxBarcodeCode.Size = new Size(367, 25);
             textBoxBarcodeCode.TabIndex = 1;
             // 
             // label5
@@ -739,7 +739,7 @@ namespace OrdersCreator.UI
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(475, 8);
+            label5.Location = new Point(472, 8);
             label5.Name = "label5";
             label5.Size = new Size(76, 19);
             label5.TabIndex = 2;
@@ -750,9 +750,9 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 4);
+            comboBoxBarcodeCategory.Location = new Point(554, 4);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
-            comboBoxBarcodeCategory.Size = new Size(378, 25);
+            comboBoxBarcodeCategory.Size = new Size(375, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
             // 
             // panelButtonsBarcodes
@@ -760,10 +760,10 @@ namespace OrdersCreator.UI
             panelButtonsBarcodes.BackColor = Color.LightGray;
             panelButtonsBarcodes.Controls.Add(tlpBarcodesButtons);
             panelButtonsBarcodes.Dock = DockStyle.Fill;
-            panelButtonsBarcodes.Location = new Point(3, 635);
+            panelButtonsBarcodes.Location = new Point(3, 632);
             panelButtonsBarcodes.Name = "panelButtonsBarcodes";
             panelButtonsBarcodes.Padding = new Padding(10);
-            panelButtonsBarcodes.Size = new Size(964, 64);
+            panelButtonsBarcodes.Size = new Size(958, 64);
             panelButtonsBarcodes.TabIndex = 3;
             // 
             // tlpBarcodesButtons
@@ -778,7 +778,7 @@ namespace OrdersCreator.UI
             tlpBarcodesButtons.Name = "tlpBarcodesButtons";
             tlpBarcodesButtons.RowCount = 1;
             tlpBarcodesButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBarcodesButtons.Size = new Size(944, 44);
+            tlpBarcodesButtons.Size = new Size(938, 44);
             tlpBarcodesButtons.TabIndex = 0;
             // 
             // flowLayoutPanelImport
@@ -789,7 +789,7 @@ namespace OrdersCreator.UI
             flowLayoutPanelImport.Location = new Point(3, 3);
             flowLayoutPanelImport.Name = "flowLayoutPanelImport";
             flowLayoutPanelImport.Padding = new Padding(0, 5, 0, 0);
-            flowLayoutPanelImport.Size = new Size(371, 38);
+            flowLayoutPanelImport.Size = new Size(369, 38);
             flowLayoutPanelImport.TabIndex = 0;
             flowLayoutPanelImport.WrapContents = false;
             // 
@@ -831,7 +831,7 @@ namespace OrdersCreator.UI
             flowLayoutPanelCrud.Controls.Add(btnProductSave);
             flowLayoutPanelCrud.Controls.Add(btnProductDel);
             flowLayoutPanelCrud.Controls.Add(btnProductCancel);
-            flowLayoutPanelCrud.Location = new Point(409, 3);
+            flowLayoutPanelCrud.Location = new Point(403, 3);
             flowLayoutPanelCrud.Name = "flowLayoutPanelCrud";
             flowLayoutPanelCrud.Size = new Size(532, 38);
             flowLayoutPanelCrud.TabIndex = 1;
@@ -902,7 +902,7 @@ namespace OrdersCreator.UI
             tabCustomers.Controls.Add(tlpCustomers);
             tabCustomers.Location = new Point(4, 44);
             tabCustomers.Name = "tabCustomers";
-            tabCustomers.Size = new Size(976, 713);
+            tabCustomers.Size = new Size(970, 705);
             tabCustomers.TabIndex = 2;
             tabCustomers.Text = "Контрагенты";
             tabCustomers.UseVisualStyleBackColor = true;
@@ -923,7 +923,7 @@ namespace OrdersCreator.UI
             tlpCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpCustomers.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tlpCustomers.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tlpCustomers.Size = new Size(976, 713);
+            tlpCustomers.Size = new Size(970, 705);
             tlpCustomers.TabIndex = 0;
             // 
             // panelTopCustomers
@@ -933,7 +933,7 @@ namespace OrdersCreator.UI
             panelTopCustomers.Location = new Point(3, 3);
             panelTopCustomers.Name = "panelTopCustomers";
             panelTopCustomers.Padding = new Padding(10, 10, 10, 0);
-            panelTopCustomers.Size = new Size(970, 54);
+            panelTopCustomers.Size = new Size(964, 54);
             panelTopCustomers.TabIndex = 0;
             // 
             // tlpCustomersTop
@@ -950,7 +950,7 @@ namespace OrdersCreator.UI
             tlpCustomersTop.Name = "tlpCustomersTop";
             tlpCustomersTop.RowCount = 1;
             tlpCustomersTop.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpCustomersTop.Size = new Size(950, 44);
+            tlpCustomersTop.Size = new Size(944, 44);
             tlpCustomersTop.TabIndex = 0;
             // 
             // lblCustomerSearch
@@ -995,7 +995,7 @@ namespace OrdersCreator.UI
             panelGridCustomers.Dock = DockStyle.Fill;
             panelGridCustomers.Location = new Point(3, 63);
             panelGridCustomers.Name = "panelGridCustomers";
-            panelGridCustomers.Size = new Size(970, 507);
+            panelGridCustomers.Size = new Size(964, 499);
             panelGridCustomers.TabIndex = 1;
             // 
             // dataGridViewCustomers
@@ -1028,7 +1028,7 @@ namespace OrdersCreator.UI
             dataGridViewCustomers.ReadOnly = true;
             dataGridViewCustomers.RowHeadersVisible = false;
             dataGridViewCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewCustomers.Size = new Size(970, 507);
+            dataGridViewCustomers.Size = new Size(964, 499);
             dataGridViewCustomers.TabIndex = 1;
             // 
             // CustomerNumber
@@ -1052,10 +1052,10 @@ namespace OrdersCreator.UI
             panelEditCustomers.Controls.Add(tlpCustomersEdit);
             panelEditCustomers.Dock = DockStyle.Fill;
             panelEditCustomers.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            panelEditCustomers.Location = new Point(3, 576);
+            panelEditCustomers.Location = new Point(3, 568);
             panelEditCustomers.Name = "panelEditCustomers";
             panelEditCustomers.Padding = new Padding(10);
-            panelEditCustomers.Size = new Size(970, 64);
+            panelEditCustomers.Size = new Size(964, 64);
             panelEditCustomers.TabIndex = 2;
             // 
             // tlpCustomersEdit
@@ -1070,7 +1070,7 @@ namespace OrdersCreator.UI
             tlpCustomersEdit.Name = "tlpCustomersEdit";
             tlpCustomersEdit.RowCount = 1;
             tlpCustomersEdit.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpCustomersEdit.Size = new Size(950, 44);
+            tlpCustomersEdit.Size = new Size(944, 44);
             tlpCustomersEdit.TabIndex = 0;
             // 
             // label6
@@ -1091,7 +1091,7 @@ namespace OrdersCreator.UI
             textBoxCustomerName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBoxCustomerName.Location = new Point(116, 9);
             textBoxCustomerName.Name = "textBoxCustomerName";
-            textBoxCustomerName.Size = new Size(831, 25);
+            textBoxCustomerName.Size = new Size(825, 25);
             textBoxCustomerName.TabIndex = 1;
             // 
             // panelButtonsCustomers
@@ -1099,10 +1099,10 @@ namespace OrdersCreator.UI
             panelButtonsCustomers.BackColor = Color.LightGray;
             panelButtonsCustomers.Controls.Add(tlpCustomersButtons);
             panelButtonsCustomers.Dock = DockStyle.Fill;
-            panelButtonsCustomers.Location = new Point(3, 646);
+            panelButtonsCustomers.Location = new Point(3, 638);
             panelButtonsCustomers.Name = "panelButtonsCustomers";
             panelButtonsCustomers.Padding = new Padding(10);
-            panelButtonsCustomers.Size = new Size(970, 64);
+            panelButtonsCustomers.Size = new Size(964, 64);
             panelButtonsCustomers.TabIndex = 3;
             // 
             // tlpCustomersButtons
@@ -1117,7 +1117,7 @@ namespace OrdersCreator.UI
             tlpCustomersButtons.Name = "tlpCustomersButtons";
             tlpCustomersButtons.RowCount = 1;
             tlpCustomersButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpCustomersButtons.Size = new Size(950, 44);
+            tlpCustomersButtons.Size = new Size(944, 44);
             tlpCustomersButtons.TabIndex = 0;
             // 
             // flowLayoutPanelCustomersImport
@@ -1128,7 +1128,7 @@ namespace OrdersCreator.UI
             flowLayoutPanelCustomersImport.Location = new Point(3, 3);
             flowLayoutPanelCustomersImport.Name = "flowLayoutPanelCustomersImport";
             flowLayoutPanelCustomersImport.Padding = new Padding(0, 5, 0, 0);
-            flowLayoutPanelCustomersImport.Size = new Size(374, 38);
+            flowLayoutPanelCustomersImport.Size = new Size(371, 38);
             flowLayoutPanelCustomersImport.TabIndex = 0;
             flowLayoutPanelCustomersImport.WrapContents = false;
             // 
@@ -1170,7 +1170,7 @@ namespace OrdersCreator.UI
             flowLayoutPanelCustomersButtons.Controls.Add(btnCustomerSave);
             flowLayoutPanelCustomersButtons.Controls.Add(btnCustomerDel);
             flowLayoutPanelCustomersButtons.Controls.Add(btnCustomerCancel);
-            flowLayoutPanelCustomersButtons.Location = new Point(415, 3);
+            flowLayoutPanelCustomersButtons.Location = new Point(409, 3);
             flowLayoutPanelCustomersButtons.Name = "flowLayoutPanelCustomersButtons";
             flowLayoutPanelCustomersButtons.Size = new Size(532, 38);
             flowLayoutPanelCustomersButtons.TabIndex = 1;
@@ -1243,7 +1243,7 @@ namespace OrdersCreator.UI
             ClientSize = new Size(984, 761);
             Controls.Add(tabControl1);
             Name = "FormRefEdit";
-            Padding = new Padding(0, 5, 0, 0);
+            Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Редактирование справочников";
             tabControl1.ResumeLayout(false);
