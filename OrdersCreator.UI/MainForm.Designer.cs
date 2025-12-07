@@ -56,11 +56,6 @@
             panelMainBody = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewOrderLines = new DataGridView();
-            RowNumber = new DataGridViewTextBoxColumn();
-            ProductCode = new DataGridViewTextBoxColumn();
-            ProductTitle = new DataGridViewTextBoxColumn();
-            ProductWeight = new DataGridViewTextBoxColumn();
-            RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
             panelGreenMode = new Panel();
             tlpGreenMode = new TableLayoutPanel();
@@ -94,6 +89,11 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
+            RowNumber = new DataGridViewTextBoxColumn();
+            ProductCode = new DataGridViewTextBoxColumn();
+            ProductTitle = new DataGridViewTextBoxColumn();
+            ProductWeight = new DataGridViewTextBoxColumn();
+            RowDelete = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -206,6 +206,58 @@
             // 
             общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
             общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
+            общиеНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            общиеНастройкиToolStripMenuItem.Text = "Общие";
+            общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
+            // 
+            // отчетыНастройкиToolStripMenuItem
+            // 
+            отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
+            отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
+            отчетыНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            отчетыНастройкиToolStripMenuItem.Text = "Пути и шаблоны";
+            отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
+            // 
+            // хранилищеНастройкиToolStripMenuItem
+            // 
+            хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
+            хранилищеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
+            хранилищеНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            хранилищеНастройкиToolStripMenuItem.Text = "Хранилище";
+            хранилищеНастройкиToolStripMenuItem.Click += ХранилищеНастройкиToolStripMenuItem_Click;
+            // 
+            // помощьToolStripMenuItem
+            // 
+            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, горячиеКлавишиToolStripMenuItem, оПрограммеToolStripMenuItem });
+            помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            помощьToolStripMenuItem.Size = new Size(68, 20);
+            помощьToolStripMenuItem.Text = "Помощь";
+            // 
+            // справкаF1ToolStripMenuItem
+            // 
+            справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
+            справкаF1ToolStripMenuItem.ShortcutKeys = Keys.F1;
+            справкаF1ToolStripMenuItem.Size = new Size(173, 22);
+            справкаF1ToolStripMenuItem.Text = "Справка";
+            справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
+            // 
+            // горячиеКлавишиToolStripMenuItem
+            // 
+            горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
+            горячиеКлавишиToolStripMenuItem.Size = new Size(173, 22);
+            горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            оПрограммеToolStripMenuItem.Size = new Size(173, 22);
+            оПрограммеToolStripMenuItem.Text = "О программе";
+            оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
+            // 
+            // общиеНастройкиToolStripMenuItem
+            // 
+            общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
+            общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
             общиеНастройкиToolStripMenuItem.Size = new Size(241, 22);
             общиеНастройкиToolStripMenuItem.Text = "Общие";
             общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
@@ -295,7 +347,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(5, 616);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1174, 80);
+            panel2.Size = new Size(1184, 80);
             panel2.TabIndex = 2;
             // 
             // lblResults
@@ -808,6 +860,44 @@
             label9.Size = new Size(257, 21);
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
+            // 
+            // RowNumber
+            // 
+            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowNumber.HeaderText = "№";
+            RowNumber.Name = "RowNumber";
+            RowNumber.ReadOnly = true;
+            RowNumber.Width = 48;
+            // 
+            // ProductCode
+            // 
+            ProductCode.FillWeight = 80F;
+            ProductCode.HeaderText = "Код";
+            ProductCode.Name = "ProductCode";
+            ProductCode.ReadOnly = true;
+            // 
+            // ProductTitle
+            // 
+            ProductTitle.FillWeight = 300F;
+            ProductTitle.HeaderText = "Наименование";
+            ProductTitle.MinimumWidth = 370;
+            ProductTitle.Name = "ProductTitle";
+            ProductTitle.ReadOnly = true;
+            // 
+            // ProductWeight
+            // 
+            ProductWeight.FillWeight = 80F;
+            ProductWeight.HeaderText = "Вес";
+            ProductWeight.Name = "ProductWeight";
+            ProductWeight.ReadOnly = true;
+            // 
+            // RowDelete
+            // 
+            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowDelete.HeaderText = "Удл.";
+            RowDelete.Name = "RowDelete";
+            RowDelete.ReadOnly = true;
+            RowDelete.Width = 38;
             // 
             // MainForm
             // 
