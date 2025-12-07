@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DrawingColor = System.Drawing.Color;
 
 namespace OrdersCreator.UI
 {
@@ -42,6 +43,8 @@ namespace OrdersCreator.UI
         private bool _isUpdatingCategoryEditor;
         private bool _isUpdatingProductEditor;
 
+        private readonly Font _tabBoldFont;
+
         public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService, ISettingsService settingsService, FormRefEditTab initialTab = FormRefEditTab.Categories)
         {
             _customerService = customerService;
@@ -51,6 +54,18 @@ namespace OrdersCreator.UI
             _appSettings = _settingsService.GetSettings();
 
             InitializeComponent();
+
+            // Жирный шрифт для активной вкладки
+            _tabBoldFont = new Font(tabControl1.Font, FontStyle.Bold);
+
+            // Настройки tabControl1 для горизонтальных вкладок
+            tabControl1.Alignment = TabAlignment.Top;
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.ItemSize = new Size(240, 40);   // ширина / высота одной вкладки
+
+            tabControl1.DrawItem += tabControl1_DrawItem;
+
             ButtonCursorHelper.ApplyHandCursor(this);
 
             InitCustomersTab();
@@ -1001,6 +1016,72 @@ namespace OrdersCreator.UI
             }
         }
 
+        private void tabControl1_DrawItem(object? sender, DrawItemEventArgs e)
+        {
+            var g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
+            TabPage tab = tabControl1.TabPages[e.Index];
+            bool isSelected = (e.State & DrawItemState.Selected) != 0;
+
+            Rectangle bounds = e.Bounds;
+            bounds.Inflate(-2, -2);
+
+            // Цвета
+            DrawingColor backColor = isSelected ? DrawingColor.White : DrawingColor.FromArgb(245, 245, 245);
+            DrawingColor textColor = isSelected ? DrawingColor.Black : DrawingColor.FromArgb(100, 100, 100);
+            DrawingColor separator = DrawingColor.FromArgb(220, 220, 220);
+            DrawingColor accentColor = DrawingColor.FromArgb(0, 120, 215);   // полоска под активной вкладкой
+
+            // Фон вкладки
+            using (var backBrush = new SolidBrush(backColor))
+                g.FillRectangle(backBrush, bounds);
+
+            // Полоса снизу у выбранной вкладки
+            if (isSelected)
+            {
+                var barRect = new Rectangle(bounds.Left, bounds.Bottom - 3, bounds.Width, 3);
+                using (var barBrush = new SolidBrush(accentColor))
+                    g.FillRectangle(barBrush, barRect);
+
+                bounds.Height -= 3;
+            }
+
+            // Область текста
+            var textRect = new Rectangle(
+                bounds.Left + 12,
+                bounds.Top,
+                bounds.Width - 24,
+                bounds.Height
+            );
+
+            using (var textBrush = new SolidBrush(textColor))
+            using (var sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            })
+            {
+                Font font = isSelected ? _tabBoldFont : tabControl1.Font;
+                g.DrawString(tab.Text, font, textBrush, textRect, sf);
+            }
+
+            // Тонкий вертикальный разделитель между вкладками
+            using (var pen = new Pen(separator))
+            {
+                g.DrawLine(pen, bounds.Right, bounds.Top + 6, bounds.Right, bounds.Bottom - 6);
+
+                // Общая нижняя линия под всей полосой вкладок — рисуем один раз, на последней вкладке
+                if (e.Index == tabControl1.TabCount - 1)
+                {
+                    g.DrawLine(pen,
+                        tabControl1.Left,
+                        bounds.Bottom + 2,
+                        tabControl1.Right,
+                        bounds.Bottom + 2);
+                }
+            }
+        }
     }
 }

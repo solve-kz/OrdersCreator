@@ -46,7 +46,7 @@ namespace OrdersCreator.UI
             tabSettings.Alignment = TabAlignment.Left;
             tabSettings.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabSettings.SizeMode = TabSizeMode.Fixed;
-            tabSettings.ItemSize = new Size(40, 180);   // у тебя уже задано
+            tabSettings.ItemSize = new Size(40, 240);   // у тебя уже задано
             tabSettings.Multiline = true;
 
             tabSettings.DrawItem += tabSettings_DrawItem;

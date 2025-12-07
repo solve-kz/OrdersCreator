@@ -475,7 +475,7 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Anchor = AnchorStyles.Left;
             comboBoxCategoryFilter.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxCategoryFilter.FormattingEnabled = true;
-            comboBoxCategoryFilter.Location = new Point(155, 8);
+            comboBoxCategoryFilter.Location = new Point(155, 9);
             comboBoxCategoryFilter.Name = "comboBoxCategoryFilter";
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
@@ -750,7 +750,7 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 4);
+            comboBoxBarcodeCategory.Location = new Point(557, 5);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
             comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
@@ -805,7 +805,7 @@ namespace OrdersCreator.UI
             btnProductsImport.Name = "btnProductsImport";
             btnProductsImport.Size = new Size(140, 33);
             btnProductsImport.TabIndex = 0;
-            btnProductsImport.Text = "Импорт .xlsx";
+            btnProductsImport.Text = "ИМПОРТ";
             btnProductsImport.UseVisualStyleBackColor = false;
             // 
             // btnProductsExport
@@ -820,7 +820,7 @@ namespace OrdersCreator.UI
             btnProductsExport.Name = "btnProductsExport";
             btnProductsExport.Size = new Size(140, 33);
             btnProductsExport.TabIndex = 1;
-            btnProductsExport.Text = "Экспорт .xlsx";
+            btnProductsExport.Text = "ЭКСПОРТ";
             btnProductsExport.UseVisualStyleBackColor = false;
             // 
             // flowLayoutPanelCrud
@@ -1144,7 +1144,7 @@ namespace OrdersCreator.UI
             btnCustomersImport.Name = "btnCustomersImport";
             btnCustomersImport.Size = new Size(140, 33);
             btnCustomersImport.TabIndex = 0;
-            btnCustomersImport.Text = "Импорт .xlsx";
+            btnCustomersImport.Text = "ИМПОРТ";
             btnCustomersImport.UseVisualStyleBackColor = false;
             // 
             // btnCustomersExport
@@ -1159,7 +1159,7 @@ namespace OrdersCreator.UI
             btnCustomersExport.Name = "btnCustomersExport";
             btnCustomersExport.Size = new Size(140, 33);
             btnCustomersExport.TabIndex = 1;
-            btnCustomersExport.Text = "Экспорт .xlsx";
+            btnCustomersExport.Text = "ЭКСПОРТ";
             btnCustomersExport.UseVisualStyleBackColor = false;
             // 
             // flowLayoutPanelCustomersButtons
