@@ -242,8 +242,9 @@
             справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
             // 
             // горячиеКлавишиToolStripMenuItem
-            // 
+            //
             горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
+            горячиеКлавишиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
             горячиеКлавишиToolStripMenuItem.Size = new Size(173, 22);
             горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
             // 

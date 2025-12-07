@@ -28,6 +28,7 @@ namespace OrdersCreator.UI
         private AppSettings _settings = new AppSettings();
         private readonly Font _tabBoldFont;
         private readonly ContextMenuStrip _fileNameVariablesMenu;
+        private bool _isUpdatingConfirmationToggles;
 
         public FormSettings(ISettingsService settingsService, FormSettingsTab initialTab = FormSettingsTab.Behavior)
         {
@@ -45,6 +46,8 @@ namespace OrdersCreator.UI
             InitializeVariablesMenu();
 
             LoadSettingsToControls();
+
+            InitializeConfirmationToggles();
 
             // Кэшируем жирный шрифт для выделенной вкладки
             _tabBoldFont = new Font(tabSettings.Font, FontStyle.Bold);
@@ -76,6 +79,7 @@ namespace OrdersCreator.UI
             chbOpenReportAfterSave.Checked = _settings.OpenReportAfterSave;
             tbOrdersSaveFolder.Text = ConvertPathSeparatorsForUi(_settings.OrdersSaveFolder);
             chbAutoSaveOrders.Checked = _settings.AutoSaveOrders;
+            chbCheckUpdatesOnStartup.Checked = _settings.CheckUpdatesOnStartup;
 
             // ---- блок поведения ----
             var timeout = _settings.ScannerCharTimeoutMs;
@@ -148,6 +152,7 @@ namespace OrdersCreator.UI
             _settings.OpenReportAfterSave = chbOpenReportAfterSave.Checked;
             _settings.OrdersSaveFolder = ConvertPathSeparatorsFromUi(tbOrdersSaveFolder.Text);
             _settings.AutoSaveOrders = chbAutoSaveOrders.Checked;
+            _settings.CheckUpdatesOnStartup = chbCheckUpdatesOnStartup.Checked;
 
             // ---- поведение ----
             _settings.ScannerCharTimeoutMs = (int)numScannerCharTimeoutMs.Value;
@@ -483,6 +488,71 @@ namespace OrdersCreator.UI
             }
 
             return mask;
+        }
+
+        private IEnumerable<CheckBox> GetConfirmationCheckboxes()
+        {
+            yield return chbConfirmDeleteLastProduct;
+            yield return chbConfirmDeleteAnyProduct;
+            yield return chbConfirmDeleteCategory;
+            yield return chbConfirmDeleteProduct;
+            yield return chbConfirmDeleteCustomer;
+            yield return chbConfirmCancelNewProduct;
+            yield return chbConfirmCloseIncompleteOrder;
+        }
+
+        private void InitializeConfirmationToggles()
+        {
+            chbConfirmToggleAll.CheckedChanged += ChbConfirmToggleAll_CheckedChanged;
+
+            foreach (var checkbox in GetConfirmationCheckboxes())
+            {
+                checkbox.CheckedChanged += ConfirmationCheckBox_CheckedChanged;
+            }
+
+            UpdateConfirmationsToggleState();
+        }
+
+        private void ChbConfirmToggleAll_CheckedChanged(object? sender, EventArgs e)
+        {
+            if (_isUpdatingConfirmationToggles)
+                return;
+
+            try
+            {
+                _isUpdatingConfirmationToggles = true;
+                foreach (var checkbox in GetConfirmationCheckboxes())
+                {
+                    checkbox.Checked = chbConfirmToggleAll.Checked;
+                }
+            }
+            finally
+            {
+                _isUpdatingConfirmationToggles = false;
+            }
+        }
+
+        private void ConfirmationCheckBox_CheckedChanged(object? sender, EventArgs e)
+        {
+            if (_isUpdatingConfirmationToggles)
+                return;
+
+            try
+            {
+                _isUpdatingConfirmationToggles = true;
+                chbConfirmToggleAll.Checked = GetConfirmationCheckboxes().All(cb => cb.Checked);
+            }
+            finally
+            {
+                _isUpdatingConfirmationToggles = false;
+            }
+        }
+
+        private void UpdateConfirmationsToggleState()
+        {
+            _isUpdatingConfirmationToggles = true;
+            chbConfirmToggleAll.Checked = GetConfirmationCheckboxes().All(cb => cb.Checked);
+            _isUpdatingConfirmationToggles = false;
         }
     }
 }

@@ -46,6 +46,9 @@ namespace OrdersCreator.Domain.Models
         public bool AutoSaveOrders { get; set; }
             = false;
 
+        /// <summary>Проверять наличие обновлений при запуске.</summary>
+        public bool CheckUpdatesOnStartup { get; set; } = false;
+
         // ---- Блок поведения ----
 
         /// <summary>Таймаут между символами сканера, мс.</summary>

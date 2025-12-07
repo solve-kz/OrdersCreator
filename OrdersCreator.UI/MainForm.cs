@@ -169,6 +169,11 @@ namespace OrdersCreator.UI
         {
             SwitchToGreenMode();
 
+            if (_appSettings.CheckUpdatesOnStartup)
+            {
+                UpdateChecker.CheckForUpdates(false, this);
+            }
+
             /*if (cmbCustomers.Items.Count > 0 && cmbCustomers.SelectedIndex == -1)
             {
                 cmbCustomers.SelectedIndex = 0;
@@ -1039,14 +1044,8 @@ namespace OrdersCreator.UI
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this,
-        "Складской терминал v1.0\n\n" +
-        "Назначение: работа со штрих-кодами и формирование отчётов по заказам.\n\n" +
-        "Автор: Павел Приходько\n" +
-        "© 2025",
-        "О программе",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Information);
+            using var aboutForm = new FormAbout();
+            aboutForm.ShowDialog(this);
         }
 
         private void MainForm_Load_1(object sender, EventArgs e)
