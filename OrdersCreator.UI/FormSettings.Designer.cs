@@ -52,6 +52,7 @@ namespace OrdersCreator.UI
             labelReportsRoot = new Label();
             labelTemplatePath = new Label();
             labelFileNameMask = new Label();
+            button1 = new Button();
             tabBehavior = new TabPage();
             tlpBehavior = new TableLayoutPanel();
             labelScannerTimeout = new Label();
@@ -77,7 +78,7 @@ namespace OrdersCreator.UI
             // chbUseDailySubfolder
             // 
             chbUseDailySubfolder.AutoSize = true;
-            chbUseDailySubfolder.Location = new Point(223, 41);
+            chbUseDailySubfolder.Location = new Point(223, 42);
             chbUseDailySubfolder.Margin = new Padding(0, 4, 4, 4);
             chbUseDailySubfolder.Name = "chbUseDailySubfolder";
             chbUseDailySubfolder.Size = new Size(233, 25);
@@ -89,7 +90,7 @@ namespace OrdersCreator.UI
             // 
             tbReportTemplatePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportTemplatePath.BorderStyle = BorderStyle.FixedSingle;
-            tbReportTemplatePath.Location = new Point(227, 74);
+            tbReportTemplatePath.Location = new Point(227, 75);
             tbReportTemplatePath.Margin = new Padding(4);
             tbReportTemplatePath.Name = "tbReportTemplatePath";
             tbReportTemplatePath.Size = new Size(531, 29);
@@ -143,12 +144,12 @@ namespace OrdersCreator.UI
             btnReportsRootFolder.FlatAppearance.BorderSize = 0;
             btnReportsRootFolder.FlatStyle = FlatStyle.Flat;
             btnReportsRootFolder.ForeColor = Color.White;
+            btnReportsRootFolder.Image = Properties.Resources.icon_open;
             btnReportsRootFolder.Location = new Point(766, 4);
             btnReportsRootFolder.Margin = new Padding(4);
             btnReportsRootFolder.Name = "btnReportsRootFolder";
-            btnReportsRootFolder.Size = new Size(102, 29);
+            btnReportsRootFolder.Size = new Size(30, 30);
             btnReportsRootFolder.TabIndex = 11;
-            btnReportsRootFolder.Text = "ВЫБРАТЬ";
             btnReportsRootFolder.UseVisualStyleBackColor = false;
             btnReportsRootFolder.Click += btnReportsRootFolder_Click;
             // 
@@ -156,7 +157,7 @@ namespace OrdersCreator.UI
             // 
             tbReportFileNameMask.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportFileNameMask.BorderStyle = BorderStyle.FixedSingle;
-            tbReportFileNameMask.Location = new Point(227, 111);
+            tbReportFileNameMask.Location = new Point(227, 113);
             tbReportFileNameMask.Margin = new Padding(4);
             tbReportFileNameMask.Name = "tbReportFileNameMask";
             tbReportFileNameMask.Size = new Size(531, 29);
@@ -168,19 +169,19 @@ namespace OrdersCreator.UI
             btnReportTemplatePath.FlatAppearance.BorderSize = 0;
             btnReportTemplatePath.FlatStyle = FlatStyle.Flat;
             btnReportTemplatePath.ForeColor = Color.White;
-            btnReportTemplatePath.Location = new Point(766, 74);
+            btnReportTemplatePath.Image = Properties.Resources.icon_open;
+            btnReportTemplatePath.Location = new Point(766, 75);
             btnReportTemplatePath.Margin = new Padding(4);
             btnReportTemplatePath.Name = "btnReportTemplatePath";
-            btnReportTemplatePath.Size = new Size(102, 29);
+            btnReportTemplatePath.Size = new Size(30, 30);
             btnReportTemplatePath.TabIndex = 15;
-            btnReportTemplatePath.Text = "ВЫБРАТЬ";
             btnReportTemplatePath.UseVisualStyleBackColor = false;
             btnReportTemplatePath.Click += btnReportTemplatePath_Click;
             // 
             // chbOpenReportAfterSave
             // 
             chbOpenReportAfterSave.AutoSize = true;
-            chbOpenReportAfterSave.Location = new Point(227, 148);
+            chbOpenReportAfterSave.Location = new Point(227, 150);
             chbOpenReportAfterSave.Margin = new Padding(4);
             chbOpenReportAfterSave.Name = "chbOpenReportAfterSave";
             chbOpenReportAfterSave.Size = new Size(283, 25);
@@ -223,7 +224,7 @@ namespace OrdersCreator.UI
             cmbUnknownProductMode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbUnknownProductMode.FormattingEnabled = true;
             cmbUnknownProductMode.Items.AddRange(new object[] { "Запросить данные", "Показать ошибку" });
-            cmbUnknownProductMode.Location = new Point(310, 184);
+            cmbUnknownProductMode.Location = new Point(310, 187);
             cmbUnknownProductMode.Name = "cmbUnknownProductMode";
             cmbUnknownProductMode.Size = new Size(559, 29);
             cmbUnknownProductMode.TabIndex = 23;
@@ -294,6 +295,7 @@ namespace OrdersCreator.UI
             tlpReports.Controls.Add(labelFileNameMask, 0, 3);
             tlpReports.Controls.Add(tbReportFileNameMask, 1, 3);
             tlpReports.Controls.Add(chbOpenReportAfterSave, 1, 4);
+            tlpReports.Controls.Add(button1, 2, 3);
             tlpReports.Dock = DockStyle.Fill;
             tlpReports.Location = new Point(10, 10);
             tlpReports.Name = "tlpReports";
@@ -321,7 +323,7 @@ namespace OrdersCreator.UI
             // 
             labelTemplatePath.Anchor = AnchorStyles.Left;
             labelTemplatePath.AutoSize = true;
-            labelTemplatePath.Location = new Point(3, 78);
+            labelTemplatePath.Location = new Point(3, 79);
             labelTemplatePath.Margin = new Padding(3);
             labelTemplatePath.Name = "labelTemplatePath";
             labelTemplatePath.Size = new Size(161, 21);
@@ -332,12 +334,27 @@ namespace OrdersCreator.UI
             // 
             labelFileNameMask.Anchor = AnchorStyles.Left;
             labelFileNameMask.AutoSize = true;
-            labelFileNameMask.Location = new Point(3, 115);
+            labelFileNameMask.Location = new Point(3, 117);
             labelFileNameMask.Margin = new Padding(3);
             labelFileNameMask.Name = "labelFileNameMask";
             labelFileNameMask.Size = new Size(156, 21);
             labelFileNameMask.TabIndex = 12;
             labelFileNameMask.Text = "Маска имени файла:";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.RoyalBlue;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204, true);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(766, 113);
+            button1.Margin = new Padding(4);
+            button1.Name = "button1";
+            button1.Size = new Size(80, 29);
+            button1.TabIndex = 31;
+            button1.Text = "+VAR";
+            button1.UseVisualStyleBackColor = false;
             // 
             // tabBehavior
             // 
@@ -539,5 +556,6 @@ namespace OrdersCreator.UI
         private Label lblSqlServerConnectionString;
         private Panel panelBottomButtons;
         private FlowLayoutPanel flpButtons;
+        private Button button1;
     }
 }
