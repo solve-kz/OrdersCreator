@@ -40,6 +40,9 @@
             товарыToolStripMenuItem = new ToolStripMenuItem();
             контрагентыToolStripMenuItem = new ToolStripMenuItem();
             настройкаToolStripMenuItem = new ToolStripMenuItem();
+            общиеНастройкиToolStripMenuItem = new ToolStripMenuItem();
+            отчетыНастройкиToolStripMenuItem = new ToolStripMenuItem();
+            хранилищеНастройкиToolStripMenuItem = new ToolStripMenuItem();
             помощьToolStripMenuItem = new ToolStripMenuItem();
             справкаF1ToolStripMenuItem = new ToolStripMenuItem();
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
@@ -190,11 +193,32 @@
             контрагентыToolStripMenuItem.Text = "Контрагенты";
             // 
             // настройкаToolStripMenuItem
-            // 
+            //
+            настройкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { общиеНастройкиToolStripMenuItem, отчетыНастройкиToolStripMenuItem, хранилищеНастройкиToolStripMenuItem });
             настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
-            настройкаToolStripMenuItem.Size = new Size(78, 20);
-            настройкаToolStripMenuItem.Text = "Настройка";
-            настройкаToolStripMenuItem.Click += настройкаToolStripMenuItem_Click;
+            настройкаToolStripMenuItem.Size = new Size(79, 20);
+            настройкаToolStripMenuItem.Text = "Настройки";
+            //
+            // общиеНастройкиToolStripMenuItem
+            //
+            общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
+            общиеНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            общиеНастройкиToolStripMenuItem.Text = "Общие";
+            общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
+            //
+            // отчетыНастройкиToolStripMenuItem
+            //
+            отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
+            отчетыНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            отчетыНастройкиToolStripMenuItem.Text = "Отчёты";
+            отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
+            //
+            // хранилищеНастройкиToolStripMenuItem
+            //
+            хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
+            хранилищеНастройкиToolStripMenuItem.Size = new Size(180, 22);
+            хранилищеНастройкиToolStripMenuItem.Text = "Хранилище";
+            хранилищеНастройкиToolStripMenuItem.Click += ХранилищеНастройкиToolStripMenuItem_Click;
             // 
             // помощьToolStripMenuItem
             // 
@@ -884,6 +908,9 @@
         private ToolStripMenuItem категорииToolStripMenuItem;
         private ToolStripMenuItem товарыToolStripMenuItem;
         private ToolStripMenuItem контрагентыToolStripMenuItem;
+        private ToolStripMenuItem общиеНастройкиToolStripMenuItem;
+        private ToolStripMenuItem отчетыНастройкиToolStripMenuItem;
+        private ToolStripMenuItem хранилищеНастройкиToolStripMenuItem;
         private ToolStripMenuItem помощьToolStripMenuItem;
         private ToolStripMenuItem справкаF1ToolStripMenuItem;
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
