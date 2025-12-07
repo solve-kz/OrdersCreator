@@ -6,7 +6,7 @@ namespace OrdersCreator.UI
 {
     internal static class UpdateChecker
     {
-        private const string UpdateUrl = "https://github.com/solve-kz/OrdersCreator/blob/main/update.xml";
+        private const string UpdateUrl = "https://raw.githubusercontent.com/solve-kz/OrdersCreator/main/update.xml";
 
         public static void CheckForUpdates(bool showErrors, IWin32Window? owner = null)
         {

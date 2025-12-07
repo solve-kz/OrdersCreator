@@ -93,46 +93,46 @@ namespace OrdersCreator.UI
             SuspendLayout();
             // 
             // chbUseDailySubfolder
-            //
+            // 
             chbUseDailySubfolder.AutoSize = true;
-            chbUseDailySubfolder.Location = new Point(149, 49);
+            chbUseDailySubfolder.Location = new Point(186, 139);
             chbUseDailySubfolder.Margin = new Padding(0, 4, 4, 4);
             chbUseDailySubfolder.Name = "chbUseDailySubfolder";
             chbUseDailySubfolder.Size = new Size(233, 25);
             chbUseDailySubfolder.TabIndex = 4;
             chbUseDailySubfolder.Text = "Создавать подпапку с датой";
             chbUseDailySubfolder.UseVisualStyleBackColor = true;
-            //
+            // 
             // labelOrdersSaveFolder
-            //
+            // 
             labelOrdersSaveFolder.Anchor = AnchorStyles.Left;
             labelOrdersSaveFolder.AutoSize = true;
             labelOrdersSaveFolder.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
             labelOrdersSaveFolder.Location = new Point(3, 13);
             labelOrdersSaveFolder.Margin = new Padding(3);
             labelOrdersSaveFolder.Name = "labelOrdersSaveFolder";
-            labelOrdersSaveFolder.Size = new Size(194, 19);
+            labelOrdersSaveFolder.Size = new Size(180, 19);
             labelOrdersSaveFolder.TabIndex = 32;
             labelOrdersSaveFolder.Text = "Папка сохранения заказов:";
-            //
+            // 
             // tbOrdersSaveFolder
-            //
+            // 
             tbOrdersSaveFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbOrdersSaveFolder.BorderStyle = BorderStyle.FixedSingle;
-            tbOrdersSaveFolder.Location = new Point(203, 8);
+            tbOrdersSaveFolder.Location = new Point(189, 8);
             tbOrdersSaveFolder.Margin = new Padding(3, 3, 4, 3);
             tbOrdersSaveFolder.Name = "tbOrdersSaveFolder";
-            tbOrdersSaveFolder.Size = new Size(583, 29);
+            tbOrdersSaveFolder.Size = new Size(593, 29);
             tbOrdersSaveFolder.TabIndex = 33;
-            //
+            // 
             // tbReportTemplatePath
-            //
+            // 
             tbReportTemplatePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportTemplatePath.BorderStyle = BorderStyle.FixedSingle;
-            tbReportTemplatePath.Location = new Point(153, 98);
+            tbReportTemplatePath.Location = new Point(190, 188);
             tbReportTemplatePath.Margin = new Padding(4);
             tbReportTemplatePath.Name = "tbReportTemplatePath";
-            tbReportTemplatePath.Size = new Size(633, 29);
+            tbReportTemplatePath.Size = new Size(592, 29);
             tbReportTemplatePath.TabIndex = 6;
             // 
             // btnOK
@@ -171,10 +171,10 @@ namespace OrdersCreator.UI
             // 
             tbReportsRootFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportsRootFolder.BorderStyle = BorderStyle.FixedSingle;
-            tbReportsRootFolder.Location = new Point(153, 8);
+            tbReportsRootFolder.Location = new Point(190, 98);
             tbReportsRootFolder.Margin = new Padding(4);
             tbReportsRootFolder.Name = "tbReportsRootFolder";
-            tbReportsRootFolder.Size = new Size(633, 29);
+            tbReportsRootFolder.Size = new Size(592, 29);
             tbReportsRootFolder.TabIndex = 2;
             // 
             // btnReportsRootFolder
@@ -184,7 +184,7 @@ namespace OrdersCreator.UI
             btnReportsRootFolder.FlatStyle = FlatStyle.Flat;
             btnReportsRootFolder.ForeColor = Color.White;
             btnReportsRootFolder.Image = Properties.Resources.icon_open;
-            btnReportsRootFolder.Location = new Point(794, 4);
+            btnReportsRootFolder.Location = new Point(790, 94);
             btnReportsRootFolder.Margin = new Padding(4);
             btnReportsRootFolder.Name = "btnReportsRootFolder";
             btnReportsRootFolder.Size = new Size(30, 30);
@@ -196,20 +196,20 @@ namespace OrdersCreator.UI
             // 
             tbReportFileNameMask.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportFileNameMask.BorderStyle = BorderStyle.FixedSingle;
-            tbReportFileNameMask.Location = new Point(153, 143);
+            tbReportFileNameMask.Location = new Point(190, 233);
             tbReportFileNameMask.Margin = new Padding(4);
             tbReportFileNameMask.Name = "tbReportFileNameMask";
-            tbReportFileNameMask.Size = new Size(633, 29);
+            tbReportFileNameMask.Size = new Size(592, 29);
             tbReportFileNameMask.TabIndex = 14;
             // 
             // btnReportTemplatePath
-            //
+            // 
             btnReportTemplatePath.BackColor = Color.RoyalBlue;
             btnReportTemplatePath.FlatAppearance.BorderSize = 0;
             btnReportTemplatePath.FlatStyle = FlatStyle.Flat;
             btnReportTemplatePath.ForeColor = Color.White;
             btnReportTemplatePath.Image = Properties.Resources.icon_open;
-            btnReportTemplatePath.Location = new Point(794, 94);
+            btnReportTemplatePath.Location = new Point(790, 184);
             btnReportTemplatePath.Margin = new Padding(4);
             btnReportTemplatePath.Name = "btnReportTemplatePath";
             btnReportTemplatePath.Size = new Size(30, 30);
@@ -220,36 +220,36 @@ namespace OrdersCreator.UI
             // chbOpenReportAfterSave
             // 
             chbOpenReportAfterSave.AutoSize = true;
-            chbOpenReportAfterSave.Location = new Point(153, 184);
+            chbOpenReportAfterSave.Location = new Point(190, 274);
             chbOpenReportAfterSave.Margin = new Padding(4);
             chbOpenReportAfterSave.Name = "chbOpenReportAfterSave";
             chbOpenReportAfterSave.Size = new Size(283, 25);
             chbOpenReportAfterSave.TabIndex = 16;
             chbOpenReportAfterSave.Text = "Открывать отчет после сохранения";
             chbOpenReportAfterSave.UseVisualStyleBackColor = true;
-            //
+            // 
             // btnOrdersSaveFolder
-            //
+            // 
             btnOrdersSaveFolder.BackColor = Color.RoyalBlue;
             btnOrdersSaveFolder.FlatAppearance.BorderSize = 0;
             btnOrdersSaveFolder.FlatStyle = FlatStyle.Flat;
             btnOrdersSaveFolder.ForeColor = Color.White;
             btnOrdersSaveFolder.Image = Properties.Resources.icon_open;
-            btnOrdersSaveFolder.Location = new Point(793, 4);
+            btnOrdersSaveFolder.Location = new Point(789, 3);
             btnOrdersSaveFolder.Margin = new Padding(3, 3, 4, 3);
             btnOrdersSaveFolder.Name = "btnOrdersSaveFolder";
             btnOrdersSaveFolder.Size = new Size(30, 30);
             btnOrdersSaveFolder.TabIndex = 34;
             btnOrdersSaveFolder.UseVisualStyleBackColor = false;
             btnOrdersSaveFolder.Click += btnOrdersSaveFolder_Click;
-            //
+            // 
             // chbAutoSaveOrders
-            //
+            // 
             chbAutoSaveOrders.AutoSize = true;
-            chbAutoSaveOrders.Location = new Point(203, 49);
+            chbAutoSaveOrders.Location = new Point(189, 49);
             chbAutoSaveOrders.Margin = new Padding(3, 4, 4, 4);
             chbAutoSaveOrders.Name = "chbAutoSaveOrders";
-            chbAutoSaveOrders.Size = new Size(197, 25);
+            chbAutoSaveOrders.Size = new Size(219, 25);
             chbAutoSaveOrders.TabIndex = 35;
             chbAutoSaveOrders.Text = "Включить автосохранение";
             chbAutoSaveOrders.UseVisualStyleBackColor = true;
@@ -272,9 +272,9 @@ namespace OrdersCreator.UI
             chbAllowManualBarcodeInput.TabIndex = 20;
             chbAllowManualBarcodeInput.Text = "Разрешить ручной ввод";
             chbAllowManualBarcodeInput.UseVisualStyleBackColor = true;
-            //
+            // 
             // chbSoundsEnabled
-            //
+            // 
             chbSoundsEnabled.AutoSize = true;
             chbSoundsEnabled.Location = new Point(311, 72);
             chbSoundsEnabled.Margin = new Padding(4);
@@ -283,24 +283,24 @@ namespace OrdersCreator.UI
             chbSoundsEnabled.TabIndex = 21;
             chbSoundsEnabled.Text = "Включить звуки";
             chbSoundsEnabled.UseVisualStyleBackColor = true;
-            //
+            // 
             // chbCheckUpdatesOnStartup
-            //
+            // 
             chbCheckUpdatesOnStartup.AutoSize = true;
             chbCheckUpdatesOnStartup.Location = new Point(311, 105);
             chbCheckUpdatesOnStartup.Margin = new Padding(4);
             chbCheckUpdatesOnStartup.Name = "chbCheckUpdatesOnStartup";
-            chbCheckUpdatesOnStartup.Size = new Size(267, 25);
+            chbCheckUpdatesOnStartup.Size = new Size(277, 25);
             chbCheckUpdatesOnStartup.TabIndex = 25;
             chbCheckUpdatesOnStartup.Text = "Проверять обновления при старте";
             chbCheckUpdatesOnStartup.UseVisualStyleBackColor = true;
-            //
+            // 
             // cmbUnknownProductMode
-            //
+            // 
             cmbUnknownProductMode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbUnknownProductMode.FormattingEnabled = true;
             cmbUnknownProductMode.Items.AddRange(new object[] { "Запросить данные", "Показать ошибку" });
-            cmbUnknownProductMode.Location = new Point(310, 104);
+            cmbUnknownProductMode.Location = new Point(310, 137);
             cmbUnknownProductMode.Name = "cmbUnknownProductMode";
             cmbUnknownProductMode.Size = new Size(553, 29);
             cmbUnknownProductMode.TabIndex = 23;
@@ -313,7 +313,7 @@ namespace OrdersCreator.UI
             cmbStorageType.Location = new Point(177, 4);
             cmbStorageType.Margin = new Padding(4);
             cmbStorageType.Name = "cmbStorageType";
-            cmbStorageType.Size = new Size(689, 29);
+            cmbStorageType.Size = new Size(685, 29);
             cmbStorageType.TabIndex = 27;
             cmbStorageType.SelectedIndexChanged += cmbStorageType_SelectedIndexChanged;
             // 
@@ -324,7 +324,7 @@ namespace OrdersCreator.UI
             tbSqlServerConnectionString.Location = new Point(177, 41);
             tbSqlServerConnectionString.Margin = new Padding(4);
             tbSqlServerConnectionString.Name = "tbSqlServerConnectionString";
-            tbSqlServerConnectionString.Size = new Size(689, 29);
+            tbSqlServerConnectionString.Size = new Size(685, 29);
             tbSqlServerConnectionString.TabIndex = 28;
             tbSqlServerConnectionString.Visible = false;
             // 
@@ -353,7 +353,7 @@ namespace OrdersCreator.UI
             tabBehavior.Location = new Point(184, 4);
             tabBehavior.Name = "tabBehavior";
             tabBehavior.Padding = new Padding(10);
-            tabBehavior.Size = new Size(886, 333);
+            tabBehavior.Size = new Size(886, 392);
             tabBehavior.TabIndex = 1;
             tabBehavior.Text = "Общие";
             tabBehavior.UseVisualStyleBackColor = true;
@@ -382,7 +382,7 @@ namespace OrdersCreator.UI
             tlpBehavior.RowStyles.Add(new RowStyle());
             tlpBehavior.RowStyles.Add(new RowStyle());
             tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.Size = new Size(866, 313);
+            tlpBehavior.Size = new Size(866, 372);
             tlpBehavior.TabIndex = 0;
             // 
             // labelScannerTimeout
@@ -401,7 +401,7 @@ namespace OrdersCreator.UI
             // 
             labelUnknownProduct.Anchor = AnchorStyles.Left;
             labelUnknownProduct.AutoSize = true;
-            labelUnknownProduct.Location = new Point(3, 108);
+            labelUnknownProduct.Location = new Point(3, 138);
             labelUnknownProduct.Margin = new Padding(3);
             labelUnknownProduct.Name = "labelUnknownProduct";
             labelUnknownProduct.Size = new Size(260, 21);
@@ -415,7 +415,7 @@ namespace OrdersCreator.UI
             tlpBehavior.SetColumnSpan(groupConfirmations, 2);
             groupConfirmations.Controls.Add(tlpConfirmations);
             groupConfirmations.Dock = DockStyle.Top;
-            groupConfirmations.Location = new Point(3, 148);
+            groupConfirmations.Location = new Point(3, 175);
             groupConfirmations.Margin = new Padding(3, 12, 3, 3);
             groupConfirmations.Name = "groupConfirmations";
             groupConfirmations.Padding = new Padding(10, 8, 10, 8);
@@ -449,20 +449,20 @@ namespace OrdersCreator.UI
             tlpConfirmations.RowStyles.Add(new RowStyle());
             tlpConfirmations.Size = new Size(840, 155);
             tlpConfirmations.TabIndex = 0;
-            //
+            // 
             // chbConfirmToggleAll
-            //
+            // 
             chbConfirmToggleAll.AutoSize = true;
             tlpConfirmations.SetColumnSpan(chbConfirmToggleAll, 2);
             chbConfirmToggleAll.Location = new Point(3, 3);
             chbConfirmToggleAll.Name = "chbConfirmToggleAll";
-            chbConfirmToggleAll.Size = new Size(207, 25);
+            chbConfirmToggleAll.Size = new Size(213, 25);
             chbConfirmToggleAll.TabIndex = 7;
             chbConfirmToggleAll.Text = "включить/выключить все";
             chbConfirmToggleAll.UseVisualStyleBackColor = true;
-            //
+            // 
             // chbConfirmDeleteLastProduct
-            //
+            // 
             chbConfirmDeleteLastProduct.AutoSize = true;
             chbConfirmDeleteLastProduct.Location = new Point(3, 34);
             chbConfirmDeleteLastProduct.Name = "chbConfirmDeleteLastProduct";
@@ -472,7 +472,7 @@ namespace OrdersCreator.UI
             chbConfirmDeleteLastProduct.UseVisualStyleBackColor = true;
             // 
             // chbConfirmDeleteAnyProduct
-            //
+            // 
             chbConfirmDeleteAnyProduct.AutoSize = true;
             chbConfirmDeleteAnyProduct.Location = new Point(423, 34);
             chbConfirmDeleteAnyProduct.Name = "chbConfirmDeleteAnyProduct";
@@ -482,7 +482,7 @@ namespace OrdersCreator.UI
             chbConfirmDeleteAnyProduct.UseVisualStyleBackColor = true;
             // 
             // chbConfirmDeleteCategory
-            //
+            // 
             chbConfirmDeleteCategory.AutoSize = true;
             chbConfirmDeleteCategory.Location = new Point(3, 65);
             chbConfirmDeleteCategory.Name = "chbConfirmDeleteCategory";
@@ -492,7 +492,7 @@ namespace OrdersCreator.UI
             chbConfirmDeleteCategory.UseVisualStyleBackColor = true;
             // 
             // chbConfirmDeleteProduct
-            //
+            // 
             chbConfirmDeleteProduct.AutoSize = true;
             chbConfirmDeleteProduct.Location = new Point(423, 65);
             chbConfirmDeleteProduct.Name = "chbConfirmDeleteProduct";
@@ -502,7 +502,7 @@ namespace OrdersCreator.UI
             chbConfirmDeleteProduct.UseVisualStyleBackColor = true;
             // 
             // chbConfirmDeleteCustomer
-            //
+            // 
             chbConfirmDeleteCustomer.AutoSize = true;
             chbConfirmDeleteCustomer.Location = new Point(3, 96);
             chbConfirmDeleteCustomer.Name = "chbConfirmDeleteCustomer";
@@ -512,7 +512,7 @@ namespace OrdersCreator.UI
             chbConfirmDeleteCustomer.UseVisualStyleBackColor = true;
             // 
             // chbConfirmCancelNewProduct
-            //
+            // 
             chbConfirmCancelNewProduct.AutoSize = true;
             chbConfirmCancelNewProduct.Location = new Point(423, 96);
             chbConfirmCancelNewProduct.Name = "chbConfirmCancelNewProduct";
@@ -522,7 +522,7 @@ namespace OrdersCreator.UI
             chbConfirmCancelNewProduct.UseVisualStyleBackColor = true;
             // 
             // chbConfirmCloseIncompleteOrder
-            //
+            // 
             chbConfirmCloseIncompleteOrder.AutoSize = true;
             tlpConfirmations.SetColumnSpan(chbConfirmCloseIncompleteOrder, 2);
             chbConfirmCloseIncompleteOrder.Location = new Point(3, 127);
@@ -533,18 +533,18 @@ namespace OrdersCreator.UI
             chbConfirmCloseIncompleteOrder.UseVisualStyleBackColor = true;
             // 
             // tabReports
-            //
+            // 
             tabReports.Controls.Add(tlpReports);
             tabReports.Location = new Point(184, 4);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(10);
-            tabReports.Size = new Size(890, 335);
+            tabReports.Size = new Size(886, 392);
             tabReports.TabIndex = 0;
             tabReports.Text = "Пути и шаблоны";
             tabReports.UseVisualStyleBackColor = true;
-            //
+            // 
             // tlpReports
-            //
+            // 
             tlpReports.AutoSize = true;
             tlpReports.ColumnCount = 3;
             tlpReports.ColumnStyles.Add(new ColumnStyle());
@@ -576,11 +576,11 @@ namespace OrdersCreator.UI
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tlpReports.Size = new Size(870, 315);
+            tlpReports.Size = new Size(866, 372);
             tlpReports.TabIndex = 0;
-            //
+            // 
             // labelReportsRoot
-            //
+            // 
             labelReportsRoot.Anchor = AnchorStyles.Left;
             labelReportsRoot.AutoSize = true;
             labelReportsRoot.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
@@ -592,7 +592,7 @@ namespace OrdersCreator.UI
             labelReportsRoot.Text = "Папка для отчётов:";
             // 
             // labelTemplatePath
-            //
+            // 
             labelTemplatePath.Anchor = AnchorStyles.Left;
             labelTemplatePath.AutoSize = true;
             labelTemplatePath.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
@@ -608,7 +608,7 @@ namespace OrdersCreator.UI
             labelFileNameMask.Anchor = AnchorStyles.Left;
             labelFileNameMask.AutoSize = true;
             labelFileNameMask.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
-            labelFileNameMask.Location = new Point(3, 148);
+            labelFileNameMask.Location = new Point(3, 238);
             labelFileNameMask.Margin = new Padding(3);
             labelFileNameMask.Name = "labelFileNameMask";
             labelFileNameMask.Size = new Size(140, 19);
@@ -622,7 +622,7 @@ namespace OrdersCreator.UI
             btnVar.FlatStyle = FlatStyle.Flat;
             btnVar.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204, true);
             btnVar.ForeColor = Color.White;
-            btnVar.Location = new Point(794, 139);
+            btnVar.Location = new Point(790, 229);
             btnVar.Margin = new Padding(4);
             btnVar.Name = "btnVar";
             btnVar.Size = new Size(70, 29);
@@ -636,7 +636,7 @@ namespace OrdersCreator.UI
             tabStorage.Location = new Point(184, 4);
             tabStorage.Name = "tabStorage";
             tabStorage.Padding = new Padding(10);
-            tabStorage.Size = new Size(890, 335);
+            tabStorage.Size = new Size(886, 392);
             tabStorage.TabIndex = 2;
             tabStorage.Text = "База данных";
             tabStorage.UseVisualStyleBackColor = true;
@@ -657,7 +657,7 @@ namespace OrdersCreator.UI
             tlpStorage.RowCount = 2;
             tlpStorage.RowStyles.Add(new RowStyle());
             tlpStorage.RowStyles.Add(new RowStyle());
-            tlpStorage.Size = new Size(870, 74);
+            tlpStorage.Size = new Size(866, 74);
             tlpStorage.TabIndex = 0;
             // 
             // labelStorageType
@@ -686,7 +686,7 @@ namespace OrdersCreator.UI
             lblSqlServerConnectionString.Visible = false;
             // 
             // panelBottomButtons
-            //
+            // 
             panelBottomButtons.Controls.Add(flpButtons);
             panelBottomButtons.Dock = DockStyle.Bottom;
             panelBottomButtons.Location = new Point(5, 405);
@@ -707,7 +707,7 @@ namespace OrdersCreator.UI
             flpButtons.WrapContents = false;
             // 
             // FormSettings
-            //
+            // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1084, 470);
