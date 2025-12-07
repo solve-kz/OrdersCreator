@@ -28,9 +28,9 @@ namespace OrdersCreator.Domain.Models
         public string ReportTemplatePath { get; set; } = DefaultReportTemplatePath;
 
         /// <summary>Маска имени файла отчёта.</summary>
-        /// Например: "Отчёт_{CustomerName}_{Date:yyyy-MM-dd_HH-mm}.xlsx"
+        /// Например: "Отчёт_{customer_short}_{ДД}-{ММ}-{ГГГГ}_{ЧЧ}-{мм}.xlsx"
         public string ReportFileNameMask { get; set; } =
-            "Отчёт_{CustomerName}_{Date:yyyy-MM-dd_HH-mm}.xlsx";
+            "Отчёт_{customer_short}_{ДД}-{ММ}-{ГГГГ}_{ЧЧ}-{мм}.xlsx";
 
         /// <summary>Открывать ли отчёт в Excel после сохранения.</summary>
         public bool OpenReportAfterSave { get; set; } = true;

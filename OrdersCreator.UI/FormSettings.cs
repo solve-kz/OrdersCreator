@@ -27,6 +27,7 @@ namespace OrdersCreator.UI
         private readonly ISettingsService _settingsService;
         private AppSettings _settings = new AppSettings();
         private readonly Font _tabBoldFont;
+        private readonly ContextMenuStrip _fileNameVariablesMenu;
 
         public FormSettings(ISettingsService settingsService, FormSettingsTab initialTab = FormSettingsTab.Behavior)
         {
@@ -37,6 +38,11 @@ namespace OrdersCreator.UI
             Icon = new Icon(iconStream);
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+
+            _fileNameVariablesMenu = new ContextMenuStrip();
+            components ??= new System.ComponentModel.Container();
+            components.Add(_fileNameVariablesMenu);
+            InitializeVariablesMenu();
 
             LoadSettingsToControls();
 
@@ -51,6 +57,7 @@ namespace OrdersCreator.UI
 
             tabSettings.DrawItem += tabSettings_DrawItem;
             tabSettings.SelectedIndexChanged += tabSettings_SelectedIndexChanged;
+            btnVar.Click += BtnVar_Click;
 
             SelectTab(initialTab);
             UpdateTitleWithActiveTab();
@@ -341,6 +348,61 @@ namespace OrdersCreator.UI
 
             // ВАЖНО: НЕ рисуем прямоугольную рамку вокруг всей вкладки,
             // поэтому e.Graphics.DrawRectangle(...) убран.
+        }
+
+        private void InitializeVariablesMenu()
+        {
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{customer}", "Полное наименование контрагента"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{customer_short}", "Контрагент (первые 10 символов)"));
+            _fileNameVariablesMenu.Items.Add(new ToolStripSeparator());
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{ДД}", "День заказа"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{ММ}", "Месяц заказа"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{ГГ}", "Год (последние две цифры)"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{ГГГГ}", "Год полностью"));
+            _fileNameVariablesMenu.Items.Add(new ToolStripSeparator());
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{ЧЧ}", "Часы"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{мм}", "Минуты"));
+            _fileNameVariablesMenu.Items.Add(CreateVariableMenuItem("{сс}", "Секунды"));
+        }
+
+        private ToolStripMenuItem CreateVariableMenuItem(string placeholder, string description)
+        {
+            var item = new ToolStripMenuItem($"{placeholder} — {description}");
+            item.Tag = placeholder;
+            item.Click += VariableMenuItem_Click;
+            return item;
+        }
+
+        private void VariableMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem menuItem && menuItem.Tag is string placeholder)
+            {
+                InsertPlaceholderIntoMask(placeholder);
+            }
+        }
+
+        private void BtnVar_Click(object? sender, EventArgs e)
+        {
+            var buttonLocation = btnVar.PointToScreen(new Point(0, btnVar.Height));
+            _fileNameVariablesMenu.Show(buttonLocation);
+        }
+
+        private void InsertPlaceholderIntoMask(string placeholder)
+        {
+            var selectionStart = tbReportFileNameMask.SelectionStart;
+            var selectionLength = tbReportFileNameMask.SelectionLength;
+
+            var text = tbReportFileNameMask.Text ?? string.Empty;
+
+            if (selectionLength > 0)
+            {
+                text = text.Remove(selectionStart, selectionLength);
+            }
+
+            text = text.Insert(selectionStart, placeholder);
+            tbReportFileNameMask.Text = text;
+            tbReportFileNameMask.SelectionStart = selectionStart + placeholder.Length;
+            tbReportFileNameMask.Focus();
         }
     }
 }
