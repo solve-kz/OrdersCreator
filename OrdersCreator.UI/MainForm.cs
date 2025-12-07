@@ -76,6 +76,7 @@ namespace OrdersCreator.UI
             btnNewProductAdd.Click += BtnNewProductAdd_Click;
             dataGridViewOrderLines.SelectionChanged += DataGridViewOrderLines_SelectionChanged;
             dataGridViewOrderLines.CellContentClick += DataGridViewOrderLines_CellContentClick;
+            dataGridViewOrderLines.CellToolTipTextNeeded += DataGridViewOrderLines_CellToolTipTextNeeded;
             btnCreateReport.Click += BtnCreateReport_Click;
             открытьToolStripMenuItem.Click += ОткрытьToolStripMenuItem_Click;
             сохранитьToolStripMenuItem.Click += СохранитьToolStripMenuItem_Click;
@@ -646,6 +647,7 @@ namespace OrdersCreator.UI
             if (currentOrder != null && currentOrder.Lines.Any())
             {
                 FillGridFromOrder(currentOrder);
+                HighlightOrderLine(Math.Min(e.RowIndex, dataGridViewOrderLines.Rows.Count - 1));
             }
             else
             {
@@ -654,6 +656,17 @@ namespace OrdersCreator.UI
             }
 
             UpdateResults();
+        }
+
+        private void DataGridViewOrderLines_CellToolTipTextNeeded(object? sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (dataGridViewOrderLines.Columns[e.ColumnIndex].Name == nameof(RowDelete))
+            {
+                e.ToolTipText = string.Empty;
+            }
         }
 
         private void ClearSelectionAndDetails()
@@ -794,14 +807,21 @@ namespace OrdersCreator.UI
                 if (dialog.ShowDialog() != DialogResult.OK)
                     return;
 
-                var order = _orderRepository.LoadFromFile(dialog.FileName);
-                ApplyLoadedOrder(order);
-                MessageBox.Show($"Загружен заказ: {order.Number}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadOrderFromFile(dialog.FileName);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка загрузки заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void LoadOrderFromFile(string filePath)
+        {
+            var order = _orderRepository.LoadFromFile(filePath);
+            ApplyLoadedOrder(order);
+
+            var fileName = Path.GetFileNameWithoutExtension(filePath);
+            MessageBox.Show($"Файл \"{fileName}\" успешно загружен.", "Заказ загружен", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void СоздатьToolStripMenuItem_Click(object? sender, EventArgs e)
