@@ -58,6 +58,7 @@ namespace OrdersCreator.UI
             tabSettings.DrawItem += tabSettings_DrawItem;
             tabSettings.SelectedIndexChanged += tabSettings_SelectedIndexChanged;
             btnVar.Click += BtnVar_Click;
+            tbReportFileNameMask.KeyDown += TbReportFileNameMask_KeyDown;
 
             SelectTab(initialTab);
             UpdateTitleWithActiveTab();
@@ -408,6 +409,26 @@ namespace OrdersCreator.UI
             tbReportFileNameMask.Text = text;
             tbReportFileNameMask.SelectionStart = selectionStart + normalizedPlaceholder.Length;
             tbReportFileNameMask.Focus();
+        }
+
+        private void TbReportFileNameMask_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Back || tbReportFileNameMask.SelectionLength > 0)
+                return;
+
+            var caretPosition = tbReportFileNameMask.SelectionStart;
+            var text = tbReportFileNameMask.Text ?? string.Empty;
+
+            if (caretPosition == 0 || caretPosition > text.Length || text[caretPosition - 1] != '}')
+                return;
+
+            var openBraceIndex = text.LastIndexOf('{', caretPosition - 1);
+            if (openBraceIndex < 0)
+                return;
+
+            tbReportFileNameMask.Text = text.Remove(openBraceIndex, caretPosition - openBraceIndex);
+            tbReportFileNameMask.SelectionStart = openBraceIndex;
+            e.SuppressKeyPress = true;
         }
 
         private static string NormalizePlaceholder(string placeholder)
