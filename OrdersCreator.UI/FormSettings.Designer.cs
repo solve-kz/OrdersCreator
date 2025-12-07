@@ -223,7 +223,7 @@ namespace OrdersCreator.UI
             cmbUnknownProductMode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbUnknownProductMode.FormattingEnabled = true;
             cmbUnknownProductMode.Items.AddRange(new object[] { "Запросить данные", "Показать ошибку" });
-            cmbUnknownProductMode.Location = new Point(310, 190);
+            cmbUnknownProductMode.Location = new Point(310, 184);
             cmbUnknownProductMode.Name = "cmbUnknownProductMode";
             cmbUnknownProductMode.Size = new Size(559, 29);
             cmbUnknownProductMode.TabIndex = 23;
@@ -257,7 +257,10 @@ namespace OrdersCreator.UI
             tabSettings.Controls.Add(tabBehavior);
             tabSettings.Controls.Add(tabStorage);
             tabSettings.Dock = DockStyle.Fill;
+            tabSettings.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
+            tabSettings.ItemSize = new Size(200, 26);
             tabSettings.Location = new Point(0, 0);
+            tabSettings.Multiline = true;
             tabSettings.Name = "tabSettings";
             tabSettings.SelectedIndex = 0;
             tabSettings.Size = new Size(900, 351);
@@ -339,10 +342,10 @@ namespace OrdersCreator.UI
             // tabBehavior
             // 
             tabBehavior.Controls.Add(tlpBehavior);
-            tabBehavior.Location = new Point(4, 24);
+            tabBehavior.Location = new Point(4, 30);
             tabBehavior.Name = "tabBehavior";
             tabBehavior.Padding = new Padding(10);
-            tabBehavior.Size = new Size(892, 323);
+            tabBehavior.Size = new Size(892, 317);
             tabBehavior.TabIndex = 1;
             tabBehavior.Text = "Поведение";
             tabBehavior.UseVisualStyleBackColor = true;
@@ -367,7 +370,7 @@ namespace OrdersCreator.UI
             tlpBehavior.RowStyles.Add(new RowStyle());
             tlpBehavior.RowStyles.Add(new RowStyle());
             tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.Size = new Size(872, 303);
+            tlpBehavior.Size = new Size(872, 297);
             tlpBehavior.TabIndex = 0;
             // 
             // labelScannerTimeout
@@ -386,7 +389,7 @@ namespace OrdersCreator.UI
             // 
             labelUnknownProduct.Anchor = AnchorStyles.Left;
             labelUnknownProduct.AutoSize = true;
-            labelUnknownProduct.Location = new Point(3, 191);
+            labelUnknownProduct.Location = new Point(3, 188);
             labelUnknownProduct.Margin = new Padding(3);
             labelUnknownProduct.Name = "labelUnknownProduct";
             labelUnknownProduct.Size = new Size(260, 21);
@@ -397,10 +400,10 @@ namespace OrdersCreator.UI
             // tabStorage
             // 
             tabStorage.Controls.Add(tlpStorage);
-            tabStorage.Location = new Point(4, 24);
+            tabStorage.Location = new Point(4, 30);
             tabStorage.Name = "tabStorage";
             tabStorage.Padding = new Padding(10);
-            tabStorage.Size = new Size(892, 323);
+            tabStorage.Size = new Size(892, 317);
             tabStorage.TabIndex = 2;
             tabStorage.Text = "Хранение данных";
             tabStorage.UseVisualStyleBackColor = true;
