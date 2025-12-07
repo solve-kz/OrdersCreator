@@ -59,22 +59,6 @@
             ProductWeight = new DataGridViewTextBoxColumn();
             RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
-            panelRedMode = new Panel();
-            tlpRedMode = new TableLayoutPanel();
-            panelRedHeader = new Panel();
-            imgRedWarning = new PictureBox();
-            label6 = new Label();
-            panel6 = new Panel();
-            tbNewProductWeight = new TextBox();
-            label8 = new Label();
-            tbNewProductCode = new TextBox();
-            label7 = new Label();
-            panel7 = new Panel();
-            btnNewProductAdd = new Button();
-            cbNewProductCategory = new ComboBox();
-            label10 = new Label();
-            tbNewProductTitle = new TextBox();
-            label9 = new Label();
             panelGreenMode = new Panel();
             tlpGreenMode = new TableLayoutPanel();
             panelReady = new Panel();
@@ -91,6 +75,22 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
+            panelRedMode = new Panel();
+            tlpRedMode = new TableLayoutPanel();
+            panelRedHeader = new Panel();
+            imgRedWarning = new PictureBox();
+            label6 = new Label();
+            panel6 = new Panel();
+            tbNewProductWeight = new TextBox();
+            label8 = new Label();
+            tbNewProductCode = new TextBox();
+            label7 = new Label();
+            panel7 = new Panel();
+            btnNewProductAdd = new Button();
+            cbNewProductCategory = new ComboBox();
+            label10 = new Label();
+            tbNewProductTitle = new TextBox();
+            label9 = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -98,12 +98,6 @@
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderLines).BeginInit();
             panelLeftContainer.SuspendLayout();
-            panelRedMode.SuspendLayout();
-            tlpRedMode.SuspendLayout();
-            panelRedHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgRedWarning).BeginInit();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
             panelGreenMode.SuspendLayout();
             tlpGreenMode.SuspendLayout();
             panelReady.SuspendLayout();
@@ -111,6 +105,12 @@
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
+            panelRedMode.SuspendLayout();
+            tlpRedMode.SuspendLayout();
+            panelRedHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgRedWarning).BeginInit();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -206,14 +206,14 @@
             // справкаF1ToolStripMenuItem
             // 
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
-            справкаF1ToolStripMenuItem.Size = new Size(180, 22);
+            справкаF1ToolStripMenuItem.Size = new Size(149, 22);
             справкаF1ToolStripMenuItem.Text = "Справка";
             справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(180, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(149, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
@@ -387,13 +387,204 @@
             // 
             // panelLeftContainer
             // 
-            panelLeftContainer.Controls.Add(panelRedMode);
             panelLeftContainer.Controls.Add(panelGreenMode);
+            panelLeftContainer.Controls.Add(panelRedMode);
             panelLeftContainer.Dock = DockStyle.Fill;
             panelLeftContainer.Location = new Point(3, 3);
             panelLeftContainer.Name = "panelLeftContainer";
             panelLeftContainer.Size = new Size(474, 591);
             panelLeftContainer.TabIndex = 1;
+            // 
+            // panelGreenMode
+            // 
+            panelGreenMode.BackColor = Color.ForestGreen;
+            panelGreenMode.Controls.Add(tlpGreenMode);
+            panelGreenMode.Dock = DockStyle.Fill;
+            panelGreenMode.Location = new Point(0, 0);
+            panelGreenMode.Name = "panelGreenMode";
+            panelGreenMode.Padding = new Padding(10);
+            panelGreenMode.Size = new Size(474, 591);
+            panelGreenMode.TabIndex = 0;
+            // 
+            // tlpGreenMode
+            // 
+            tlpGreenMode.ColumnCount = 1;
+            tlpGreenMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpGreenMode.Controls.Add(panelReady, 0, 0);
+            tlpGreenMode.Controls.Add(panel4, 0, 1);
+            tlpGreenMode.Controls.Add(panel3, 0, 2);
+            tlpGreenMode.Dock = DockStyle.Fill;
+            tlpGreenMode.Location = new Point(10, 10);
+            tlpGreenMode.Name = "tlpGreenMode";
+            tlpGreenMode.RowCount = 3;
+            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpGreenMode.Size = new Size(454, 571);
+            tlpGreenMode.TabIndex = 5;
+            // 
+            // panelReady
+            // 
+            panelReady.BackColor = Color.Green;
+            panelReady.Controls.Add(imgReady);
+            panelReady.Controls.Add(lblReady);
+            panelReady.Dock = DockStyle.Fill;
+            panelReady.Location = new Point(3, 3);
+            panelReady.Name = "panelReady";
+            panelReady.Size = new Size(448, 136);
+            panelReady.TabIndex = 4;
+            // 
+            // imgReady
+            // 
+            imgReady.Image = Properties.Resources.readyScan;
+            imgReady.Location = new Point(43, 30);
+            imgReady.Name = "imgReady";
+            imgReady.Size = new Size(64, 64);
+            imgReady.SizeMode = PictureBoxSizeMode.AutoSize;
+            imgReady.TabIndex = 1;
+            imgReady.TabStop = false;
+            // 
+            // lblReady
+            // 
+            lblReady.AutoSize = true;
+            lblReady.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblReady.ForeColor = Color.White;
+            lblReady.Location = new Point(141, 49);
+            lblReady.Name = "lblReady";
+            lblReady.Size = new Size(230, 25);
+            lblReady.TabIndex = 0;
+            lblReady.Text = "Выберите контрагента!";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.DarkGreen;
+            panel4.Controls.Add(lblCurrentWeight);
+            panel4.Controls.Add(lblCurrentTitle);
+            panel4.Controls.Add(panel5);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(3, 145);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(448, 193);
+            panel4.TabIndex = 1;
+            // 
+            // lblCurrentWeight
+            // 
+            lblCurrentWeight.AutoSize = true;
+            lblCurrentWeight.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCurrentWeight.ForeColor = Color.White;
+            lblCurrentWeight.Location = new Point(269, 105);
+            lblCurrentWeight.Name = "lblCurrentWeight";
+            lblCurrentWeight.Size = new Size(123, 32);
+            lblCurrentWeight.TabIndex = 1;
+            lblCurrentWeight.Text = "00,000 кг";
+            // 
+            // lblCurrentTitle
+            // 
+            lblCurrentTitle.AutoSize = true;
+            lblCurrentTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblCurrentTitle.ForeColor = Color.White;
+            lblCurrentTitle.Location = new Point(18, 22);
+            lblCurrentTitle.MaximumSize = new Size(420, 0);
+            lblCurrentTitle.Name = "lblCurrentTitle";
+            lblCurrentTitle.Size = new Size(293, 25);
+            lblCurrentTitle.TabIndex = 2;
+            lblCurrentTitle.Text = "Наименование текущего товара";
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.White;
+            panel5.Controls.Add(lblCurrentCategory);
+            panel5.Location = new Point(18, 105);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(153, 33);
+            panel5.TabIndex = 3;
+            panel5.Visible = false;
+            // 
+            // lblCurrentCategory
+            // 
+            lblCurrentCategory.AutoSize = true;
+            lblCurrentCategory.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCurrentCategory.ForeColor = Color.Green;
+            lblCurrentCategory.Location = new Point(23, 4);
+            lblCurrentCategory.Name = "lblCurrentCategory";
+            lblCurrentCategory.Size = new Size(108, 25);
+            lblCurrentCategory.TabIndex = 0;
+            lblCurrentCategory.Text = "Категория";
+            lblCurrentCategory.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.DarkGreen;
+            panel3.Controls.Add(lblCodeWeight);
+            panel3.Controls.Add(lblCodeAmount);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(label3);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(3, 344);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(448, 224);
+            panel3.TabIndex = 0;
+            // 
+            // lblCodeWeight
+            // 
+            lblCodeWeight.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblCodeWeight.AutoSize = true;
+            lblCodeWeight.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCodeWeight.ForeColor = Color.White;
+            lblCodeWeight.Location = new Point(197, 124);
+            lblCodeWeight.Name = "lblCodeWeight";
+            lblCodeWeight.Size = new Size(74, 86);
+            lblCodeWeight.TabIndex = 4;
+            lblCodeWeight.Text = "0";
+            // 
+            // lblCodeAmount
+            // 
+            lblCodeAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblCodeAmount.AutoSize = true;
+            lblCodeAmount.Font = new Font("Segoe UI", 42F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblCodeAmount.ForeColor = Color.LightGray;
+            lblCodeAmount.Location = new Point(206, 58);
+            lblCodeAmount.Name = "lblCodeAmount";
+            lblCodeAmount.Size = new Size(64, 74);
+            lblCodeAmount.TabIndex = 3;
+            lblCodeAmount.Text = "0";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(18, 176);
+            label5.Name = "label5";
+            label5.Size = new Size(40, 21);
+            label5.TabIndex = 2;
+            label5.Text = "ВЕС:";
+            label5.Visible = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(18, 93);
+            label4.Name = "label4";
+            label4.Size = new Size(115, 21);
+            label4.TabIndex = 1;
+            label4.Text = "КОЛИЧЕСТВО:";
+            label4.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(18, 21);
+            label3.Name = "label3";
+            label3.Size = new Size(264, 21);
+            label3.TabIndex = 0;
+            label3.Text = "ИТОГО ПО ВЫБРАННОМУ ТОВАРУ:";
+            label3.Visible = false;
             // 
             // panelRedMode
             // 
@@ -581,197 +772,6 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
-            // panelGreenMode
-            // 
-            panelGreenMode.BackColor = Color.ForestGreen;
-            panelGreenMode.Controls.Add(tlpGreenMode);
-            panelGreenMode.Dock = DockStyle.Fill;
-            panelGreenMode.Location = new Point(0, 0);
-            panelGreenMode.Name = "panelGreenMode";
-            panelGreenMode.Padding = new Padding(10);
-            panelGreenMode.Size = new Size(474, 591);
-            panelGreenMode.TabIndex = 0;
-            // 
-            // tlpGreenMode
-            // 
-            tlpGreenMode.ColumnCount = 1;
-            tlpGreenMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpGreenMode.Controls.Add(panelReady, 0, 0);
-            tlpGreenMode.Controls.Add(panel4, 0, 1);
-            tlpGreenMode.Controls.Add(panel3, 0, 2);
-            tlpGreenMode.Dock = DockStyle.Fill;
-            tlpGreenMode.Location = new Point(10, 10);
-            tlpGreenMode.Name = "tlpGreenMode";
-            tlpGreenMode.RowCount = 3;
-            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
-            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpGreenMode.Size = new Size(454, 571);
-            tlpGreenMode.TabIndex = 5;
-            // 
-            // panelReady
-            // 
-            panelReady.BackColor = Color.Green;
-            panelReady.Controls.Add(imgReady);
-            panelReady.Controls.Add(lblReady);
-            panelReady.Dock = DockStyle.Fill;
-            panelReady.Location = new Point(3, 3);
-            panelReady.Name = "panelReady";
-            panelReady.Size = new Size(448, 136);
-            panelReady.TabIndex = 4;
-            // 
-            // imgReady
-            // 
-            imgReady.Image = Properties.Resources.readyScan;
-            imgReady.Location = new Point(43, 30);
-            imgReady.Name = "imgReady";
-            imgReady.Size = new Size(64, 64);
-            imgReady.SizeMode = PictureBoxSizeMode.AutoSize;
-            imgReady.TabIndex = 1;
-            imgReady.TabStop = false;
-            // 
-            // lblReady
-            // 
-            lblReady.AutoSize = true;
-            lblReady.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblReady.ForeColor = Color.White;
-            lblReady.Location = new Point(141, 49);
-            lblReady.Name = "lblReady";
-            lblReady.Size = new Size(230, 25);
-            lblReady.TabIndex = 0;
-            lblReady.Text = "Выберите контрагента!";
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.DarkGreen;
-            panel4.Controls.Add(lblCurrentWeight);
-            panel4.Controls.Add(lblCurrentTitle);
-            panel4.Controls.Add(panel5);
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 145);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(448, 193);
-            panel4.TabIndex = 1;
-            // 
-            // lblCurrentWeight
-            // 
-            lblCurrentWeight.AutoSize = true;
-            lblCurrentWeight.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblCurrentWeight.ForeColor = Color.White;
-            lblCurrentWeight.Location = new Point(269, 105);
-            lblCurrentWeight.Name = "lblCurrentWeight";
-            lblCurrentWeight.Size = new Size(123, 32);
-            lblCurrentWeight.TabIndex = 1;
-            lblCurrentWeight.Text = "00,000 кг";
-            // 
-            // lblCurrentTitle
-            // 
-            lblCurrentTitle.AutoSize = true;
-            lblCurrentTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            lblCurrentTitle.ForeColor = Color.White;
-            lblCurrentTitle.Location = new Point(18, 22);
-            lblCurrentTitle.MaximumSize = new Size(420, 0);
-            lblCurrentTitle.Name = "lblCurrentTitle";
-            lblCurrentTitle.Size = new Size(293, 25);
-            lblCurrentTitle.TabIndex = 2;
-            lblCurrentTitle.Text = "Наименование текущего товара";
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Controls.Add(lblCurrentCategory);
-            panel5.Location = new Point(18, 105);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(153, 33);
-            panel5.TabIndex = 3;
-            panel5.Visible = false;
-            // 
-            // lblCurrentCategory
-            // 
-            lblCurrentCategory.AutoSize = true;
-            lblCurrentCategory.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblCurrentCategory.ForeColor = Color.Green;
-            lblCurrentCategory.Location = new Point(23, 4);
-            lblCurrentCategory.Name = "lblCurrentCategory";
-            lblCurrentCategory.Size = new Size(108, 25);
-            lblCurrentCategory.TabIndex = 0;
-            lblCurrentCategory.Text = "Категория";
-            lblCurrentCategory.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.DarkGreen;
-            panel3.Controls.Add(lblCodeWeight);
-            panel3.Controls.Add(lblCodeAmount);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(label3);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 344);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(448, 224);
-            panel3.TabIndex = 0;
-            // 
-            // lblCodeWeight
-            // 
-            lblCodeWeight.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblCodeWeight.AutoSize = true;
-            lblCodeWeight.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblCodeWeight.ForeColor = Color.White;
-            lblCodeWeight.Location = new Point(241, 112);
-            lblCodeWeight.Name = "lblCodeWeight";
-            lblCodeWeight.Size = new Size(74, 86);
-            lblCodeWeight.TabIndex = 4;
-            lblCodeWeight.Text = "0";
-            // 
-            // lblCodeAmount
-            // 
-            lblCodeAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblCodeAmount.AutoSize = true;
-            lblCodeAmount.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            lblCodeAmount.ForeColor = Color.White;
-            lblCodeAmount.Location = new Point(250, 58);
-            lblCodeAmount.Name = "lblCodeAmount";
-            lblCodeAmount.Size = new Size(56, 65);
-            lblCodeAmount.TabIndex = 3;
-            lblCodeAmount.Text = "0";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(18, 164);
-            label5.Name = "label5";
-            label5.Size = new Size(40, 21);
-            label5.TabIndex = 2;
-            label5.Text = "ВЕС:";
-            label5.Visible = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(18, 93);
-            label4.Name = "label4";
-            label4.Size = new Size(115, 21);
-            label4.TabIndex = 1;
-            label4.Text = "КОЛИЧЕСТВО:";
-            label4.Visible = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(18, 21);
-            label3.Name = "label3";
-            label3.Size = new Size(264, 21);
-            label3.TabIndex = 0;
-            label3.Text = "ИТОГО ПО ВЫБРАННОМУ ТОВАРУ:";
-            label3.Visible = false;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -799,15 +799,6 @@
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderLines).EndInit();
             panelLeftContainer.ResumeLayout(false);
-            panelRedMode.ResumeLayout(false);
-            tlpRedMode.ResumeLayout(false);
-            panelRedHeader.ResumeLayout(false);
-            panelRedHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgRedWarning).EndInit();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panelGreenMode.ResumeLayout(false);
             tlpGreenMode.ResumeLayout(false);
             panelReady.ResumeLayout(false);
@@ -819,6 +810,15 @@
             panel5.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panelRedMode.ResumeLayout(false);
+            tlpRedMode.ResumeLayout(false);
+            panelRedHeader.ResumeLayout(false);
+            panelRedHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgRedWarning).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
