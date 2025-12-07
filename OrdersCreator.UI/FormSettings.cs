@@ -57,6 +57,14 @@ namespace OrdersCreator.UI
                 modeIndex = 0;
             cmbUnknownProductMode.SelectedIndex = modeIndex;
 
+            chbConfirmDeleteLastProduct.Checked = _settings.ConfirmDeleteLastProduct;
+            chbConfirmDeleteAnyProduct.Checked = _settings.ConfirmDeleteAnyProduct;
+            chbConfirmDeleteCategory.Checked = _settings.ConfirmDeleteCategoryFromCatalog;
+            chbConfirmDeleteProduct.Checked = _settings.ConfirmDeleteProductFromCatalog;
+            chbConfirmDeleteCustomer.Checked = _settings.ConfirmDeleteCustomerFromCatalog;
+            chbConfirmCancelNewProduct.Checked = _settings.ConfirmCancelNewProduct;
+            chbConfirmCloseIncompleteOrder.Checked = _settings.ConfirmCloseIncompleteOrder;
+
             // ---- блок хранения данных ----
             // cmbStorageType: 0 – В памяти, 1 – SQLite, 2 – SQLServer
             var storageIndex = (int)_settings.StorageType;
@@ -110,6 +118,14 @@ namespace OrdersCreator.UI
             var modeIndex = cmbUnknownProductMode.SelectedIndex;
             if (modeIndex < 0) modeIndex = 0;
             _settings.UnknownProductMode = (UnknownProductMode)modeIndex;
+
+            _settings.ConfirmDeleteLastProduct = chbConfirmDeleteLastProduct.Checked;
+            _settings.ConfirmDeleteAnyProduct = chbConfirmDeleteAnyProduct.Checked;
+            _settings.ConfirmDeleteCategoryFromCatalog = chbConfirmDeleteCategory.Checked;
+            _settings.ConfirmDeleteProductFromCatalog = chbConfirmDeleteProduct.Checked;
+            _settings.ConfirmDeleteCustomerFromCatalog = chbConfirmDeleteCustomer.Checked;
+            _settings.ConfirmCancelNewProduct = chbConfirmCancelNewProduct.Checked;
+            _settings.ConfirmCloseIncompleteOrder = chbConfirmCloseIncompleteOrder.Checked;
 
             // ---- хранение ----
             var storageIndex = cmbStorageType.SelectedIndex;
@@ -203,6 +219,27 @@ namespace OrdersCreator.UI
                 return string.Empty;
 
             return path.Replace('>', Path.DirectorySeparatorChar).Trim();
+        }
+
+        private void tabSettings_DrawItem(object? sender, DrawItemEventArgs e)
+        {
+            var tab = tabSettings.TabPages[e.Index];
+            var isSelected = e.Index == tabSettings.SelectedIndex;
+
+            using var backgroundBrush = new SolidBrush(isSelected ? Color.White : Color.FromArgb(240, 240, 240));
+            e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+
+            var textRectangle = new Rectangle(e.Bounds.Left + 10, e.Bounds.Top + 4, e.Bounds.Width - 20, e.Bounds.Height - 8);
+            using var textBrush = new SolidBrush(isSelected ? Color.Black : Color.DimGray);
+            using var stringFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Near,
+                LineAlignment = StringAlignment.Center
+            };
+            e.Graphics.DrawString(tab.Text, tabSettings.Font, textBrush, textRectangle, stringFormat);
+
+            using var borderPen = new Pen(Color.LightGray);
+            e.Graphics.DrawRectangle(borderPen, e.Bounds);
         }
     }
 }
