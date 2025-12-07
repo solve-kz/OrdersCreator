@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             menuStrip1 = new MenuStrip();
             файлToolStripMenuItem = new ToolStripMenuItem();
             создатьToolStripMenuItem = new ToolStripMenuItem();
@@ -176,23 +175,26 @@
             // 
             категорииToolStripMenuItem.Image = Properties.Resources.categories;
             категорииToolStripMenuItem.Name = "категорииToolStripMenuItem";
-            категорииToolStripMenuItem.Size = new Size(180, 22);
+            категорииToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.C;
+            категорииToolStripMenuItem.Size = new Size(145, 22);
             категорииToolStripMenuItem.Text = "Категории";
-            // 
+            //
             // товарыToolStripMenuItem
-            // 
+            //
             товарыToolStripMenuItem.Image = Properties.Resources.products;
             товарыToolStripMenuItem.Name = "товарыToolStripMenuItem";
-            товарыToolStripMenuItem.Size = new Size(180, 22);
+            товарыToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.T;
+            товарыToolStripMenuItem.Size = new Size(145, 22);
             товарыToolStripMenuItem.Text = "Товары";
-            // 
+            //
             // контрагентыToolStripMenuItem
-            // 
+            //
             контрагентыToolStripMenuItem.Image = Properties.Resources.customers;
             контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
-            контрагентыToolStripMenuItem.Size = new Size(180, 22);
+            контрагентыToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.K;
+            контрагентыToolStripMenuItem.Size = new Size(145, 22);
             контрагентыToolStripMenuItem.Text = "Контрагенты";
-            // 
+            //
             // настройкаToolStripMenuItem
             // 
             настройкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { общиеНастройкиToolStripMenuItem, отчетыНастройкиToolStripMenuItem, хранилищеНастройкиToolStripMenuItem });
@@ -203,6 +205,7 @@
             // общиеНастройкиToolStripMenuItem
             // 
             общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
+            общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
             общиеНастройкиToolStripMenuItem.Size = new Size(180, 22);
             общиеНастройкиToolStripMenuItem.Text = "Общие";
             общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
@@ -210,6 +213,7 @@
             // отчетыНастройкиToolStripMenuItem
             // 
             отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
+            отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
             отчетыНастройкиToolStripMenuItem.Size = new Size(180, 22);
             отчетыНастройкиToolStripMenuItem.Text = "Отчёты";
             отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
@@ -217,21 +221,23 @@
             // хранилищеНастройкиToolStripMenuItem
             // 
             хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
+            хранилищеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
             хранилищеНастройкиToolStripMenuItem.Size = new Size(180, 22);
             хранилищеНастройкиToolStripMenuItem.Text = "Хранилище";
             хранилищеНастройкиToolStripMenuItem.Click += ХранилищеНастройкиToolStripMenuItem_Click;
-            // 
+            //
             // помощьToolStripMenuItem
             // 
             помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, горячиеКлавишиToolStripMenuItem, оПрограммеToolStripMenuItem });
             помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             помощьToolStripMenuItem.Size = new Size(68, 20);
             помощьToolStripMenuItem.Text = "Помощь";
-            // 
+            //
             // справкаF1ToolStripMenuItem
-            // 
+            //
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
-            справкаF1ToolStripMenuItem.Size = new Size(180, 22);
+            справкаF1ToolStripMenuItem.ShortcutKeys = Keys.F1;
+            справкаF1ToolStripMenuItem.Size = new Size(149, 22);
             справкаF1ToolStripMenuItem.Text = "Справка";
             справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
             // 
@@ -813,7 +819,7 @@
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Icon = (Icon)resources.GetObject("$this.Icon");
+            Icon = Properties.Resources.white_icon_ico;
             KeyPreview = true;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
