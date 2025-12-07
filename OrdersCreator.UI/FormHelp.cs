@@ -1,8 +1,10 @@
 ﻿using System;
+using Microsoft.Web.WebView2.Core;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +16,19 @@ namespace OrdersCreator.UI
     {
         private readonly string _relativePage;
         private readonly string _helpRoot;
+        private const string DefaultHomePage = "index.html";
 
-        public FormHelp(string relativePage = "index.html")
+        public FormHelp(string relativePage = DefaultHomePage)
         {
             InitializeComponent();
 
             _relativePage = relativePage;
             _helpRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Help");
+
+            btnHome.Click += BtnHome_Click;
+            btnBack.Click += BtnBack_Click;
+            btnForward.Click += BtnForward_Click;
+            webView21.NavigationCompleted += WebView21_NavigationCompleted;
         }
 
         private async void HelpForm_Load(object sender, EventArgs e)
@@ -30,15 +38,8 @@ namespace OrdersCreator.UI
                 // Инициализация движка WebView2
                 await webView21.EnsureCoreWebView2Async(null);
 
-                string pagePath = Path.Combine(_helpRoot, _relativePage);
-
-                if (!File.Exists(pagePath))
-                {
-                    // Если указанной страницы нет — открываем индекс
-                    pagePath = Path.Combine(_helpRoot, "index.html");
-                }
-
-                webView21.Source = new Uri(pagePath);
+                NavigateToPage(_relativePage);
+                UpdateNavigationButtons();
             }
             catch (Exception ex)
             {
@@ -50,6 +51,52 @@ namespace OrdersCreator.UI
 
                 Close();
             }
+        }
+
+        private void NavigateToPage(string relativePage)
+        {
+            string pagePath = Path.Combine(_helpRoot, relativePage);
+
+            if (!File.Exists(pagePath))
+            {
+                // Если указанной страницы нет — открываем индекс
+                pagePath = Path.Combine(_helpRoot, DefaultHomePage);
+            }
+
+            webView21.Source = new Uri(pagePath);
+        }
+
+        private void BtnHome_Click(object? sender, EventArgs e)
+        {
+            NavigateToPage(DefaultHomePage);
+        }
+
+        private void BtnBack_Click(object? sender, EventArgs e)
+        {
+            if (webView21.CoreWebView2?.CanGoBack == true)
+            {
+                webView21.CoreWebView2.GoBack();
+            }
+        }
+
+        private void BtnForward_Click(object? sender, EventArgs e)
+        {
+            if (webView21.CoreWebView2?.CanGoForward == true)
+            {
+                webView21.CoreWebView2.GoForward();
+            }
+        }
+
+        private void WebView21_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            UpdateNavigationButtons();
+        }
+
+        private void UpdateNavigationButtons()
+        {
+            var core = webView21.CoreWebView2;
+            btnBack.Enabled = core?.CanGoBack ?? false;
+            btnForward.Enabled = core?.CanGoForward ?? false;
         }
     }
 
