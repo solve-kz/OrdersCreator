@@ -132,6 +132,22 @@ namespace OrdersCreator.UI
             var reportsPath = tbReportsRootFolder.Text.Trim();
             if (!string.IsNullOrWhiteSpace(reportsPath))
             {
+                try
+                {
+                    if (!Directory.Exists(reportsPath))
+                    {
+                        Directory.CreateDirectory(reportsPath);
+                    }
+                }
+                catch
+                {
+                    // если папку не удалось создать, используем путь по умолчанию
+                    reportsPath = string.Empty;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(reportsPath))
+            {
                 dialog.SelectedPath = reportsPath;
             }
             else
