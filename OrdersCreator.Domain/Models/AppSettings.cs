@@ -11,6 +11,10 @@ namespace OrdersCreator.Domain.Models
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "Отчеты по заказам");
 
+        private static readonly string DefaultOrdersRootFolder = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            "Заказы");
+
         private static readonly string DefaultReportTemplatePath = Path.Combine(
             DefaultReportsRootFolder,
             "Template",
@@ -34,6 +38,13 @@ namespace OrdersCreator.Domain.Models
 
         /// <summary>Открывать ли отчёт в Excel после сохранения.</summary>
         public bool OpenReportAfterSave { get; set; } = true;
+
+        /// <summary>Папка для сохранения файлов заказов.</summary>
+        public string OrdersSaveFolder { get; set; } = DefaultOrdersRootFolder;
+
+        /// <summary>Включить автосохранение заказа.</summary>
+        public bool AutoSaveOrders { get; set; }
+            = false;
 
         // ---- Блок поведения ----
 

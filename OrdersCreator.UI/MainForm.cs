@@ -184,6 +184,7 @@ namespace OrdersCreator.UI
                 lblReady.BackColor = Color.Green;
                 panelReady.BackColor = Color.Green;
                 imgReady.Image = Properties.Resources.readyScan;
+                TryAutoSaveCurrentOrder();
             }
             else
             {
@@ -374,6 +375,7 @@ namespace OrdersCreator.UI
                 imgReady.Image = Properties.Resources.readyScan;
                 UpdateResults();
                 PlaySuccessSound();
+                TryAutoSaveCurrentOrder();
             }
             catch (Exception ex)
             {
@@ -392,10 +394,10 @@ namespace OrdersCreator.UI
                 lblCurrentCategory.Text = (orderLine.Product.Category ?? FindCategoryById(orderLine.Product.CategoryId))?.Name ?? string.Empty;
                 lblCurrentWeight.Text = parsedBarcode.WeightKg.ToString("F3");
 
-                lblCodeAmount.Text = GetProductCount(orderLine.Product.Code).ToString();
+                lblCodeAmount.Text = $"{GetProductCount(orderLine.Product.Code)} шт.";
                 lblCodeWeight.Text = _orderService
                     .GetCurrentProductSubtotal(orderLine.Product.Code)
-                    .ToString("F3");
+                    .ToString("F3") + " кг.";
             }
 
             HighlightOrderLine(dataGridViewOrderLines.Rows.Count - 1);
@@ -650,10 +652,10 @@ namespace OrdersCreator.UI
             lblCurrentTitle.Text = productTitle;
             lblCurrentCategory.Text = categoryName;
             lblCurrentWeight.Text = productWeight;
-            lblCodeAmount.Text = GetProductCount(productCode).ToString();
+            lblCodeAmount.Text = $"{GetProductCount(productCode)} шт.";
             lblCodeWeight.Text = _orderService
                 .GetCurrentProductSubtotal(productCode)
-                .ToString("F3");
+                .ToString("F3") + " кг.";
         }
 
         private void DataGridViewOrderLines_CellContentClick(object? sender, DataGridViewCellEventArgs e)
@@ -825,11 +827,15 @@ namespace OrdersCreator.UI
             {
                 var order = _orderService.CurrentOrder ?? throw new InvalidOperationException("Нет активного заказа для сохранения.");
 
+                var ordersFolder = EnsureOrdersFolderExists();
+                var suggestedFileName = GetSuggestedFileName(order);
+
                 using var dialog = new SaveFileDialog
                 {
                     Filter = "Файлы заказа (*.order.json)|*.order.json|JSON (*.json)|*.json|Все файлы (*.*)|*.*",
                     DefaultExt = "order.json",
-                    FileName = GetSuggestedFileName(order)
+                    FileName = suggestedFileName,
+                    InitialDirectory = ordersFolder
                 };
 
                 if (dialog.ShowDialog() != DialogResult.OK)
@@ -937,6 +943,54 @@ namespace OrdersCreator.UI
             baseName = string.Concat(baseName.Select(ch => invalidChars.Contains(ch) ? '_' : ch));
 
             return $"{baseName}-{order.Date:dd-MM}.order.json";
+        }
+
+        private string EnsureOrdersFolderExists()
+        {
+            var ordersFolder = _appSettings.OrdersSaveFolder;
+
+            if (string.IsNullOrWhiteSpace(ordersFolder))
+            {
+                ordersFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Заказы");
+            }
+
+            try
+            {
+                Directory.CreateDirectory(ordersFolder);
+            }
+            catch
+            {
+                ordersFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+
+            return ordersFolder;
+        }
+
+        private bool TryAutoSaveCurrentOrder()
+        {
+            if (!_appSettings.AutoSaveOrders)
+                return false;
+
+            var order = _orderService.CurrentOrder;
+            if (order == null)
+                return false;
+
+            if (order.Customer == null && order.CustomerId == 0)
+                return false;
+
+            var ordersFolder = EnsureOrdersFolderExists();
+            var filePath = Path.Combine(ordersFolder, GetSuggestedFileName(order));
+
+            try
+            {
+                _orderRepository.SaveToFile(order, filePath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка автосохранения заказа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
         }
 
         private void ApplyLoadedOrder(Order order)
