@@ -215,7 +215,7 @@
             отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
             отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
             отчетыНастройкиToolStripMenuItem.Size = new Size(214, 22);
-            отчетыНастройкиToolStripMenuItem.Text = "Отчёты";
+            отчетыНастройкиToolStripMenuItem.Text = "Пути и шаблоны";
             отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
             // 
             // хранилищеНастройкиToolStripMenuItem
@@ -416,9 +416,9 @@
             tlpGreenMode.Location = new Point(10, 10);
             tlpGreenMode.Name = "tlpGreenMode";
             tlpGreenMode.RowCount = 3;
-            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tlpGreenMode.Size = new Size(454, 561);
             tlpGreenMode.TabIndex = 5;
             // 
@@ -430,13 +430,13 @@
             panelReady.Dock = DockStyle.Fill;
             panelReady.Location = new Point(3, 3);
             panelReady.Name = "panelReady";
-            panelReady.Size = new Size(448, 134);
+            panelReady.Size = new Size(448, 74);
             panelReady.TabIndex = 4;
             // 
             // imgReady
             // 
             imgReady.Image = Properties.Resources.readyScan;
-            imgReady.Location = new Point(43, 30);
+            imgReady.Location = new Point(43, 5);
             imgReady.Name = "imgReady";
             imgReady.Size = new Size(64, 64);
             imgReady.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -448,7 +448,7 @@
             lblReady.AutoSize = true;
             lblReady.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblReady.ForeColor = Color.White;
-            lblReady.Location = new Point(141, 49);
+            lblReady.Location = new Point(141, 24);
             lblReady.Name = "lblReady";
             lblReady.Size = new Size(230, 25);
             lblReady.TabIndex = 0;
@@ -608,9 +608,9 @@
             tlpRedMode.Location = new Point(10, 10);
             tlpRedMode.Name = "tlpRedMode";
             tlpRedMode.RowCount = 3;
-            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tlpRedMode.Size = new Size(454, 561);
             tlpRedMode.TabIndex = 4;
             // 
@@ -622,13 +622,13 @@
             panelRedHeader.Dock = DockStyle.Fill;
             panelRedHeader.Location = new Point(3, 3);
             panelRedHeader.Name = "panelRedHeader";
-            panelRedHeader.Size = new Size(448, 134);
+            panelRedHeader.Size = new Size(448, 74);
             panelRedHeader.TabIndex = 0;
             // 
             // imgRedWarning
             // 
             imgRedWarning.Image = Properties.Resources.attention;
-            imgRedWarning.Location = new Point(43, 36);
+            imgRedWarning.Location = new Point(43, 5);
             imgRedWarning.Name = "imgRedWarning";
             imgRedWarning.Size = new Size(64, 64);
             imgRedWarning.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -640,7 +640,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(141, 55);
+            label6.Location = new Point(141, 24);
             label6.Name = "label6";
             label6.Size = new Size(265, 25);
             label6.TabIndex = 0;
@@ -813,13 +813,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 761);
+            ClientSize = new Size(1184, 701);
             Controls.Add(panelMainBody);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Icon = Properties.Resources.white_icon_ico;
+            Icon = Properties.Resources.main_icon_white;
             KeyPreview = true;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";

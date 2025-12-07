@@ -74,6 +74,8 @@ namespace OrdersCreator.UI
             tbReportTemplatePath.Text = ConvertPathSeparatorsForUi(_settings.ReportTemplatePath);
             tbReportFileNameMask.Text = NormalizeReportFileNameMask(_settings.ReportFileNameMask);
             chbOpenReportAfterSave.Checked = _settings.OpenReportAfterSave;
+            tbOrdersSaveFolder.Text = ConvertPathSeparatorsForUi(_settings.OrdersSaveFolder);
+            chbAutoSaveOrders.Checked = _settings.AutoSaveOrders;
 
             // ---- блок поведения ----
             var timeout = _settings.ScannerCharTimeoutMs;
@@ -144,6 +146,8 @@ namespace OrdersCreator.UI
             _settings.ReportTemplatePath = ConvertPathSeparatorsFromUi(tbReportTemplatePath.Text);
             _settings.ReportFileNameMask = NormalizeReportFileNameMask(tbReportFileNameMask.Text);
             _settings.OpenReportAfterSave = chbOpenReportAfterSave.Checked;
+            _settings.OrdersSaveFolder = ConvertPathSeparatorsFromUi(tbOrdersSaveFolder.Text);
+            _settings.AutoSaveOrders = chbAutoSaveOrders.Checked;
 
             // ---- поведение ----
             _settings.ScannerCharTimeoutMs = (int)numScannerCharTimeoutMs.Value;
@@ -177,38 +181,23 @@ namespace OrdersCreator.UI
 
         private void btnReportsRootFolder_Click(object sender, EventArgs e)
         {
-            using var dialog = new FolderBrowserDialog();
-            dialog.Description = "Выберите корневую папку для отчётов";
+            var selectedPath = ChooseFolder(ConvertPathSeparatorsFromUi(tbReportsRootFolder.Text),
+                "Выберите корневую папку для отчётов");
 
-            var reportsPath = ConvertPathSeparatorsFromUi(tbReportsRootFolder.Text);
-            if (!string.IsNullOrWhiteSpace(reportsPath))
+            if (!string.IsNullOrWhiteSpace(selectedPath))
             {
-                try
-                {
-                    if (!Directory.Exists(reportsPath))
-                    {
-                        Directory.CreateDirectory(reportsPath);
-                    }
-                }
-                catch
-                {
-                    // если папку не удалось создать, используем путь по умолчанию
-                    reportsPath = string.Empty;
-                }
+                tbReportsRootFolder.Text = ConvertPathSeparatorsForUi(selectedPath);
             }
+        }
 
-            if (!string.IsNullOrWhiteSpace(reportsPath))
-            {
-                dialog.SelectedPath = reportsPath;
-            }
-            else
-            {
-                dialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            }
+        private void btnOrdersSaveFolder_Click(object sender, EventArgs e)
+        {
+            var selectedPath = ChooseFolder(ConvertPathSeparatorsFromUi(tbOrdersSaveFolder.Text),
+                "Выберите папку для сохранения заказов");
 
-            if (dialog.ShowDialog(this) == DialogResult.OK)
+            if (!string.IsNullOrWhiteSpace(selectedPath))
             {
-                tbReportsRootFolder.Text = ConvertPathSeparatorsForUi(dialog.SelectedPath);
+                tbOrdersSaveFolder.Text = ConvertPathSeparatorsForUi(selectedPath);
             }
         }
 
@@ -254,6 +243,40 @@ namespace OrdersCreator.UI
                 return string.Empty;
 
             return path.Replace('>', Path.DirectorySeparatorChar).Trim();
+        }
+
+        private static string ChooseFolder(string? currentPath, string description)
+        {
+            using var dialog = new FolderBrowserDialog();
+            dialog.Description = description;
+
+            var selectedPath = currentPath;
+
+            if (!string.IsNullOrWhiteSpace(selectedPath))
+            {
+                try
+                {
+                    if (!Directory.Exists(selectedPath))
+                    {
+                        Directory.CreateDirectory(selectedPath);
+                    }
+                }
+                catch
+                {
+                    selectedPath = string.Empty;
+                }
+            }
+
+            dialog.SelectedPath = !string.IsNullOrWhiteSpace(selectedPath)
+                ? selectedPath
+                : Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                return dialog.SelectedPath;
+            }
+
+            return string.Empty;
         }
 
         private void SelectTab(FormSettingsTab tab)

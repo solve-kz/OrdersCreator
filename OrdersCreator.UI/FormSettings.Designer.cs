@@ -32,6 +32,8 @@ namespace OrdersCreator.UI
         private void InitializeComponent()
         {
             chbUseDailySubfolder = new CheckBox();
+            labelOrdersSaveFolder = new Label();
+            tbOrdersSaveFolder = new TextBox();
             tbReportTemplatePath = new TextBox();
             btnOK = new Button();
             btnCancel = new Button();
@@ -40,6 +42,8 @@ namespace OrdersCreator.UI
             tbReportFileNameMask = new TextBox();
             btnReportTemplatePath = new Button();
             chbOpenReportAfterSave = new CheckBox();
+            btnOrdersSaveFolder = new Button();
+            chbAutoSaveOrders = new CheckBox();
             numScannerCharTimeoutMs = new NumericUpDown();
             chbAllowManualBarcodeInput = new CheckBox();
             chbSoundsEnabled = new CheckBox();
@@ -87,7 +91,7 @@ namespace OrdersCreator.UI
             SuspendLayout();
             // 
             // chbUseDailySubfolder
-            // 
+            //
             chbUseDailySubfolder.AutoSize = true;
             chbUseDailySubfolder.Location = new Point(149, 49);
             chbUseDailySubfolder.Margin = new Padding(0, 4, 4, 4);
@@ -96,9 +100,31 @@ namespace OrdersCreator.UI
             chbUseDailySubfolder.TabIndex = 4;
             chbUseDailySubfolder.Text = "Создавать подпапку с датой";
             chbUseDailySubfolder.UseVisualStyleBackColor = true;
-            // 
+            //
+            // labelOrdersSaveFolder
+            //
+            labelOrdersSaveFolder.Anchor = AnchorStyles.Left;
+            labelOrdersSaveFolder.AutoSize = true;
+            labelOrdersSaveFolder.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
+            labelOrdersSaveFolder.Location = new Point(3, 13);
+            labelOrdersSaveFolder.Margin = new Padding(3);
+            labelOrdersSaveFolder.Name = "labelOrdersSaveFolder";
+            labelOrdersSaveFolder.Size = new Size(194, 19);
+            labelOrdersSaveFolder.TabIndex = 32;
+            labelOrdersSaveFolder.Text = "Папка сохранения заказов:";
+            //
+            // tbOrdersSaveFolder
+            //
+            tbOrdersSaveFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            tbOrdersSaveFolder.BorderStyle = BorderStyle.FixedSingle;
+            tbOrdersSaveFolder.Location = new Point(203, 8);
+            tbOrdersSaveFolder.Margin = new Padding(3, 3, 4, 3);
+            tbOrdersSaveFolder.Name = "tbOrdersSaveFolder";
+            tbOrdersSaveFolder.Size = new Size(583, 29);
+            tbOrdersSaveFolder.TabIndex = 33;
+            //
             // tbReportTemplatePath
-            // 
+            //
             tbReportTemplatePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportTemplatePath.BorderStyle = BorderStyle.FixedSingle;
             tbReportTemplatePath.Location = new Point(153, 98);
@@ -175,7 +201,7 @@ namespace OrdersCreator.UI
             tbReportFileNameMask.TabIndex = 14;
             // 
             // btnReportTemplatePath
-            // 
+            //
             btnReportTemplatePath.BackColor = Color.RoyalBlue;
             btnReportTemplatePath.FlatAppearance.BorderSize = 0;
             btnReportTemplatePath.FlatStyle = FlatStyle.Flat;
@@ -199,6 +225,32 @@ namespace OrdersCreator.UI
             chbOpenReportAfterSave.TabIndex = 16;
             chbOpenReportAfterSave.Text = "Открывать отчет после сохранения";
             chbOpenReportAfterSave.UseVisualStyleBackColor = true;
+            //
+            // btnOrdersSaveFolder
+            //
+            btnOrdersSaveFolder.BackColor = Color.RoyalBlue;
+            btnOrdersSaveFolder.FlatAppearance.BorderSize = 0;
+            btnOrdersSaveFolder.FlatStyle = FlatStyle.Flat;
+            btnOrdersSaveFolder.ForeColor = Color.White;
+            btnOrdersSaveFolder.Image = Properties.Resources.icon_open;
+            btnOrdersSaveFolder.Location = new Point(793, 4);
+            btnOrdersSaveFolder.Margin = new Padding(3, 3, 4, 3);
+            btnOrdersSaveFolder.Name = "btnOrdersSaveFolder";
+            btnOrdersSaveFolder.Size = new Size(30, 30);
+            btnOrdersSaveFolder.TabIndex = 34;
+            btnOrdersSaveFolder.UseVisualStyleBackColor = false;
+            btnOrdersSaveFolder.Click += btnOrdersSaveFolder_Click;
+            //
+            // chbAutoSaveOrders
+            //
+            chbAutoSaveOrders.AutoSize = true;
+            chbAutoSaveOrders.Location = new Point(203, 49);
+            chbAutoSaveOrders.Margin = new Padding(3, 4, 4, 4);
+            chbAutoSaveOrders.Name = "chbAutoSaveOrders";
+            chbAutoSaveOrders.Size = new Size(197, 25);
+            chbAutoSaveOrders.TabIndex = 35;
+            chbAutoSaveOrders.Text = "Включить автосохранение";
+            chbAutoSaveOrders.UseVisualStyleBackColor = true;
             // 
             // numScannerCharTimeoutMs
             // 
@@ -453,38 +505,44 @@ namespace OrdersCreator.UI
             chbConfirmCloseIncompleteOrder.UseVisualStyleBackColor = true;
             // 
             // tabReports
-            // 
+            //
             tabReports.Controls.Add(tlpReports);
             tabReports.Location = new Point(184, 4);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(10);
             tabReports.Size = new Size(890, 335);
             tabReports.TabIndex = 0;
-            tabReports.Text = "Отчёты";
+            tabReports.Text = "Пути и шаблоны";
             tabReports.UseVisualStyleBackColor = true;
-            // 
+            //
             // tlpReports
-            // 
+            //
             tlpReports.AutoSize = true;
             tlpReports.ColumnCount = 3;
             tlpReports.ColumnStyles.Add(new ColumnStyle());
             tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tlpReports.Controls.Add(labelReportsRoot, 0, 0);
-            tlpReports.Controls.Add(tbReportsRootFolder, 1, 0);
-            tlpReports.Controls.Add(btnReportsRootFolder, 2, 0);
-            tlpReports.Controls.Add(chbUseDailySubfolder, 1, 1);
-            tlpReports.Controls.Add(labelTemplatePath, 0, 2);
-            tlpReports.Controls.Add(tbReportTemplatePath, 1, 2);
-            tlpReports.Controls.Add(btnReportTemplatePath, 2, 2);
-            tlpReports.Controls.Add(labelFileNameMask, 0, 3);
-            tlpReports.Controls.Add(tbReportFileNameMask, 1, 3);
-            tlpReports.Controls.Add(chbOpenReportAfterSave, 1, 4);
-            tlpReports.Controls.Add(btnVar, 2, 3);
+            tlpReports.Controls.Add(labelOrdersSaveFolder, 0, 0);
+            tlpReports.Controls.Add(tbOrdersSaveFolder, 1, 0);
+            tlpReports.Controls.Add(btnOrdersSaveFolder, 2, 0);
+            tlpReports.Controls.Add(chbAutoSaveOrders, 1, 1);
+            tlpReports.Controls.Add(labelReportsRoot, 0, 2);
+            tlpReports.Controls.Add(tbReportsRootFolder, 1, 2);
+            tlpReports.Controls.Add(btnReportsRootFolder, 2, 2);
+            tlpReports.Controls.Add(chbUseDailySubfolder, 1, 3);
+            tlpReports.Controls.Add(labelTemplatePath, 0, 4);
+            tlpReports.Controls.Add(tbReportTemplatePath, 1, 4);
+            tlpReports.Controls.Add(btnReportTemplatePath, 2, 4);
+            tlpReports.Controls.Add(labelFileNameMask, 0, 5);
+            tlpReports.Controls.Add(tbReportFileNameMask, 1, 5);
+            tlpReports.Controls.Add(chbOpenReportAfterSave, 1, 6);
+            tlpReports.Controls.Add(btnVar, 2, 5);
             tlpReports.Dock = DockStyle.Fill;
             tlpReports.Location = new Point(10, 10);
             tlpReports.Name = "tlpReports";
-            tlpReports.RowCount = 5;
+            tlpReports.RowCount = 7;
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
@@ -492,13 +550,13 @@ namespace OrdersCreator.UI
             tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.Size = new Size(870, 315);
             tlpReports.TabIndex = 0;
-            // 
+            //
             // labelReportsRoot
-            // 
+            //
             labelReportsRoot.Anchor = AnchorStyles.Left;
             labelReportsRoot.AutoSize = true;
             labelReportsRoot.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
-            labelReportsRoot.Location = new Point(3, 13);
+            labelReportsRoot.Location = new Point(3, 103);
             labelReportsRoot.Margin = new Padding(3);
             labelReportsRoot.Name = "labelReportsRoot";
             labelReportsRoot.Size = new Size(131, 19);
@@ -506,11 +564,11 @@ namespace OrdersCreator.UI
             labelReportsRoot.Text = "Папка для отчётов:";
             // 
             // labelTemplatePath
-            // 
+            //
             labelTemplatePath.Anchor = AnchorStyles.Left;
             labelTemplatePath.AutoSize = true;
             labelTemplatePath.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
-            labelTemplatePath.Location = new Point(3, 103);
+            labelTemplatePath.Location = new Point(3, 193);
             labelTemplatePath.Margin = new Padding(3);
             labelTemplatePath.Name = "labelTemplatePath";
             labelTemplatePath.Size = new Size(143, 19);
@@ -683,6 +741,7 @@ namespace OrdersCreator.UI
         private Label labelReportsRoot;
         private Label labelTemplatePath;
         private Label labelFileNameMask;
+        private Label labelOrdersSaveFolder;
         private TableLayoutPanel tlpBehavior;
         private Label labelScannerTimeout;
         private Label labelUnknownProduct;
@@ -701,5 +760,8 @@ namespace OrdersCreator.UI
         private Panel panelBottomButtons;
         private FlowLayoutPanel flpButtons;
         private Button btnVar;
+        private TextBox tbOrdersSaveFolder;
+        private Button btnOrdersSaveFolder;
+        private CheckBox chbAutoSaveOrders;
     }
 }
