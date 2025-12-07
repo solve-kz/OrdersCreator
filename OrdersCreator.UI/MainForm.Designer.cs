@@ -56,6 +56,11 @@
             panelMainBody = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewOrderLines = new DataGridView();
+            RowNumber = new DataGridViewTextBoxColumn();
+            ProductCode = new DataGridViewTextBoxColumn();
+            ProductTitle = new DataGridViewTextBoxColumn();
+            ProductWeight = new DataGridViewTextBoxColumn();
+            RowDelete = new DataGridViewButtonColumn();
             panelLeftContainer = new Panel();
             panelGreenMode = new Panel();
             tlpGreenMode = new TableLayoutPanel();
@@ -89,11 +94,6 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
-            RowNumber = new DataGridViewTextBoxColumn();
-            ProductCode = new DataGridViewTextBoxColumn();
-            ProductTitle = new DataGridViewTextBoxColumn();
-            ProductWeight = new DataGridViewTextBoxColumn();
-            RowDelete = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -206,7 +206,7 @@
             // 
             общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
             общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
-            общиеНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            общиеНастройкиToolStripMenuItem.Size = new Size(241, 22);
             общиеНастройкиToolStripMenuItem.Text = "Общие";
             общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
             // 
@@ -214,7 +214,7 @@
             // 
             отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
             отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
-            отчетыНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            отчетыНастройкиToolStripMenuItem.Size = new Size(241, 22);
             отчетыНастройкиToolStripMenuItem.Text = "Пути и шаблоны";
             отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
             // 
@@ -222,7 +222,7 @@
             // 
             хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
             хранилищеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
-            хранилищеНастройкиToolStripMenuItem.Size = new Size(214, 22);
+            хранилищеНастройкиToolStripMenuItem.Size = new Size(241, 22);
             хранилищеНастройкиToolStripMenuItem.Text = "Хранилище";
             хранилищеНастройкиToolStripMenuItem.Click += ХранилищеНастройкиToolStripMenuItem_Click;
             // 
@@ -237,20 +237,20 @@
             // 
             справкаF1ToolStripMenuItem.Name = "справкаF1ToolStripMenuItem";
             справкаF1ToolStripMenuItem.ShortcutKeys = Keys.F1;
-            справкаF1ToolStripMenuItem.Size = new Size(173, 22);
+            справкаF1ToolStripMenuItem.Size = new Size(180, 22);
             справкаF1ToolStripMenuItem.Text = "Справка";
             справкаF1ToolStripMenuItem.Click += справкаF1ToolStripMenuItem_Click;
             // 
             // горячиеКлавишиToolStripMenuItem
             // 
             горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
-            горячиеКлавишиToolStripMenuItem.Size = new Size(173, 22);
+            горячиеКлавишиToolStripMenuItem.Size = new Size(180, 22);
             горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(173, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(180, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
@@ -293,7 +293,7 @@
             panel2.Controls.Add(btnCreateReport);
             panel2.Controls.Add(btnCancel);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(5, 676);
+            panel2.Location = new Point(5, 616);
             panel2.Name = "panel2";
             panel2.Size = new Size(1174, 80);
             panel2.TabIndex = 2;
@@ -348,7 +348,7 @@
             panelMainBody.Dock = DockStyle.Fill;
             panelMainBody.Location = new Point(5, 89);
             panelMainBody.Name = "panelMainBody";
-            panelMainBody.Size = new Size(1174, 587);
+            panelMainBody.Size = new Size(1174, 527);
             panelMainBody.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -363,7 +363,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1174, 587);
+            tableLayoutPanel1.Size = new Size(1174, 527);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridViewOrderLines
@@ -381,8 +381,46 @@
             dataGridViewOrderLines.ReadOnly = true;
             dataGridViewOrderLines.RowHeadersVisible = false;
             dataGridViewOrderLines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrderLines.Size = new Size(688, 581);
+            dataGridViewOrderLines.Size = new Size(688, 521);
             dataGridViewOrderLines.TabIndex = 0;
+            // 
+            // RowNumber
+            // 
+            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowNumber.HeaderText = "№";
+            RowNumber.Name = "RowNumber";
+            RowNumber.ReadOnly = true;
+            RowNumber.Width = 48;
+            // 
+            // ProductCode
+            // 
+            ProductCode.FillWeight = 80F;
+            ProductCode.HeaderText = "Код";
+            ProductCode.Name = "ProductCode";
+            ProductCode.ReadOnly = true;
+            // 
+            // ProductTitle
+            // 
+            ProductTitle.FillWeight = 300F;
+            ProductTitle.HeaderText = "Наименование";
+            ProductTitle.MinimumWidth = 370;
+            ProductTitle.Name = "ProductTitle";
+            ProductTitle.ReadOnly = true;
+            // 
+            // ProductWeight
+            // 
+            ProductWeight.FillWeight = 80F;
+            ProductWeight.HeaderText = "Вес";
+            ProductWeight.Name = "ProductWeight";
+            ProductWeight.ReadOnly = true;
+            // 
+            // RowDelete
+            // 
+            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            RowDelete.HeaderText = "Удл.";
+            RowDelete.Name = "RowDelete";
+            RowDelete.ReadOnly = true;
+            RowDelete.Width = 38;
             // 
             // panelLeftContainer
             // 
@@ -391,7 +429,7 @@
             panelLeftContainer.Dock = DockStyle.Fill;
             panelLeftContainer.Location = new Point(3, 3);
             panelLeftContainer.Name = "panelLeftContainer";
-            panelLeftContainer.Size = new Size(474, 581);
+            panelLeftContainer.Size = new Size(474, 521);
             panelLeftContainer.TabIndex = 1;
             // 
             // panelGreenMode
@@ -402,7 +440,7 @@
             panelGreenMode.Location = new Point(0, 0);
             panelGreenMode.Name = "panelGreenMode";
             panelGreenMode.Padding = new Padding(10);
-            panelGreenMode.Size = new Size(474, 581);
+            panelGreenMode.Size = new Size(474, 521);
             panelGreenMode.TabIndex = 0;
             // 
             // tlpGreenMode
@@ -419,7 +457,7 @@
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tlpGreenMode.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            tlpGreenMode.Size = new Size(454, 561);
+            tlpGreenMode.Size = new Size(454, 501);
             tlpGreenMode.TabIndex = 5;
             // 
             // panelReady
@@ -430,7 +468,7 @@
             panelReady.Dock = DockStyle.Fill;
             panelReady.Location = new Point(3, 3);
             panelReady.Name = "panelReady";
-            panelReady.Size = new Size(448, 74);
+            panelReady.Size = new Size(448, 68);
             panelReady.TabIndex = 4;
             // 
             // imgReady
@@ -461,9 +499,9 @@
             panel4.Controls.Add(lblCurrentTitle);
             panel4.Controls.Add(panel5);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 143);
+            panel4.Location = new Point(3, 77);
             panel4.Name = "panel4";
-            panel4.Size = new Size(448, 190);
+            panel4.Size = new Size(448, 164);
             panel4.TabIndex = 1;
             // 
             // lblCurrentWeight
@@ -520,9 +558,9 @@
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label3);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 339);
+            panel3.Location = new Point(3, 247);
             panel3.Name = "panel3";
-            panel3.Size = new Size(448, 219);
+            panel3.Size = new Size(448, 251);
             panel3.TabIndex = 0;
             // 
             // lblCodeWeight
@@ -531,7 +569,7 @@
             lblCodeWeight.AutoSize = true;
             lblCodeWeight.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeWeight.ForeColor = Color.White;
-            lblCodeWeight.Location = new Point(197, 110);
+            lblCodeWeight.Location = new Point(140, 110);
             lblCodeWeight.Name = "lblCodeWeight";
             lblCodeWeight.Size = new Size(74, 86);
             lblCodeWeight.TabIndex = 4;
@@ -543,7 +581,7 @@
             lblCodeAmount.AutoSize = true;
             lblCodeAmount.Font = new Font("Segoe UI", 42F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeAmount.ForeColor = Color.LightGray;
-            lblCodeAmount.Location = new Point(206, 44);
+            lblCodeAmount.Location = new Point(149, 44);
             lblCodeAmount.Name = "lblCodeAmount";
             lblCodeAmount.Size = new Size(64, 74);
             lblCodeAmount.TabIndex = 3;
@@ -593,7 +631,7 @@
             panelRedMode.Location = new Point(0, 0);
             panelRedMode.Name = "panelRedMode";
             panelRedMode.Padding = new Padding(10);
-            panelRedMode.Size = new Size(474, 581);
+            panelRedMode.Size = new Size(474, 521);
             panelRedMode.TabIndex = 5;
             panelRedMode.Visible = false;
             // 
@@ -611,7 +649,7 @@
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tlpRedMode.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            tlpRedMode.Size = new Size(454, 561);
+            tlpRedMode.Size = new Size(454, 501);
             tlpRedMode.TabIndex = 4;
             // 
             // panelRedHeader
@@ -622,7 +660,7 @@
             panelRedHeader.Dock = DockStyle.Fill;
             panelRedHeader.Location = new Point(3, 3);
             panelRedHeader.Name = "panelRedHeader";
-            panelRedHeader.Size = new Size(448, 74);
+            panelRedHeader.Size = new Size(448, 68);
             panelRedHeader.TabIndex = 0;
             // 
             // imgRedWarning
@@ -655,9 +693,9 @@
             panel6.Controls.Add(label7);
             panel6.Dock = DockStyle.Fill;
             panel6.ForeColor = Color.White;
-            panel6.Location = new Point(3, 143);
+            panel6.Location = new Point(3, 77);
             panel6.Name = "panel6";
-            panel6.Size = new Size(448, 190);
+            panel6.Size = new Size(448, 164);
             panel6.TabIndex = 1;
             // 
             // tbNewProductWeight
@@ -719,9 +757,9 @@
             panel7.Dock = DockStyle.Fill;
             panel7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             panel7.ForeColor = Color.White;
-            panel7.Location = new Point(3, 339);
+            panel7.Location = new Point(3, 247);
             panel7.Name = "panel7";
-            panel7.Size = new Size(448, 219);
+            panel7.Size = new Size(448, 251);
             panel7.TabIndex = 2;
             // 
             // btnNewProductAdd
@@ -770,44 +808,6 @@
             label9.Size = new Size(257, 21);
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
-            // 
-            // RowNumber
-            // 
-            RowNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            RowNumber.HeaderText = "№";
-            RowNumber.Name = "RowNumber";
-            RowNumber.ReadOnly = true;
-            RowNumber.Width = 48;
-            // 
-            // ProductCode
-            // 
-            ProductCode.FillWeight = 80F;
-            ProductCode.HeaderText = "Код";
-            ProductCode.Name = "ProductCode";
-            ProductCode.ReadOnly = true;
-            // 
-            // ProductTitle
-            // 
-            ProductTitle.FillWeight = 300F;
-            ProductTitle.HeaderText = "Наименование";
-            ProductTitle.MinimumWidth = 370;
-            ProductTitle.Name = "ProductTitle";
-            ProductTitle.ReadOnly = true;
-            // 
-            // ProductWeight
-            // 
-            ProductWeight.FillWeight = 80F;
-            ProductWeight.HeaderText = "Вес";
-            ProductWeight.Name = "ProductWeight";
-            ProductWeight.ReadOnly = true;
-            // 
-            // RowDelete
-            // 
-            RowDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            RowDelete.HeaderText = "Удл.";
-            RowDelete.Name = "RowDelete";
-            RowDelete.ReadOnly = true;
-            RowDelete.Width = 38;
             // 
             // MainForm
             // 
