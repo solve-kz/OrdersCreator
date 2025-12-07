@@ -122,6 +122,9 @@
     <value>..\Resources\attention.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>Иконка "Внимание!"</comment>
   </data>
+  <data name="barcode-scanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barcode-scanner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="categories" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\categories.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
