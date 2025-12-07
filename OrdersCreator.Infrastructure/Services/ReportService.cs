@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Text;
 
 namespace OrdersCreator.Infrastructure.Services;
 
@@ -151,24 +150,20 @@ public class ReportService : IReportService
             ["{customer_short}"] = customerShort,
             ["{ДД}"] = order.Date.ToString("dd"),
             ["{ММ}"] = order.Date.ToString("MM"),
+            ["{MM}"] = order.Date.ToString("MM"),
             ["{ГГГГ}"] = order.Date.ToString("yyyy"),
             ["{ГГ}"] = order.Date.ToString("yy"),
             ["{ЧЧ}"] = order.Date.ToString("HH"),
+            ["{HH}"] = order.Date.ToString("HH"),
             ["{мм}"] = order.Date.ToString("mm"),
+            ["{mm}"] = order.Date.ToString("mm"),
             ["{сс}"] = order.Date.ToString("ss"),
+            ["{ss}"] = order.Date.ToString("ss"),
             ["{CustomerName}"] = customerName,
             ["{OrderNumber}"] = order.Number
         };
 
-        var orderedKeys = replacements.Keys.OrderByDescending(k => k.Length).ToList();
-
-        var result = new StringBuilder(template);
-        foreach (var key in orderedKeys)
-        {
-            result.Replace(key, replacements[key]);
-        }
-
-        return result.ToString();
+        return ReplaceTokens(template, replacements);
     }
 
     private static string GetShortName(string value, int maxLength)
