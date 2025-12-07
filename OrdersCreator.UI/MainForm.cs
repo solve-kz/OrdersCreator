@@ -117,13 +117,28 @@ namespace OrdersCreator.UI
             }
         }
 
-        private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSettings(FormSettingsTab tab)
         {
-            FormSettings settingsForm = new FormSettings(_settingsService);
+            using var settingsForm = new FormSettings(_settingsService, tab);
             settingsForm.ShowDialog();
 
             _appSettings = _settingsService.GetSettings();
             _scannerTimer.Interval = _appSettings.ScannerCharTimeoutMs;
+        }
+
+        private void ОбщиеНастройкиToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            OpenSettings(FormSettingsTab.Behavior);
+        }
+
+        private void ОтчетыНастройкиToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            OpenSettings(FormSettingsTab.Reports);
+        }
+
+        private void ХранилищеНастройкиToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            OpenSettings(FormSettingsTab.Storage);
         }
 
         private void КатегорииToolStripMenuItem_Click(object? sender, EventArgs e)

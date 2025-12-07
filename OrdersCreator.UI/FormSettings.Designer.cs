@@ -485,11 +485,11 @@ namespace OrdersCreator.UI
             tlpReports.Location = new Point(10, 10);
             tlpReports.Name = "tlpReports";
             tlpReports.RowCount = 5;
-            tlpReports.RowStyles.Add(new RowStyle());
-            tlpReports.RowStyles.Add(new RowStyle());
-            tlpReports.RowStyles.Add(new RowStyle());
-            tlpReports.RowStyles.Add(new RowStyle());
-            tlpReports.RowStyles.Add(new RowStyle());
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tlpReports.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tlpReports.Size = new Size(876, 323);
             tlpReports.TabIndex = 0;
             // 
