@@ -93,6 +93,7 @@
             label10 = new Label();
             tbNewProductTitle = new TextBox();
             label9 = new Label();
+            горячиеКлавишиToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -195,30 +196,30 @@
             контрагентыToolStripMenuItem.Text = "Контрагенты";
             //
             // настройкаToolStripMenuItem
-            //
+            // 
             настройкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { общиеНастройкиToolStripMenuItem, отчетыНастройкиToolStripMenuItem, хранилищеНастройкиToolStripMenuItem });
             настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
             настройкаToolStripMenuItem.Size = new Size(79, 20);
             настройкаToolStripMenuItem.Text = "Настройки";
-            //
+            // 
             // общиеНастройкиToolStripMenuItem
-            //
+            // 
             общиеНастройкиToolStripMenuItem.Name = "общиеНастройкиToolStripMenuItem";
             общиеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.G;
             общиеНастройкиToolStripMenuItem.Size = new Size(180, 22);
             общиеНастройкиToolStripMenuItem.Text = "Общие";
             общиеНастройкиToolStripMenuItem.Click += ОбщиеНастройкиToolStripMenuItem_Click;
-            //
+            // 
             // отчетыНастройкиToolStripMenuItem
-            //
+            // 
             отчетыНастройкиToolStripMenuItem.Name = "отчетыНастройкиToolStripMenuItem";
             отчетыНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.R;
             отчетыНастройкиToolStripMenuItem.Size = new Size(180, 22);
             отчетыНастройкиToolStripMenuItem.Text = "Отчёты";
             отчетыНастройкиToolStripMenuItem.Click += ОтчетыНастройкиToolStripMenuItem_Click;
-            //
+            // 
             // хранилищеНастройкиToolStripMenuItem
-            //
+            // 
             хранилищеНастройкиToolStripMenuItem.Name = "хранилищеНастройкиToolStripMenuItem";
             хранилищеНастройкиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
             хранилищеНастройкиToolStripMenuItem.Size = new Size(180, 22);
@@ -227,7 +228,7 @@
             //
             // помощьToolStripMenuItem
             // 
-            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, оПрограммеToolStripMenuItem });
+            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { справкаF1ToolStripMenuItem, горячиеКлавишиToolStripMenuItem, оПрограммеToolStripMenuItem });
             помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             помощьToolStripMenuItem.Size = new Size(68, 20);
             помощьToolStripMenuItem.Text = "Помощь";
@@ -243,7 +244,7 @@
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(149, 22);
+            оПрограммеToolStripMenuItem.Size = new Size(180, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
             // 
@@ -802,6 +803,12 @@
             label9.TabIndex = 0;
             label9.Text = "Введите наименование товара:";
             // 
+            // горячиеКлавишиToolStripMenuItem
+            // 
+            горячиеКлавишиToolStripMenuItem.Name = "горячиеКлавишиToolStripMenuItem";
+            горячиеКлавишиToolStripMenuItem.Size = new Size(180, 22);
+            горячиеКлавишиToolStripMenuItem.Text = "Горячие клавиши";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -920,5 +927,6 @@
         private ToolStripMenuItem помощьToolStripMenuItem;
         private ToolStripMenuItem справкаF1ToolStripMenuItem;
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private ToolStripMenuItem горячиеКлавишиToolStripMenuItem;
     }
 }
