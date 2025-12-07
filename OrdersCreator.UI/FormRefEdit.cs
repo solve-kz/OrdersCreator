@@ -24,6 +24,8 @@ namespace OrdersCreator.UI
         private readonly ICustomerService _customerService;
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
+        private readonly ISettingsService _settingsService;
+        private readonly AppSettings _appSettings;
 
         private readonly BindingSource _customersBinding = new();
         private readonly BindingSource _categoriesBinding = new();
@@ -40,11 +42,13 @@ namespace OrdersCreator.UI
         private bool _isUpdatingCategoryEditor;
         private bool _isUpdatingProductEditor;
 
-        public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService, FormRefEditTab initialTab = FormRefEditTab.Categories)
+        public FormRefEdit(ICustomerService customerService, ICategoryService categoryService, IProductService productService, ISettingsService settingsService, FormRefEditTab initialTab = FormRefEditTab.Categories)
         {
             _customerService = customerService;
             _categoryService = categoryService;
             _productService = productService;
+            _settingsService = settingsService;
+            _appSettings = _settingsService.GetSettings();
 
             InitializeComponent();
             ButtonCursorHelper.ApplyHandCursor(this);
@@ -732,13 +736,16 @@ namespace OrdersCreator.UI
                 return;
             }
 
-            var result = MessageBox.Show(this,
-                $"Удалить контрагента \"{_currentCustomer.Name}\"?",
-                "Подтверждение удаления",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (_appSettings.ConfirmDeleteCustomerFromCatalog)
+            {
+                var result = MessageBox.Show(this,
+                    $"Удалить контрагента \"{_currentCustomer.Name}\"?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result != DialogResult.Yes)
-                return;
+                if (result != DialogResult.Yes)
+                    return;
+            }
 
             try
             {
@@ -764,13 +771,16 @@ namespace OrdersCreator.UI
                 return;
             }
 
-            var result = MessageBox.Show(this,
-                $"Удалить категорию \"{_currentCategory.Name}\"?",
-                "Подтверждение удаления",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (_appSettings.ConfirmDeleteCategoryFromCatalog)
+            {
+                var result = MessageBox.Show(this,
+                    $"Удалить категорию \"{_currentCategory.Name}\"?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result != DialogResult.Yes)
-                return;
+                if (result != DialogResult.Yes)
+                    return;
+            }
 
             try
             {
@@ -797,13 +807,16 @@ namespace OrdersCreator.UI
                 return;
             }
 
-            var result = MessageBox.Show(this,
-                $"Удалить товар \"{_currentProduct.Name}\"?",
-                "Подтверждение удаления",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (_appSettings.ConfirmDeleteProductFromCatalog)
+            {
+                var result = MessageBox.Show(this,
+                    $"Удалить товар \"{_currentProduct.Name}\"?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result != DialogResult.Yes)
-                return;
+                if (result != DialogResult.Yes)
+                    return;
+            }
 
             try
             {

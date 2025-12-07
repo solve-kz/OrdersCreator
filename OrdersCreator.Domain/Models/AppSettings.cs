@@ -50,6 +50,27 @@ namespace OrdersCreator.Domain.Models
         public UnknownProductMode UnknownProductMode { get; set; } =
             UnknownProductMode.PromptForData;
 
+        /// <summary>Запрашивать подтверждение при удалении последнего товара.</summary>
+        public bool ConfirmDeleteLastProduct { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при удалении произвольного товара.</summary>
+        public bool ConfirmDeleteAnyProduct { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при удалении категории из справочника.</summary>
+        public bool ConfirmDeleteCategoryFromCatalog { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при удалении товара из справочника.</summary>
+        public bool ConfirmDeleteProductFromCatalog { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при удалении контрагента из справочника.</summary>
+        public bool ConfirmDeleteCustomerFromCatalog { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при отмене добавления нового товара.</summary>
+        public bool ConfirmCancelNewProduct { get; set; } = true;
+
+        /// <summary>Запрашивать подтверждение при закрытии незавершенного заказа.</summary>
+        public bool ConfirmCloseIncompleteOrder { get; set; } = true;
+
         // ---- Хранение данных ----
 
         /// <summary>Тип хранилища (InMemory / SQLite / SQL Server).</summary>
