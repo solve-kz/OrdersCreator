@@ -107,12 +107,28 @@ public class ReportService : IReportService
     private static string BuildReportFileName(AppSettings settings, Order order)
     {
         var mask = settings.ReportFileNameMask;
+        mask = TrimExcelExtension(mask);
         mask = ReplaceDateMask(mask, order.Date);
         mask = ReplaceCustomPlaceholders(mask, order);
 
         var invalidChars = Path.GetInvalidFileNameChars();
         var sanitized = string.Join('_', mask.Split(invalidChars, StringSplitOptions.RemoveEmptyEntries));
-        return sanitized;
+        return sanitized + ".xlsx";
+    }
+
+    private static string TrimExcelExtension(string mask)
+    {
+        if (string.IsNullOrWhiteSpace(mask))
+            return string.Empty;
+
+        var normalizedMask = mask.Trim();
+
+        if (normalizedMask.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+        {
+            normalizedMask = normalizedMask.Substring(0, normalizedMask.Length - ".xlsx".Length);
+        }
+
+        return normalizedMask;
     }
 
     private static string ReplaceDateMask(string template, DateTime date)
