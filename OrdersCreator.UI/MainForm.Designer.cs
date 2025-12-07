@@ -532,7 +532,7 @@
             lblCodeWeight.AutoSize = true;
             lblCodeWeight.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeWeight.ForeColor = Color.White;
-            lblCodeWeight.Location = new Point(197, 124);
+            lblCodeWeight.Location = new Point(197, 110);
             lblCodeWeight.Name = "lblCodeWeight";
             lblCodeWeight.Size = new Size(74, 86);
             lblCodeWeight.TabIndex = 4;
@@ -544,7 +544,7 @@
             lblCodeAmount.AutoSize = true;
             lblCodeAmount.Font = new Font("Segoe UI", 42F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCodeAmount.ForeColor = Color.LightGray;
-            lblCodeAmount.Location = new Point(206, 58);
+            lblCodeAmount.Location = new Point(206, 44);
             lblCodeAmount.Name = "lblCodeAmount";
             lblCodeAmount.Size = new Size(64, 74);
             lblCodeAmount.TabIndex = 3;
@@ -555,7 +555,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(18, 176);
+            label5.Location = new Point(18, 162);
             label5.Name = "label5";
             label5.Size = new Size(40, 21);
             label5.TabIndex = 2;
@@ -567,7 +567,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(18, 93);
+            label4.Location = new Point(18, 79);
             label4.Name = "label4";
             label4.Size = new Size(115, 21);
             label4.TabIndex = 1;

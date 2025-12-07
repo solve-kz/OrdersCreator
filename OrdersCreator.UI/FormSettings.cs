@@ -1,15 +1,16 @@
-﻿using System;
+﻿using OrdersCreator.Domain.Models;
+using OrdersCreator.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OrdersCreator.Domain.Models;
-using OrdersCreator.Domain.Services;
 
 namespace OrdersCreator.UI
 {
@@ -18,6 +19,7 @@ namespace OrdersCreator.UI
 
         private readonly ISettingsService _settingsService;
         private AppSettings _settings = new AppSettings();
+        private readonly Font _tabBoldFont;
 
         public FormSettings(ISettingsService settingsService)
         {
@@ -27,6 +29,17 @@ namespace OrdersCreator.UI
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
 
             LoadSettingsToControls();
+
+            // Кэшируем жирный шрифт для выделенной вкладки
+            _tabBoldFont = new Font(tabSettings.Font, FontStyle.Bold);
+
+            tabSettings.Alignment = TabAlignment.Left;
+            tabSettings.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabSettings.SizeMode = TabSizeMode.Fixed;
+            tabSettings.ItemSize = new Size(40, 180);   // у тебя уже задано
+            tabSettings.Multiline = true;
+
+            tabSettings.DrawItem += tabSettings_DrawItem;
         }
 
         private void LoadSettingsToControls()
@@ -223,23 +236,68 @@ namespace OrdersCreator.UI
 
         private void tabSettings_DrawItem(object? sender, DrawItemEventArgs e)
         {
+            var g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
             var tab = tabSettings.TabPages[e.Index];
-            var isSelected = e.Index == tabSettings.SelectedIndex;
+            bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
 
-            using var backgroundBrush = new SolidBrush(isSelected ? Color.White : Color.FromArgb(240, 240, 240));
-            e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            // Немного уменьшим прямоугольник, чтобы не прилипал к краям
+            var bounds = e.Bounds;
+            bounds.Inflate(-1, -1);
 
-            var textRectangle = new Rectangle(e.Bounds.Left + 10, e.Bounds.Top + 4, e.Bounds.Width - 20, e.Bounds.Height - 8);
-            using var textBrush = new SolidBrush(isSelected ? Color.Black : Color.DimGray);
-            using var stringFormat = new StringFormat
+            // Цвета
+            Color backColor = isSelected ? Color.White : Color.FromArgb(245, 245, 245);
+            Color textColor = isSelected ? Color.Black : Color.FromArgb(100, 100, 100);
+            Color separator = Color.FromArgb(220, 220, 220);
+            Color accentColor = Color.FromArgb(0, 120, 215); // «синяя полоска» активной вкладки
+
+            // Фон вкладки
+            using (var backBrush = new SolidBrush(backColor))
+                g.FillRectangle(backBrush, bounds);
+
+            // Полоса слева для выделенной вкладки
+            if (isSelected)
+            {
+                var accentRect = new Rectangle(bounds.Left, bounds.Top, 4, bounds.Height);
+                using (var accentBrush = new SolidBrush(accentColor))
+                    g.FillRectangle(accentBrush, accentRect);
+
+                bounds.X += 4;      // чтобы текст не наезжал на полоску
+                bounds.Width -= 4;
+            }
+
+            // Область текста (немного отступов)
+            var textRect = new Rectangle(
+                bounds.Left + 10,
+                bounds.Top,
+                bounds.Width - 16,
+                bounds.Height
+            );
+
+            using (var textBrush = new SolidBrush(textColor))
+            using (var sf = new StringFormat
             {
                 Alignment = StringAlignment.Near,
                 LineAlignment = StringAlignment.Center
-            };
-            e.Graphics.DrawString(tab.Text, tabSettings.Font, textBrush, textRectangle, stringFormat);
+            })
+            {
+                var font = isSelected ? _tabBoldFont : tabSettings.Font;
+                g.DrawString(tab.Text, font, textBrush, textRect, sf);
+            }
 
-            using var borderPen = new Pen(Color.LightGray);
-            e.Graphics.DrawRectangle(borderPen, e.Bounds);
+            // Вертикальный разделитель между панелью вкладок и содержимым
+            using (var pen = new Pen(separator))
+            {
+                g.DrawLine(pen, bounds.Right, bounds.Top, bounds.Right, bounds.Bottom);
+
+                // Тонкая линия снизу между вкладками
+                g.DrawLine(pen, bounds.Left, bounds.Bottom, bounds.Right, bounds.Bottom);
+            }
+
+            // ВАЖНО: НЕ рисуем прямоугольную рамку вокруг всей вкладки,
+            // поэтому e.Graphics.DrawRectangle(...) убран.
         }
     }
 }

@@ -47,12 +47,6 @@ namespace OrdersCreator.UI
             cmbStorageType = new ComboBox();
             tbSqlServerConnectionString = new TextBox();
             tabSettings = new TabControl();
-            tabReports = new TabPage();
-            tlpReports = new TableLayoutPanel();
-            labelReportsRoot = new Label();
-            labelTemplatePath = new Label();
-            labelFileNameMask = new Label();
-            button1 = new Button();
             tabBehavior = new TabPage();
             tlpBehavior = new TableLayoutPanel();
             labelScannerTimeout = new Label();
@@ -66,6 +60,12 @@ namespace OrdersCreator.UI
             chbConfirmDeleteCustomer = new CheckBox();
             chbConfirmCancelNewProduct = new CheckBox();
             chbConfirmCloseIncompleteOrder = new CheckBox();
+            tabReports = new TabPage();
+            tlpReports = new TableLayoutPanel();
+            labelReportsRoot = new Label();
+            labelTemplatePath = new Label();
+            labelFileNameMask = new Label();
+            button1 = new Button();
             tabStorage = new TabPage();
             tlpStorage = new TableLayoutPanel();
             labelStorageType = new Label();
@@ -74,12 +74,12 @@ namespace OrdersCreator.UI
             flpButtons = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)numScannerCharTimeoutMs).BeginInit();
             tabSettings.SuspendLayout();
-            tabReports.SuspendLayout();
-            tlpReports.SuspendLayout();
             tabBehavior.SuspendLayout();
             tlpBehavior.SuspendLayout();
             groupConfirmations.SuspendLayout();
             tlpConfirmations.SuspendLayout();
+            tabReports.SuspendLayout();
+            tlpReports.SuspendLayout();
             tabStorage.SuspendLayout();
             tlpStorage.SuspendLayout();
             panelBottomButtons.SuspendLayout();
@@ -89,7 +89,7 @@ namespace OrdersCreator.UI
             // chbUseDailySubfolder
             // 
             chbUseDailySubfolder.AutoSize = true;
-            chbUseDailySubfolder.Location = new Point(223, 42);
+            chbUseDailySubfolder.Location = new Point(149, 42);
             chbUseDailySubfolder.Margin = new Padding(0, 4, 4, 4);
             chbUseDailySubfolder.Name = "chbUseDailySubfolder";
             chbUseDailySubfolder.Size = new Size(233, 25);
@@ -101,10 +101,10 @@ namespace OrdersCreator.UI
             // 
             tbReportTemplatePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportTemplatePath.BorderStyle = BorderStyle.FixedSingle;
-            tbReportTemplatePath.Location = new Point(227, 75);
+            tbReportTemplatePath.Location = new Point(153, 75);
             tbReportTemplatePath.Margin = new Padding(4);
             tbReportTemplatePath.Name = "tbReportTemplatePath";
-            tbReportTemplatePath.Size = new Size(531, 29);
+            tbReportTemplatePath.Size = new Size(639, 29);
             tbReportTemplatePath.TabIndex = 6;
             // 
             // btnOK
@@ -143,10 +143,10 @@ namespace OrdersCreator.UI
             // 
             tbReportsRootFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportsRootFolder.BorderStyle = BorderStyle.FixedSingle;
-            tbReportsRootFolder.Location = new Point(227, 4);
+            tbReportsRootFolder.Location = new Point(153, 4);
             tbReportsRootFolder.Margin = new Padding(4);
             tbReportsRootFolder.Name = "tbReportsRootFolder";
-            tbReportsRootFolder.Size = new Size(531, 29);
+            tbReportsRootFolder.Size = new Size(639, 29);
             tbReportsRootFolder.TabIndex = 2;
             // 
             // btnReportsRootFolder
@@ -156,7 +156,7 @@ namespace OrdersCreator.UI
             btnReportsRootFolder.FlatStyle = FlatStyle.Flat;
             btnReportsRootFolder.ForeColor = Color.White;
             btnReportsRootFolder.Image = Properties.Resources.icon_open;
-            btnReportsRootFolder.Location = new Point(766, 4);
+            btnReportsRootFolder.Location = new Point(800, 4);
             btnReportsRootFolder.Margin = new Padding(4);
             btnReportsRootFolder.Name = "btnReportsRootFolder";
             btnReportsRootFolder.Size = new Size(30, 30);
@@ -168,10 +168,10 @@ namespace OrdersCreator.UI
             // 
             tbReportFileNameMask.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbReportFileNameMask.BorderStyle = BorderStyle.FixedSingle;
-            tbReportFileNameMask.Location = new Point(227, 113);
+            tbReportFileNameMask.Location = new Point(153, 113);
             tbReportFileNameMask.Margin = new Padding(4);
             tbReportFileNameMask.Name = "tbReportFileNameMask";
-            tbReportFileNameMask.Size = new Size(531, 29);
+            tbReportFileNameMask.Size = new Size(639, 29);
             tbReportFileNameMask.TabIndex = 14;
             // 
             // btnReportTemplatePath
@@ -181,7 +181,7 @@ namespace OrdersCreator.UI
             btnReportTemplatePath.FlatStyle = FlatStyle.Flat;
             btnReportTemplatePath.ForeColor = Color.White;
             btnReportTemplatePath.Image = Properties.Resources.icon_open;
-            btnReportTemplatePath.Location = new Point(766, 75);
+            btnReportTemplatePath.Location = new Point(800, 75);
             btnReportTemplatePath.Margin = new Padding(4);
             btnReportTemplatePath.Name = "btnReportTemplatePath";
             btnReportTemplatePath.Size = new Size(30, 30);
@@ -192,7 +192,7 @@ namespace OrdersCreator.UI
             // chbOpenReportAfterSave
             // 
             chbOpenReportAfterSave.AutoSize = true;
-            chbOpenReportAfterSave.Location = new Point(227, 150);
+            chbOpenReportAfterSave.Location = new Point(153, 150);
             chbOpenReportAfterSave.Margin = new Padding(4);
             chbOpenReportAfterSave.Name = "chbOpenReportAfterSave";
             chbOpenReportAfterSave.Size = new Size(283, 25);
@@ -235,9 +235,9 @@ namespace OrdersCreator.UI
             cmbUnknownProductMode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbUnknownProductMode.FormattingEnabled = true;
             cmbUnknownProductMode.Items.AddRange(new object[] { "Запросить данные", "Показать ошибку" });
-            cmbUnknownProductMode.Location = new Point(310, 187);
+            cmbUnknownProductMode.Location = new Point(310, 104);
             cmbUnknownProductMode.Name = "cmbUnknownProductMode";
-            cmbUnknownProductMode.Size = new Size(559, 29);
+            cmbUnknownProductMode.Size = new Size(563, 29);
             cmbUnknownProductMode.TabIndex = 23;
             // 
             // cmbStorageType
@@ -248,7 +248,7 @@ namespace OrdersCreator.UI
             cmbStorageType.Location = new Point(177, 4);
             cmbStorageType.Margin = new Padding(4);
             cmbStorageType.Name = "cmbStorageType";
-            cmbStorageType.Size = new Size(691, 29);
+            cmbStorageType.Size = new Size(695, 29);
             cmbStorageType.TabIndex = 27;
             cmbStorageType.SelectedIndexChanged += cmbStorageType_SelectedIndexChanged;
             // 
@@ -259,7 +259,7 @@ namespace OrdersCreator.UI
             tbSqlServerConnectionString.Location = new Point(177, 41);
             tbSqlServerConnectionString.Margin = new Padding(4);
             tbSqlServerConnectionString.Name = "tbSqlServerConnectionString";
-            tbSqlServerConnectionString.Size = new Size(691, 29);
+            tbSqlServerConnectionString.Size = new Size(695, 29);
             tbSqlServerConnectionString.TabIndex = 28;
             tbSqlServerConnectionString.Visible = false;
             // 
@@ -272,23 +272,193 @@ namespace OrdersCreator.UI
             tabSettings.Dock = DockStyle.Fill;
             tabSettings.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabSettings.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
-            tabSettings.ItemSize = new Size(160, 40);
+            tabSettings.ItemSize = new Size(40, 180);
             tabSettings.Location = new Point(0, 0);
             tabSettings.Multiline = true;
             tabSettings.Name = "tabSettings";
             tabSettings.SelectedIndex = 0;
+            tabSettings.Size = new Size(1084, 351);
             tabSettings.SizeMode = TabSizeMode.Fixed;
-            tabSettings.Size = new Size(900, 351);
             tabSettings.TabIndex = 29;
             tabSettings.DrawItem += tabSettings_DrawItem;
+            // 
+            // tabBehavior
+            // 
+            tabBehavior.Controls.Add(tlpBehavior);
+            tabBehavior.Location = new Point(184, 4);
+            tabBehavior.Name = "tabBehavior";
+            tabBehavior.Padding = new Padding(10);
+            tabBehavior.Size = new Size(896, 343);
+            tabBehavior.TabIndex = 1;
+            tabBehavior.Text = "Общие";
+            tabBehavior.UseVisualStyleBackColor = true;
+            // 
+            // tlpBehavior
+            // 
+            tlpBehavior.AutoSize = true;
+            tlpBehavior.ColumnCount = 2;
+            tlpBehavior.ColumnStyles.Add(new ColumnStyle());
+            tlpBehavior.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpBehavior.Controls.Add(labelScannerTimeout, 0, 0);
+            tlpBehavior.Controls.Add(numScannerCharTimeoutMs, 1, 0);
+            tlpBehavior.Controls.Add(chbAllowManualBarcodeInput, 1, 1);
+            tlpBehavior.Controls.Add(chbSoundsEnabled, 1, 2);
+            tlpBehavior.Controls.Add(labelUnknownProduct, 0, 3);
+            tlpBehavior.Controls.Add(cmbUnknownProductMode, 1, 3);
+            tlpBehavior.Controls.Add(groupConfirmations, 0, 4);
+            tlpBehavior.Dock = DockStyle.Fill;
+            tlpBehavior.Location = new Point(10, 10);
+            tlpBehavior.Name = "tlpBehavior";
+            tlpBehavior.RowCount = 5;
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.RowStyles.Add(new RowStyle());
+            tlpBehavior.Size = new Size(876, 323);
+            tlpBehavior.TabIndex = 0;
+            // 
+            // labelScannerTimeout
+            // 
+            labelScannerTimeout.Anchor = AnchorStyles.Left;
+            labelScannerTimeout.AutoSize = true;
+            labelScannerTimeout.Location = new Point(3, 7);
+            labelScannerTimeout.Margin = new Padding(3);
+            labelScannerTimeout.Name = "labelScannerTimeout";
+            labelScannerTimeout.Size = new Size(301, 21);
+            labelScannerTimeout.TabIndex = 18;
+            labelScannerTimeout.Text = "Таймаут между символами сканера (мс):";
+            labelScannerTimeout.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelUnknownProduct
+            // 
+            labelUnknownProduct.Anchor = AnchorStyles.Left;
+            labelUnknownProduct.AutoSize = true;
+            labelUnknownProduct.Location = new Point(3, 108);
+            labelUnknownProduct.Margin = new Padding(3);
+            labelUnknownProduct.Name = "labelUnknownProduct";
+            labelUnknownProduct.Size = new Size(260, 21);
+            labelUnknownProduct.TabIndex = 22;
+            labelUnknownProduct.Text = "Действие при неизвестном товаре:";
+            labelUnknownProduct.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // groupConfirmations
+            // 
+            groupConfirmations.AutoSize = true;
+            tlpBehavior.SetColumnSpan(groupConfirmations, 2);
+            groupConfirmations.Controls.Add(tlpConfirmations);
+            groupConfirmations.Dock = DockStyle.Top;
+            groupConfirmations.Location = new Point(3, 148);
+            groupConfirmations.Margin = new Padding(3, 12, 3, 3);
+            groupConfirmations.Name = "groupConfirmations";
+            groupConfirmations.Padding = new Padding(10, 8, 10, 8);
+            groupConfirmations.Size = new Size(870, 162);
+            groupConfirmations.TabIndex = 24;
+            groupConfirmations.TabStop = false;
+            groupConfirmations.Text = "Запрашивать подтверждение:";
+            // 
+            // tlpConfirmations
+            // 
+            tlpConfirmations.AutoSize = true;
+            tlpConfirmations.ColumnCount = 2;
+            tlpConfirmations.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpConfirmations.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpConfirmations.Controls.Add(chbConfirmDeleteLastProduct, 0, 0);
+            tlpConfirmations.Controls.Add(chbConfirmDeleteAnyProduct, 1, 0);
+            tlpConfirmations.Controls.Add(chbConfirmDeleteCategory, 0, 1);
+            tlpConfirmations.Controls.Add(chbConfirmDeleteProduct, 1, 1);
+            tlpConfirmations.Controls.Add(chbConfirmDeleteCustomer, 0, 2);
+            tlpConfirmations.Controls.Add(chbConfirmCancelNewProduct, 1, 2);
+            tlpConfirmations.Controls.Add(chbConfirmCloseIncompleteOrder, 0, 3);
+            tlpConfirmations.Dock = DockStyle.Fill;
+            tlpConfirmations.Location = new Point(10, 30);
+            tlpConfirmations.Name = "tlpConfirmations";
+            tlpConfirmations.RowCount = 4;
+            tlpConfirmations.RowStyles.Add(new RowStyle());
+            tlpConfirmations.RowStyles.Add(new RowStyle());
+            tlpConfirmations.RowStyles.Add(new RowStyle());
+            tlpConfirmations.RowStyles.Add(new RowStyle());
+            tlpConfirmations.Size = new Size(850, 124);
+            tlpConfirmations.TabIndex = 0;
+            // 
+            // chbConfirmDeleteLastProduct
+            // 
+            chbConfirmDeleteLastProduct.AutoSize = true;
+            chbConfirmDeleteLastProduct.Location = new Point(3, 3);
+            chbConfirmDeleteLastProduct.Name = "chbConfirmDeleteLastProduct";
+            chbConfirmDeleteLastProduct.Size = new Size(267, 25);
+            chbConfirmDeleteLastProduct.TabIndex = 0;
+            chbConfirmDeleteLastProduct.Text = "при удалении последнего товара";
+            chbConfirmDeleteLastProduct.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmDeleteAnyProduct
+            // 
+            chbConfirmDeleteAnyProduct.AutoSize = true;
+            chbConfirmDeleteAnyProduct.Location = new Point(428, 3);
+            chbConfirmDeleteAnyProduct.Name = "chbConfirmDeleteAnyProduct";
+            chbConfirmDeleteAnyProduct.Size = new Size(294, 25);
+            chbConfirmDeleteAnyProduct.TabIndex = 1;
+            chbConfirmDeleteAnyProduct.Text = "при удалении произвольного товара";
+            chbConfirmDeleteAnyProduct.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmDeleteCategory
+            // 
+            chbConfirmDeleteCategory.AutoSize = true;
+            chbConfirmDeleteCategory.Location = new Point(3, 34);
+            chbConfirmDeleteCategory.Name = "chbConfirmDeleteCategory";
+            chbConfirmDeleteCategory.Size = new Size(322, 25);
+            chbConfirmDeleteCategory.TabIndex = 2;
+            chbConfirmDeleteCategory.Text = "при удалении категории из справочника";
+            chbConfirmDeleteCategory.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmDeleteProduct
+            // 
+            chbConfirmDeleteProduct.AutoSize = true;
+            chbConfirmDeleteProduct.Location = new Point(428, 34);
+            chbConfirmDeleteProduct.Name = "chbConfirmDeleteProduct";
+            chbConfirmDeleteProduct.Size = new Size(298, 25);
+            chbConfirmDeleteProduct.TabIndex = 3;
+            chbConfirmDeleteProduct.Text = "при удалении товара из справочника";
+            chbConfirmDeleteProduct.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmDeleteCustomer
+            // 
+            chbConfirmDeleteCustomer.AutoSize = true;
+            chbConfirmDeleteCustomer.Location = new Point(3, 65);
+            chbConfirmDeleteCustomer.Name = "chbConfirmDeleteCustomer";
+            chbConfirmDeleteCustomer.Size = new Size(337, 25);
+            chbConfirmDeleteCustomer.TabIndex = 4;
+            chbConfirmDeleteCustomer.Text = "при удалении контрагента из справочника";
+            chbConfirmDeleteCustomer.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmCancelNewProduct
+            // 
+            chbConfirmCancelNewProduct.AutoSize = true;
+            chbConfirmCancelNewProduct.Location = new Point(428, 65);
+            chbConfirmCancelNewProduct.Name = "chbConfirmCancelNewProduct";
+            chbConfirmCancelNewProduct.Size = new Size(308, 25);
+            chbConfirmCancelNewProduct.TabIndex = 5;
+            chbConfirmCancelNewProduct.Text = "при отмене добавления нового товара";
+            chbConfirmCancelNewProduct.UseVisualStyleBackColor = true;
+            // 
+            // chbConfirmCloseIncompleteOrder
+            // 
+            chbConfirmCloseIncompleteOrder.AutoSize = true;
+            tlpConfirmations.SetColumnSpan(chbConfirmCloseIncompleteOrder, 2);
+            chbConfirmCloseIncompleteOrder.Location = new Point(3, 96);
+            chbConfirmCloseIncompleteOrder.Name = "chbConfirmCloseIncompleteOrder";
+            chbConfirmCloseIncompleteOrder.Size = new Size(302, 25);
+            chbConfirmCloseIncompleteOrder.TabIndex = 6;
+            chbConfirmCloseIncompleteOrder.Text = "при закрытии незавершенного заказа";
+            chbConfirmCloseIncompleteOrder.UseVisualStyleBackColor = true;
             // 
             // tabReports
             // 
             tabReports.Controls.Add(tlpReports);
-            tabReports.Location = new Point(204, 4);
+            tabReports.Location = new Point(184, 4);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(10);
-            tabReports.Size = new Size(692, 343);
+            tabReports.Size = new Size(896, 343);
             tabReports.TabIndex = 0;
             tabReports.Text = "Отчёты";
             tabReports.UseVisualStyleBackColor = true;
@@ -299,7 +469,7 @@ namespace OrdersCreator.UI
             tlpReports.ColumnCount = 3;
             tlpReports.ColumnStyles.Add(new ColumnStyle());
             tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
+            tlpReports.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tlpReports.Controls.Add(labelReportsRoot, 0, 0);
             tlpReports.Controls.Add(tbReportsRootFolder, 1, 0);
             tlpReports.Controls.Add(btnReportsRootFolder, 2, 0);
@@ -320,28 +490,30 @@ namespace OrdersCreator.UI
             tlpReports.RowStyles.Add(new RowStyle());
             tlpReports.RowStyles.Add(new RowStyle());
             tlpReports.RowStyles.Add(new RowStyle());
-            tlpReports.Size = new Size(672, 297);
+            tlpReports.Size = new Size(876, 323);
             tlpReports.TabIndex = 0;
             // 
             // labelReportsRoot
             // 
             labelReportsRoot.Anchor = AnchorStyles.Left;
             labelReportsRoot.AutoSize = true;
-            labelReportsRoot.Location = new Point(3, 8);
+            labelReportsRoot.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
+            labelReportsRoot.Location = new Point(3, 9);
             labelReportsRoot.Margin = new Padding(3);
             labelReportsRoot.Name = "labelReportsRoot";
-            labelReportsRoot.Size = new Size(217, 21);
+            labelReportsRoot.Size = new Size(131, 19);
             labelReportsRoot.TabIndex = 30;
-            labelReportsRoot.Text = "Корневая папка для отчётов:";
+            labelReportsRoot.Text = "Папка для отчётов:";
             // 
             // labelTemplatePath
             // 
             labelTemplatePath.Anchor = AnchorStyles.Left;
             labelTemplatePath.AutoSize = true;
-            labelTemplatePath.Location = new Point(3, 79);
+            labelTemplatePath.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
+            labelTemplatePath.Location = new Point(3, 80);
             labelTemplatePath.Margin = new Padding(3);
             labelTemplatePath.Name = "labelTemplatePath";
-            labelTemplatePath.Size = new Size(161, 21);
+            labelTemplatePath.Size = new Size(143, 19);
             labelTemplatePath.TabIndex = 13;
             labelTemplatePath.Text = "Путь к .xlsx-шаблону:";
             // 
@@ -349,10 +521,11 @@ namespace OrdersCreator.UI
             // 
             labelFileNameMask.Anchor = AnchorStyles.Left;
             labelFileNameMask.AutoSize = true;
-            labelFileNameMask.Location = new Point(3, 117);
+            labelFileNameMask.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204, true);
+            labelFileNameMask.Location = new Point(3, 118);
             labelFileNameMask.Margin = new Padding(3);
             labelFileNameMask.Name = "labelFileNameMask";
-            labelFileNameMask.Size = new Size(156, 21);
+            labelFileNameMask.Size = new Size(140, 19);
             labelFileNameMask.TabIndex = 12;
             labelFileNameMask.Text = "Маска имени файла:";
             // 
@@ -363,191 +536,21 @@ namespace OrdersCreator.UI
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204, true);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(766, 113);
+            button1.Location = new Point(800, 113);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
-            button1.Size = new Size(80, 29);
+            button1.Size = new Size(70, 29);
             button1.TabIndex = 31;
             button1.Text = "+VAR";
             button1.UseVisualStyleBackColor = false;
             // 
-            // tabBehavior
-            // 
-            tabBehavior.Controls.Add(tlpBehavior);
-            tabBehavior.Location = new Point(204, 4);
-            tabBehavior.Name = "tabBehavior";
-            tabBehavior.Padding = new Padding(10);
-            tabBehavior.Size = new Size(692, 343);
-            tabBehavior.TabIndex = 1;
-            tabBehavior.Text = "Общие";
-            tabBehavior.UseVisualStyleBackColor = true;
-            //
-            // tlpBehavior
-            //
-            tlpBehavior.AutoSize = true;
-            tlpBehavior.ColumnCount = 2;
-            tlpBehavior.ColumnStyles.Add(new ColumnStyle());
-            tlpBehavior.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpBehavior.Controls.Add(labelScannerTimeout, 0, 0);
-            tlpBehavior.Controls.Add(numScannerCharTimeoutMs, 1, 0);
-            tlpBehavior.Controls.Add(chbAllowManualBarcodeInput, 1, 1);
-            tlpBehavior.Controls.Add(chbSoundsEnabled, 1, 2);
-            tlpBehavior.Controls.Add(labelUnknownProduct, 0, 3);
-            tlpBehavior.Controls.Add(cmbUnknownProductMode, 1, 3);
-            tlpBehavior.Controls.Add(groupConfirmations, 0, 4);
-            tlpBehavior.SetColumnSpan(groupConfirmations, 2);
-            tlpBehavior.Dock = DockStyle.Fill;
-            tlpBehavior.Location = new Point(10, 10);
-            tlpBehavior.Name = "tlpBehavior";
-            tlpBehavior.RowCount = 5;
-            tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.RowStyles.Add(new RowStyle());
-            tlpBehavior.Size = new Size(672, 323);
-            tlpBehavior.TabIndex = 0;
-            // 
-            // labelScannerTimeout
-            // 
-            labelScannerTimeout.Anchor = AnchorStyles.Left;
-            labelScannerTimeout.AutoSize = true;
-            labelScannerTimeout.Location = new Point(3, 7);
-            labelScannerTimeout.Margin = new Padding(3);
-            labelScannerTimeout.Name = "labelScannerTimeout";
-            labelScannerTimeout.Size = new Size(301, 21);
-            labelScannerTimeout.TabIndex = 18;
-            labelScannerTimeout.Text = "Таймаут между символами сканера (мс):";
-            labelScannerTimeout.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelUnknownProduct
-            // 
-            labelUnknownProduct.Anchor = AnchorStyles.Left;
-            labelUnknownProduct.AutoSize = true;
-            labelUnknownProduct.Location = new Point(3, 188);
-            labelUnknownProduct.Margin = new Padding(3);
-            labelUnknownProduct.Name = "labelUnknownProduct";
-            labelUnknownProduct.Size = new Size(260, 21);
-            labelUnknownProduct.TabIndex = 22;
-            labelUnknownProduct.Text = "Действие при неизвестном товаре:";
-            labelUnknownProduct.TextAlign = ContentAlignment.MiddleCenter;
-            //
-            // groupConfirmations
-            //
-            groupConfirmations.AutoSize = true;
-            groupConfirmations.Controls.Add(tlpConfirmations);
-            groupConfirmations.Dock = DockStyle.Top;
-            groupConfirmations.Location = new Point(3, 222);
-            groupConfirmations.Margin = new Padding(3, 12, 3, 3);
-            groupConfirmations.Name = "groupConfirmations";
-            groupConfirmations.Padding = new Padding(10, 8, 10, 8);
-            groupConfirmations.Size = new Size(666, 98);
-            groupConfirmations.TabIndex = 24;
-            groupConfirmations.TabStop = false;
-            groupConfirmations.Text = "Запрашивать подтверждение:";
-            //
-            // tlpConfirmations
-            //
-            tlpConfirmations.AutoSize = true;
-            tlpConfirmations.ColumnCount = 2;
-            tlpConfirmations.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpConfirmations.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpConfirmations.Controls.Add(chbConfirmDeleteLastProduct, 0, 0);
-            tlpConfirmations.Controls.Add(chbConfirmDeleteAnyProduct, 1, 0);
-            tlpConfirmations.Controls.Add(chbConfirmDeleteCategory, 0, 1);
-            tlpConfirmations.Controls.Add(chbConfirmDeleteProduct, 1, 1);
-            tlpConfirmations.Controls.Add(chbConfirmDeleteCustomer, 0, 2);
-            tlpConfirmations.Controls.Add(chbConfirmCancelNewProduct, 1, 2);
-            tlpConfirmations.Controls.Add(chbConfirmCloseIncompleteOrder, 0, 3);
-            tlpConfirmations.SetColumnSpan(chbConfirmCloseIncompleteOrder, 2);
-            tlpConfirmations.Dock = DockStyle.Fill;
-            tlpConfirmations.Location = new Point(10, 27);
-            tlpConfirmations.Name = "tlpConfirmations";
-            tlpConfirmations.RowCount = 4;
-            tlpConfirmations.RowStyles.Add(new RowStyle());
-            tlpConfirmations.RowStyles.Add(new RowStyle());
-            tlpConfirmations.RowStyles.Add(new RowStyle());
-            tlpConfirmations.RowStyles.Add(new RowStyle());
-            tlpConfirmations.Size = new Size(646, 63);
-            tlpConfirmations.TabIndex = 0;
-            //
-            // chbConfirmDeleteLastProduct
-            //
-            chbConfirmDeleteLastProduct.AutoSize = true;
-            chbConfirmDeleteLastProduct.Location = new Point(3, 3);
-            chbConfirmDeleteLastProduct.Name = "chbConfirmDeleteLastProduct";
-            chbConfirmDeleteLastProduct.Size = new Size(247, 25);
-            chbConfirmDeleteLastProduct.TabIndex = 0;
-            chbConfirmDeleteLastProduct.Text = "при удалении последнего товара";
-            chbConfirmDeleteLastProduct.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmDeleteAnyProduct
-            //
-            chbConfirmDeleteAnyProduct.AutoSize = true;
-            chbConfirmDeleteAnyProduct.Location = new Point(326, 3);
-            chbConfirmDeleteAnyProduct.Name = "chbConfirmDeleteAnyProduct";
-            chbConfirmDeleteAnyProduct.Size = new Size(247, 25);
-            chbConfirmDeleteAnyProduct.TabIndex = 1;
-            chbConfirmDeleteAnyProduct.Text = "при удалении произвольного товара";
-            chbConfirmDeleteAnyProduct.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmDeleteCategory
-            //
-            chbConfirmDeleteCategory.AutoSize = true;
-            chbConfirmDeleteCategory.Location = new Point(3, 34);
-            chbConfirmDeleteCategory.Name = "chbConfirmDeleteCategory";
-            chbConfirmDeleteCategory.Size = new Size(285, 25);
-            chbConfirmDeleteCategory.TabIndex = 2;
-            chbConfirmDeleteCategory.Text = "при удалении категории из справочника";
-            chbConfirmDeleteCategory.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmDeleteProduct
-            //
-            chbConfirmDeleteProduct.AutoSize = true;
-            chbConfirmDeleteProduct.Location = new Point(326, 34);
-            chbConfirmDeleteProduct.Name = "chbConfirmDeleteProduct";
-            chbConfirmDeleteProduct.Size = new Size(269, 25);
-            chbConfirmDeleteProduct.TabIndex = 3;
-            chbConfirmDeleteProduct.Text = "при удалении товара из справочника";
-            chbConfirmDeleteProduct.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmDeleteCustomer
-            //
-            chbConfirmDeleteCustomer.AutoSize = true;
-            chbConfirmDeleteCustomer.Location = new Point(3, 65);
-            chbConfirmDeleteCustomer.Name = "chbConfirmDeleteCustomer";
-            chbConfirmDeleteCustomer.Size = new Size(290, 25);
-            chbConfirmDeleteCustomer.TabIndex = 4;
-            chbConfirmDeleteCustomer.Text = "при удалении контрагента из справочника";
-            chbConfirmDeleteCustomer.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmCancelNewProduct
-            //
-            chbConfirmCancelNewProduct.AutoSize = true;
-            chbConfirmCancelNewProduct.Location = new Point(326, 65);
-            chbConfirmCancelNewProduct.Name = "chbConfirmCancelNewProduct";
-            chbConfirmCancelNewProduct.Size = new Size(281, 25);
-            chbConfirmCancelNewProduct.TabIndex = 5;
-            chbConfirmCancelNewProduct.Text = "при отмене добавления нового товара";
-            chbConfirmCancelNewProduct.UseVisualStyleBackColor = true;
-            //
-            // chbConfirmCloseIncompleteOrder
-            //
-            chbConfirmCloseIncompleteOrder.AutoSize = true;
-            chbConfirmCloseIncompleteOrder.Location = new Point(3, 96);
-            chbConfirmCloseIncompleteOrder.Name = "chbConfirmCloseIncompleteOrder";
-            chbConfirmCloseIncompleteOrder.Size = new Size(289, 25);
-            chbConfirmCloseIncompleteOrder.TabIndex = 6;
-            chbConfirmCloseIncompleteOrder.Text = "при закрытии незавершенного заказа";
-            chbConfirmCloseIncompleteOrder.UseVisualStyleBackColor = true;
-            // 
             // tabStorage
             // 
             tabStorage.Controls.Add(tlpStorage);
-            tabStorage.Location = new Point(204, 4);
+            tabStorage.Location = new Point(184, 4);
             tabStorage.Name = "tabStorage";
             tabStorage.Padding = new Padding(10);
-            tabStorage.Size = new Size(692, 343);
+            tabStorage.Size = new Size(896, 343);
             tabStorage.TabIndex = 2;
             tabStorage.Text = "База данных";
             tabStorage.UseVisualStyleBackColor = true;
@@ -568,7 +571,7 @@ namespace OrdersCreator.UI
             tlpStorage.RowCount = 2;
             tlpStorage.RowStyles.Add(new RowStyle());
             tlpStorage.RowStyles.Add(new RowStyle());
-            tlpStorage.Size = new Size(672, 74);
+            tlpStorage.Size = new Size(876, 74);
             tlpStorage.TabIndex = 0;
             // 
             // labelStorageType
@@ -603,7 +606,7 @@ namespace OrdersCreator.UI
             panelBottomButtons.Location = new Point(0, 351);
             panelBottomButtons.Name = "panelBottomButtons";
             panelBottomButtons.Padding = new Padding(10);
-            panelBottomButtons.Size = new Size(900, 60);
+            panelBottomButtons.Size = new Size(1084, 60);
             panelBottomButtons.TabIndex = 30;
             // 
             // flpButtons
@@ -611,7 +614,7 @@ namespace OrdersCreator.UI
             flpButtons.Controls.Add(btnCancel);
             flpButtons.Controls.Add(btnOK);
             flpButtons.Dock = DockStyle.Right;
-            flpButtons.Location = new Point(592, 10);
+            flpButtons.Location = new Point(776, 10);
             flpButtons.Name = "flpButtons";
             flpButtons.Size = new Size(298, 40);
             flpButtons.TabIndex = 0;
@@ -621,7 +624,7 @@ namespace OrdersCreator.UI
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(900, 411);
+            ClientSize = new Size(1084, 411);
             Controls.Add(tabSettings);
             Controls.Add(panelBottomButtons);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -634,18 +637,18 @@ namespace OrdersCreator.UI
             Text = "Настройки";
             ((System.ComponentModel.ISupportInitialize)numScannerCharTimeoutMs).EndInit();
             tabSettings.ResumeLayout(false);
-            tabReports.ResumeLayout(false);
-            tabReports.PerformLayout();
-            tlpReports.ResumeLayout(false);
-            tlpReports.PerformLayout();
             tabBehavior.ResumeLayout(false);
             tabBehavior.PerformLayout();
+            tlpBehavior.ResumeLayout(false);
+            tlpBehavior.PerformLayout();
             groupConfirmations.ResumeLayout(false);
             groupConfirmations.PerformLayout();
             tlpConfirmations.ResumeLayout(false);
             tlpConfirmations.PerformLayout();
-            tlpBehavior.ResumeLayout(false);
-            tlpBehavior.PerformLayout();
+            tabReports.ResumeLayout(false);
+            tabReports.PerformLayout();
+            tlpReports.ResumeLayout(false);
+            tlpReports.PerformLayout();
             tabStorage.ResumeLayout(false);
             tabStorage.PerformLayout();
             tlpStorage.ResumeLayout(false);
