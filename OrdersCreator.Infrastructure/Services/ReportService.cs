@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace OrdersCreator.Infrastructure.Services;
 
@@ -107,8 +108,7 @@ public class ReportService : IReportService
     {
         var mask = settings.ReportFileNameMask;
         mask = ReplaceDateMask(mask, order.Date);
-        mask = mask.Replace("{CustomerName}", order.Customer?.Name ?? string.Empty);
-        mask = mask.Replace("{OrderNumber}", order.Number);
+        mask = ReplaceCustomPlaceholders(mask, order);
 
         var invalidChars = Path.GetInvalidFileNameChars();
         var sanitized = string.Join('_', mask.Split(invalidChars, StringSplitOptions.RemoveEmptyEntries));
@@ -122,6 +122,45 @@ public class ReportService : IReportService
             var format = m.Groups["format"].Success ? m.Groups["format"].Value : "yyyy-MM-dd";
             return date.ToString(format);
         }, RegexOptions.IgnoreCase);
+    }
+
+    private static string ReplaceCustomPlaceholders(string template, Order order)
+    {
+        var customerName = order.Customer?.Name?.Trim() ?? string.Empty;
+        var customerShort = GetShortName(customerName, 10);
+
+        var replacements = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["{customer}"] = customerName,
+            ["{customer_short}"] = customerShort,
+            ["{ДД}"] = order.Date.ToString("dd"),
+            ["{ММ}"] = order.Date.ToString("MM"),
+            ["{ГГГГ}"] = order.Date.ToString("yyyy"),
+            ["{ГГ}"] = order.Date.ToString("yy"),
+            ["{ЧЧ}"] = order.Date.ToString("HH"),
+            ["{мм}"] = order.Date.ToString("mm"),
+            ["{сс}"] = order.Date.ToString("ss"),
+            ["{CustomerName}"] = customerName,
+            ["{OrderNumber}"] = order.Number
+        };
+
+        var orderedKeys = replacements.Keys.OrderByDescending(k => k.Length).ToList();
+
+        var result = new StringBuilder(template);
+        foreach (var key in orderedKeys)
+        {
+            result.Replace(key, replacements[key]);
+        }
+
+        return result.ToString();
+    }
+
+    private static string GetShortName(string value, int maxLength)
+    {
+        if (string.IsNullOrEmpty(value))
+            return string.Empty;
+
+        return value.Length <= maxLength ? value : value.Substring(0, maxLength);
     }
 
     private static void ReplaceSimplePlaceholders(IXLWorksheet worksheet, Order order)
