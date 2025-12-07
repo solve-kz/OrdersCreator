@@ -159,6 +159,7 @@ namespace OrdersCreator.UI
             tabControl1.Controls.Add(tabProducts);
             tabControl1.Controls.Add(tabCustomers);
             tabControl1.Dock = DockStyle.Fill;
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             tabControl1.ItemSize = new Size(300, 40);
             tabControl1.Location = new Point(0, 0);
@@ -474,7 +475,7 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Anchor = AnchorStyles.Left;
             comboBoxCategoryFilter.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxCategoryFilter.FormattingEnabled = true;
-            comboBoxCategoryFilter.Location = new Point(155, 9);
+            comboBoxCategoryFilter.Location = new Point(155, 8);
             comboBoxCategoryFilter.Name = "comboBoxCategoryFilter";
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
@@ -749,7 +750,7 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 5);
+            comboBoxBarcodeCategory.Location = new Point(557, 4);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
             comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
