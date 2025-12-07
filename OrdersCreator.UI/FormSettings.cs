@@ -34,10 +34,10 @@ namespace OrdersCreator.UI
             _settings = _settingsService.GetSettings();
 
             // ---- блок "Отчёты по заказам" ----
-            tbReportsRootFolder.Text = _settings.ReportsRootFolder;
+            tbReportsRootFolder.Text = ConvertPathSeparatorsForUi(_settings.ReportsRootFolder);
             chbUseDailySubfolder.Checked = _settings.UseDailySubfolder;
-            tbReportTemplatePath.Text = _settings.ReportTemplatePath;
-            tbReportFileNameMask.Text = _settings.ReportFileNameMask;
+            tbReportTemplatePath.Text = ConvertPathSeparatorsForUi(_settings.ReportTemplatePath);
+            tbReportFileNameMask.Text = ConvertPathSeparatorsForUi(_settings.ReportFileNameMask);
             chbOpenReportAfterSave.Checked = _settings.OpenReportAfterSave;
 
             // ---- блок поведения ----
@@ -96,10 +96,10 @@ namespace OrdersCreator.UI
                 _settings = new AppSettings();
 
             // ---- отчёты ----
-            _settings.ReportsRootFolder = tbReportsRootFolder.Text.Trim();
+            _settings.ReportsRootFolder = ConvertPathSeparatorsFromUi(tbReportsRootFolder.Text);
             _settings.UseDailySubfolder = chbUseDailySubfolder.Checked;
-            _settings.ReportTemplatePath = tbReportTemplatePath.Text.Trim();
-            _settings.ReportFileNameMask = tbReportFileNameMask.Text.Trim();
+            _settings.ReportTemplatePath = ConvertPathSeparatorsFromUi(tbReportTemplatePath.Text);
+            _settings.ReportFileNameMask = ConvertPathSeparatorsFromUi(tbReportFileNameMask.Text);
             _settings.OpenReportAfterSave = chbOpenReportAfterSave.Checked;
 
             // ---- поведение ----
@@ -129,7 +129,7 @@ namespace OrdersCreator.UI
             using var dialog = new FolderBrowserDialog();
             dialog.Description = "Выберите корневую папку для отчётов";
 
-            var reportsPath = tbReportsRootFolder.Text.Trim();
+            var reportsPath = ConvertPathSeparatorsFromUi(tbReportsRootFolder.Text);
             if (!string.IsNullOrWhiteSpace(reportsPath))
             {
                 try
@@ -157,7 +157,7 @@ namespace OrdersCreator.UI
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                tbReportsRootFolder.Text = dialog.SelectedPath;
+                tbReportsRootFolder.Text = ConvertPathSeparatorsForUi(dialog.SelectedPath);
             }
         }
 
@@ -166,16 +166,16 @@ namespace OrdersCreator.UI
             using var dialog = new OpenFileDialog();
             dialog.Filter = "Шаблоны Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*";
 
-            var templatePath = tbReportTemplatePath.Text.Trim();
+            var templatePath = ConvertPathSeparatorsFromUi(tbReportTemplatePath.Text);
             if (!string.IsNullOrWhiteSpace(templatePath))
             {
-                dialog.FileName = templatePath;
-
                 var directory = Path.GetDirectoryName(templatePath);
                 if (!string.IsNullOrWhiteSpace(directory))
                 {
                     dialog.InitialDirectory = directory;
                 }
+
+                dialog.FileName = Path.GetFileName(templatePath);
             }
 
             if (string.IsNullOrWhiteSpace(dialog.InitialDirectory))
@@ -185,8 +185,24 @@ namespace OrdersCreator.UI
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                tbReportTemplatePath.Text = dialog.FileName;
+                tbReportTemplatePath.Text = ConvertPathSeparatorsForUi(dialog.FileName);
             }
+        }
+
+        private static string ConvertPathSeparatorsForUi(string? path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                return string.Empty;
+
+            return path.Replace(Path.DirectorySeparatorChar, '>');
+        }
+
+        private static string ConvertPathSeparatorsFromUi(string? path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                return string.Empty;
+
+            return path.Replace('>', Path.DirectorySeparatorChar).Trim();
         }
     }
 }
