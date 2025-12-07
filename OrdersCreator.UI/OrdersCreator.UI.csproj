@@ -7,6 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>Resources\icon-barcode-scanner.ico</ApplicationIcon>
+	<AssemblyVersion>1.1.0.0</AssemblyVersion>
+	<FileVersion>1.1.0.0</FileVersion>
+	<Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -68,6 +71,20 @@
 	<ItemGroup>
 		<Content Include="Help\**\*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Всё из InstallerContent\Data\* -> в выходную папку Data\* -->
+		<Content Include="InstallerContent\Data\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>Data\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Content>
+
+		<!-- Всё из InstallerContent\Templates\* -> в выходную папку Templates\* -->
+		<Content Include="InstallerContent\Templates\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>Templates\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Content>
 	</ItemGroup>
 
