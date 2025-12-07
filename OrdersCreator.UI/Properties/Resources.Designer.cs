@@ -151,6 +151,16 @@ namespace OrdersCreator.UI.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] icon_settings_ico {
+            get {
+                object obj = ResourceManager.GetObject("icon_settings_ico", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap new_file {
