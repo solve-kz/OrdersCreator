@@ -14,6 +14,13 @@ using System.Windows.Forms;
 
 namespace OrdersCreator.UI
 {
+    public enum FormSettingsTab
+    {
+        Behavior,
+        Reports,
+        Storage
+    }
+
     public partial class FormSettings : Form
     {
 
@@ -21,10 +28,13 @@ namespace OrdersCreator.UI
         private AppSettings _settings = new AppSettings();
         private readonly Font _tabBoldFont;
 
-        public FormSettings(ISettingsService settingsService)
+        public FormSettings(ISettingsService settingsService, FormSettingsTab initialTab = FormSettingsTab.Behavior)
         {
             InitializeComponent();
             ButtonCursorHelper.ApplyHandCursor(this);
+
+            using var iconStream = new MemoryStream(Properties.Resources.icon_settings_ico);
+            Icon = new Icon(iconStream);
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
 
@@ -40,6 +50,10 @@ namespace OrdersCreator.UI
             tabSettings.Multiline = true;
 
             tabSettings.DrawItem += tabSettings_DrawItem;
+            tabSettings.SelectedIndexChanged += tabSettings_SelectedIndexChanged;
+
+            SelectTab(initialTab);
+            UpdateTitleWithActiveTab();
         }
 
         private void LoadSettingsToControls()
@@ -232,6 +246,35 @@ namespace OrdersCreator.UI
                 return string.Empty;
 
             return path.Replace('>', Path.DirectorySeparatorChar).Trim();
+        }
+
+        private void SelectTab(FormSettingsTab tab)
+        {
+            switch (tab)
+            {
+                case FormSettingsTab.Reports:
+                    tabSettings.SelectedTab = tabReports;
+                    break;
+                case FormSettingsTab.Storage:
+                    tabSettings.SelectedTab = tabStorage;
+                    break;
+                default:
+                    tabSettings.SelectedTab = tabBehavior;
+                    break;
+            }
+        }
+
+        private void UpdateTitleWithActiveTab()
+        {
+            var tabTitle = tabSettings.SelectedTab?.Text ?? string.Empty;
+            Text = string.IsNullOrWhiteSpace(tabTitle)
+                ? "Настройки"
+                : $"Настройки: {tabTitle}";
+        }
+
+        private void tabSettings_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            UpdateTitleWithActiveTab();
         }
 
         private void tabSettings_DrawItem(object? sender, DrawItemEventArgs e)
