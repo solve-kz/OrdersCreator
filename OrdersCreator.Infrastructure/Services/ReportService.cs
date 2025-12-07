@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Text;
 
 namespace OrdersCreator.Infrastructure.Services;
 
@@ -107,12 +106,28 @@ public class ReportService : IReportService
     private static string BuildReportFileName(AppSettings settings, Order order)
     {
         var mask = settings.ReportFileNameMask;
+        mask = TrimExcelExtension(mask);
         mask = ReplaceDateMask(mask, order.Date);
         mask = ReplaceCustomPlaceholders(mask, order);
 
         var invalidChars = Path.GetInvalidFileNameChars();
         var sanitized = string.Join('_', mask.Split(invalidChars, StringSplitOptions.RemoveEmptyEntries));
-        return sanitized;
+        return sanitized + ".xlsx";
+    }
+
+    private static string TrimExcelExtension(string mask)
+    {
+        if (string.IsNullOrWhiteSpace(mask))
+            return string.Empty;
+
+        var normalizedMask = mask.Trim();
+
+        if (normalizedMask.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+        {
+            normalizedMask = normalizedMask.Substring(0, normalizedMask.Length - ".xlsx".Length);
+        }
+
+        return normalizedMask;
     }
 
     private static string ReplaceDateMask(string template, DateTime date)
@@ -135,24 +150,20 @@ public class ReportService : IReportService
             ["{customer_short}"] = customerShort,
             ["{ДД}"] = order.Date.ToString("dd"),
             ["{ММ}"] = order.Date.ToString("MM"),
+            ["{MM}"] = order.Date.ToString("MM"),
             ["{ГГГГ}"] = order.Date.ToString("yyyy"),
             ["{ГГ}"] = order.Date.ToString("yy"),
             ["{ЧЧ}"] = order.Date.ToString("HH"),
+            ["{HH}"] = order.Date.ToString("HH"),
             ["{мм}"] = order.Date.ToString("mm"),
+            ["{mm}"] = order.Date.ToString("mm"),
             ["{сс}"] = order.Date.ToString("ss"),
+            ["{ss}"] = order.Date.ToString("ss"),
             ["{CustomerName}"] = customerName,
             ["{OrderNumber}"] = order.Number
         };
 
-        var orderedKeys = replacements.Keys.OrderByDescending(k => k.Length).ToList();
-
-        var result = new StringBuilder(template);
-        foreach (var key in orderedKeys)
-        {
-            result.Replace(key, replacements[key]);
-        }
-
-        return result.ToString();
+        return ReplaceTokens(template, replacements);
     }
 
     private static string GetShortName(string value, int maxLength)

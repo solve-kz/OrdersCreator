@@ -71,7 +71,7 @@ namespace OrdersCreator.UI
             tbReportsRootFolder.Text = ConvertPathSeparatorsForUi(_settings.ReportsRootFolder);
             chbUseDailySubfolder.Checked = _settings.UseDailySubfolder;
             tbReportTemplatePath.Text = ConvertPathSeparatorsForUi(_settings.ReportTemplatePath);
-            tbReportFileNameMask.Text = ConvertPathSeparatorsForUi(_settings.ReportFileNameMask);
+            tbReportFileNameMask.Text = NormalizeReportFileNameMask(_settings.ReportFileNameMask);
             chbOpenReportAfterSave.Checked = _settings.OpenReportAfterSave;
 
             // ---- блок поведения ----
@@ -141,7 +141,7 @@ namespace OrdersCreator.UI
             _settings.ReportsRootFolder = ConvertPathSeparatorsFromUi(tbReportsRootFolder.Text);
             _settings.UseDailySubfolder = chbUseDailySubfolder.Checked;
             _settings.ReportTemplatePath = ConvertPathSeparatorsFromUi(tbReportTemplatePath.Text);
-            _settings.ReportFileNameMask = ConvertPathSeparatorsFromUi(tbReportFileNameMask.Text);
+            _settings.ReportFileNameMask = NormalizeReportFileNameMask(tbReportFileNameMask.Text);
             _settings.OpenReportAfterSave = chbOpenReportAfterSave.Checked;
 
             // ---- поведение ----
@@ -389,6 +389,11 @@ namespace OrdersCreator.UI
 
         private void InsertPlaceholderIntoMask(string placeholder)
         {
+            var normalizedPlaceholder = NormalizePlaceholder(placeholder);
+
+            if (string.IsNullOrEmpty(normalizedPlaceholder))
+                return;
+
             var selectionStart = tbReportFileNameMask.SelectionStart;
             var selectionLength = tbReportFileNameMask.SelectionLength;
 
@@ -399,10 +404,41 @@ namespace OrdersCreator.UI
                 text = text.Remove(selectionStart, selectionLength);
             }
 
-            text = text.Insert(selectionStart, placeholder);
+            text = text.Insert(selectionStart, normalizedPlaceholder);
             tbReportFileNameMask.Text = text;
-            tbReportFileNameMask.SelectionStart = selectionStart + placeholder.Length;
+            tbReportFileNameMask.SelectionStart = selectionStart + normalizedPlaceholder.Length;
             tbReportFileNameMask.Focus();
+        }
+
+        private static string NormalizePlaceholder(string placeholder)
+        {
+            if (string.IsNullOrWhiteSpace(placeholder))
+                return string.Empty;
+
+            var normalized = placeholder.Trim();
+
+            if (!normalized.StartsWith('{'))
+                normalized = "{" + normalized;
+
+            if (!normalized.EndsWith('}'))
+                normalized += "}";
+
+            return normalized;
+        }
+
+        private static string NormalizeReportFileNameMask(string? fileNameMask)
+        {
+            if (string.IsNullOrWhiteSpace(fileNameMask))
+                return string.Empty;
+
+            var mask = fileNameMask.Trim();
+
+            if (mask.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                mask = mask.Substring(0, mask.Length - ".xlsx".Length);
+            }
+
+            return mask;
         }
     }
 }
