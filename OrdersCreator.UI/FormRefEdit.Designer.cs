@@ -162,10 +162,10 @@ namespace OrdersCreator.UI
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             tabControl1.ItemSize = new Size(300, 40);
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(0, 5);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(984, 761);
+            tabControl1.Size = new Size(984, 756);
             tabControl1.TabIndex = 1;
             // 
             // tabCategory
@@ -402,7 +402,7 @@ namespace OrdersCreator.UI
             tabProducts.Location = new Point(4, 44);
             tabProducts.Name = "tabProducts";
             tabProducts.Padding = new Padding(3);
-            tabProducts.Size = new Size(976, 713);
+            tabProducts.Size = new Size(976, 708);
             tabProducts.TabIndex = 1;
             tabProducts.Text = "Штрих-коды товаров";
             tabProducts.UseVisualStyleBackColor = true;
@@ -423,7 +423,7 @@ namespace OrdersCreator.UI
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             tlpBarcodes.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tlpBarcodes.Size = new Size(970, 707);
+            tlpBarcodes.Size = new Size(970, 702);
             tlpBarcodes.TabIndex = 0;
             // 
             // panelTopBarcodes
@@ -475,7 +475,7 @@ namespace OrdersCreator.UI
             comboBoxCategoryFilter.Anchor = AnchorStyles.Left;
             comboBoxCategoryFilter.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxCategoryFilter.FormattingEnabled = true;
-            comboBoxCategoryFilter.Location = new Point(155, 9);
+            comboBoxCategoryFilter.Location = new Point(155, 8);
             comboBoxCategoryFilter.Name = "comboBoxCategoryFilter";
             comboBoxCategoryFilter.Size = new Size(174, 25);
             comboBoxCategoryFilter.TabIndex = 1;
@@ -564,7 +564,7 @@ namespace OrdersCreator.UI
             panelGridBarcodes.Dock = DockStyle.Fill;
             panelGridBarcodes.Location = new Point(3, 63);
             panelGridBarcodes.Name = "panelGridBarcodes";
-            panelGridBarcodes.Size = new Size(964, 471);
+            panelGridBarcodes.Size = new Size(964, 466);
             panelGridBarcodes.TabIndex = 1;
             // 
             // dataGridViewProducts
@@ -597,7 +597,7 @@ namespace OrdersCreator.UI
             dataGridViewProducts.ReadOnly = true;
             dataGridViewProducts.RowHeadersVisible = false;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducts.Size = new Size(964, 471);
+            dataGridViewProducts.Size = new Size(964, 466);
             dataGridViewProducts.TabIndex = 2;
             // 
             // ProductNumber
@@ -635,7 +635,7 @@ namespace OrdersCreator.UI
             panelEditBarcodes.Controls.Add(tlpBarcodesEditContainer);
             panelEditBarcodes.Dock = DockStyle.Fill;
             panelEditBarcodes.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            panelEditBarcodes.Location = new Point(3, 540);
+            panelEditBarcodes.Location = new Point(3, 535);
             panelEditBarcodes.Name = "panelEditBarcodes";
             panelEditBarcodes.Padding = new Padding(10);
             panelEditBarcodes.Size = new Size(964, 94);
@@ -750,7 +750,7 @@ namespace OrdersCreator.UI
             comboBoxBarcodeCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboBoxBarcodeCategory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBoxBarcodeCategory.FormattingEnabled = true;
-            comboBoxBarcodeCategory.Location = new Point(557, 5);
+            comboBoxBarcodeCategory.Location = new Point(557, 4);
             comboBoxBarcodeCategory.Name = "comboBoxBarcodeCategory";
             comboBoxBarcodeCategory.Size = new Size(378, 25);
             comboBoxBarcodeCategory.TabIndex = 3;
@@ -760,7 +760,7 @@ namespace OrdersCreator.UI
             panelButtonsBarcodes.BackColor = Color.LightGray;
             panelButtonsBarcodes.Controls.Add(tlpBarcodesButtons);
             panelButtonsBarcodes.Dock = DockStyle.Fill;
-            panelButtonsBarcodes.Location = new Point(3, 640);
+            panelButtonsBarcodes.Location = new Point(3, 635);
             panelButtonsBarcodes.Name = "panelButtonsBarcodes";
             panelButtonsBarcodes.Padding = new Padding(10);
             panelButtonsBarcodes.Size = new Size(964, 64);
@@ -1243,6 +1243,7 @@ namespace OrdersCreator.UI
             ClientSize = new Size(984, 761);
             Controls.Add(tabControl1);
             Name = "FormRefEdit";
+            Padding = new Padding(0, 5, 0, 0);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Редактирование справочников";
             tabControl1.ResumeLayout(false);
