@@ -144,7 +144,7 @@ namespace OrdersCreator.UI
         private void OpenReferencesEditor(FormRefEditTab tab)
         {
             var currentCustomerId = _orderService.CurrentOrder?.CustomerId;
-            FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService, tab);
+            FormRefEdit refEditForm = new FormRefEdit(_customerService, _categoryService, _productService, _settingsService, tab);
             refEditForm.ShowDialog();
             LoadCustomersForMain(currentCustomerId);
             LoadCategoriesForNewProduct();
@@ -537,14 +537,17 @@ namespace OrdersCreator.UI
             if ((_orderService.CurrentOrder?.Lines.Count ?? 0) == 0)
                 return;
 
-            var confirmation = MessageBox.Show(
-                "Удалить последний товар?",
-                "Подтверждение удаления",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            if (_appSettings.ConfirmDeleteLastProduct)
+            {
+                var confirmation = MessageBox.Show(
+                    "Удалить последний товар?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-            if (confirmation != DialogResult.Yes)
-                return;
+                if (confirmation != DialogResult.Yes)
+                    return;
+            }
 
             _orderService.CancelLastLine();
 
@@ -559,6 +562,18 @@ namespace OrdersCreator.UI
 
         private void CancelRedMode()
         {
+            if (_pendingBarcode != null && _appSettings.ConfirmCancelNewProduct)
+            {
+                var confirmation = MessageBox.Show(
+                    "Отменить добавление нового товара?",
+                    "Подтверждение отмены",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmation != DialogResult.Yes)
+                    return;
+            }
+
             _pendingBarcode = null;
             SwitchToGreenMode();
             lblReady.Text = "Готов к сканированию!";
@@ -640,6 +655,28 @@ namespace OrdersCreator.UI
 
             if (!int.TryParse(rowNumberCell.Value.ToString(), out var rowNumber))
                 return;
+
+            var isLastLine = (_orderService.CurrentOrder?.Lines.Count ?? 0) == 1;
+            var shouldConfirm = isLastLine
+                ? _appSettings.ConfirmDeleteLastProduct
+                : _appSettings.ConfirmDeleteAnyProduct;
+
+            if (shouldConfirm)
+            {
+                var productTitle = dataGridViewOrderLines.Rows[e.RowIndex].Cells[nameof(ProductTitle)]?.Value?.ToString() ?? string.Empty;
+                var promptText = isLastLine
+                    ? "Удалить последний товар?"
+                    : $"Удалить товар \"{productTitle}\"?";
+
+                var confirmation = MessageBox.Show(
+                    promptText,
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmation != DialogResult.Yes)
+                    return;
+            }
 
             _orderService.RemoveLine(rowNumber);
 
@@ -848,6 +885,9 @@ namespace OrdersCreator.UI
         private bool PromptSaveIfOrderNotEmpty()
         {
             if (!OrderHasLines())
+                return true;
+
+            if (!_appSettings.ConfirmCloseIncompleteOrder)
                 return true;
 
             var dialogResult = MessageBox.Show(

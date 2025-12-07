@@ -36,6 +36,13 @@ namespace OrdersCreator.Infrastructure.Repositories
                 AllowManualBarcodeInput = _settings.AllowManualBarcodeInput,
                 SoundsEnabled = _settings.SoundsEnabled,
                 UnknownProductMode = _settings.UnknownProductMode,
+                ConfirmDeleteLastProduct = _settings.ConfirmDeleteLastProduct,
+                ConfirmDeleteAnyProduct = _settings.ConfirmDeleteAnyProduct,
+                ConfirmDeleteCategoryFromCatalog = _settings.ConfirmDeleteCategoryFromCatalog,
+                ConfirmDeleteProductFromCatalog = _settings.ConfirmDeleteProductFromCatalog,
+                ConfirmDeleteCustomerFromCatalog = _settings.ConfirmDeleteCustomerFromCatalog,
+                ConfirmCancelNewProduct = _settings.ConfirmCancelNewProduct,
+                ConfirmCloseIncompleteOrder = _settings.ConfirmCloseIncompleteOrder,
                 StorageType = _settings.StorageType,
                 SqlServerConnectionString = _settings.SqlServerConnectionString
             };
