@@ -7,7 +7,6 @@ namespace OrdersCreator.UI
     internal static class HelpDirectoryManager
     {
         private const string HelpFolderName = "Help";
-        private const string VersionFileName = "help.version";
 
         private static string? _helpRoot;
 
@@ -29,51 +28,42 @@ namespace OrdersCreator.UI
             var targetHelpPath = Path.Combine(appDataPath, HelpFolderName);
             Directory.CreateDirectory(targetHelpPath);
 
-            var currentVersion = GetCurrentVersion();
-            if (NeedToCopyHelp(targetHelpPath, currentVersion))
+            if (NeedToCopyHelp(sourceHelpPath, targetHelpPath))
             {
-                if (Directory.Exists(targetHelpPath))
-                {
-                    Directory.Delete(targetHelpPath, recursive: true);
-                }
-
                 CopyDirectory(sourceHelpPath, targetHelpPath);
-                WriteVersionFile(targetHelpPath, currentVersion);
             }
 
             _helpRoot = targetHelpPath;
             return _helpRoot;
         }
 
-        private static bool NeedToCopyHelp(string targetHelpPath, Version currentVersion)
+        private static bool NeedToCopyHelp(string sourceHelpPath, string targetHelpPath)
         {
-            var versionFilePath = Path.Combine(targetHelpPath, VersionFileName);
-            if (!File.Exists(versionFilePath))
+            if (!Directory.Exists(targetHelpPath))
             {
                 return true;
             }
 
-            var storedVersionText = File.ReadAllText(versionFilePath).Trim();
-            if (!Version.TryParse(storedVersionText, out var storedVersion))
+            foreach (var sourceFile in Directory.GetFiles(sourceHelpPath, "*", SearchOption.AllDirectories))
             {
-                return true;
+                var relativePath = Path.GetRelativePath(sourceHelpPath, sourceFile);
+                var targetFilePath = Path.Combine(targetHelpPath, relativePath);
+
+                if (!File.Exists(targetFilePath))
+                {
+                    return true;
+                }
+
+                var sourceInfo = new FileInfo(sourceFile);
+                var targetInfo = new FileInfo(targetFilePath);
+
+                if (sourceInfo.LastWriteTimeUtc > targetInfo.LastWriteTimeUtc)
+                {
+                    return true;
+                }
             }
 
-            return storedVersion < currentVersion;
-        }
-
-        private static void WriteVersionFile(string targetHelpPath, Version version)
-        {
-            var versionFilePath = Path.Combine(targetHelpPath, VersionFileName);
-            Directory.CreateDirectory(Path.GetDirectoryName(versionFilePath) ?? targetHelpPath);
-            File.WriteAllText(versionFilePath, version.ToString());
-        }
-
-        private static Version GetCurrentVersion()
-        {
-            return Version.TryParse(Application.ProductVersion, out var version)
-                ? version
-                : new Version(0, 0);
+            return false;
         }
 
         private static void CopyDirectory(string sourceDir, string targetDir)

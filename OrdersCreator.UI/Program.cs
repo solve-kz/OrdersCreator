@@ -8,7 +8,9 @@ using OrdersCreator.Infrastructure.Services; // реальные реализа�
 using OrdersCreator.Infrastructure.Sqlite;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows.Forms;
@@ -31,16 +33,17 @@ namespace OrdersCreator.UI
         {
             ApplicationConfiguration.Initialize();
 
-            // ----- 1. Настройки из JSON -----
             var appDataPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "OrderCreator");
-            Directory.CreateDirectory(appDataPath);
 
-            HelpDirectoryManager.EnsureHelpDirectoryReady(appDataPath);
+            EnsureAppDataDirectory(appDataPath);
 
             var settingsFilePath = Path.Combine(appDataPath, "appsettings.json");
-            EnsureDefaultConfig(settingsFilePath);
+            var defaultSettings = new AppSettings();
+            EnsureConfigUpToDate(settingsFilePath, defaultSettings);
+
+            HelpDirectoryManager.EnsureHelpDirectoryReady(appDataPath);
 
             var builder = new ConfigurationBuilder()
                 .AddJsonFile(settingsFilePath, optional: true, reloadOnChange: true)
@@ -60,37 +63,11 @@ namespace OrdersCreator.UI
             {
                 var dbPath = Path.Combine(appDataPath, "OrderCreator.db");
 
-                if (!File.Exists(dbPath))
-                {
-                    var legacyAppDataDb = Path.Combine(appDataPath, "orders.db");
-                    var legacyLocalDb = Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                        "OrderCreator",
-                        "Data",
-                        "OrderCreator.db");
-                    var legacyProgramDb = Path.Combine(AppContext.BaseDirectory, "OrderCreator.db");
-
-                    if (File.Exists(legacyAppDataDb))
-                    {
-                        File.Copy(legacyAppDataDb, dbPath);
-                    }
-                    else if (File.Exists(legacyLocalDb))
-                    {
-                        File.Copy(legacyLocalDb, dbPath);
-                    }
-                    else if (File.Exists(legacyProgramDb))
-                    {
-                        File.Copy(legacyProgramDb, dbPath);
-                    }
-                }
-
-                var sqliteFactory = new SqliteConnectionFactory(dbPath);
+                var sqliteFactory = EnsureDatabaseReady(dbPath);
                 var dbInitializer = new SqliteDbInitializer(sqliteFactory);
 
                 try
                 {
-                    // ЭТОГО достаточно: если файла нет – он создастся,
-                    // если таблиц нет – они создадутся.
                     dbInitializer.EnsureCreated();
 
                     categoryRepo = new SqliteCategoryRepository(sqliteFactory);
@@ -152,20 +129,94 @@ namespace OrdersCreator.UI
             Application.Run(mainForm);
         }
 
-        private static void EnsureDefaultConfig(string configPath)
+        private static void EnsureAppDataDirectory(string appDataPath)
         {
-            if (File.Exists(configPath))
-                return;
+            Directory.CreateDirectory(appDataPath);
+        }
 
+        private static void EnsureConfigUpToDate(string configPath, AppSettings defaultSettings)
+        {
             var dir = Path.GetDirectoryName(configPath);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
 
-            var defaultSettings = new AppSettings();
-            var json = JsonSerializer.Serialize(defaultSettings, DefaultConfigSerializerOptions);
-            File.WriteAllText(configPath, json);
+            AppSettings settings;
+            var needRewrite = false;
+            var existingProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            try
+            {
+                if (!File.Exists(configPath))
+                {
+                    settings = new AppSettings();
+                    needRewrite = true;
+                }
+                else
+                {
+                    var json = File.ReadAllText(configPath);
+
+                    if (string.IsNullOrWhiteSpace(json))
+                    {
+                        settings = new AppSettings();
+                        needRewrite = true;
+                    }
+                    else
+                    {
+                        using var doc = JsonDocument.Parse(json);
+                        existingProperties.UnionWith(doc.RootElement
+                            .EnumerateObject()
+                            .Select(p => p.Name));
+
+                        settings = JsonSerializer.Deserialize<AppSettings>(json, DefaultConfigSerializerOptions)
+                                   ?? new AppSettings();
+                    }
+                }
+            }
+            catch
+            {
+                settings = new AppSettings();
+                needRewrite = true;
+            }
+
+            foreach (var property in typeof(AppSettings).GetProperties())
+            {
+                if (property.GetMethod is null || property.SetMethod is null)
+                {
+                    continue;
+                }
+
+                if (existingProperties.Contains(property.Name))
+                {
+                    continue;
+                }
+
+                var defaultValue = property.GetValue(defaultSettings);
+                property.SetValue(settings, defaultValue);
+                needRewrite = true;
+            }
+
+            if (needRewrite)
+            {
+                var json = JsonSerializer.Serialize(settings, DefaultConfigSerializerOptions);
+                File.WriteAllText(configPath, json);
+            }
+        }
+
+        private static SqliteConnectionFactory EnsureDatabaseReady(string dbPath)
+        {
+            if (!File.Exists(dbPath))
+            {
+                var sourceDbPath = Path.Combine(AppContext.BaseDirectory, "Data", "OrderCreator.db");
+
+                if (File.Exists(sourceDbPath))
+                {
+                    File.Copy(sourceDbPath, dbPath, overwrite: true);
+                }
+            }
+
+            return new SqliteConnectionFactory(dbPath);
         }
     }
 }
