@@ -23,7 +23,7 @@ namespace OrdersCreator.UI
             InitializeComponent();
 
             _relativePage = relativePage;
-            _helpRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Help");
+            _helpRoot = HelpDirectoryManager.HelpRoot;
 
             btnHome.Click += BtnHome_Click;
             btnBack.Click += BtnBack_Click;

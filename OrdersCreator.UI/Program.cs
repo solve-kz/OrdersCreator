@@ -37,6 +37,8 @@ namespace OrdersCreator.UI
                 "OrderCreator");
             Directory.CreateDirectory(appDataPath);
 
+            HelpDirectoryManager.EnsureHelpDirectoryReady(appDataPath);
+
             var settingsFilePath = Path.Combine(appDataPath, "appsettings.json");
             EnsureDefaultConfig(settingsFilePath);
 
