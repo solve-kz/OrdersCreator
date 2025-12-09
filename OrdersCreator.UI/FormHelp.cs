@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace OrdersCreator.UI
 {
@@ -25,10 +26,25 @@ namespace OrdersCreator.UI
             _relativePage = relativePage;
             _helpRoot = HelpDirectoryManager.HelpRoot;
 
+            ConfigureWebViewUserData();
+
             btnHome.Click += BtnHome_Click;
             btnBack.Click += BtnBack_Click;
             btnForward.Click += BtnForward_Click;
             webView21.NavigationCompleted += WebView21_NavigationCompleted;
+        }
+
+        private void ConfigureWebViewUserData()
+        {
+            var baseFolder = Path.GetDirectoryName(_helpRoot) ?? _helpRoot;
+            var userDataFolder = Path.Combine(baseFolder, "WebView2");
+
+            Directory.CreateDirectory(userDataFolder);
+
+            webView21.CreationProperties = new CoreWebView2CreationProperties
+            {
+                UserDataFolder = userDataFolder
+            };
         }
 
         private async void HelpForm_Load(object sender, EventArgs e)
