@@ -82,10 +82,7 @@ namespace OrdersCreator.UI
             lblAbout.Name = "lblAbout";
             lblAbout.Size = new Size(374, 152);
             lblAbout.TabIndex = 0;
-            lblAbout.Text = "Складской терминал v1.0\n\n" +
-"Назначение: работа со штрих-кодами и формирование отчётов по заказам.\n\n" +
-"Автор: Павел Приходько\n" +
-"© 2025";
+            lblAbout.Text = "Складской терминал v1.1.0\n\nНазначение: работа со штрих-кодами и формирование отчётов по заказам.\n\nАвтор: Павел Приходько\n© 2025";
             // 
             // btnCheckUpdates
             // 

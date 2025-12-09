@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<item>
+	<version>1.0.0.0</version>
+	<url>https://github.com/solve-kz/OrdersCreator/releases/download/v1.0.0/OrderCreatorInstaller.msi</url>
+	<changelog>https://github.com/solve-kz/OrdersCreator/releases/tag/v1.0.0</changelog>
+	<mandatory>false</mandatory>
+</item>
