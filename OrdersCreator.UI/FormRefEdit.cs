@@ -36,6 +36,7 @@ namespace OrdersCreator.UI
         private Category? _currentCategory;
         private Product? _currentProduct;
         private string? _productSearchTerm;
+        private string? _customerSearchTerm;
         private bool _isNewCustomer;
         private bool _isNewCategory;
         private bool _isNewProduct;
@@ -114,9 +115,14 @@ namespace OrdersCreator.UI
             btnCustomerCancel.Click += BtnCancelCustomer_Click;
 
             textBoxCustomerName.TextChanged += CustomerEditorChanged;
+            textBoxSearchCustomer.TextChanged += TextBoxSearchCustomer_TextChanged;
+            btnSearchCustomer.Click += BtnSearchCustomer_Click;
 
             btnCustomersImport.Click += BtnImportCustomersXlsx_Click;
             btnCustomersExport.Click += BtnExportCustomersXlsx_Click;
+
+            btnSearchCustomer.Visible = false;
+            btnSearchCustomer.Enabled = false;
 
             LoadCustomers();
         }
@@ -185,6 +191,17 @@ namespace OrdersCreator.UI
         {
             var customers = _customerService
                 .GetAll()
+                .ToList();
+
+            if (!string.IsNullOrWhiteSpace(_customerSearchTerm))
+            {
+                var search = _customerSearchTerm.Trim();
+                customers = customers
+                    .Where(c => !string.IsNullOrWhiteSpace(c.Name) && c.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            customers = customers
                 .OrderBy(c => c.Name)
                 .ToList();
 
@@ -885,6 +902,28 @@ namespace OrdersCreator.UI
 
             _productSearchTerm = textBoxSearch.Text.Trim();
             ReloadProductsWithCurrentFilters();
+        }
+
+        private void TextBoxSearchCustomer_TextChanged(object? sender, EventArgs e)
+        {
+            var hasText = !string.IsNullOrWhiteSpace(textBoxSearchCustomer.Text);
+            btnSearchCustomer.Visible = hasText;
+            btnSearchCustomer.Enabled = hasText;
+
+            if (!hasText)
+            {
+                _customerSearchTerm = null;
+                LoadCustomers();
+            }
+        }
+
+        private void BtnSearchCustomer_Click(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxSearchCustomer.Text))
+                return;
+
+            _customerSearchTerm = textBoxSearchCustomer.Text.Trim();
+            LoadCustomers();
         }
 
         private void BtnProductFilterApply_Click(object? sender, EventArgs e)

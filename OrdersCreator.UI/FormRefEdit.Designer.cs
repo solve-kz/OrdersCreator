@@ -963,9 +963,9 @@ namespace OrdersCreator.UI
             lblCustomerSearch.Size = new Size(51, 19);
             lblCustomerSearch.TabIndex = 0;
             lblCustomerSearch.Text = "Поиск:";
-            // 
+            //
             // textBoxSearchCustomer
-            // 
+            //
             textBoxSearchCustomer.Anchor = AnchorStyles.Left;
             textBoxSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
             textBoxSearchCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -973,22 +973,22 @@ namespace OrdersCreator.UI
             textBoxSearchCustomer.Name = "textBoxSearchCustomer";
             textBoxSearchCustomer.Size = new Size(244, 25);
             textBoxSearchCustomer.TabIndex = 1;
-            // 
+            //
             // btnSearchCustomer
-            // 
+            //
             btnSearchCustomer.Anchor = AnchorStyles.Left;
             btnSearchCustomer.BackColor = Color.DodgerBlue;
             btnSearchCustomer.FlatAppearance.BorderSize = 0;
             btnSearchCustomer.FlatStyle = FlatStyle.Flat;
             btnSearchCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnSearchCustomer.ForeColor = Color.White;
-            btnSearchCustomer.Location = new Point(310, 7);
+            btnSearchCustomer.Location = new Point(310, 9);
             btnSearchCustomer.Name = "btnSearchCustomer";
-            btnSearchCustomer.Size = new Size(80, 30);
+            btnSearchCustomer.Size = new Size(80, 25);
             btnSearchCustomer.TabIndex = 2;
             btnSearchCustomer.Text = "Найти";
             btnSearchCustomer.UseVisualStyleBackColor = false;
-            // 
+            //
             // panelGridCustomers
             // 
             panelGridCustomers.Controls.Add(dataGridViewCustomers);
