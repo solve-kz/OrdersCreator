@@ -550,6 +550,12 @@ namespace OrdersCreator.UI
 
         private void CancelLastAction()
         {
+            if (_pendingBarcode != null)
+            {
+                CancelRedMode();
+                return;
+            }
+
             if (panelRedMode.Visible)
             {
                 CancelRedMode();
